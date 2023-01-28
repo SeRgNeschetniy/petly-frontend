@@ -7,19 +7,6 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}></Route>
       </Routes>
-
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#0101',
-        }}
-      >
-        React homework template
-      </div>
     </>
   );
 };
