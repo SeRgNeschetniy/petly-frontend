@@ -76,23 +76,23 @@ export const GlobalStyles = css`
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+`;
 
-  .container {
-    padding: 0 20px;
-    margin: 0 auto;
+export const Container = css`
+  padding: 0 20px;
+  margin: 0 auto;
 
-    @media screen and (min-width: 320px) {
-      width: 280px;
-    }
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
 
-    @media screen and (min-width: 768px) {
-      width: 704px;
-      padding: 0 32px;
-    }
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    padding: 0 32px;
+  }
 
-    @media screen and (min-width: 1280px) {
-      width: 1248px;
-      padding: 0 16px;
-    }
+  @media screen and (min-width: 1280px) {
+    width: 1248px;
+    padding: 0 16px;
   }
 `;
