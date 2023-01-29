@@ -35,7 +35,7 @@ export default function Header() {
       <NavBox active={show}>
         <AuthNavBox>
           <AuthButton accent> Login</AuthButton>
-          <AuthButton>Register</AuthButton>
+          <AuthButton>Registration</AuthButton>
         </AuthNavBox>
         <ListLinks>
           {LinksData.map(({ id, to, title }) => (
