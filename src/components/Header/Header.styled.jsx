@@ -87,7 +87,7 @@ export const NavBox = styled.div`
   }
 `;
 
-export const AuthNavBox = styled.div`
+export const AuthNavBox = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,7 +102,7 @@ export const AuthNavBox = styled.div`
   }
 `;
 
-export const AuthButton = styled.button`
+export const AuthLinks = styled(NavLink)`
   background-color: ${({ theme }) => theme.colors.white};
   padding: 8px 28px;
   border-radius: 40px;
