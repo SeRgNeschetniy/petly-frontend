@@ -5,18 +5,35 @@ import { normalize } from 'styled-normalize';
 export const GlobalStyles = css`
   ${normalize}
 
+  @font-face {
+    font-family: 'Manrope';
+    src: local('fonts'), url('./fonts/Manrope-Medium.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Manrope';
+    src: local('fonts'), url('./fonts/Manrope-Regular.ttf') format('truetype');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Manrope';
+    src: local('fonts'), url('./fonts/Manrope-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+
   html {
     box-sizing: border-box;
     scroll-behavior: smooth;
   }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
     background: ${theme.colors.mainBackground};
     min-height: 100vh;
     font-style: normal;
+    font-weight: 500;
   }
   h1,
   h2,
