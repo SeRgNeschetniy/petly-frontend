@@ -21,6 +21,11 @@ export const GlobalStyles = css`
     font-weight: 700;
   }
 
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
   html {
     box-sizing: border-box;
     scroll-behavior: smooth;
@@ -77,16 +82,16 @@ export const GlobalStyles = css`
     margin: 0 auto;
 
     @media screen and (min-width: 320px) {
-      width: 320px;
+      width: 280px;
     }
 
     @media screen and (min-width: 768px) {
-      width: 768px;
+      width: 704px;
       padding: 0 32px;
     }
 
     @media screen and (min-width: 1280px) {
-      width: 1280px;
+      width: 1248px;
       padding: 0 16px;
     }
   }
