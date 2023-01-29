@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/petly-frontend/static/js/main.02e7f3af.js",
+    "main.js": "/petly-frontend/static/js/main.d64d4b1a.js",
     "index.html": "/petly-frontend/index.html",
-    "main.02e7f3af.js.map": "/petly-frontend/static/js/main.02e7f3af.js.map"
+    "main.d64d4b1a.js.map": "/petly-frontend/static/js/main.d64d4b1a.js.map"
   },
   "entrypoints": [
-    "static/js/main.02e7f3af.js"
+    "static/js/main.d64d4b1a.js"
   ]
 }
