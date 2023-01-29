@@ -6,7 +6,7 @@ import {
   ShowButton,
   NavBox,
   AuthNavBox,
-  AuthButton,
+  AuthLinks,
   ListLinks,
   Links,
 } from './Header.styled';
@@ -34,8 +34,10 @@ export default function Header() {
 
       <NavBox active={show}>
         <AuthNavBox>
-          <AuthButton accent> Login</AuthButton>
-          <AuthButton>Register</AuthButton>
+          <AuthLinks to={'/loggin'} accent={'true'}>
+            Login
+          </AuthLinks>
+          <AuthLinks to={'/register'}>Register</AuthLinks>
         </AuthNavBox>
         <ListLinks>
           {LinksData.map(({ id, to, title }) => (
