@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Container, Input, Button, Form, ErrorMessage, InputField, LinkText, StyledLink } from './Auth.styled';
+import { Container, Input, Button, Form, ErrorMessage, InputField, LinkText, StyledLink, GoogleSignup } from './Auth.styled';
+import GoogleIcon from './GoogleSignIn/GoogleIcon';
 
 export default function Login() {
 
@@ -54,6 +55,7 @@ export default function Login() {
       </InputField>
     <Button type="submit">Login</Button>
       </Form>
+        <GoogleIcon />
         <LinkText>Don't have an account?<StyledLink to="/register">Register</StyledLink></LinkText>
     </Container>
   )

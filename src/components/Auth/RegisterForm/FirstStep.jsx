@@ -8,7 +8,7 @@ export default function FirstStep({ setSecondPage, setRegisterState, registerSta
       initialValues: registerState,
     validationSchema: Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Require'),
+    password: Yup.string().required('Require').min(6),
     confirmPassword: Yup.string().oneOf([Yup.ref('password'), ''], 'Password must match').required('Require'),
     }),
       onSubmit: (values) => {
