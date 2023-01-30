@@ -52,7 +52,7 @@ export const ShowButton = styled.button`
   }
 `;
 
-export const NavBox = styled.div`
+export const NavBox = styled.nav`
   display: flex;
   flex-direction: column;
 
@@ -100,7 +100,7 @@ export const NavBox = styled.div`
   }
 `;
 
-export const AuthNavBox = styled.nav`
+export const AuthNavBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,7 +124,7 @@ export const AuthNavBox = styled.nav`
   }
 `;
 
-export const AuthNavBoxTablet = styled.nav`
+export const AuthNavBoxTablet = styled.div`
   margin-left: auto;
   display: none;
 
