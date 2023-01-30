@@ -6,6 +6,7 @@ import { normalize } from 'styled-normalize';
 export const GlobalStyles = css`
   ${normalize}
 
+  /*
   @font-face {
     font-family: 'Manrope';
     src: local('fonts'), url('./fonts/Manrope-Medium.ttf') format('truetype');
@@ -21,15 +22,15 @@ export const GlobalStyles = css`
     src: local('fonts'), url('./fonts/Manrope-Bold.ttf') format('truetype');
     font-weight: 700;
   }
+*/
 
-  *,
-  ::before,
-  ::after {
-    box-sizing: border-box;
-  }
   html {
     box-sizing: border-box;
     scroll-behavior: smooth;
+  }
+  *::before,
+  *::after {
+    box-sizing: inherit;
   }
   body {
     margin: 0;
