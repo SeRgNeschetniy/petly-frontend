@@ -110,11 +110,12 @@ export const AuthNavBox = styled.div`
   font-size: 14px;
   line-height: 1.35;
 
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+  @media screen and (min-width: 768px) {
     display: none;
   }
 
   @media screen and (min-width: 1280px) {
+    display: flex;
     order: 1;
     gap: 20px;
     margin-bottom: 0px;
@@ -128,7 +129,7 @@ export const AuthNavBoxTablet = styled.div`
   margin-left: auto;
   display: none;
 
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+  @media screen and (min-width: 768px) {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -146,6 +147,9 @@ export const AuthNavBoxTablet = styled.div`
       `}
     transition: 
     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @media screen and (min-width: 1280px) {
+    display: none;
   }
 `;
 
