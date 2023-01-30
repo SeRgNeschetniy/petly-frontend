@@ -6,14 +6,16 @@ import {
   ShowButton,
   NavBox,
   AuthNavBox,
+  AuthNavBoxTablet,
   AuthLinks,
   ListLinks,
   Links,
 } from './Header.styled';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
-import LinksData from 'utils/linksData';
-// AiOutlineClose
+import linksData from 'utils/linksData';
+
+const { authLinksData, mainLinksData } = linksData;
 
 export default function Header() {
   const [show, setShow] = useState(false);
@@ -27,6 +29,15 @@ export default function Header() {
       <Logo to={'/'}>
         pe<AccentText>t</AccentText>ly
       </Logo>
+
+      <AuthNavBoxTablet show={show}>
+        {authLinksData.map(({ id, to, title, accent = 'false' }) => (
+          <AuthLinks key={id} to={to} accent={accent}>
+            {title}
+          </AuthLinks>
+        ))}
+      </AuthNavBoxTablet>
+
       <ShowButton onClick={showContent}>
         {!show && <GiHamburgerMenu />}
         {show && <AiOutlineClose />}
@@ -34,13 +45,15 @@ export default function Header() {
 
       <NavBox active={show}>
         <AuthNavBox>
-          <AuthLinks to={'/login'} accent>
-            Login
-          </AuthLinks>
-          <AuthLinks to={'/register'}>Registration</AuthLinks>
+          {authLinksData.map(({ id, to, title, accent = 'false' }) => (
+            <AuthLinks key={id} to={to} accent={accent}>
+              {title}
+            </AuthLinks>
+          ))}
         </AuthNavBox>
+
         <ListLinks>
-          {LinksData.map(({ id, to, title }) => (
+          {mainLinksData.map(({ id, to, title }) => (
             <li key={id}>
               <Links to={to}>{title}</Links>
             </li>
