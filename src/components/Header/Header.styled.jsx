@@ -4,11 +4,11 @@ import { NavLink, Link } from 'react-router-dom';
 
 export const Container = styled.header`
   display: flex;
-  text-align: center;
-  background-color: ${({ theme }) => theme.mainBackground};
+  align-items: baseline;
+  background-color: ${({ theme }) => theme.colors.mainBackground};
   padding-top: 16px;
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     padding-top: 30px;
   }
 `;
@@ -28,7 +28,7 @@ export const Logo = styled(Link)`
     font-size: 32px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     margin-right: 80px;
   }
 `;
@@ -44,10 +44,10 @@ export const ShowButton = styled.button`
     width: 20px;
     height: 20px;
   }
-  @media screen and (min-width: 768px) and (max-width: 1200px) {
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
     margin-left: 25px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     display: none;
   }
 `;
@@ -65,8 +65,8 @@ export const NavBox = styled.nav`
   width: 100vw;
   height: 100vh;
 
-  color: ${p => p.theme.colors.black};
-  background-color: #f2fdf7;
+  color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.mainBackground};
   letter-spacing: 0.04em;
 
   opacity: 0;
@@ -89,7 +89,7 @@ export const NavBox = styled.nav`
     padding-top: 88px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     position: static;
     flex-direction: row;
     height: 50px;
@@ -110,11 +110,11 @@ export const AuthNavBox = styled.div`
   font-size: 14px;
   line-height: 1.35;
 
-  @media screen and (min-width: 768px) and (max-width: 1200px) {
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
     display: none;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     order: 1;
     gap: 20px;
     margin-bottom: 0px;
@@ -128,13 +128,13 @@ export const AuthNavBoxTablet = styled.div`
   margin-left: auto;
   display: none;
 
-  @media screen and (min-width: 768px) and (max-width: 1200px) {
-    display: block;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
     font-size: 20px;
     line-height: 1.35;
-    display: flex;
-    gap: 12px;
-    align-items: center;
     letter-spacing: 0.04em;
     opacity: 1;
 
@@ -170,7 +170,7 @@ export const AuthLinks = styled(NavLink)`
   @media screen and (min-width: 768px) {
     padding: 8.5px 28px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     padding: 10px 28px;
   }
 `;
@@ -187,12 +187,14 @@ export const ListLinks = styled.ul`
 
   @media screen and (min-width: 768px) {
     font-size: 48px;
+    gap: 60px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     flex-direction: row;
     font-size: 20px;
     line-height: 1.35;
+    gap: 80px;
   }
 `;
 
