@@ -77,6 +77,9 @@ export const GlobalStyles = css`
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+  input {
+    outline: none;
+  }
 `;
 
 export const Container = styled.div`
