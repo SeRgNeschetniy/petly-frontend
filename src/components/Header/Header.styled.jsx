@@ -147,13 +147,13 @@ export const AuthNavBoxTablet = styled.nav`
 `;
 
 export const AuthLinks = styled(NavLink)`
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, accent }) => theme.colors.white};
   padding: 8px 28px;
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.accent};
 
   ${({ accent }) =>
-    accent &&
+    accent === 'true' &&
     css`
       color: white;
       background-color: #f59256;
