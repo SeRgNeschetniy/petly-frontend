@@ -4,8 +4,8 @@ import { NavLink, Link } from 'react-router-dom';
 
 export const Container = styled.header`
   display: flex;
-  text-align: center;
-  background-color: ${({ theme }) => theme.mainBackground};
+  align-items: baseline;
+  background-color: ${({ theme }) => theme.colors.mainBackground};
   padding-top: 16px;
 
   @media screen and (min-width: 1200px) {
@@ -65,8 +65,8 @@ export const NavBox = styled.nav`
   width: 100vw;
   height: 100vh;
 
-  color: ${p => p.theme.colors.black};
-  background-color: #f2fdf7;
+  color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.mainBackground};
   letter-spacing: 0.04em;
 
   opacity: 0;
@@ -129,12 +129,12 @@ export const AuthNavBoxTablet = styled.div`
   display: none;
 
   @media screen and (min-width: 768px) and (max-width: 1200px) {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
     font-size: 20px;
     line-height: 1.35;
-    display: flex;
-    gap: 12px;
-    align-items: center;
     letter-spacing: 0.04em;
     opacity: 1;
 
@@ -187,12 +187,14 @@ export const ListLinks = styled.ul`
 
   @media screen and (min-width: 768px) {
     font-size: 48px;
+    gap: 60px;
   }
 
   @media screen and (min-width: 1200px) {
     flex-direction: row;
     font-size: 20px;
     line-height: 1.35;
+    gap: 80px;
   }
 `;
 
