@@ -30,6 +30,7 @@ export const GlobalStyles = css`
   html {
     box-sizing: border-box;
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     margin: 0;

@@ -40,6 +40,7 @@ export const AccentText = styled.span`
 export const ShowButton = styled.button`
   margin-left: auto;
   & > svg {
+    display: flex;
     width: 20px;
     height: 20px;
   }
@@ -65,11 +66,13 @@ export const NavBox = styled.div`
   height: 100vh;
 
   color: ${p => p.theme.colors.black};
-  background-color: ${({ theme }) => theme.mainBackground};
+  background-color: #f2fdf7;
   letter-spacing: 0.04em;
 
   opacity: 0;
   transform: translateX(100%);
+
+  z-index: 10;
 
   ${({ active }) =>
     active &&
@@ -147,7 +150,7 @@ export const AuthNavBoxTablet = styled.nav`
 `;
 
 export const AuthLinks = styled(NavLink)`
-  background-color: ${({ theme, accent }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 8px 28px;
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.accent};
@@ -158,6 +161,11 @@ export const AuthLinks = styled(NavLink)`
       color: white;
       background-color: #f59256;
     `};
+
+  :hover,
+  :focus-visible {
+    box-shadow: ${({ theme }) => theme.shadows.regular};
+  }
 
   @media screen and (min-width: 768px) {
     padding: 8.5px 28px;
