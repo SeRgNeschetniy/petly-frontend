@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { theme } from 'styles/theme';
 import { normalize } from 'styled-normalize';
 
@@ -78,7 +79,7 @@ export const GlobalStyles = css`
   }
 `;
 
-export const Container = css`
+export const Container = styled.div`
   padding: 0 20px;
   margin: 0 auto;
 
