@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
-import PropTypes from 'prop-types';
+import PropTypes, { checkPropTypes } from 'prop-types';
+import { TbLogout , TbCheck, TbCamera} from "react-icons/tb";
+import { FiEdit2,FiTrash } from "react-icons/fi";
+import { TfiPlus } from "react-icons/tfi";
+
 import {
     Container,
     AccentText,
@@ -21,7 +25,10 @@ import {
     PetCard,
     PetAvatar,
     PetInfo,
-    Text
+    Text,
+    DelateButton,
+    EditBox,
+    EditPhotoButton
 } from './UserPage.styled';
 
 
@@ -32,17 +39,27 @@ return (
         <AccentText>
             My information:
         </AccentText>
-        <Profile>
-                <Avatar src="https://via.placeholder.com/233x233.jpeg?text=Profile+image"/>
+            <Profile>
+                <div style={{position: "relative"}}>
+                <Avatar src="https://via.placeholder.com/233x233.jpeg?text=Profile+image">
                     
-                
+                    
+                    </Avatar>
+                    </div>
+                <EditBox>
+                    <TbCamera style={{ width: "18px", height: "18px", color: "#F59256" }}></TbCamera><EditPhotoButton  >Edit photo</EditPhotoButton>
+                    </EditBox>
                 <Form>
                     <BoxInput>
                         <TextField>
                               Name:
                         </TextField>
-                        <InputForm/>
-                        <ButtonEdit/>
+                        <InputForm>
+                            
+                        </InputForm>
+                        <ButtonEdit>
+                            <FiEdit2 style={{color: "rgba(17, 17, 17, 0.6)"}} />
+                        </ButtonEdit >
                     </BoxInput>
        
                     <BoxInput>
@@ -50,7 +67,9 @@ return (
                             Email:
                         </TextField>
                         <InputForm/>
-                        <ButtonEdit/>
+                        <ButtonEdit>
+                             <FiEdit2 style={{color: "rgba(17, 17, 17, 0.6)"}} />
+                        </ButtonEdit >
                     </BoxInput>
         
                     <BoxInput>
@@ -58,7 +77,9 @@ return (
                             Birthday:
                         </TextField>
                         <InputForm/>
-                        <ButtonEdit/>
+                        <ButtonEdit>
+                             <FiEdit2 style={{color: "rgba(17, 17, 17, 0.6)"}} />
+                        </ButtonEdit >
                     </BoxInput>
         
                     <BoxInput>
@@ -66,18 +87,24 @@ return (
                             Phone:
                         </TextField>
                         <InputForm/>
-                        <ButtonEdit/>
+                        <ButtonEdit>
+                             <FiEdit2 style={{color: "rgba(17, 17, 17, 0.6)"}} />
+                        </ButtonEdit >
                     </BoxInput>
         
                     <BoxInput>
                         <TextField>
                             City:
                         </TextField>
-                        <InputForm/>
-                        <ButtonEdit/>
+                        <InputForm />
+                        <ButtonEdit>
+                             <FiEdit2 style={{color: "rgba(17, 17, 17, 0.6)"}} />
+                        </ButtonEdit >
+                        
                     </BoxInput>
                 </Form>
                 <LeaveButton>
+                    <TbLogout style={{color: "#F59256", height:"18px",width: "18px" }}/>
                     Log out
                 </LeaveButton>
             </Profile>
@@ -87,17 +114,22 @@ return (
                 <MainText>My pets:</MainText>
                     <AddPet>
                         <H3>Add pet</H3>
-                        <AddButton>+</AddButton>
+                    <AddButton>
+                        <TfiPlus style={{color: "#FFFFFF",height:"18px",width: "16px" } }></TfiPlus>
+                    </AddButton>
                     </AddPet>
             </Head>
             <PetCard>
                 <PetAvatar src="https://via.placeholder.com/161x161.jpeg?text=Pet+Avatar"></PetAvatar>
                 <PetInfo>
-                    <Text>Name:</Text>
-                    <Text>Date:</Text>
-                    <Text>Breed:</Text>
-                    <Text>Comments:</Text>
+                    <Text>Name: Jack</Text>
+                    <Text>Date: 22.04.2018</Text>
+                    <Text>Breed: Percian cat</Text>
+                    <Text>Comments: Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur   </Text>
                 </PetInfo>
+                <DelateButton>
+                    <FiTrash></FiTrash>
+                </DelateButton>
             </PetCard>
         </SecondBox>
     </Container>
