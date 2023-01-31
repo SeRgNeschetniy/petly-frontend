@@ -1,4 +1,5 @@
-const { createSlice } = require("@reduxjs/toolkit");
+import { createSlice } from "@reduxjs/toolkit";
+import { signup, login, logout, current } from "./auth-operation";
 
 const initialState = {
   user: {},
@@ -10,7 +11,7 @@ const initialState = {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: initialState,
+  initialState,
   extraReducers: {
     [signup.pending]: (store) => {
       store.loading = true;

@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Input, Button, Form, ErrorMessage, InputField } from '../Auth.styled';
+import { Input, Button, Form, ErrorMessage, InputField, Title, LinkText, StyledLink } from '../Auth.styled';
 
 export default function FirstStep({ setSecondPage, setRegisterState, registerState }) {
 
@@ -8,7 +8,7 @@ export default function FirstStep({ setSecondPage, setRegisterState, registerSta
       initialValues: registerState,
       validationSchema: Yup.object({
       email: Yup.string().email('Invalid email format').required('Required'),
-      password: Yup.string().required('Require').min(6),
+      password: Yup.string().required('Require').min(7),
       confirmPassword: Yup.string().oneOf([Yup.ref('password'), ''], 'Password must match').required('Require'),
     }),
       onSubmit: (values) => {
@@ -27,7 +27,8 @@ export default function FirstStep({ setSecondPage, setRegisterState, registerSta
   return (
       <Form
       onSubmit={formik.handleSubmit}
-      >
+    >
+            <Title>Registration</Title>
         <InputField>
         <Input
       id="email"
@@ -56,7 +57,7 @@ export default function FirstStep({ setSecondPage, setRegisterState, registerSta
         <ErrorMessage>{formik.errors.password}</ErrorMessage>
       ) : null}
         </InputField>
-        <InputField>
+        <InputField margin>
         <Input
       id="confirmPassword"
       type="password"
@@ -70,7 +71,8 @@ export default function FirstStep({ setSecondPage, setRegisterState, registerSta
         <ErrorMessage>{formik.errors.confirmPassword}</ErrorMessage>
       ) : null}
       </InputField>
-        <Button type='submit' handleClick={formik.handleSubmit}>Next</Button>
+      <Button margin type='submit' handleClick={formik.handleSubmit}>Next</Button>
+      <LinkText>Already have an account? <StyledLink to="/login">Login</StyledLink></LinkText>
       </Form>
   )
 }

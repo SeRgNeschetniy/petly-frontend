@@ -1,10 +1,13 @@
 import Headline from 'components/Headline/Headline';
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { login } from 'redux/auth/auth-operation';
 import * as Yup from 'yup';
 import { Input, Button, Form, ErrorMessage, InputField, LinkText, StyledLink } from '../Auth.styled';
 import GoogleIcon from '../GoogleSignIn/GoogleIcon';
 
 export default function Login() {
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -16,8 +19,7 @@ export default function Login() {
     password: Yup.string().required('Require'),
     }),
     onSubmit: values => {
-      console.log("hello");
-      alert(JSON.stringify(values, null, 2));
+      dispatch(login(values));
     },
   });
 
@@ -60,6 +62,7 @@ export default function Login() {
           </Form>
         <GoogleIcon />
         <LinkText>Don't have an account? <StyledLink to="/register">Register</StyledLink></LinkText>
+        <LinkText>Forgot your password? <StyledLink to="/passwordRecovery">Password recovery</StyledLink></LinkText>
       </div>
       </>
   )

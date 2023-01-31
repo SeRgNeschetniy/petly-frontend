@@ -2,13 +2,35 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from '../../styles/theme';
 
+export const BackgroundContainer = styled.div`
+  @media (min-width: 768px) {
+  width: 608px;
+  height: 517px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 60px;
+  padding-bottom: 40px; 
+  background: #FFFFFF;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 40px;
+  margin: 0 auto;
+  }
+`;
+
 export const Form = styled.form`
   width: 100%;
   margin: 0 auto;
+  @media (min-width: 768px) {
+    width: 458px;
+  }
 `;
 
 export const InputField = styled.div`
   position: relative;
+  margin-bottom: 16px;
+  @media (min-width: 768px) {
+    margin-bottom: ${props => props.margin ? "40px" : "16px"};
+  }
 `;
 
 export const Input = styled.input`
@@ -26,29 +48,33 @@ export const Input = styled.input`
     font-size: 14px;
     color: ${theme.colors.gray};
   }
-  &:first-child {
-    margin-bottom: 16px;
-  }
-  &:nth-child(2){
-    margin-bottom: 40px;
-  }
   &:hover, &:focus {
     border: 2px solid #FF6101;
+  }
+  }
+  @media (min-width: 768px) {
+    height: 52px;
   }
 `;
 
 export const Button = styled.button`
-  color: ${theme.colors.white};
+  color: ${props => props.outline ? "black" : "white"};
   width: 100%;
   padding: 10px;
   border-radius: 40px;
   font-size: ${theme.fontSizes.large};
-  background-color: ${theme.colors.accent};
+  border: ${props => props.outline ? `2px solid ${theme.colors.accent}` : "none"};
+  background-color: ${props => props.outline ? "white" : `${theme.colors.accent}`};
   margin-bottom: 20px;
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover, &:focus {
     background-color: #FF6101;
     border: 1px solid ${theme.colors.accent};
+  }
+
+  @media (min-width: 768px) {
+    padding: 18px;
+    margin-bottom:${props => props.margin ? "40px" : "16px"};
   }
 `;
 
@@ -58,6 +84,10 @@ export const ErrorMessage = styled.div`
   top: 40px;
   left: 10px;
   color: ${theme.colors.accent};
+  @media (min-width: 768px) {
+    top: 52px;
+    left: 20px;
+  }
 `;
 
 export const LinkText = styled.p`
@@ -81,20 +111,8 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const Container = styled.section`
-        font-size: 1.5em;
-        padding: 0;
-        margin: 0;
-
-        &.example-appear {
-            opacity: 0.01;
-        }
-
-        &.example-appear-active {
-            opacity: 1;
-            transition: opacity 500ms ease-out;
-        }`;
-
 export const Title = styled.h1`
   font-size: 24px;
+  text-align: center;
+  margin-bottom: 40px;
 `;

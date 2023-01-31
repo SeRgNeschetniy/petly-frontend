@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { LinkText, StyledLink } from '../Auth.styled';
+import { BackgroundContainer } from '../Auth.styled';
 import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
-import Headline from 'components/Headline/Headline';
+import { selectIsLogin } from 'redux/auth/auth-selectors';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router';
 
 export default function RegisterForm() {
   const [secondPage, setSecondPage] = useState(false);
@@ -22,6 +24,8 @@ export default function RegisterForm() {
     Child = <SecondStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>
   }
 
+  // const isLogin = useSelector(selectIsLogin);
+
   // const ConditionalComponent = () => {
   // switch (secondPage) {
   //   case false:
@@ -35,13 +39,9 @@ export default function RegisterForm() {
 
   return (
     <>
-      <Headline title="Registration" />
-      <div>
-            {Child}
-        <div>
-          <LinkText>Already have an account? <StyledLink to="/login">Login</StyledLink></LinkText>
-        </div>
-      </div>
+      <BackgroundContainer>
+              {Child}
+      </BackgroundContainer>
     </>
   )
 };
