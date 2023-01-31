@@ -12,6 +12,8 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { petsReducer } from './notices/notices-slice';
+import authReducer from './auth/auth-slice';
+
 
 // const authPersistConfig = {
 //   key: 'auth',
@@ -23,6 +25,7 @@ export const store = configureStore({
   reducer: {
     contacts: petsReducer,
     search: searchReducer,
+    auth: authReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

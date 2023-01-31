@@ -1,12 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import * as api from '../../api/auth';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:4000';
 
 export const signup = createAsyncThunk(
   "auth/signup",
-  async (data, { rejectWithValue }) => {
+  async (registerData, { rejectWithValue }) => {
     try {
-      const result = await api.signup(data);
-      return result;
+      const {data} = await axios.post('http://localhost:4000/api/auth/register', registerData);
+      console.log(data);
+      return data;
     } catch ({ responce }) {
       const error = {
         status: responce.status,
@@ -19,10 +22,10 @@ export const signup = createAsyncThunk(
 
 export const login = createAsyncThunk(
   "auth/login",
-  async (data, { rejectWithValue }) => {
+  async (loginData, { rejectWithValue }) => {
     try {
-      const result = await api.login(data)
-      return result;
+      const { data } = await axios.post('http://localhost:4000/api/auth/login', loginData)
+      return data;
     } catch ({ responce }) {
       const error = {
         status: responce.status,
@@ -37,7 +40,7 @@ export const logout = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      const result = await api.logout();
+      const result = await axios.get();
       return result;
     } catch ({ responce }) {
       const error = {
@@ -54,7 +57,7 @@ export const current = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      const result = await api.getCurrent(auth.token);
+      const result = await axios.get(auth.token);
       return result;
     } catch ({ responce }) {
       const error = {
