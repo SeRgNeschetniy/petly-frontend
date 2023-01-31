@@ -11,7 +11,6 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
     phone: Yup.string().required('Required'),
     }),
         onSubmit: values => {
-          setSecondPage(false);
           setRegisterState(prevState => {
           return {
             ...prevState,
@@ -19,7 +18,8 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
             city: values.city,
             phone: values.phone
           }
-        });
+          });
+          setSecondPage(false);
       }
   });
   

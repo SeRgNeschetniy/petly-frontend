@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout';
 import RegisterForm from './Auth/RegisterForm/RegisterForm';
-import LoginForm from './Auth/LoginForm';
+import LoginForm from './Auth/LoginForm/LoginForm';
 
 const NoticesPage = lazy(() => import('pages/NoticesPage'));
 

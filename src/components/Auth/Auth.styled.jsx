@@ -2,14 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from '../../styles/theme';
 
-
-export const Container = styled.div`
-  width: 280px;
-  margin: 0 auto;
-`;
-
 export const Form = styled.form`
-  width: 280px;
+  width: 100%;
   margin: 0 auto;
 `;
 
@@ -46,7 +40,7 @@ export const Input = styled.input`
 export const Button = styled.button`
   color: ${theme.colors.white};
   width: 100%;
-  height: 44px;
+  padding: 10px;
   border-radius: 40px;
   font-size: ${theme.fontSizes.large};
   background-color: ${theme.colors.accent};
@@ -64,10 +58,6 @@ export const ErrorMessage = styled.div`
   top: 40px;
   left: 10px;
   color: ${theme.colors.accent};
-`;
-
-export const Title = styled.h1`
-
 `;
 
 export const LinkText = styled.p`
@@ -89,4 +79,22 @@ export const StyledLink = styled(Link)`
     left: 0;
     top: 14px;
   }
+`;
+
+export const Container = styled.section`
+        font-size: 1.5em;
+        padding: 0;
+        margin: 0;
+
+        &.example-appear {
+            opacity: 0.01;
+        }
+
+        &.example-appear-active {
+            opacity: 1;
+            transition: opacity 500ms ease-out;
+        }`;
+
+export const Title = styled.h1`
+  font-size: 24px;
 `;
