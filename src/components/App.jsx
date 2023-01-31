@@ -4,7 +4,7 @@ import SharedLayout from './SharedLayout';
 import RegisterForm from './Auth/RegisterForm/RegisterForm';
 import LoginForm from './Auth/LoginForm';
 
-const NoticesPage = lazy(() => import('pages/NoticesPage'));
+const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
 
 export const App = () => {
   return (

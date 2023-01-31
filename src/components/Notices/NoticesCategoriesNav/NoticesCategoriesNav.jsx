@@ -1,20 +1,28 @@
-import { NavLink, Nav } from "./NoticesCategoriesNav.styled";
-
+import {
+  NavLink,
+  Nav,
+  AuthWrapper,
+  NotAuthWrapper,
+} from './NoticesCategoriesNav.styled';
 
 const NoticesCategoriesNav = () => {
-    return (
-        <Nav>
-            <NavLink to='/sell'>sell</NavLink>
-            <NavLink to='/lost-found'>lost/found</NavLink>
-            <NavLink to='/for-free'>in good hands</NavLink>
+  return (
+    <Nav>
+      {/* <NotAuthWrapper> */}
+      <NavLink to="/notices/lost-found">lost/found</NavLink>
+      <NavLink to="/notices/for-free">in good hands</NavLink>
 
-            
-            {/* если пользователь авторизированный */}
-            {/* <NavLink to='favorite'>favorite ads</NavLink>
-            <NavLink to='own'>my ads</NavLink> */}
+      <NavLink to="/notices/sell">sell</NavLink>
 
-        </Nav>
-    )
-}
+      {/* </NotAuthWrapper> */}
+
+      {/* если пользователь авторизированный */}
+      {/* <AuthWrapper>
+            <NavLink to='/favorite'>favorite ads</NavLink>
+            <NavLink to='/own'>my ads</NavLink>
+            </AuthWrapper> */}
+    </Nav>
+  );
+};
 
 export default NoticesCategoriesNav;

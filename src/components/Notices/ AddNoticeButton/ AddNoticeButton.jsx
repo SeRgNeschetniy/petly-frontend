@@ -1,12 +1,11 @@
-import { Text, AddBtn, Wrapper } from "./ AddNoticeButton.styled";
-import { IoAdd } from "react-icons/io5";
+import { Text, AddBtn, Wrapper, IconAdd } from "./ AddNoticeButton.styled";
 
 const AddNoticeButton = () => {
     return (
         <Wrapper>
             <Text>Add pet</Text>
             <AddBtn>
-                <IoAdd size={ 24} color="#ffffff"/>
+                <IconAdd />
             </AddBtn>
         </Wrapper>
     )
