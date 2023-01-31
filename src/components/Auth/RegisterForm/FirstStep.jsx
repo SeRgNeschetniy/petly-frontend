@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Input, Button, Form, ErrorMessage, InputField, Title, LinkText, StyledLink } from '../Auth.styled';
+import { Container, Input, Button, Form, ErrorMessage, InputField } from '../Auth.styled';
 
 export default function FirstStep({ setSecondPage, setRegisterState, registerState }) {
 
