@@ -1,9 +1,15 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Input, Button, Form, ErrorMessage, InputField } from '../Auth.styled';
+import { Input, Button, Form, ErrorMessage, InputField, LinkText, StyledLink } from '../Auth.styled';
+import { useDispatch } from 'react-redux';
+import { signup } from 'redux/auth/auth-operation';
+import { Title } from '../Auth.styled';
 
-export default function SecondStep({ setSecondPage, setRegisterState, registerState, children }) {
-      const formik = useFormik({
+export default function SecondStep({ setSecondPage, setRegisterState, registerState }) {
+  const dispatch = useDispatch();
+
+
+    const formik = useFormik({
     initialValues: registerState,
     validationSchema: Yup.object({
     name: Yup.string().required('Required'),
@@ -11,7 +17,6 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
     phone: Yup.string().required('Required'),
     }),
         onSubmit: values => {
-          setSecondPage(false);
           setRegisterState(prevState => {
           return {
             ...prevState,
@@ -19,17 +24,23 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
             city: values.city,
             phone: values.phone
           }
-        });
+          });
+          setSecondPage(false);
       }
   });
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Ready for send...", registerState);
+    const { name, city, phone } = e.target;
+    
+    const { email, password } = registerState;
+    const data = { email, password, name: name.value, city: city.value, phone: phone.value };
+    dispatch(signup(data));
   }
 
   return (
-      <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
+      <Title>Registration</Title>
         <InputField>
         <Input
       id="name"
@@ -58,7 +69,7 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
         <ErrorMessage>{formik.errors.city}</ErrorMessage>
       ) : null}
         </InputField>
-        <InputField>
+        <InputField margin>
         <Input
       id="phone"
       type="text"
@@ -72,8 +83,8 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
         <ErrorMessage>{formik.errors.phone}</ErrorMessage>
       ) : null}
         </InputField>
-        <Button submit type="button" onClick={formik.handleSubmit}>Back</Button>
         <Button type="submit">Registration</Button>
-        {children}
+        <Button outline margin submit type="button" onClick={formik.handleSubmit}>Back</Button>
+      <LinkText>Already have an account? <StyledLink to="/login">Login</StyledLink></LinkText>
       </Form>
 )}

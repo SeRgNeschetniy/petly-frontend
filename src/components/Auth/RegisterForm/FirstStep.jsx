@@ -1,19 +1,17 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
- import { Container, Input, Button, Form, ErrorMessage, InputField } from '../Auth.styled';
+import { Container, Input, Button, Form, ErrorMessage, InputField } from '../Auth.styled';
 
 export default function FirstStep({ setSecondPage, setRegisterState, registerState }) {
 
     const formik = useFormik({
       initialValues: registerState,
-    validationSchema: Yup.object({
-    email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Require'),
-    confirmPassword: Yup.string().oneOf([Yup.ref('password'), ''], 'Password must match').required('Require'),
+      validationSchema: Yup.object({
+      email: Yup.string().email('Invalid email format').required('Required'),
+      password: Yup.string().required('Require').min(7),
+      confirmPassword: Yup.string().oneOf([Yup.ref('password'), ''], 'Password must match').required('Require'),
     }),
       onSubmit: (values) => {
-        // alert(JSON.stringify(values, null, 2));
-        setSecondPage(true);
         setRegisterState(prevState => {
           return {
             ...prevState,
@@ -21,15 +19,16 @@ export default function FirstStep({ setSecondPage, setRegisterState, registerSta
             password: values.password,
             confirmPassword: values.confirmPassword
           }
-      });
+        });
+        setSecondPage(true);
     },
   });
 
   return (
-    // <Container>
       <Form
       onSubmit={formik.handleSubmit}
-      >
+    >
+            <Title>Registration</Title>
         <InputField>
         <Input
       id="email"
@@ -58,7 +57,7 @@ export default function FirstStep({ setSecondPage, setRegisterState, registerSta
         <ErrorMessage>{formik.errors.password}</ErrorMessage>
       ) : null}
         </InputField>
-        <InputField>
+        <InputField margin>
         <Input
       id="confirmPassword"
       type="password"
@@ -72,8 +71,8 @@ export default function FirstStep({ setSecondPage, setRegisterState, registerSta
         <ErrorMessage>{formik.errors.confirmPassword}</ErrorMessage>
       ) : null}
       </InputField>
-        <Button type='submit' handleClick={formik.handleSubmit}>Next</Button>
+      <Button margin type='submit' handleClick={formik.handleSubmit}>Next</Button>
+      <LinkText>Already have an account? <StyledLink to="/login">Login</StyledLink></LinkText>
       </Form>
-    // </Container>
   )
 }

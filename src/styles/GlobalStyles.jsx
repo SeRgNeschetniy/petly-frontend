@@ -1,10 +1,12 @@
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { theme } from 'styles/theme';
 import { normalize } from 'styled-normalize';
 
 export const GlobalStyles = css`
   ${normalize}
 
+  /*
   @font-face {
     font-family: 'Manrope';
     src: local('fonts'), url('./fonts/Manrope-Medium.ttf') format('truetype');
@@ -20,15 +22,17 @@ export const GlobalStyles = css`
     src: local('fonts'), url('./fonts/Manrope-Bold.ttf') format('truetype');
     font-weight: 700;
   }
+*/
 
-  *,
-  ::before,
-  ::after {
-    box-sizing: border-box;
-  }
   html {
     box-sizing: border-box;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  *,
+  ::after,
+  ::before {
+    box-sizing: border-box;
   }
   body {
     margin: 0;
@@ -76,23 +80,26 @@ export const GlobalStyles = css`
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+  input {
+    outline: none;
+  }
 `;
 
-export const Container = css`
+export const Container = styled.div`
   padding: 0 20px;
   margin: 0 auto;
 
   @media screen and (min-width: 320px) {
-    width: 280px;
+    width: 320px;
   }
 
   @media screen and (min-width: 768px) {
-    width: 704px;
+    width: 768px;
     padding: 0 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 1248px;
+    width: 1280px;
     padding: 0 16px;
   }
 `;
