@@ -46,7 +46,7 @@ export default function Header() {
       <NavBox active={show}>
         <AuthNavBox>
           {authLinksData.map(({ id, to, title, accent = 'false' }) => (
-            <AuthLinks key={id} to={to} accent={accent}>
+            <AuthLinks onClick={showContent} key={id} to={to} accent={accent}>
               {title}
             </AuthLinks>
           ))}
@@ -55,7 +55,9 @@ export default function Header() {
         <ListLinks>
           {mainLinksData.map(({ id, to, title }) => (
             <li key={id}>
-              <Links to={to}>{title}</Links>
+              <Links onClick={showContent} to={to}>
+                {title}
+              </Links>
             </li>
           ))}
         </ListLinks>
