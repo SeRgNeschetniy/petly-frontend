@@ -1,4 +1,5 @@
 import React from 'react';
+import FriendsItem from '../FriendsItem/FriendsItem';
 
 const FriendsList = ({ friends }) => {
   if (friends.length < 1) {
@@ -8,7 +9,7 @@ const FriendsList = ({ friends }) => {
     <div>
       <ul>
         {friends.map(item => {
-          return <li key={item._id} {...item} />;
+          return <FriendsItem key={item._id} {...item} />;
         })}
       </ul>
     </div>
