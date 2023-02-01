@@ -6,6 +6,7 @@ import UserPage from './UserPage/UserPage';
 import LoginForm from './Auth/LoginForm/LoginForm';
 
 const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
+const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 
 
 export const App = () => {
@@ -20,6 +21,7 @@ export const App = () => {
             path="/notices/:categoryName"
             element={<NoticesPage />}
           ></Route>
+          <Route path="/friends" element={<FriendsPage />} />
         </Route>
       </Routes>
     </>
