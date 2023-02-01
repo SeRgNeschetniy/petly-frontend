@@ -1,10 +1,10 @@
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 import { List } from './NoticesCategoriesList.styled';
 
-const NoticesCategoriesList = () => {
+const NoticesCategoriesList = ({ pets }) => {
   return (
     <List>
-      <NoticeCategoryItem />
+      <NoticeCategoryItem pets={pets} />
     </List>
   );
 };

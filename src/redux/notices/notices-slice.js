@@ -60,9 +60,7 @@ const petsSlice = createSlice({
     [deletePet.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items = state.items.filter(
-        contact => contact.id !== action.payload.id
-      );
+      state.items = state.items.filter(pet => pet.id !== action.payload.id);
     },
   },
 });
