@@ -117,22 +117,26 @@ export const AddToFavoriteBtn = styled.button`
   :active {
     background: ${theme.colors.accent};
   }
+
+  &:hover,
+  :active > {
+    fill: ${theme.colors.white};
+  }
 `;
 export const Span = styled.span`
   display: inline-block;
   margin-right: 37px;
+  width: 50px;
 `;
 export const AddIcon = styled(AiOutlineHeart)`
   width: 28px;
   height: 28px;
   color: ${theme.colors.accent};
 
+  & > svg {
+    background: ${theme.colors.accent};
+  }
   // &:hover, :active {
   //   fill: ${theme.colors.accent};
   // }
-
-  &:hover,
-  :active > * {
-    fill: ${theme.colors.white};
-  }
 `;
