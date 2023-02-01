@@ -30,7 +30,7 @@ const FriendsItem = ({
             {address ? (
               <a href={addressUrl}>{address}</a>
             ) : (
-              <span>-------</span>
+              <span>----------</span>
             )}
           </TextField>
           <TextField>
@@ -38,7 +38,7 @@ const FriendsItem = ({
             {email ? (
               <a href={`mailto: ${email} `}>{email}</a>
             ) : (
-              <span>-------</span>
+              <span>----------</span>
             )}
           </TextField>
           <TextField>
@@ -46,7 +46,7 @@ const FriendsItem = ({
             {phone ? (
               <a href={`tel: ${phone} `}>{phone}</a>
             ) : (
-              <span>-------</span>
+              <span>----------</span>
             )}
           </TextField>
         </ul>

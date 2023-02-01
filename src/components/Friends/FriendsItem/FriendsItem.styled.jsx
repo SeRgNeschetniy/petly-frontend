@@ -64,7 +64,7 @@ export const TextField = styled.li`
     line-height: 1.4;
   }
 
-  :nth-last-child() {
+  &:last-child {
     margin-bottom: 0;
   }
 `;
