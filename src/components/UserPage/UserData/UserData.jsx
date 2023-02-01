@@ -1,11 +1,6 @@
-import { css } from '@emotion/react';
-import PropTypes, { checkPropTypes } from 'prop-types';
-import { TbLogout , TbCheck, TbCamera} from "react-icons/tb";
-import { FiEdit2,FiTrash } from "react-icons/fi";
-import { TfiPlus } from "react-icons/tfi";
-
+import { TbCamera} from "react-icons/tb";
+import { FiEdit2 } from "react-icons/fi";
 import {
-    Container,
     AccentText,
     Profile,
     TextField,
@@ -14,27 +9,15 @@ import {
     BoxInput,
     InputForm,
     ButtonEdit,
-    LeaveButton,
     Avatar,
-    MainText,
-    H3,
-    AddButton,
-    SecondBox,
-    Head,
-    AddPet,
-    PetCard,
-    PetAvatar,
-    PetInfo,
-    Text,
-    DelateButton,
     EditBox,
     EditPhotoButton
-} from './UserPage.styled';
+} from './UserData.styled';
 
 
-export default function UserPage(){ 
+export default function UserData() { 
 return (
-    <Container>
+    
         <Box>
         <AccentText>
             My information:
@@ -103,35 +86,8 @@ return (
                         
                     </BoxInput>
                 </Form>
-                <LeaveButton>
-                    <TbLogout style={{color: "#F59256", height:"18px",width: "18px" }}/>
-                    Log out
-                </LeaveButton>
+                
             </Profile>
         </Box>
-        <SecondBox >
-            <Head>
-                <MainText>My pets:</MainText>
-                    <AddPet>
-                        <H3>Add pet</H3>
-                    <AddButton>
-                        <TfiPlus style={{color: "#FFFFFF",height:"18px",width: "16px" } }></TfiPlus>
-                    </AddButton>
-                    </AddPet>
-            </Head>
-            <PetCard>
-                <PetAvatar src="https://via.placeholder.com/161x161.jpeg?text=Pet+Avatar"></PetAvatar>
-                <PetInfo>
-                    <Text>Name: Jack</Text>
-                    <Text>Date: 22.04.2018</Text>
-                    <Text>Breed: Percian cat</Text>
-                    <Text>Comments: Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur   </Text>
-                </PetInfo>
-                <DelateButton>
-                    <FiTrash></FiTrash>
-                </DelateButton>
-            </PetCard>
-        </SecondBox>
-    </Container>
-  );
+      );
 }
