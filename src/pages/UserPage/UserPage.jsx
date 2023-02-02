@@ -4,9 +4,14 @@ import {
 import UserData  from '../../components/UserPage/UserData/UserData'
 import PetsData from '../../components/UserPage/PetsData/PetsData'
 import Logout from '../../components/UserPage/Logout/Logout';
-export default function UserPage(){ 
-return (
-    <Container>
+import { useSelector } from 'react-redux';
+import { isLoading } from 'redux/auth/auth-selectors';
+export default function UserPage() { 
+    
+    // const loading = useSelector(isLoading)
+    return (
+       <Container>
+
         <div>
         <UserData >    
         </UserData>
@@ -16,6 +21,8 @@ return (
 
         </PetsData>
         
-    </Container>
+        </Container>
+        
+   
   );
 }
