@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { store } from 'redux/store';
 import {
   userLogOut,
   removePetCard,
@@ -16,18 +17,38 @@ const petsSlice = createSlice({
   initialState: petsInitialState,
 
   extraReducers: {
-    [fetchUserPets.pending] (state)   {
-      state.isLoading = true;
+    [fetchUserPets.pending] (store)   {
+      store.isLoading = true;
+      store.error = null;
     },
-    [removePetCard.pending] (state)  {
-      state.isLoading = true;
+    [fetchUserPets.fulfilled]: (store, { payload }) => {
+      store.items = payload;
+      store.loading = false;
+      store.isLogin = true;
     },
-    [userLogOut.fulfilled](state) {
-            state.body = { name: null, email: null, password: null };
-            state.token = null;
-            state.isLoggedIn = false;
+    [fetchUserPets.rejected]: (store, {payload}) => {
+      store.loading = false;
+      store.error = payload.message;
+    },
+
+    [removePetCard.pending] (store)  {
+      store.isLoading = true;
+    },
+    [userLogOut.fulfilled](store) {
+            store.body = { name: null, email: null, password: null };
+            store.token = null;
+            store.isLoggedIn = false;
         },
   },
 });
 
 export const userPetsReducer = petsSlice.reducer;
+// [current.fulfilled]: (store, { payload }) => {
+//       store.user = payload;
+//       store.loading = false;
+//       store.isLogin = true;
+//     },
+//     [current.rejected]: (store, {payload}) => {
+//       store.loading = false;
+//       store.error = payload;
+//     },

@@ -8,8 +8,7 @@ import { useDispatch} from 'react-redux';
 
 export default function Logout() {
      const dispatch = useDispatch();
-    //   const isLoggedIn = useSelector(selectIsLoggedIn);
-    //   const nameUser = useSelector(selectUserData);
+
 
     const handleLogOut = () => {
         dispatch(userLogOut());
