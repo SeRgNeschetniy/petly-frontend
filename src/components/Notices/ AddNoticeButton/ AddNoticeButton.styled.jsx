@@ -18,11 +18,10 @@ export const Wrapper = styled.div`
     // position: absolute;
     // right: 0;
     // z-index: 1;
-    height:100%;
+    height: 100%;
     position: fixed;
     top: 485px;
     z-index: 2;
-
   }
 
   @media screen and (min-width: 768px) {
@@ -85,6 +84,8 @@ export const AddBtn = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+
+   
       }
 }
 

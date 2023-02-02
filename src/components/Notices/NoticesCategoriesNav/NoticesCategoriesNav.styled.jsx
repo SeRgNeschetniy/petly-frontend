@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-import { Link } from 'react-router-dom';
+import { NavLink as RRNavLink } from 'react-router-dom';
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(RRNavLink)`
   &:not(:last-child) {
     margin-right: 12px;
   }
@@ -21,11 +21,14 @@ export const NavLink = styled(Link)`
     background: ${theme.colors.accent};
     color: ${theme.colors.white};
   }
-
-  &:active {
+  .selected {
     background: ${theme.colors.accent};
     color: ${theme.colors.white};
   }
+  // &:active {
+  //   background: ${theme.colors.accent};
+  //   color: ${theme.colors.white};
+  // }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     margin-bottom: 16px;

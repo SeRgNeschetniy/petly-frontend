@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import petsReducer from './notices/notices-slice';
-import searchReducer from './search/search-slice';
+import filterReducer from './search/search-slice';
 
 const rootReducer = combineReducers({
   pets: petsReducer,
-  search: searchReducer,
+  filter: filterReducer,
 });
 
 export default rootReducer;

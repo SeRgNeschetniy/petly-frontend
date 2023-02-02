@@ -11,9 +11,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { petsReducer } from './notices/notices-slice';
+import petsReducer from './notices/notices-slice';
 import authReducer from './auth/auth-slice';
-
 
 // const authPersistConfig = {
 //   key: 'auth',
@@ -23,7 +22,7 @@ import authReducer from './auth/auth-slice';
 
 export const store = configureStore({
   reducer: {
-    contacts: petsReducer,
+    pets: petsReducer,
     search: searchReducer,
     auth: authReducer,
   },
