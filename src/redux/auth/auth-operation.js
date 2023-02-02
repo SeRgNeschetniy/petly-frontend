@@ -71,7 +71,7 @@ export const current = createAsyncThunk(
       const { auth } = getState();
       setToken(auth.token)
       const result = await axios.get(`/users/current/`);
-      console.log(result);
+      // console.log(result);
       return result.data;
     } catch ({ responce }) {
       const error = {

@@ -1,2 +1,2 @@
-// export const selectUserPets = ({ state }) => state.pets.items;
-// export const selectUser = ({ state }) => state.user.items;
+export const selectUserPets = ({ user }) => user.items;
+export const selectUser = ({ state }) => state.user;
