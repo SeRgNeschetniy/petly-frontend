@@ -1,43 +1,49 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:4000';
 
 export const signup = createAsyncThunk(
-  "auth/signup",
+  'auth/signup',
   async (registerData, { rejectWithValue }) => {
     try {
-      const {data} = await axios.post('http://localhost:4000/api/auth/register', registerData);
+      const { data } = await axios.post(
+        'http://localhost:4000/api/users/register',
+        registerData
+      );
       console.log(data);
       return data;
     } catch ({ responce }) {
       const error = {
         status: responce.status,
         message: responce.data.message,
-      }
+      };
       return rejectWithValue(error);
-    };
+    }
   }
 );
 
 export const login = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async (loginData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('http://localhost:4000/api/auth/login', loginData)
+      const { data } = await axios.post(
+        'http://localhost:4000/api/users/login',
+        loginData
+      );
       return data;
     } catch ({ responce }) {
       const error = {
         status: responce.status,
         message: responce.data.message,
-      }
+      };
       return rejectWithValue(error);
-    };
+    }
   }
-)
+);
 
 export const logout = createAsyncThunk(
-  "auth/logout",
+  'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
       const result = await axios.get();
@@ -46,14 +52,14 @@ export const logout = createAsyncThunk(
       const error = {
         status: responce.status,
         message: responce.data.message,
-      }
+      };
       return rejectWithValue(error);
-    };
+    }
   }
-)
+);
 
 export const current = createAsyncThunk(
-  "auth/current",
+  'auth/current',
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
@@ -63,8 +69,8 @@ export const current = createAsyncThunk(
       const error = {
         status: responce.status,
         message: responce.data.message,
-      }
+      };
       return rejectWithValue(error);
-    };
+    }
   }
-)
+);
