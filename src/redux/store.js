@@ -13,7 +13,7 @@ import {
 } from 'redux-persist';
 import { petsReducer } from './notices/notices-slice';
 import authReducer from './auth/auth-slice';
-
+import { userPetsReducer } from './userpage/userpage-slice'
 
 // const authPersistConfig = {
 //   key: 'auth',
@@ -26,6 +26,7 @@ export const store = configureStore({
     contacts: petsReducer,
     search: searchReducer,
     auth: authReducer,
+    user: userPetsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

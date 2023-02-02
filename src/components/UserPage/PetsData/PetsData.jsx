@@ -1,6 +1,8 @@
 import { useDispatch , useSelector} from 'react-redux';
 import { removePetCard } from 'redux/userpage/userpage-operation';
-import { selectPets } from './../../../redux/userpage/userpage-selectors';
+import { getUserPets } from './../../../redux/userpage/userpage-selectors';
+import { fetchUserPets } from 'redux/userpage/userpage-operation';
+import { useEffect } from 'react';
 import { FiTrash } from "react-icons/fi";
 import { TfiPlus } from "react-icons/tfi";
 import {
@@ -23,13 +25,18 @@ import {
 
 export default function PetsData() {
 const dispatch = useDispatch();
+const items = useSelector(getUserPets);
+
+    useEffect(() => {
+        dispatch(fetchUserPets());
+        }, [dispatch]);
+
     
-const deleteContact = id => {
+const deletePetCard = id => {
     return dispatch(removePetCard(id));
 };
-    const items = useSelector(selectPets);
 
-    const pet = items.map(({ id, name, date, breed, comments  }) => {
+    const pet = items.map(({ id, name, dateOfBirth, bread, photoPet, comments  }) => {
         return (
             <SecondBox >
                 <Head>
@@ -41,17 +48,17 @@ const deleteContact = id => {
                         </AddButton>
                     </AddPet>
                 </Head>
-                <PetCard>
-                    <PetAvatar src="https://via.placeholder.com/161x161.jpeg?text=Pet+Avatar"></PetAvatar>
+                <PetCard key={id}>
+                    <PetAvatar src={photoPet} alt="pet"></PetAvatar>
                     <PetInfo>
                         <Text>Name:<Typography>{name}</Typography></Text>
-                        <Text>Date: <Typography>{date}</Typography></Text>
-                        <Text>Breed: <Typography>{breed}</Typography></Text>
+                        <Text>Date: <Typography>{dateOfBirth}</Typography></Text>
+                        <Text>Breed: <Typography>{bread}</Typography></Text>
                         <Text>Comments: <Typography>{comments}</Typography></Text>
                     </PetInfo>
                     <DelateButton
                         type="button"
-                        onClick={() => deleteContact(id)} >
+                        onClick={() => deletePetCard(id)} >
                         <FiTrash />
                     </DelateButton>
                 </PetCard>

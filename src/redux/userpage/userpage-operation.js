@@ -1,16 +1,30 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://petly-backend-vopf.onrender.com/";
+axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
-const token = {
-    set(token) {
-        axios.defaults.headers.common['Authorization'] = `${token}`
-    },
-    unset() {
-        axios.defaults.headers.common['Authorization'] = '';
-    },
-};
+// const token = {
+//     set(token) {
+//         axios.defaults.headers.common['Authorization'] = `${token}`
+//     },
+//     unset() {
+//         axios.defaults.headers.common['Authorization'] = '';
+//     },
+// };
+
+export const fetchUserPets = createAsyncThunk(
+    `/mypets`,
+    async (_, {rejectWithValue}) => {
+        try {
+            const { data } = await axios.get(`https://petly-backend-vopf.onrender.com/api/mypets`);
+            return data;
+        
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    }
+);
+
 
 export const userLogOut = createAsyncThunk(
     'user/logout',
