@@ -1,27 +1,33 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout';
-import RegisterForm from './Auth/RegisterForm/RegisterForm';
-import UserPage from './UserPage/UserPage';
-import LoginForm from './Auth/LoginForm/LoginForm';
+import UserPage from './../pages/UserPage/UserPage';
+import LoginPage from 'pages/LoginPage/LoginPage';
+import RegisterPage from 'pages/RegisterPage/RegisterPage';
+import { useDispatch } from 'react-redux';
+import { current } from 'redux/auth/auth-operation';
+
 
 const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
-const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(current())
+  }, [dispatch])
   return (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/user" element={ <UserPage/>}></Route>
           <Route
             path="/notices/:categoryName"
             element={<NoticesPage />}
           ></Route>
-          <Route path="/friends" element={<FriendsPage />} />
         </Route>
       </Routes>
     </>
