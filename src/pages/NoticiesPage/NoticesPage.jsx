@@ -5,28 +5,32 @@ import Headline from 'components/Headline/Headline';
 import AddNoticeButton from 'components/Notices/ AddNoticeButton/ AddNoticeButton';
 import AddNoticeButtonMobile from 'components/Notices/ AddNoticeButton/ AddNoticeButtonMobile';
 import { Container, Wrapper } from './NoticiesPage.styled';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectError,
-  selectIsLoading,
-  selectSellPets,
-} from 'redux/notices/notices-selectors';
-import { fetchSellPets } from 'redux/notices/notices-operation';
+import { useState, useEffect } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import {
+//   selectError,
+//   selectIsLoading,
+//   selectSellPets,
+//   selectState,
+// } from 'redux/notices/notices-selectors';
+import { fetchPets } from 'redux/notices/notices-operation';
+import { useParams } from 'react-router-dom';
 
 const NoticesPage = () => {
-  const [sellPets, setsellPets] = useState([]);
+  const { categoryName } = useParams();
+  const [pets, setPets] = useState([]);
+
+  const [search, setSearch] = useState('');
   const [matches, setMatches] = useState(
     window.matchMedia('(min-width: 768px)').matches
   );
 
   useEffect(() => {
-    const fetchPet = async () => {
+    const getPets = async () => {
       try {
-        const data = await fetchSellPets();
-        setsellPets(data.notices);
+        const data = await fetchPets(categoryName);
         console.log(data.notices);
+        setPets(data.notices);
         window
           .matchMedia('(min-width: 768px)')
           .addEventListener('change', e => setMatches(e.matches));
@@ -35,34 +39,33 @@ const NoticesPage = () => {
       } finally {
       }
     };
-    fetchPet();
-  }, [setsellPets]);
-  // const sellPets = useSelector(selectSellPets);
-  // const isLoading = useSelector(selectIsLoading);
-  // const error = useSelector(selectError);
-  // const dispatch = useDispatch();
+    getPets();
+  }, [categoryName]);
 
-  // const [matches, setMatches] = useState(
-  //   window.matchMedia('(min-width: 768px)').matches
-  // );
+  const handleFilterChange = e => {
+    const { value } = e.currentTarget;
+    setSearch(value);
+  };
 
-  // useEffect(() => {
-  //   dispatch(fetchSellPets());
-  //   window
-  //     .matchMedia('(min-width: 768px)')
-  //     .addEventListener('change', e => setMatches(e.matches));
-  // }, [dispatch]);
+  const getSearchedPets = () => {
+    if (!search) {
+      return pets;
+    }
+    const normalizedFilter = search.toLocaleLowerCase();
+    const filteredPets = pets.filter(({ tittle }) => {
+      const normalizedTitle = tittle.toLocaleLowerCase();
+      const resultOfFilter = normalizedTitle.includes(normalizedFilter);
+      return resultOfFilter;
+    });
+    return filteredPets;
+  };
 
-  // useEffect(() => {
-  //   window
-  //   .matchMedia("(min-width: 768px)")
-  //   .addEventListener('change', e => setMatches( e.matches ));
-  // }, []);
+  const filteredPets = getSearchedPets();
 
   return (
     <Container>
       <Headline title={'Find your favorite pet'}></Headline>
-      <NoticesSearch />
+      <NoticesSearch value={search} handleFilterChange={handleFilterChange} />
       <Wrapper>
         <NoticesCategoriesNav />
         {matches && <AddNoticeButton />}
@@ -72,7 +75,9 @@ const NoticesPage = () => {
       {/* {sellPets?.length === 0 && !isLoading && (
         <p>Sell list is empty! Try to add pet</p>
       )} */}
-      {sellPets?.length > 0 && <NoticesCategoriesList pets={sellPets} />}
+      {pets?.length > 0 && (
+        <NoticesCategoriesList filteredPets={filteredPets} />
+      )}
       {/* {error && <p>Ooops... Something went wrong</p>} */}
     </Container>
   );

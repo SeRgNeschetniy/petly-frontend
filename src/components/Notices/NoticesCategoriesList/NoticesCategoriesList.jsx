@@ -1,10 +1,10 @@
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 import { List } from './NoticesCategoriesList.styled';
 
-const NoticesCategoriesList = ({ pets }) => {
+const NoticesCategoriesList = ({ filteredPets }) => {
   return (
     <List>
-      <NoticeCategoryItem pets={pets} />
+      <NoticeCategoryItem filteredPets={filteredPets} />
     </List>
   );
 };

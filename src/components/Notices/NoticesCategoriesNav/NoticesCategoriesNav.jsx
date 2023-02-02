@@ -11,9 +11,7 @@ const NoticesCategoriesNav = () => {
       {/* <NotAuthWrapper> */}
       <NavLink to="/notices/lost-found">lost/found</NavLink>
       <NavLink to="/notices/for-free">in good hands</NavLink>
-
       <NavLink to="/notices/sell">sell</NavLink>
-
       {/* </NotAuthWrapper> */}
 
       {/* если пользователь авторизированный */}
