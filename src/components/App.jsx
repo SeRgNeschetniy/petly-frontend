@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 
 const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
+const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/user" element={<UserPage />}></Route>
+          <Route path="/friends" element={<FriendsPage />}></Route>
           <Route
             path="/notices/:categoryName"
             element={<NoticesPage />}
