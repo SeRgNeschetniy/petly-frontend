@@ -1,21 +1,29 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './SharedLayout';
-import RegisterForm from './Auth/RegisterForm/RegisterForm';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import UserPage from './UserPage/UserPage';
-import LoginForm from './Auth/LoginForm/LoginForm';
-
+import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
+import { useDispatch } from 'react-redux';
+import { current } from 'redux/auth/auth-operation';
 const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(current())
+  }, [dispatch])
   return (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/restore" element={<PasswordRecoveryForm />} />
           <Route path="/user" element={ <UserPage/>}></Route>
           <Route
             path="/notices/:categoryName"

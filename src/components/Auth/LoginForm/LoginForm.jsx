@@ -1,77 +1,65 @@
-import { useFormik } from 'formik';
+import { Input, Button, Form, InputField } from '../Auth.styled';
+import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/auth-operation';
 import * as Yup from 'yup';
-import { Input, Button, Form, Title, ErrorMessage, InputField, LinkText, StyledLink, BackgroundContainer } from '../Auth.styled';
-import GoogleIcon from '../GoogleSignIn/GoogleIcon';
-import { selectIsLogin } from 'redux/auth/auth-selectors';
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router';
+import { Notify } from 'notiflix';
 
-export default function Login() {
+export default function LoginForm() {
   const dispatch = useDispatch();
 
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: Yup.object({
-    email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Require'),
-    }),
-    onSubmit: values => {
-      dispatch(login(values));
-    },
-  });
-
-  const isLogin = useSelector(selectIsLogin);
-
-  if (isLogin) {
-    return <Navigate to="/user" />;
+  const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
   }
 
+  const initialLoginState = {
+    email: '',
+    password: '',
+  };
+
+  const validationSchema = Yup.object({
+  email: Yup.string().email('Invalid email format').required('Required'),
+  password: Yup.string().required('Require').min(6),
+  });
+  
   return (
-    <>
-      <BackgroundContainer>
-        <Title>Login</Title>
-      <Form
-      onSubmit={formik.handleSubmit}
-      >
-        <InputField>
-        <Input
-      id="email"
-      type="email"
-      name="email"
-      placeholder="Email"
-      onBlur={formik.handleBlur}
-      onChange={formik.handleChange}
-      value={formik.values.email}
-        />
-    {formik.touched.email && formik.errors.email ? (
-        <ErrorMessage>{formik.errors.email}</ErrorMessage>
-        ) : null}
-        </InputField>
-        <InputField>
-        <Input
-      id="password"
-      type="password"
-      name="password"
-      placeholder="Password"
-      onBlur={formik.handleBlur}
-      onChange={formik.handleChange}
-      value={formik.values.password}
-      />
-        {formik.touched.password && formik.errors.password ? (
-        <ErrorMessage>{formik.errors.password}</ErrorMessage>
-      ) : null}
-      </InputField>
-    <Button type="submit">Login</Button>
-          </Form>
-        <GoogleIcon />
-        <LinkText>Don't have an account? <StyledLink to="/register">Register</StyledLink></LinkText>
-        <LinkText>Forgot your password? <StyledLink to="/passwordRecovery">Password recovery</StyledLink></LinkText>
-      </BackgroundContainer>
-      </>
+    <Formik
+      initialValues={initialLoginState}
+      validationSchema={validationSchema}
+      onSubmit={values => {
+        dispatch(login(values));
+      }}
+    >
+      {props => (
+        <Form>
+          <InputField>
+            <Input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.email}
+            />
+          </InputField>
+            {props.touched.email && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
+          <InputField>
+            <Input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.password}
+            />
+          </InputField>
+            {props.touched.password && props.errors.password ? Notify.failure(props.errors.password, notifyOptions) : null}
+        <Button type="submit" onClick={props.handleSubmit}>Login</Button>
+        </Form>
+      )}
+    </Formik>
   )
-};
+}

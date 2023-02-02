@@ -1,12 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const setToken = (token) => {
+  if (token) {
+    return axios.defaults.headers.common.authorization = `Bearer ${token}`;
+  }
+  axios.defaults.headers.common.authorization = ``;
+
+}
+
 export const signup = createAsyncThunk(
   'auth/signup',
   async (registerData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
-        'http://localhost:4000/api/users/register',
+        '/users/register',
         registerData
       );
       console.log(data);
@@ -26,7 +34,7 @@ export const login = createAsyncThunk(
   async (loginData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:4000/api/users/login`,
+        `/users/login`,
         loginData
       );
       return data;
@@ -44,7 +52,7 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const result = await axios.get();
+      const result = await axios.get('/users/logout');
       return result;
     } catch ({ responce }) {
       const error = {
@@ -61,8 +69,29 @@ export const current = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      const result = await axios.get(auth.token);
-      return result;
+      setToken(auth.token)
+      const result = await axios.get(`/users/current/`);
+      return result.data;
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const restorePassword = createAsyncThunk(
+  'auth/restore',
+  async (userEmail, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(
+        `/users/restore`,
+        userEmail
+      );
+      console.log(data);
+      return data;
     } catch ({ responce }) {
       const error = {
         status: responce.status,
