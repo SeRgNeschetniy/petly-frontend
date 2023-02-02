@@ -18,7 +18,6 @@ import {
     Text,
     DelateButton,
     Typography,
-    Box,
 } from './PetsData.styled';
 
 
@@ -66,13 +65,13 @@ const deletePetCard = id => {
     //     )
     // })
      return (
-    <Box >
+    <div >
       {/* {items.length < 1 && (
         <Typography variant="h6" sx={{ ml: 5 }}>
           Haven't any pet...
         </Typography>
       )}{' '}
             {pet} */}
-        </Box>
+        </div>
      )
 }

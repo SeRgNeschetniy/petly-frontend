@@ -76,4 +76,3 @@ display:flex;
 justify-content: center;
 
 `
-export const Box = styled.div`
