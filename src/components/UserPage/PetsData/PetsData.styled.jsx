@@ -72,7 +72,7 @@ background: #FDF7F2;
 backdrop-filter: blur(2px);
 border-radius:50%;
 align-items: center;
-display:flexx;
+display:flex;
 justify-content: center;
 
 `
