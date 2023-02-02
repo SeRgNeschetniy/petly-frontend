@@ -17,7 +17,7 @@ export default function NavBox({ show, showContent }) {
     <Container active={show}>
       <AuthNavBox>
         {isLogin ? (
-          <UserNav />
+          <UserNav showContent={showContent} />
         ) : (
           authLinksData.map(({ id, to, title, accent = 'false' }) => (
             <AuthLinks onClick={showContent} key={id} to={to} accent={accent}>
