@@ -24,7 +24,11 @@ export default function RegisterForm() {
     Child = <SecondStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>
   }
 
-  // const isLogin = useSelector(selectIsLogin);
+  const isLogin = useSelector(selectIsLogin);
+
+  if (isLogin) {
+    return <Navigate to="/user" />
+  }
 
   // const ConditionalComponent = () => {
   // switch (secondPage) {
