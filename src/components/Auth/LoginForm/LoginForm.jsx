@@ -1,10 +1,12 @@
-import Headline from 'components/Headline/Headline';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/auth-operation';
 import * as Yup from 'yup';
-import { Input, Button, Form, ErrorMessage, InputField, LinkText, StyledLink } from '../Auth.styled';
+import { Input, Button, Form, Title, ErrorMessage, InputField, LinkText, StyledLink, BackgroundContainer } from '../Auth.styled';
 import GoogleIcon from '../GoogleSignIn/GoogleIcon';
+import { selectIsLogin } from 'redux/auth/auth-selectors';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -23,10 +25,16 @@ export default function Login() {
     },
   });
 
+  const isLogin = useSelector(selectIsLogin);
+
+  if (isLogin) {
+    return <Navigate to="/user" />;
+  }
+
   return (
     <>
-      <div>
-        <Headline title="Login" />
+      <BackgroundContainer>
+        <Title>Login</Title>
       <Form
       onSubmit={formik.handleSubmit}
       >
@@ -63,7 +71,7 @@ export default function Login() {
         <GoogleIcon />
         <LinkText>Don't have an account? <StyledLink to="/register">Register</StyledLink></LinkText>
         <LinkText>Forgot your password? <StyledLink to="/passwordRecovery">Password recovery</StyledLink></LinkText>
-      </div>
+      </BackgroundContainer>
       </>
   )
 };
