@@ -75,8 +75,9 @@ background: #FDF7F2;
 backdrop-filter: blur(2px);
 border-radius:50%;
 align-items: center;
-display:flex;
+display:flexx;
 justify-content: center;
+
 `
 export const Box = styled.div`
 
