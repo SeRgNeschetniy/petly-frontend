@@ -60,7 +60,7 @@ const authSlice = createSlice({
       store.error = null;
     },
     [current.fulfilled]: (store, { payload }) => {
-      store.user = payload.data;
+      store.user = payload;
       store.loading = false;
       store.isLogin = true;
     },
