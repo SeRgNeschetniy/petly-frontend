@@ -1,4 +1,5 @@
 import React from 'react';
+import defaultImage from '../../../images/friends/defaultImage.jpg';
 import { Item, Heading, InfoWrapper, TextField } from './FriendsItem.styled';
 
 const FriendsItem = ({
@@ -18,7 +19,11 @@ const FriendsItem = ({
       </a>
 
       <InfoWrapper>
-        <img src={imageUrl} alt={title} />
+        {imageUrl ? (
+          <img src={imageUrl} alt={title} />
+        ) : (
+          <img src={defaultImage} alt={title} />
+        )}
 
         <ul>
           <TextField>
