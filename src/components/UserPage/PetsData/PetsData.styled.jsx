@@ -76,3 +76,6 @@ display:flex;
 justify-content: center;
 
 `
+export const Typography = styled.span`
+
+`
