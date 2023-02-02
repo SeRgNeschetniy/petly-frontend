@@ -13,22 +13,19 @@ import {
 } from 'redux-persist';
 import { petsReducer } from './notices/notices-slice';
 import authReducer from './auth/auth-slice';
-import storage from 'redux-persist/lib/storage';
 import { userPetsReducer } from './userpage/userpage-slice';
 
-const authPersistConfig = {
-  key: 'auth',
-  storage,
-  whitelist: ['token'],
-};
-
-const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
+// const authPersistConfig = {
+//   key: 'auth',
+//   storage,
+//   whitelist: ['token'],
+// };
 
 export const store = configureStore({
   reducer: {
     contacts: petsReducer,
     search: searchReducer,
-    auth: authPersistedReducer,
+    auth: authReducer,
     user: userPetsReducer,
   },
   middleware: getDefaultMiddleware =>
