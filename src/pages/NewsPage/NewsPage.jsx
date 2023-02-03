@@ -1,15 +1,14 @@
-import NewsSerch from "components/News/NewsSerch/NewsSerch";
-import Headline from "components/Headline/Headline";
+import NewsSerch from 'components/News/NewsSerch/NewsSerch';
+import Headline from 'components/Headline/Headline';
 import { Container } from 'styles';
 import { useEffect, useState } from 'react';
 
 const { REACT_APP_BASE_URL } = process.env;
 
 const fetchNews = async () => {
-  const response = await fetch(`${REACT_APP_BASE_URL}/api/News`);
+  const response = await fetch(`${REACT_APP_BASE_URL}/api/news`);
   return await response.json();
 };
-
 
 const NewsPage = () => {
   const [News, setNews] = useState([]);
@@ -26,26 +25,12 @@ const NewsPage = () => {
     getNews();
   }, []);
 
-
-    return (
+  return (
     <Container>
       <Headline title={'News'}></Headline>
-      <NewsSerch  />
+      <NewsSerch news={News} />
     </Container>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default NewsPage;
