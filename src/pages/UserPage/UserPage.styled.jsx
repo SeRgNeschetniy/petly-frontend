@@ -8,7 +8,8 @@ export const Container = styled.div`
   padding-left:16px;
   padding-right:16px;
   background-color: ${({ theme }) => theme.mainBackground};
-  justify-content: center
+  justify-content: center;
+  margin-top:69px;
 `;
 
 
