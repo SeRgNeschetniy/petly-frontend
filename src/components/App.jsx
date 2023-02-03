@@ -46,8 +46,5 @@ export const App = () => {
         <Route path="/notices/:categoryName" element={<NoticesPage />} />
       </Route>
     </Routes>
-
-  
-
   );
 };
