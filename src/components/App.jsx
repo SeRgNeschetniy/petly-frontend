@@ -12,7 +12,7 @@ import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryFo
 
 const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
-const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
+// const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ export const App = () => {
             element={<PrivateRoute redirectTo="/login" component={UserPage} />}
           />
 
-          <Route path="/news" element={<NewsPage />} />
+          {/* <Route path="/news" element={<NewsPage />} /> */}
 
           <Route path="/friends" element={<FriendsPage />} />
 
