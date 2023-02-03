@@ -7,11 +7,9 @@ import {
   Container,
   Sticker,
   AddToFavoriteBtn,
-  DeleteBtn,
   Span,
   AddIcon,
 } from './NoticeCategoryItem.styled';
-// import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { selectFilteredPets } from 'redux/notices/notices-selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToFavorite } from 'redux/notices/notices-operation';
