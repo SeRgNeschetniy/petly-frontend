@@ -20,6 +20,7 @@ export const App = () => {
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);
+  
   return (
     <>
       <Routes>

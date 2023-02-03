@@ -11,7 +11,6 @@ import { Navigate } from 'react-router';
 import LoginForm from 'components/Auth/LoginForm/LoginForm';
 
 export default function LoginPage() {
-  //  const dispatch = useDispatch();
   const isLogin = useSelector(selectIsLogin);
 
   if (isLogin) {
