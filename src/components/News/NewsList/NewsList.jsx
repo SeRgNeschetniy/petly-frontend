@@ -1,12 +1,36 @@
-import NewsItem from '../NoticeCategoryItem/NewsItem';
-import { List } from './NoticesCategoriesList.styled';
 
-const NewsList = () => {
+import React from 'react';
+
+
+
+
+const NewsList = ({ news }) => {
+  if (news.length < 1) {
+    return <p>Something went wrong...</p>;
+  }
   return (
     <List>
-      <NoticeCategoryItem />
+      {news.map(item => {
+        return <NewsItem key={item._id} {...item} />;
+      })}
     </List>
   );
 };
 
 export default NewsList;
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
