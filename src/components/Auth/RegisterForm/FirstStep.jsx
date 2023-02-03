@@ -60,7 +60,7 @@ export default function FirstStep({
               onChange={props.handleChange}
               value={props.values.email}
             />
-            {props.touched.email && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
+            {props.isSubmitting && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
           </InputField>
           <InputField>
             <Input
@@ -72,7 +72,7 @@ export default function FirstStep({
               onChange={props.handleChange}
               value={props.values.password}
             />
-            {props.touched.password && props.errors.password ? Notify.failure(props.errors.password, notifyOptions) : null}
+            {props.isSubmitting && props.errors.password ? Notify.failure(props.errors.password, notifyOptions) : null}
           </InputField>
           <InputField margin>
             <Input
@@ -84,7 +84,7 @@ export default function FirstStep({
               onChange={props.handleChange}
               value={props.values.confirmPassword}
             />
-            {props.touched.confirmPassword && props.errors.confirmPassword ? Notify.failure(props.errors.confirmPassword, notifyOptions) : null}
+            {props.isSubmitting && props.errors.confirmPassword ? Notify.failure(props.errors.confirmPassword, notifyOptions) : null}
           </InputField>
           <Button margin type="submit" handleClick={props.handleSubmit}>
             Next

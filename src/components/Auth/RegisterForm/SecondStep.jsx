@@ -60,7 +60,7 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
               onChange={props.handleChange}
               value={props.values.name}
             />
-            {props.touched.name && props.errors.name ? Notify.failure(props.errors.name, notifyOptions) : null}
+            {props.isSubmitting && props.errors.name ? Notify.failure(props.errors.name, notifyOptions) : null}
           </InputField>
           <InputField>
             <Input
@@ -72,7 +72,7 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
               onChange={props.handleChange}
               value={props.values.city}
             />
-            {props.touched.city && props.errors.city ? Notify.failure(props.errors.city, notifyOptions) : null}
+            {props.isSubmitting && props.errors.city ? Notify.failure(props.errors.city, notifyOptions) : null}
           </InputField>
           <InputField margin>
             <Input
@@ -84,7 +84,7 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
               onChange={props.handleChange}
               value={props.values.phone}
             />
-            {props.touched.phone && props.errors.phone ? Notify.failure(props.errors.phone, notifyOptions) : null}
+            {props.isSubmitting && props.errors.phone ? Notify.failure(props.errors.phone, notifyOptions) : null}
           </InputField>
           <Button type="submit">Registration</Button>
           <Button outline margin submit type="button" onClick={props.handleSubmit}>Back</Button>
