@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
 
-const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
+const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 
@@ -24,16 +24,12 @@ export const App = () => {
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-
-
-
           <Route
             path="/login"
             element={
               <RestrictedRoute component={LoginPage} redirectTo="/news" />
             }
           />
-
           <Route
             path="/register"
             element={
@@ -53,7 +49,6 @@ export const App = () => {
           <Route path="/friends" element={<FriendsPage />} />
 
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
-
         </Route>
       </Routes>
     </>
