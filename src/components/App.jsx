@@ -23,23 +23,32 @@ export const App = () => {
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={LoginPage} redirectTo="/news" />
+            }
+          />
+
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute component={RegisterPage} redirectTo="/news" />
+            }
+          />
 
           <Route path="/restore" element={<PasswordRecoveryForm />} />
-          <Route path="/user" element={ <UserPage/>}></Route>
-
-         
-          <Route
-            path="/News"
-            element={<NewsPage />}
-          ></Route>
-          <Route path="/friends" element={<FriendsPage />}></Route>
 
           <Route
-            path="/notices/:categoryName"
-            element={<NoticesPage />}
-          ></Route>
+            path="/user"
+            element={<PrivateRoute redirectTo="/login" component={UserPage} />}
+          />
+
+          <Route path="/news" element={<NewsPage />} />
+
+          <Route path="/friends" element={<FriendsPage />} />
+
+          <Route path="/notices/:categoryName" element={<NoticesPage />} />
         </Route>
       </Routes>
     </>
