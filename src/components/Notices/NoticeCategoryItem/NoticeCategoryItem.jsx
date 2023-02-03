@@ -11,9 +11,15 @@ import {
   Span,
   AddIcon,
 } from './NoticeCategoryItem.styled';
-import { RiDeleteBin5Fill } from 'react-icons/ri';
+// import { RiDeleteBin5Fill } from 'react-icons/ri';
+import { selectFilteredPets } from 'redux/notices/notices-selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToFavorite } from 'redux/notices/notices-operation';
 
-const NoticeCategoryItem = ({ filteredPets }) => {
+const NoticeCategoryItem = () => {
+  const filteredPets = useSelector(selectFilteredPets);
+  const dispatch = useDispatch();
+
   return (
     <>
       {filteredPets.map(
@@ -22,7 +28,7 @@ const NoticeCategoryItem = ({ filteredPets }) => {
             <Item key={_id}>
               <img src={image} alt="pet" minwidth={288} />
               <Sticker>{category}</Sticker>
-              <AddToFavoriteBtn>
+              <AddToFavoriteBtn onClick={() => dispatch(addToFavorite(_id))}>
                 <AddIcon />
               </AddToFavoriteBtn>
               <Container>

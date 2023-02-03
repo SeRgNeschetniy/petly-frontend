@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { selectIsLogin } from 'redux/auth/auth-selectors';
 import {
   NavLink,
   Nav,
@@ -6,6 +8,8 @@ import {
 } from './NoticesCategoriesNav.styled';
 
 const NoticesCategoriesNav = () => {
+  const isLogin = useSelector(selectIsLogin);
+
   return (
     <Nav>
       {/* <NotAuthWrapper> */}
@@ -13,12 +17,12 @@ const NoticesCategoriesNav = () => {
       <NavLink to="/notices/for-free">in good hands</NavLink>
       <NavLink to="/notices/sell">sell</NavLink>
       {/* </NotAuthWrapper> */}
-
-      {/* если пользователь авторизированный */}
-      {/* <AuthWrapper>
-            <NavLink to='/favorite'>favorite ads</NavLink>
-            <NavLink to='/own'>my ads</NavLink>
-            </AuthWrapper> */}
+      {isLogin && (
+        <AuthWrapper>
+          <NavLink to="/notices/favorite">favorite ads</NavLink>
+          <NavLink to="/notices/own">my ads</NavLink>
+        </AuthWrapper>
+      )}
     </Nav>
   );
 };

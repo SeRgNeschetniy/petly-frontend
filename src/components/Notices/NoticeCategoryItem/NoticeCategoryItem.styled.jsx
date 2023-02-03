@@ -118,8 +118,8 @@ export const AddToFavoriteBtn = styled.button`
     background: ${theme.colors.accent};
   }
 
-  &:hover,
-  :active > {
+  &:hover > svg {
+    background: ${theme.colors.accent};
     fill: ${theme.colors.white};
   }
 `;
@@ -132,11 +132,4 @@ export const AddIcon = styled(AiOutlineHeart)`
   width: 28px;
   height: 28px;
   color: ${theme.colors.accent};
-
-  & > svg {
-    background: ${theme.colors.accent};
-  }
-  // &:hover, :active {
-  //   fill: ${theme.colors.accent};
-  // }
 `;
