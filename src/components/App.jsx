@@ -2,9 +2,7 @@ import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import SharedLayout from './SharedLayout';
-import UserPage from './../pages/UserPage/UserPage';
-import LoginPage from 'pages/LoginPage/LoginPage';
-import RegisterPage from 'pages/RegisterPage/RegisterPage';
+
 import PrivateRoute from './PrivateRoute';
 // import RestrictedRoute from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
@@ -14,6 +12,9 @@ import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryFo
 const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const UserPage = lazy(() => import('pages/UserPage/UserPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
