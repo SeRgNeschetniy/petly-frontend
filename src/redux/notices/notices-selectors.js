@@ -4,12 +4,7 @@ export const selectPets = state => state.pets.items;
 export const selectIsLoading = state => state.pets.isLoading;
 export const selectError = state => state.pets.error;
 
-// export const selectState = ({ sellPets }) => ({
-//   loading: sellPets.loading,
-//   error: sellPets.error,
-// });
-
-export const selectfilteredPets = state => {
+export const selectFilteredPets = state => {
   const pets = selectPets(state);
   const search = selectSearch(state);
 
@@ -17,7 +12,7 @@ export const selectfilteredPets = state => {
     return pets;
   }
   const normalizedFilter = search.toLocaleLowerCase();
-  const filteredPets = search.filter(({ tittle }) => {
+  const filteredPets = pets.filter(({ tittle }) => {
     const normalizedTitle = tittle.toLocaleLowerCase();
     const resultOfFilter = normalizedTitle.includes(normalizedFilter);
     return resultOfFilter;

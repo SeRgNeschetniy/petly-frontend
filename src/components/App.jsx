@@ -7,23 +7,21 @@ import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 
-
-const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
-
+const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(current())
-  }, [dispatch])
+    dispatch(current());
+  }, [dispatch]);
   return (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/user" element={ <UserPage/>}></Route>
+          <Route path="/user" element={<UserPage />}></Route>
           <Route
             path="/notices/:categoryName"
             element={<NoticesPage />}
