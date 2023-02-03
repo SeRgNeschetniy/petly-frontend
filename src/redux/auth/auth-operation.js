@@ -107,7 +107,7 @@ export const restorePassword = createAsyncThunk(
   async (userEmail, { rejectWithValue }) => {
     try {
       setToken("")
-      const { data } = await axios.post(
+      const { data } = await axios.patch(
         `/users/restore`,
         userEmail
       );
