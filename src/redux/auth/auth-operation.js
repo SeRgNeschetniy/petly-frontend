@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const setToken = (token) => {
@@ -50,9 +50,11 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk(
   'auth/logout',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
-      const result = await axios.get('/users/logout');
+      const { auth } = getState();
+      setToken(auth.token)
+      const result = await axios.post('/users/logout');
       return result;
     } catch ({ responce }) {
       const error = {
@@ -83,11 +85,29 @@ export const current = createAsyncThunk(
   }
 );
 
+// export const googleAuth = createAsyncThunk(
+//   'auth/google',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const result = await axios.get('/google');
+//       console.log(result);
+//       return result;
+//     } catch ({ responce }) {
+//       const error = {
+//         status: responce.status,
+//         message: responce.data.message,
+//       };
+//       return rejectWithValue(error);
+//     }
+//   }
+// )
+
 export const restorePassword = createAsyncThunk(
   'auth/restore',
   async (userEmail, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(
+      setToken("")
+      const { data } = await axios.patch(
         `/users/restore`,
         userEmail
       );

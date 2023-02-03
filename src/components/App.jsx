@@ -8,7 +8,7 @@ import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
-
+import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
 
 const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
@@ -25,12 +25,17 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/user" element={<UserPage />}></Route>
+
+          <Route path="/restore" element={<PasswordRecoveryForm />} />
+          <Route path="/user" element={ <UserPage/>}></Route>
+
+         
           <Route
             path="/News"
             element={<NewsPage />}
           ></Route>
           <Route path="/friends" element={<FriendsPage />}></Route>
+
           <Route
             path="/notices/:categoryName"
             element={<NoticesPage />}
