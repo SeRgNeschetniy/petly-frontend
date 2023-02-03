@@ -21,17 +21,17 @@ const NoticeCategoryItem = () => {
   return (
     <>
       {filteredPets.map(
-        ({ _id, image, tittle, breed, location, dateOfBirth, category }) => {
+        ({ _id, petImage, title, breed, location, dateOfBirth, category }) => {
           return (
             <Item key={_id}>
-              <img src={image} alt="pet" minwidth={288} />
+              <img src={petImage} alt="pet" minwidth={288} />
               <Sticker>{category}</Sticker>
               <AddToFavoriteBtn onClick={() => dispatch(addToFavorite(_id))}>
                 <AddIcon />
               </AddToFavoriteBtn>
               <Container>
                 <Wrapper>
-                  <Title>{tittle}</Title>
+                  <Title>{title}</Title>
                   <Text>
                     <Span>Breed:</Span>
                     {breed}
