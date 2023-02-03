@@ -1,22 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const setToken = (token) => {
+const setToken = token => {
   if (token) {
-    return axios.defaults.headers.common.authorization = `Bearer ${token}`;
+    return (axios.defaults.headers.common.authorization = `Bearer ${token}`);
   }
   axios.defaults.headers.common.authorization = ``;
-
-}
+};
 
 export const signup = createAsyncThunk(
   'auth/signup',
   async (registerData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(
-        '/users/register',
-        registerData
-      );
+      const { data } = await axios.post('/users/register', registerData);
       console.log(data);
       return data;
     } catch ({ responce }) {
@@ -33,10 +29,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async (loginData, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(
-        `/users/login`,
-        loginData
-      );
+      const { data } = await axios.post(`/users/login`, loginData);
       return data;
     } catch ({ responce }) {
       const error = {
@@ -53,7 +46,7 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      setToken(auth.token)
+      setToken(auth.token);
       const result = await axios.post('/users/logout');
       return result;
     } catch ({ responce }) {
@@ -71,7 +64,7 @@ export const current = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      setToken(auth.token)
+      setToken(auth.token);
       const result = await axios.get(`/users/current/`);
       // console.log(result);
       return result.data;
@@ -106,11 +99,8 @@ export const restorePassword = createAsyncThunk(
   'auth/restore',
   async (userEmail, { rejectWithValue }) => {
     try {
-      setToken("")
-      const { data } = await axios.patch(
-        `/users/restore`,
-        userEmail
-      );
+      setToken('');
+      const { data } = await axios.patch(`/users/restore`, userEmail);
       console.log(data);
       return data;
     } catch ({ responce }) {
