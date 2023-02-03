@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useDispatch } from "react-redux";
 import { restorePassword } from "redux/auth/auth-operation";
 import { Notify } from 'notiflix';
+import { BackgroundContainer } from "../Auth.styled";
 
 export default function PasswordRecoveryForm() {
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ export default function PasswordRecoveryForm() {
   });
 
   return (
+    <BackgroundContainer>
     <Formik
       initialValues={initialValue}
       validationSchema={recoveryValidation}
@@ -43,10 +45,11 @@ export default function PasswordRecoveryForm() {
               value={props.values.email}
             />
           </InputField>
-          {props.touched.email && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
-          <Button onSubmit={props.handleSubmit}>Сhange password</Button>
+          {props.isSubmitting && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
+          <Button onClick={props.handleSubmit}>Сhange password</Button>
         </Form>
       )}
-    </Formik>
+      </Formik>
+      </BackgroundContainer>
   )
 }
