@@ -47,6 +47,10 @@ export const InfoWrapper = styled.div`
   }
 `;
 
+export const TextList = styled.ul`
+  position: relative;
+`;
+
 export const TextField = styled.li`
   margin-bottom: 12px;
   font-size: 12px;
@@ -67,4 +71,31 @@ export const TextField = styled.li`
   &:last-child {
     margin-bottom: 0;
   }
+`;
+
+export const TimeBtn = styled.button`
+  &:hover,
+  &:focus {
+    color: ${theme.colors.accent};
+  }
+`;
+
+export const TimeList = styled.ul`
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 20%;
+  min-width: 120px;
+  padding: 12px;
+  font-size: 12px;
+  line-height: 1.3;
+  background-color: ${theme.colors.white};
+  border: 1px solid ${theme.colors.accent};
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+`;
+
+export const DayItem = styled.li`
+  display: flex;
+  justify-content: space-between;
 `;

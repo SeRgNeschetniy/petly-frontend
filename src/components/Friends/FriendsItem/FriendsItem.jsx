@@ -1,6 +1,13 @@
 import React from 'react';
 import defaultImage from '../../../images/friends/defaultImage.jpg';
-import { Item, Heading, InfoWrapper, TextField } from './FriendsItem.styled';
+import WorkHours from './WorkHours';
+import {
+  Item,
+  Heading,
+  InfoWrapper,
+  TextList,
+  TextField,
+} from './FriendsItem.styled';
 
 const FriendsItem = ({
   address,
@@ -20,22 +27,27 @@ const FriendsItem = ({
 
       <InfoWrapper>
         {imageUrl ? (
-          <img src={imageUrl} alt={title} />
+          <img src={imageUrl} alt="logo" />
         ) : (
-          <img src={defaultImage} alt={title} />
+          <img src={defaultImage} alt="logo" />
         )}
 
-        <ul>
+        <TextList>
           <TextField>
             Time: <br />
-            {/* {workDays} */}
+            {workDays ? (
+              <WorkHours workDays={workDays} />
+            ) : (
+              <span>-------------</span>
+            )}
           </TextField>
+
           <TextField>
             Address: <br />
             {address ? (
               <a href={addressUrl}>{address}</a>
             ) : (
-              <span>----------</span>
+              <span>-------------</span>
             )}
           </TextField>
           <TextField>
@@ -43,7 +55,7 @@ const FriendsItem = ({
             {email ? (
               <a href={`mailto: ${email} `}>{email}</a>
             ) : (
-              <span>----------</span>
+              <span>-------------</span>
             )}
           </TextField>
           <TextField>
@@ -51,10 +63,10 @@ const FriendsItem = ({
             {phone ? (
               <a href={`tel: ${phone} `}>{phone}</a>
             ) : (
-              <span>----------</span>
+              <span>-------------</span>
             )}
           </TextField>
-        </ul>
+        </TextList>
       </InfoWrapper>
     </Item>
   );
