@@ -1,7 +1,7 @@
 import { TbLogout} from "react-icons/tb";      
 import {LeaveButton, Box} from './Logout.styled';
-import { userLogOut } from '../../../redux/userpage/userpage-operation';
 import { useDispatch} from 'react-redux';
+import { logout } from "redux/auth/auth-operation";
 
 
    
@@ -11,7 +11,7 @@ export default function Logout() {
 
 
     const handleLogOut = () => {
-        dispatch(userLogOut());
+        dispatch(logout());
     };
 
     return (

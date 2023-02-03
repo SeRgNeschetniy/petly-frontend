@@ -6,7 +6,7 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
-
+import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
 
 const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
 
@@ -23,6 +23,7 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/restore" element={<PasswordRecoveryForm />} />
           <Route path="/user" element={ <UserPage/>}></Route>
           <Route
             path="/notices/:categoryName"
