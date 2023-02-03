@@ -8,6 +8,7 @@ import PrivateRoute from './PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
+import Loader from './Loader/Loader';
 
 const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
@@ -24,7 +25,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isLoading ? (
-    <p>Loading....</p>
+    <Loader />
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
