@@ -20,13 +20,15 @@ export default function LoginForm() {
 
   const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email format').required('Required'),
-  password: Yup.string().required('Require').min(6),
+  password: Yup.string().required('Require').min(7),
   });
   
   return (
     <Formik
       initialValues={initialLoginState}
       validationSchema={validationSchema}
+      validateOnChange={false}
+      validateOnBlur={false}
       onSubmit={values => {
         dispatch(login(values));
       }}
@@ -44,7 +46,7 @@ export default function LoginForm() {
               value={props.values.email}
             />
           </InputField>
-            {props.touched.email && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
+            {props.isSubmitting && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
           <InputField>
             <Input
               id="password"
@@ -56,7 +58,7 @@ export default function LoginForm() {
               value={props.values.password}
             />
           </InputField>
-            {props.touched.password && props.errors.password ? Notify.failure(props.errors.password, notifyOptions) : null}
+            {props.isSubmitting && props.errors.password ? Notify.failure(props.errors.password, notifyOptions) : null}
         <Button type="submit" onClick={props.handleSubmit}>Login</Button>
         </Form>
       )}

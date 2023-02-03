@@ -45,7 +45,7 @@ export default function PasswordRecoveryForm() {
               value={props.values.email}
             />
           </InputField>
-          {props.touched.email && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
+          {props.isSubmitting && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
           <Button onClick={props.handleSubmit}>Сhange password</Button>
         </Form>
       )}
