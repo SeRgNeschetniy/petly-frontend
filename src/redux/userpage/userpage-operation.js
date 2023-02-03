@@ -12,7 +12,8 @@ export const fetchCurrentUser = createAsyncThunk(
             return thunkApi.rejectWithValue()
         }
         try {
-            const { data } = await axios.get('https://petly-backend-vopf.onrender.com/api/users/current');
+            const { data } = await axios.get('/current');
+            
             return data
         } catch (error) {
             return error;
@@ -25,13 +26,17 @@ export const fetchUserPets = createAsyncThunk(
     `/mypets`,
     async (_, {rejectWithValue}) => {
         try {
-            const { data } = await axios.get(`https://petly-backend-vopf.onrender.com/api/mypets`);
-            console.log(data)
+            const { data } = await axios.get(`/mypets`);
+            
             return data;
         
-        } catch (error) {
-            return rejectWithValue(error);
-        }
+        } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
+    }
     }
 );
 
@@ -59,16 +64,16 @@ export const removePetCard = createAsyncThunk(
         }
     }
 );
-export const patchContact = createAsyncThunk(
-    "users/update",
-    async (id, thunkApi) => {
-        const state = thunkApi.getState()
-        const { name, number } = state.modal.editContact
-        try {
-            const { data } = await axios.patch(`/users/${id}`, {name, number})
-            return data
-        } catch (error) {
-            return thunkApi.rejectWithValue(error)
-        }
-    }
-);
+// export const patchContact = createAsyncThunk(
+//     "users/update",
+//     async (id, thunkApi) => {
+//         const state = thunkApi.getState()
+//         const { name, number } = state.modal.editContact
+//         try {
+//             const { data } = await axios.patch(`/users/${id}`, {name, number})
+//             return data
+//         } catch (error) {
+//             return thunkApi.rejectWithValue(error)
+//         }
+//     }
+// );

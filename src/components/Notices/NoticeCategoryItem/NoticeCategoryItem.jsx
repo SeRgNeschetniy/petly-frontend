@@ -13,13 +13,13 @@ import {
 } from './NoticeCategoryItem.styled';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 
-const NoticeCategoryItem = ({ pets }) => {
+const NoticeCategoryItem = ({ filteredPets }) => {
   return (
     <>
-      {pets.map(
-        ({ id, image, tittle, breed, location, dateOfBirth, category }) => {
+      {filteredPets.map(
+        ({ _id, image, tittle, breed, location, dateOfBirth, category }) => {
           return (
-            <Item key={id}>
+            <Item key={_id}>
               <img src={image} alt="pet" minwidth={288} />
               <Sticker>{category}</Sticker>
               <AddToFavoriteBtn>

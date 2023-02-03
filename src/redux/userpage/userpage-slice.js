@@ -25,10 +25,11 @@ const petsSlice = createSlice({
       store.items = payload;
       store.loading = false;
       store.isLogin = true;
+      store.error = null;
     },
-    [fetchUserPets.rejected]: (store, {payload}) => {
+    [fetchUserPets.rejected]: (store, {error}) => {
       store.loading = false;
-      store.error = payload.message;
+      store.error = error;
     },
 
     [removePetCard.pending] (store)  {

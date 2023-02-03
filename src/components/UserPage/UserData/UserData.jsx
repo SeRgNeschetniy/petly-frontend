@@ -1,5 +1,8 @@
 import { TbCamera } from 'react-icons/tb';
 import { FiEdit2 } from 'react-icons/fi';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/auth-selectors';
 import {
   AccentText,
   Profile,
@@ -15,6 +18,10 @@ import {
 } from './UserData.styled';
 
 export default function UserData() {
+
+  const user = useSelector(selectUser);
+console.log(user)
+
   return (
     <Box>
       <AccentText>My information:</AccentText>

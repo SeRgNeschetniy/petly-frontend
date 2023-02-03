@@ -86,12 +86,18 @@ export const AuthLinks = styled(NavLink)`
     css`
       color: white;
       background-color: #f59256;
+      ::hover {
+        color: black;
+        background-color: #fdf7f2;
+      }
     `};
 
-  :hover,
-  :focus-visible {
-    box-shadow: ${({ theme }) => theme.shadows.regular};
+  :hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.accent};
   }
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     padding: 8.5px 28px;

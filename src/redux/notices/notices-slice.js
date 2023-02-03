@@ -1,11 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  fetchForFreePets,
-  fetchSellPets,
-  fetchLostFoundPets,
-  deletePet,
-  addToFavorite,
-} from './notices-operation';
+import { fetchPets, deletePet, addToFavorite } from './notices-operation';
 
 const petsInitialState = {
   items: [],
@@ -27,28 +21,13 @@ const petsSlice = createSlice({
   initialState: petsInitialState,
 
   extraReducers: {
-    [fetchSellPets.pending]: handlePending,
-    [fetchSellPets.fulfilled](state, action) {
+    [fetchPets.pending]: handlePending,
+    [fetchPets.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
     },
-    [fetchSellPets.rejected]: handleRejected,
-    [fetchForFreePets.pending]: handlePending,
-    [fetchForFreePets.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.items = action.payload;
-    },
-    [fetchForFreePets.rejected]: handleRejected,
-    [fetchLostFoundPets.pending]: handlePending,
-    [fetchLostFoundPets.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.items = action.payload;
-    },
-    [fetchLostFoundPets.rejected]: handleRejected,
-
+    [fetchPets.rejected]: handleRejected,
     [addToFavorite.pending]: handlePending,
     [addToFavorite.fulfilled](state, action) {
       state.isLoading = false;
@@ -65,4 +44,4 @@ const petsSlice = createSlice({
   },
 });
 
-export const petsReducer = petsSlice.reducer;
+export default petsSlice.reducer;
