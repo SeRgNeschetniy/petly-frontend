@@ -86,7 +86,7 @@ export const AuthLinks = styled(NavLink)`
     css`
       color: white;
       background-color: #f59256;
-      ::hover {
+      &:hover {
         color: black;
         background-color: #fdf7f2;
       }
