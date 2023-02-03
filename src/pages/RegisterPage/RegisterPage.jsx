@@ -43,20 +43,11 @@ export default function RegisterPage() {
     return <Navigate to="/user" />;
   }
 
-  // const ConditionalComponent = () => {
-  // switch (secondPage) {
-  //   case false:
-  //     return <FirstStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>;
-  //   case true:
-  //     return <SecondStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>;
-  //   default:
-  //     return <FirstStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>;
-  // }
-  // };
-
   return (
     <>
-      <BackgroundContainer>{Child}</BackgroundContainer>
+      <BackgroundContainer>
+        {Child}
+      </BackgroundContainer>
     </>
   );
 }

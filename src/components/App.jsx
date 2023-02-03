@@ -21,6 +21,7 @@ export const App = () => {
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);
+
   return isLoading ? (
     <p>Loading....</p>
   ) : (
@@ -45,5 +46,8 @@ export const App = () => {
         <Route path="/notices/:categoryName" element={<NoticesPage />} />
       </Route>
     </Routes>
+
+  
+
   );
 };
