@@ -24,29 +24,29 @@ export const App = () => {
     dispatch(current());
   }, [dispatch]);
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route path="/login" element={<LoginPage />} />
-        {/*  <RestrictedRoute component={LoginPage} redirectTo="/news" /> */}
-        <Route path="/register" element={<RegisterPage />} />
-        {/*  <RestrictedRoute component={RegisterPage} redirectTo="/news" /> */}
+  return (
+    !isLoading && (
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route path="/login" element={<LoginPage />} />
+          {/*  <RestrictedRoute component={LoginPage} redirectTo="/news" /> */}
+          <Route path="/register" element={<RegisterPage />} />
+          {/*  <RestrictedRoute component={RegisterPage} redirectTo="/news" /> */}
 
-        <Route path="/restore" element={<PasswordRecoveryForm />} />
+          <Route path="/restore" element={<PasswordRecoveryForm />} />
 
-        <Route
-          path="/user"
-          element={<PrivateRoute redirectTo="/login" component={UserPage} />}
-        />
+          <Route
+            path="/user"
+            element={<PrivateRoute redirectTo="/login" component={UserPage} />}
+          />
 
-        <Route path="/news" element={<NewsPage />} />
+          <Route path="/news" element={<NewsPage />} />
 
-        <Route path="/friends" element={<FriendsPage />} />
+          <Route path="/friends" element={<FriendsPage />} />
 
-        <Route path="/notices/:categoryName" element={<NoticesPage />} />
-      </Route>
-    </Routes>
+          <Route path="/notices/:categoryName" element={<NoticesPage />} />
+        </Route>
+      </Routes>
+    )
   );
 };
