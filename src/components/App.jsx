@@ -2,13 +2,11 @@ import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import SharedLayout from './SharedLayout';
-
 import PrivateRoute from './PrivateRoute';
 // import RestrictedRoute from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
-import Loader from './Loader/Loader';
 
 const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
