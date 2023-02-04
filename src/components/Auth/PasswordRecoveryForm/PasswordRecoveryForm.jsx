@@ -41,8 +41,8 @@ export default function PasswordRecoveryForm() {
       validationSchema={recoveryValidation}
       onSubmit={values => {
         dispatch(restorePassword(values));
-        Notify.success("An email with a new password has been sent to your email", notifySuccessOptions);
         setSubmittingForm(true);
+        Notify.success("An email with a new password has been sent to your email", notifySuccessOptions);
       }}
     >
       {props => (
