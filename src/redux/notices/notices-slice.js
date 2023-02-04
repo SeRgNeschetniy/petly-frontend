@@ -3,12 +3,14 @@ import {
   fetchNotices,
   fetchNoticeById,
   deleteNotice,
+  addNewNotice
   // addToFavorite,
 } from './notices-operation';
 
 const initialState = {
   notices: [],
   isLoading: false,
+  error: null,
 };
 
 const handlePending = state => {
@@ -60,6 +62,14 @@ const noticesSlice = createSlice({
         notice => notice.id !== action.payload.id
       );
     },
+    [addNewNotice.pending]: handlePending,
+    [addNewNotice.fulfilled] (state, {payload}) {
+      state.isLoading = false;
+    },
+    [addNewNotice.rejected](state, { payload }) {
+      state.error = payload;
+      state.isLoading = false;
+    }
   },
 });
 

@@ -33,6 +33,18 @@ export const fetchNoticeById = createAsyncThunk(
   }
 );
 
+export const addNewNotice = createAsyncThunk(
+  'notices/addNewNotice',
+  async (newData, thunkApi) => {
+    try {
+      const result = await axios.post('/notices', newData);
+      return result;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+)
+
 // export const addToFavorite = createAsyncThunk(
 //   'notices/addFavorite',
 //   async (_id, thunkAPI) => {

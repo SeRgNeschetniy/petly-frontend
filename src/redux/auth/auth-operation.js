@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export const setToken = token => {
   if (token) {
-    console.log(token);
     return (axios.defaults.headers.common.authorization = `Bearer ${token}`);
   }
   axios.defaults.headers.common.authorization = ``;
@@ -14,7 +13,6 @@ export const signup = createAsyncThunk(
   async (registerData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/register', registerData);
-      console.log(data);
       return data;
     } catch ({ responce }) {
       const error = {
@@ -46,8 +44,7 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue, getState }) => {
     try {
-      const result = await axios.post('/users/logout');
-      return result;
+      await axios.post('/users/logout');
     } catch ({ responce }) {
       const error = {
         status: responce.status,
@@ -65,7 +62,6 @@ export const current = createAsyncThunk(
       const { auth } = getState();
       setToken(auth.token || data);
       const result = await axios.get(`/users/current/`);
-      // console.log(result);
       return result.data;
     } catch ({ responce }) {
       const error = {
@@ -100,7 +96,6 @@ export const restorePassword = createAsyncThunk(
     try {
       setToken('');
       const { data } = await axios.patch(`/users/restore`, userEmail);
-      console.log(data);
       return data;
     } catch ({ responce }) {
       const error = {
@@ -119,7 +114,6 @@ export const addToFavorite = createAsyncThunk(
       const { auth } = getState();
       setToken(auth.token);
       const result = await axios.post(`/notices/${_id}/favorites`);
-      console.log(result);
       return result.data;
     } catch ({ responce }) {
       const error = {

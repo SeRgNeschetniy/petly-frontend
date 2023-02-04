@@ -19,6 +19,12 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    addTokenToStore(store, action) {
+      console.log(action.payload);
+      store.token = action.payload;
+    }
+  },
   extraReducers: {
     [signup.pending]: store => {
       store.loading = true;
@@ -101,4 +107,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { addTokenToStore } = authSlice.actions;
 export default authSlice.reducer;
