@@ -1,9 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { signup, login, logout, current, restorePassword, googleAuth } from "./auth-operation";
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  signup,
+  login,
+  logout,
+  current,
+  restorePassword,
+  googleAuth,
+  addToFavorite,
+} from './auth-operation';
 
 const initialState = {
   user: {},
-  token: "",
+  token: '',
   isLogin: false,
   loading: false,
   error: null,
@@ -13,7 +21,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [signup.pending]: (store) => {
+    [signup.pending]: store => {
       store.loading = true;
       store.error = null;
     },
@@ -23,11 +31,11 @@ const authSlice = createSlice({
       store.loading = false;
       store.isLogin = true;
     },
-    [signup.rejected]: (store, {error}) => {
+    [signup.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
-    [login.pending]: (store) => {
+    [login.pending]: store => {
       store.loading = true;
       store.error = null;
     },
@@ -37,11 +45,11 @@ const authSlice = createSlice({
       store.loading = false;
       store.isLogin = true;
     },
-    [login.rejected]: (store, {error}) => {
+    [login.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
-    [logout.pending]: (store) => {
+    [logout.pending]: store => {
       store.loading = true;
       store.error = null;
     },
@@ -51,11 +59,11 @@ const authSlice = createSlice({
       store.loading = false;
       store.isLogin = false;
     },
-    [logout.rejected]: (store, {payload}) => {
+    [logout.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },
-    [current.pending]: (store) => {
+    [current.pending]: store => {
       store.loading = true;
       store.error = null;
     },
@@ -64,22 +72,31 @@ const authSlice = createSlice({
       store.loading = false;
       store.isLogin = true;
     },
-    [current.rejected]: (store, {payload}) => {
+    [current.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },
-    [restorePassword.pending]: (store) => {
+    [restorePassword.pending]: store => {
       store.loading = true;
       store.error = null;
     },
     [restorePassword.fulfilled]: (store, _) => {
       store.loading = false;
     },
-    [restorePassword.rejected]: (store, {error}) => {
+    [restorePassword.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
-  }
-})
+    [addToFavorite.pending]: store => {
+      store.error = null;
+    },
+    [addToFavorite.fulfilled]: (store, action) => {
+      store.user.favorites.push(action.payload);
+    },
+    [addToFavorite.rejected]: (store, action) => {
+      store.error = action.payload;
+    },
+  },
+});
 
 export default authSlice.reducer;

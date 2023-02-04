@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-import { NavLink as RRNavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export const NavLink = styled(RRNavLink)`
+export const Link = styled(NavLink)`
   &:not(:last-child) {
     margin-right: 12px;
   }
@@ -17,18 +17,12 @@ export const NavLink = styled(RRNavLink)`
   border-radius: 40px;
   align-items: center;
 
-  &:hover {
+  &.active,
+  :hover,
+  :focus {
     background: ${theme.colors.accent};
     color: ${theme.colors.white};
   }
-  .selected {
-    background: ${theme.colors.accent};
-    color: ${theme.colors.white};
-  }
-  // &:active {
-  //   background: ${theme.colors.accent};
-  //   color: ${theme.colors.white};
-  // }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     margin-bottom: 16px;
@@ -47,5 +41,3 @@ export const Nav = styled.div`
 export const AuthWrapper = styled.div`
   display: flex;
 `;
-
-export const NotAuthWrapper = styled.div``;

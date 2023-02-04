@@ -7,10 +7,10 @@ import AddNoticeButtonMobile from 'components/Notices/ AddNoticeButton/ AddNotic
 import { Container, Wrapper } from './NoticiesPage.styled';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPets } from 'redux/notices/notices-operation';
+import { fetchNotices } from 'redux/notices/notices-operation';
 import { useParams } from 'react-router-dom';
 import {
-  selectPets,
+  selectNotices,
   selectIsLoading,
   selectError,
 } from 'redux/notices/notices-selectors';
@@ -18,7 +18,7 @@ import {
 const NoticesPage = () => {
   const { categoryName } = useParams();
 
-  const pets = useSelector(selectPets);
+  const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const [matches, setMatches] = useState(
@@ -27,7 +27,7 @@ const NoticesPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPets(categoryName));
+    dispatch(fetchNotices(categoryName));
     window
       .matchMedia('(min-width: 768px)')
       .addEventListener('change', e => setMatches(e.matches));
@@ -38,23 +38,14 @@ const NoticesPage = () => {
       <Headline title={'Find your favorite pet'}></Headline>
       <NoticesSearch />
       <Wrapper>
-        <NoticesCategoriesNav
-        // value={search}
-        // handleFilterChange={handleFilterChange}
-        />
+        <NoticesCategoriesNav />
         {matches && <AddNoticeButton />}
       </Wrapper>
       {!matches && <AddNoticeButtonMobile />}
-      {/* <NoticesCategoriesList /> */}
-      {pets?.length === 0 && !isLoading && (
+      {notices?.length === 0 && !isLoading && (
         <p>List is empty! Try to add pet :)</p>
       )}
-      {pets?.length > 0 && (
-        <NoticesCategoriesList
-        // filteredPets={filteredPets}
-        // addToFavorite={addToFavorite}
-        />
-      )}
+      {notices?.length > 0 && <NoticesCategoriesList />}
       {error && <p>Ooops... Something went wrong</p>}
     </Container>
   );

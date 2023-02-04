@@ -1,10 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPets, deletePet, addToFavorite } from './notices-operation';
+import {
+  fetchNotices,
+  fetchNoticeById,
+  deleteNotice,
+  // addToFavorite,
+  fetchFavorites,
+} from './notices-operation';
 
-const petsInitialState = {
-  items: [],
+const initialState = {
+  notices: [],
   isLoading: false,
-  error: null,
 };
 
 const handlePending = state => {
@@ -16,32 +21,58 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-const petsSlice = createSlice({
-  name: 'pets',
-  initialState: petsInitialState,
+const noticesSlice = createSlice({
+  name: 'notices',
+  initialState: initialState,
 
   extraReducers: {
-    [fetchPets.pending]: handlePending,
-    [fetchPets.fulfilled](state, action) {
+    [fetchNotices.pending]: handlePending,
+    [fetchNotices.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items = action.payload;
+      state.notices = action.payload;
     },
-    [fetchPets.rejected]: handleRejected,
-    [addToFavorite.pending]: handlePending,
-    [addToFavorite.fulfilled](state, action) {
-      state.isLoading = false;
+    [fetchNotices.rejected]: handleRejected,
+    [fetchNoticeById.pending]: state => {
+      state.isLoading = true;
       state.error = null;
-      state.items.push(action.payload);
     },
-    [addToFavorite.rejected]: handleRejected,
-    [deletePet.pending]: handlePending,
-    [deletePet.fulfilled](state, action) {
+    [fetchNoticeById.fulfilled]: (state, { payload }) => {
+      state.oneNotice = payload;
+      state.isLoading = false;
+    },
+    [fetchNoticeById.rejected]: (state, { payload }) => {
+      state.error = payload;
+      state.isLoading = false;
+    },
+    // [addToFavorite.pending]: handlePending,
+    // [addToFavorite.fulfilled](state, { payload }) {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   state.notices = [payload.user.favorites, ...state.favorites];
+    //   console.log(state.notices);
+    // },
+    // [addToFavorite.rejected]: handleRejected,
+    [deleteNotice.pending]: handlePending,
+    [deleteNotice.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.items = state.items.filter(pet => pet.id !== action.payload.id);
+      state.notices = state.notices.filter(
+        notice => notice.id !== action.payload.id
+      );
+    },
+    [fetchFavorites.pending]: handlePending,
+    [fetchFavorites.fulfilled](state, { payload }) {
+      console.log(payload);
+      state.isLoading = false;
+      state.error = null;
+    },
+    [fetchFavorites.rejected](state, { payload }) {
+      state.favorites = [];
+      state.isLoading = false;
+      state.error = payload;
     },
   },
 });
 
-export default petsSlice.reducer;
+export default noticesSlice.reducer;
