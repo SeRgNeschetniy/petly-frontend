@@ -12,26 +12,21 @@ import {
   Image,
 } from './NoticeCategoryItem.styled';
 // import { RiDeleteBin5Fill } from 'react-icons/ri';
-import {
-  selectFilteredNotices,
-  selectNotices,
-} from 'redux/notices/notices-selectors';
-import { selectFilteredPets } from 'redux/notices/notices-selectors';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { addToFavorite } from 'redux/auth/auth-operation';
-import { selectUser } from 'redux/auth/auth-selectors';
+import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { getAge } from 'shared/getAge';
 import { numberToWord } from 'shared/numberToWords';
-const NoticeCategoryItem = () => {
-  const filteredNotices = useSelector(selectFilteredNotices);
+const NoticeCategoryItem = ({ items }) => {
   const dispatch = useDispatch();
-  const isUser = useSelector(selectUser);
+  const isLogined = useSelector(selectIsLogin);
+  console.log(isLogined);
 
   return (
     <>
-      {filteredNotices.map(
+      {items.map(
         ({
           _id,
           petImage,
@@ -51,7 +46,7 @@ const NoticeCategoryItem = () => {
               <Sticker>{category}</Sticker>
               <AddToFavoriteBtn
                 onClick={() => {
-                  isUser
+                  isLogined
                     ? dispatch(addToFavorite(_id))
                     : Notify.warning('Sorry, you should to sing in');
                 }}
@@ -72,7 +67,6 @@ const NoticeCategoryItem = () => {
                   <Text>
                     <Span>Age:</Span>
                     {age}
-                    {/* {getAge(dateOfBirth)} */}
                   </Text>
                   {category === 'sell' && (
                     <Text>

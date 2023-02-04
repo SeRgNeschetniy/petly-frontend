@@ -1,6 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import storage from 'redux-persist/lib/storage';
-import searchReducer from './search/search-slice';
 import {
   persistStore,
   persistReducer,
@@ -27,7 +25,6 @@ const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     notices: noticesReducer,
-    search: searchReducer,
     auth: authPersistedReducer,
     user: userPetsReducer,
   },

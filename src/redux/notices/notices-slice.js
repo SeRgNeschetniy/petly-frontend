@@ -4,7 +4,6 @@ import {
   fetchNoticeById,
   deleteNotice,
   // addToFavorite,
-  fetchFavorites,
 } from './notices-operation';
 
 const initialState = {
@@ -60,17 +59,6 @@ const noticesSlice = createSlice({
       state.notices = state.notices.filter(
         notice => notice.id !== action.payload.id
       );
-    },
-    [fetchFavorites.pending]: handlePending,
-    [fetchFavorites.fulfilled](state, { payload }) {
-      console.log(payload);
-      state.isLoading = false;
-      state.error = null;
-    },
-    [fetchFavorites.rejected](state, { payload }) {
-      state.favorites = [];
-      state.isLoading = false;
-      state.error = payload;
     },
   },
 });
