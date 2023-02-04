@@ -1,21 +1,20 @@
 import { useSelector } from 'react-redux';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
-import { NavLink, Nav, AuthWrapper } from './NoticesCategoriesNav.styled';
+import { Link, Nav, AuthWrapper } from './NoticesCategoriesNav.styled';
+
 
 const NoticesCategoriesNav = () => {
   const isLogin = useSelector(selectIsLogin);
 
   return (
     <Nav>
-      {/* <NotAuthWrapper> */}
-      <NavLink to="/notices/lost-found">lost/found</NavLink>
-      <NavLink to="/notices/for-free">in good hands</NavLink>
-      <NavLink to="/notices/sell">sell</NavLink>
-      {/* </NotAuthWrapper> */}
+      <Link to="/notices/lost-found">lost/found</Link>
+      <Link to="/notices/for-free">in good hands</Link>
+      <Link to="/notices/sell">sell</Link>
       {isLogin && (
         <AuthWrapper>
-          <NavLink to="/notices/favorite">favorite ads</NavLink>
-          <NavLink to="/notices/own">my ads</NavLink>
+          <Link to="/notices/favorites">favorite ads</Link>
+          <Link to="/notices/own">my ads</Link>
         </AuthWrapper>
       )}
     </Nav>

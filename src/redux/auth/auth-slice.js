@@ -1,4 +1,15 @@
 
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  signup,
+  login,
+  logout,
+  current,
+  restorePassword,
+  googleAuth,
+  addToFavorite,
+} from './auth-operation';
+
 import { createSlice } from "@reduxjs/toolkit";
 import { signup, login, logout, current, restorePassword } from "./auth-operation";
 
@@ -79,6 +90,16 @@ const authSlice = createSlice({
     [restorePassword.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
+    },
+
+    [addToFavorite.pending]: store => {
+      store.error = null;
+    },
+    [addToFavorite.fulfilled]: (store, action) => {
+      store.user.favorites.push(action.payload);
+    },
+    [addToFavorite.rejected]: (store, action) => {
+      store.error = action.payload;
     },
   },
 });

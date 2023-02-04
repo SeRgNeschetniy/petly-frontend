@@ -9,24 +9,53 @@ import {
   AddToFavoriteBtn,
   Span,
   AddIcon,
+  Image,
 } from './NoticeCategoryItem.styled';
+// import { RiDeleteBin5Fill } from 'react-icons/ri';
+import {
+  selectFilteredNotices,
+  selectNotices,
+} from 'redux/notices/notices-selectors';
 import { selectFilteredPets } from 'redux/notices/notices-selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToFavorite } from 'redux/notices/notices-operation';
 
+import { addToFavorite } from 'redux/auth/auth-operation';
+import { selectUser } from 'redux/auth/auth-selectors';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { getAge } from 'shared/getAge';
+import { numberToWord } from 'shared/numberToWords';
 const NoticeCategoryItem = () => {
-  const filteredPets = useSelector(selectFilteredPets);
+  const filteredNotices = useSelector(selectFilteredNotices);
   const dispatch = useDispatch();
+  const isUser = useSelector(selectUser);
 
   return (
     <>
-      {filteredPets.map(
-        ({ _id, petImage, title, breed, location, dateOfBirth, category }) => {
+      {filteredNotices.map(
+        ({
+          _id,
+          petImage,
+          title,
+          breed,
+          location,
+          dateOfBirth,
+          category,
+          price,
+        }) => {
+          const born = getAge(dateOfBirth);
+          const age = numberToWord(born);
+
           return (
             <Item key={_id}>
-              <img src={petImage} alt="pet" minwidth={288} />
+              <Image src={petImage} alt="pet" minwidth={288} height={288} />
               <Sticker>{category}</Sticker>
-              <AddToFavoriteBtn onClick={() => dispatch(addToFavorite(_id))}>
+              <AddToFavoriteBtn
+                onClick={() => {
+                  isUser
+                    ? dispatch(addToFavorite(_id))
+                    : Notify.warning('Sorry, you should to sing in');
+                }}
+              >
                 <AddIcon />
               </AddToFavoriteBtn>
               <Container>
@@ -42,8 +71,15 @@ const NoticeCategoryItem = () => {
                   </Text>
                   <Text>
                     <Span>Age:</Span>
-                    {dateOfBirth}
+                    {age}
+                    {/* {getAge(dateOfBirth)} */}
                   </Text>
+                  {category === 'sell' && (
+                    <Text>
+                      <Span>Price:</Span>
+                      {price ? `${price} $` : '--------'}
+                    </Text>
+                  )}
                 </Wrapper>
                 <LearnMoreBtn>Learn more</LearnMoreBtn>
                 {/* <DeleteBtn>Delete

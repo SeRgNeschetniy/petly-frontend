@@ -106,15 +106,15 @@ export const AddToFavoriteBtn = styled.button`
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(2px);
+  ackdrop-filter: blur(2px);
+  background-color: hsla(0, 0%, 100%, 0.6);
   position: absolute;
   top: 12px;
   right: 12px;
   border-radius: 50%;
 
-  &:hover,
-  :active {
+  &.active,
+  :hover {
     background: ${theme.colors.accent};
   }
 
@@ -132,4 +132,8 @@ export const AddIcon = styled(AiOutlineHeart)`
   width: 28px;
   height: 28px;
   color: ${theme.colors.accent};
+`;
+
+export const Image = styled.img`
+  height: 288px;
 `;

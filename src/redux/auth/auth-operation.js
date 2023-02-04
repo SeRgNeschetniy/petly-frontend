@@ -112,3 +112,22 @@ export const restorePassword = createAsyncThunk(
     }
   }
 );
+
+export const addToFavorite = createAsyncThunk(
+  'notices/addFavorite',
+  async (_id, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      setToken(auth.token);
+      const result = await axios.post(`/notices/${_id}/favorites`);
+      console.log(result);
+      return result.data;
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);

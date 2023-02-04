@@ -1,21 +1,23 @@
 import { selectSearch } from 'redux/search/search-selectors';
 
-export const selectPets = state => state.pets.items;
-export const selectIsLoading = state => state.pets.isLoading;
-export const selectError = state => state.pets.error;
+export const selectNotices = state => state.notices.notices;
+export const selectIsLoading = state => state.notices.isLoading;
+export const selectError = state => state.notices.error;
 
-export const selectFilteredPets = state => {
-  const pets = selectPets(state);
+export const selectNoticeById = state => state.notices.noticeById;
+
+export const selectFilteredNotices = state => {
+  const notices = selectNotices(state);
   const search = selectSearch(state);
 
   if (!search) {
-    return pets;
+    return notices;
   }
   const normalizedFilter = search.toLocaleLowerCase();
-  const filteredPets = pets.filter(({ tittle }) => {
-    const normalizedTitle = tittle.toLocaleLowerCase();
+  const filteredNotices = notices.filter(({ title }) => {
+    const normalizedTitle = title?.toLocaleLowerCase();
     const resultOfFilter = normalizedTitle.includes(normalizedFilter);
     return resultOfFilter;
   });
-  return filteredPets;
+  return filteredNotices;
 };
