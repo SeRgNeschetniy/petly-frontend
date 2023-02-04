@@ -2,7 +2,7 @@ import NewsSerch from 'components/News/NewsSerch/NewsSerch';
 import Headline from 'components/Headline/Headline';
 import { Container } from 'styles';
 import { useEffect, useState } from 'react';
-
+import NewsList from 'components/News/NewsList/NewsList';
 const { REACT_APP_BASE_URL } = process.env;
 
 const fetchNews = async () => {
@@ -24,11 +24,12 @@ const NewsPage = () => {
     };
     getNews();
   }, []);
-
+console.log(News)
   return (
     <Container>
       <Headline title={'News'}></Headline>
-      <NewsSerch news={News} />
+      <NewsSerch  />
+      <NewsList  News={News}/>
     </Container>
   );
 };

@@ -5,15 +5,15 @@ axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 export const fetchNotices = createAsyncThunk(
   'notices/categoryName',
-  async (categoryName, thunkApi) => {
+  async ({ categoryName, query = '', page = 1, limit = 8 }, thunkApi) => {
     try {
-      const { data } = await axios.get(`/notices/${categoryName}`);
+      const { data } = await axios.get(
+        `/notices/${categoryName}?page=${page}&limit=${limit}&query=${query}`
+      );
       console.log(data.notices);
-      console.log(data.favorites);
-
+      // console.log(data.favorites);
+      console.log(data);
       return data.notices || data.favorites;
-      // console.log(response);
-      // return data.favorites;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -95,15 +95,3 @@ export const deleteFromFavorites = createAsyncThunk(
     }
   }
 );
-
-// export const fetchFavorites = createAsyncThunk(
-// //   'notices/fetchFavorites',
-// //   async (_, thunkApi) => {
-// //     try {
-// //       const response = await axios.get(`/notices/favorites`);
-// //       return response.data;
-// //     } catch (error) {
-// //       return thunkApi.rejectWithValue(error.message);
-// //     }
-// //   }
-// // );

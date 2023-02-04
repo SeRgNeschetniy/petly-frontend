@@ -3,8 +3,10 @@ import {
   fetchNotices,
   fetchNoticeById,
   deleteNotice,
+
   addNewNotice
   // addToFavorite,
+
 } from './notices-operation';
 
 const initialState = {
@@ -46,14 +48,6 @@ const noticesSlice = createSlice({
       state.error = payload;
       state.isLoading = false;
     },
-    // [addToFavorite.pending]: handlePending,
-    // [addToFavorite.fulfilled](state, { payload }) {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   state.notices = [payload.user.favorites, ...state.favorites];
-    //   console.log(state.notices);
-    // },
-    // [addToFavorite.rejected]: handleRejected,
     [deleteNotice.pending]: handlePending,
     [deleteNotice.fulfilled](state, action) {
       state.isLoading = false;

@@ -98,8 +98,6 @@ const authSlice = createSlice({
     },
     [addToFavorite.fulfilled]: (store, action) => {
       store.loading = false;
-      // store.error = error;
-      // store.user.favorites.push(action.payload);
     },
     [addToFavorite.rejected]: (store, action) => {
       store.error = action.payload;
