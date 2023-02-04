@@ -15,8 +15,8 @@ export const Close = styled(GrClose)`
 export const Container = styled.button`
   margin-left: auto;
 
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
-    margin-left: 25px;
+  @media screen and (min-width: 768px) {
+    margin-left: ${({ show }) => (show ? '30px' : '20px')};
   }
   @media screen and (min-width: 1280px) {
     display: none;
