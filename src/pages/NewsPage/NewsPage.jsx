@@ -29,7 +29,7 @@ console.log(News)
     <Container>
       <Headline title={'News'}></Headline>
       <NewsSerch  />
-      <NewsList  />
+      <NewsList  News={News}/>
     </Container>
   );
 };

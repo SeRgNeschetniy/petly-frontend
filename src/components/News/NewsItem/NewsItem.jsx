@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Heading, Wrapper, Box, Date, Item, Link,  } from './NewsItem.styled'
 
 
 const NewsItem = ({
@@ -12,11 +12,13 @@ const NewsItem = ({
   return (
     <Item>
           <Heading>{title}</Heading>
-          <wrapper>{description}</wrapper>
-          <box>
-              <date>{date}</date>
-              <a href={url} target="_blank" rel="noopener noreferrer"><p>Read more<p/></></a>
-          </box>
+          <Wrapper>{description}</Wrapper>
+          <Box>
+              <Date>{date}</Date>
+              <a href={url} target="_blank" rel="noopener noreferrer"> <Link>Read more</Link>
+                  
+              </a>
+          </Box>
           
     </Item>
   );
