@@ -16,12 +16,10 @@ export default function FirstStep({
   setRegisterState,
   registerState,
 }) {
-
-
   const notifyOptions = {
     showOnlyTheLastOne: true,
     timeout: 2000,
-  }
+  };
 
   const firstStepValidation = Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
@@ -33,9 +31,9 @@ export default function FirstStep({
 
   return (
     <Formik
-        initialValues={registerState}
-        validationSchema={firstStepValidation}
-        onSubmit={values => {
+      initialValues={registerState}
+      validationSchema={firstStepValidation}
+      onSubmit={values => {
         setRegisterState(prevState => {
           return {
             ...prevState,
@@ -44,7 +42,7 @@ export default function FirstStep({
             confirmPassword: values.confirmPassword,
           };
         });
-          setSecondPage(true);
+        setSecondPage(true);
       }}
     >
       {props => (
@@ -60,7 +58,9 @@ export default function FirstStep({
               onChange={props.handleChange}
               value={props.values.email}
             />
-            {props.isSubmitting && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
+            {props.isSubmitting && props.errors.email
+              ? Notify.failure(props.errors.email, notifyOptions)
+              : null}
           </InputField>
           <InputField>
             <Input
@@ -72,7 +72,9 @@ export default function FirstStep({
               onChange={props.handleChange}
               value={props.values.password}
             />
-            {props.isSubmitting && props.errors.password ? Notify.failure(props.errors.password, notifyOptions) : null}
+            {props.isSubmitting && props.errors.password
+              ? Notify.failure(props.errors.password, notifyOptions)
+              : null}
           </InputField>
           <InputField margin>
             <Input
@@ -84,7 +86,9 @@ export default function FirstStep({
               onChange={props.handleChange}
               value={props.values.confirmPassword}
             />
-            {props.isSubmitting && props.errors.confirmPassword ? Notify.failure(props.errors.confirmPassword, notifyOptions) : null}
+            {props.isSubmitting && props.errors.confirmPassword
+              ? Notify.failure(props.errors.confirmPassword, notifyOptions)
+              : null}
           </InputField>
           <Button margin type="submit" handleClick={props.handleSubmit}>
             Next
