@@ -2,6 +2,7 @@ import { TbLogout} from "react-icons/tb";
 import {LeaveButton, Box} from './Logout.styled';
 import { useDispatch} from 'react-redux';
 import { logout } from "redux/auth/auth-operation";
+import { Navigate } from "react-router";
 
 
    
@@ -12,6 +13,7 @@ export default function Logout() {
 
     const handleLogOut = () => {
         dispatch(logout());
+        return <Navigate to="/login" />
     };
 
     return (
