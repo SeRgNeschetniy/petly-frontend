@@ -1,5 +1,5 @@
 import React from "react";
-import {Heading, Wrapper, Box, Date, Item, Link,  } from './NewsItem.styled'
+import {Heading, Wrapper, Box, Date, Item, Link, Border, } from './NewsItem.styled'
 
 
 const NewsItem = ({
@@ -10,7 +10,10 @@ const NewsItem = ({
   
 }) => {
   return (
-    <Item>
+      <Item>
+          <Border>
+              
+          </Border>
           <Heading>{title}</Heading>
           <Wrapper>{description}</Wrapper>
           <Box>

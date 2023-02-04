@@ -6,25 +6,34 @@ export const Item = styled.li`
 //   background-color: red;
   width: 391px;
   height: 192px;
-  
+  margin-bottom: 60px;
 
   @media screen and (max-width: 767px) {
-    margin-bottom: 12px;
-   width: 391px;
-   height: 192px;
+    margin-bottom: 60px;
+   width: 336px;
+   height: 276px;
   }
   
 
   @media screen and (min-width: 768px) {
     padding: 16px 4px;
-    // border-radius: 40px;
     width: 391px;
     height: 192px;
-    // overflow: hidden;
-  
+   
+    
   }
 `;
+export const Border = styled.div`
 
+ border-top: 8px solid;
+border-top-radius: 40px;
+border-top: 8px, solid;
+border-image: linear-gradient(to right,#FF634E,#FFDF48) 1 0 0 0;
+  
+
+
+
+`
 export const Heading = styled.h3`
 font-family: 'Manrope';
 font-style: normal;
@@ -32,7 +41,7 @@ font-weight: 700;
 font-size: 24px;
 line-height: 33px;
 letter-spacing: -0.01em;
-
+margin-top: 4px;
 /* Черный */
 
 color: #111111;
@@ -60,6 +69,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 16px;
 line-height: 22px;
+margin-bottom: 40px;
 
 color: #111321;
 width: 392.63px;
