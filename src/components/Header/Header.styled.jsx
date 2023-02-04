@@ -6,9 +6,15 @@ export const Container = styled.header`
   align-items: baseline;
   background-color: ${({ theme }) => theme.colors.mainBackground};
   padding-top: 16px;
+  margin-bottom: 42px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 88px;
+  }
 
   @media screen and (min-width: 1280px) {
     padding-top: 30px;
+    margin-bottom: 59px;
   }
 `;
 

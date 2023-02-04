@@ -2,6 +2,14 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { NavLink } from 'react-router-dom';
 
+// const switchStyle = css`
+//   color: black;
+//   background-color: green;
+//   :hover {
+//     color: black;
+//     background: blue;
+//   }
+// `;
 export const Container = styled.nav`
   display: flex;
   flex-direction: column;
@@ -20,7 +28,7 @@ export const Container = styled.nav`
   letter-spacing: 0.04em;
 
   opacity: 0;
-  transform: translateX(100%);
+  pointer-events: none;
 
   z-index: 10;
 
@@ -28,11 +36,10 @@ export const Container = styled.nav`
     active &&
     css`
       opacity: 1;
-      transform: translateX(0);
+      pointer-events: auto;
     `}
 
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     margin-top: 48px;
@@ -45,8 +52,9 @@ export const Container = styled.nav`
     height: 50px;
     margin-top: 0px;
     padding-top: 0px;
-    transform: translateX(0);
+
     opacity: 1;
+    pointer-events: auto;
   }
 `;
 
@@ -81,6 +89,11 @@ export const AuthLinks = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.accent};
 
+  :hover {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.accent};
+  }
+
   ${({ accent }) =>
     accent === 'true' &&
     css`
@@ -91,11 +104,6 @@ export const AuthLinks = styled(NavLink)`
         background-color: #fdf7f2;
       }
     `};
-
-  :hover {
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.accent};
-  }
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 

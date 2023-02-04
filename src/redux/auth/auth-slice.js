@@ -6,7 +6,7 @@ import {
   restorePassword,
   addToFavorite,
 } from './auth-operation';
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   user: {},
@@ -91,7 +91,9 @@ const authSlice = createSlice({
       store.error = null;
     },
     [addToFavorite.fulfilled]: (store, action) => {
-      store.user.favorites.push(action.payload);
+      store.loading = false;
+      // store.error = error;
+      // store.user.favorites.push(action.payload);
     },
     [addToFavorite.rejected]: (store, action) => {
       store.error = action.payload;
