@@ -31,29 +31,50 @@ import {
   LabelRadioBtn,
   RadioBtn,
 } from './NoticeModal.styled';
+import { useDispatch } from 'react-redux';
+import { addNewNotice } from 'redux/notices/notices-operation';
 
 export const NoticeSecondForm = props => {
   const [img, setImg] = useState(null);
   const [valid, setValid] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleSubmit = values => {
-    console.log(values);
+  const handleSubmitForm = (e) => {
+    e.preventDefault()
+    const { category, title, name, dateOfBirth, breed } = props.data;
+    const { sex, location, price, petImage, comments } = e.target;
+    console.log(e.target);
     const formData = new FormData();
-    formData.append('category', values.category);
-    formData.append('title', values.title);
-    formData.append('name', values.name);
-    formData.append('dateOfBirth', values.dateOfBirth);
-    formData.append('breed', values.breed);
-    formData.append('sex', values.sex);
-    formData.append('location', values.location);
-    formData.append('price', values.price);
-    formData.append('petImage', values.petImage);
-    formData.append('comments', values.comments);
+    formData.append('category', category);
+    formData.append('title', title);
+    formData.append('name', name);
+    formData.append('dateOfBirth', dateOfBirth);
+    formData.append('breed', breed);
+    formData.append('sex', sex.value);
+    formData.append('location', location.value);
+    formData.append('price', price.value);
+    formData.append('petImage', petImage.files[0]);
+    formData.append('comments', comments.value);
     // const formData = new FormData(props.data);
+    dispatch(addNewNotice(formData));
     // for (let k of formData) {
     //   console.log(k);
     // }
-    props.closeModal();
+    // props.closeModal();
+  };
+
+  const handleBackClick = values => {
+    props.setData(prev => {
+      return {
+        ...prev,
+        sex: values.sex,
+        location: values.location,
+        petImage: values.petImage,
+        price: values.price,
+        comments: values.comments,
+      };
+    })
+    props.setPage(prev => prev - 1);
   };
 
   return (
@@ -66,17 +87,17 @@ export const NoticeSecondForm = props => {
         <Formik
           validationSchema={pet.formTwoValidationSchema}
           initialValues={props.data}
-          onSubmit={handleSubmit}
+          onSubmit={handleBackClick}
         >
-          {({ setFieldValue }) => (
-            <FormSecond encType="multipart/form-data">
+          {({ setFieldValue, handleChange, handleSubmit, values }) => (
+            <FormSecond onSubmit={handleSubmitForm} encType="multipart/form-data">
               <RadioWrapp role="group" aria-labelledby="sex-group">
                 <LabelRadioBtn>
-                  <RadioBtn type="radio" name="sex" value="Male" />
+                  <RadioBtn type="radio" name="sex" value="male" />
                   Male
                 </LabelRadioBtn>
                 <LabelRadioBtn>
-                  <RadioBtn type="radio" name="sex" value="Famale" />
+                  <RadioBtn type="radio" name="sex" value="female" />
                   Famale
                 </LabelRadioBtn>
               </RadioWrapp>
@@ -102,12 +123,13 @@ export const NoticeSecondForm = props => {
                 )}
                 <InputPhoto
                   type="file"
+                  name="petImage"
                   accept="image/*"
                   onChange={e => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('petImage', e.target.files[0]);
                     setImg(URL.createObjectURL(fileUploaded));
-                    // setValid(string().required().isValidSync(e.target.files[0]));
+                  //   // setValid(string().required().isValidSync(e.target.files[0]));
                   }}
                 />
                 <ErrMessage>{!valid && 'Image is required'}</ErrMessage>
@@ -116,19 +138,20 @@ export const NoticeSecondForm = props => {
               <WraperTextarea>
                 <Label>Comments</Label>
                 <Textarea
-                  onChange={e => setFieldValue('comments', e.target.value)}
+                  onChange={handleChange}
+                  value={values.comments}
                   name="comments"
                   as="textarea"
                   placeholder="Type comments"
                 />
-                <ErrorTextarea name="comments" component="p" />
+                <ErrorTextarea name="commentsError" component="p" />
               </WraperTextarea>
 
               <ButtonWrapper>
-                <ButtonFill type="submit">Done</ButtonFill>
+                <ButtonFill type="submit" onSubmit={handleSubmitForm}>Done</ButtonFill>
                 <ButtonEmpty
                   type="button"
-                  onClick={() => props.setPage(prev => prev - 1)}
+                  onClick={handleSubmit}
                 >
                   Back
                 </ButtonEmpty>
