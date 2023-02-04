@@ -83,6 +83,19 @@ export const GlobalStyles = css`
   input {
     outline: none;
   }
+
+  ::-webkit-scrollbar {
+    /* 1 - скроллбар */
+    width: 5px;
+    height: 5px;
+    background-color: #d1d1d1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    /* 5 - ползунок */
+    border-radius: 2px;
+    background-color: #f59256;
+  }
 `;
 
 export const Container = styled.div`
