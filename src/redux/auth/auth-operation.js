@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const setToken = token => {
+export const setToken = token => {
   if (token) {
+    console.log(token);
     return (axios.defaults.headers.common.authorization = `Bearer ${token}`);
   }
   axios.defaults.headers.common.authorization = ``;
@@ -45,8 +46,6 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue, getState }) => {
     try {
-      const { auth } = getState();
-      setToken(auth.token);
       const result = await axios.post('/users/logout');
       return result;
     } catch ({ responce }) {
@@ -61,10 +60,10 @@ export const logout = createAsyncThunk(
 
 export const current = createAsyncThunk(
   'auth/current',
-  async (_, { rejectWithValue, getState }) => {
+  async (data, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      setToken(auth.token);
+      setToken(auth.token || data);
       const result = await axios.get(`/users/current/`);
       // console.log(result);
       return result.data;
