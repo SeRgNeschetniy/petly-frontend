@@ -18,7 +18,15 @@ import {Container,
 
  const AddPetsFirstForm =(props) => {  //props
      const handleSubmit =(values) => {
-         props.next(values, true);
+       props.setData(prev => {
+         return {
+           ...prev,
+           name: values.name,
+           dateOfBirth: values.dateOfBirth,
+           breed: values.breed,
+         }
+       })
+       props.setPage(prev => prev +1);
      };
     return (
         <Container>

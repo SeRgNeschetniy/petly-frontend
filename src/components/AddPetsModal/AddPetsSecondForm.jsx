@@ -31,9 +31,20 @@ export const AddPetsSecondForm = (props) => {
   const [valid, setValid] = useState(false);
 
   const handleSubmit = (values) => {
-    props.next(values, true);
+    console.log(values);
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('dateOfBirth', values.dateOfBirth);
+    formData.append('breed', values.breed);
+    formData.append('petImage', values.petImage);
+    formData.append('comments', values.comments);
+    // const formData = new FormData(props.data);
+    // for (let k of formData) {
+    //   console.log(k);
+    // }
     props.closeModal();
   };
+
   return (
     <Container>
       <ButtonClose type="button" onClick={props.closeModal} >
@@ -62,7 +73,7 @@ export const AddPetsSecondForm = (props) => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('petImage', e.target.files[0]);
                     setImg(URL.createObjectURL(fileUploaded));
-                    setValid(string().required().isValidSync(e.target.files[0]));
+                    // setValid(string().required().isValidSync(e.target.files[0]));
                   }}
                 />
                 <ErrMessage>{!valid && 'Image is required'}</ErrMessage>
@@ -70,7 +81,7 @@ export const AddPetsSecondForm = (props) => {
 
               <WraperTextarea>
                 <Label> Comments</Label>
-                <Textarea name="comments" as="textarea" placeholder="Type comments" />
+                <Textarea onChange={(e) => setFieldValue('comments', e.target.value)} name="comments" as="textarea" placeholder="Type comments" />
                 <ErrorTextarea name="comments" component="p" />
               </WraperTextarea>
 
@@ -78,7 +89,7 @@ export const AddPetsSecondForm = (props) => {
                 <ButtonFill type="submit">
                   Done
                 </ButtonFill>
-                <ButtonEmpty type="button" onClick={props.prev}>
+                <ButtonEmpty type="button" onClick={() => props.setPage(prev => prev - 1)}>
                   Back
                 </ButtonEmpty>
               </ButtonWrapper>
