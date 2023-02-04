@@ -1,17 +1,12 @@
-
-import { createSlice } from '@reduxjs/toolkit';
 import {
   signup,
   login,
   logout,
   current,
   restorePassword,
-  googleAuth,
   addToFavorite,
 } from './auth-operation';
-
 import { createSlice } from "@reduxjs/toolkit";
-import { signup, login, logout, current, restorePassword } from "./auth-operation";
 
 const initialState = {
   user: {},
