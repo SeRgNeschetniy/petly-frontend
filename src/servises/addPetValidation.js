@@ -30,6 +30,6 @@ export const formOneValidationSchema = Yup.object({
 });
 
 export const formTwoValidationSchema = Yup.object({
-  comments: Yup.string().min(8, 'Too Short!').max(120, 'Too Long!').label('Comment').required('Comment is required'),
+  // comments: Yup.string().min(8, 'Too Short!').max(120, 'Too Long!').label('Comment').required('Comment is required'),
   petImage: Yup.mixed().label('Pet image').required('Pet image is required')
 });
