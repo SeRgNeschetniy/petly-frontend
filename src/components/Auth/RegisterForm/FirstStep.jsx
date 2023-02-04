@@ -1,95 +1,99 @@
-import { useFormik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  Container,
   Input,
   Button,
   Form,
-  ErrorMessage,
   InputField,
   Title,
   LinkText,
   StyledLink,
 } from '../Auth.styled';
+import { Notify } from 'notiflix';
 
 export default function FirstStep({
   setSecondPage,
   setRegisterState,
   registerState,
 }) {
-  const formik = useFormik({
-    initialValues: registerState,
-    validationSchema: Yup.object({
-      email: Yup.string().email('Invalid email format').required('Required'),
-      password: Yup.string().required('Require').min(7),
-      confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password'), ''], 'Password must match')
-        .required('Require'),
-    }),
-    onSubmit: values => {
-      setRegisterState(prevState => {
-        return {
-          ...prevState,
-          email: values.email,
-          password: values.password,
-          confirmPassword: values.confirmPassword,
-        };
-      });
-      setSecondPage(true);
-    },
+
+
+  const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  }
+
+  const firstStepValidation = Yup.object({
+    email: Yup.string().email('Invalid email format').required('Required'),
+    password: Yup.string().required('Require').min(7),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), ''], 'Password must match')
+      .required('Require'),
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
-      <Title>Registration</Title>
-      <InputField>
-        <Input
-          id="email"
-          type="email"
-          name="email"
-          placeholder="Email"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values.email}
-        />
-        {formik.touched.email && formik.errors.email ? (
-          <ErrorMessage>{formik.errors.email}</ErrorMessage>
-        ) : null}
-      </InputField>
-      <InputField>
-        <Input
-          id="password"
-          type="password"
-          name="password"
-          placeholder="Password"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <ErrorMessage>{formik.errors.password}</ErrorMessage>
-        ) : null}
-      </InputField>
-      <InputField margin>
-        <Input
-          id="confirmPassword"
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm password"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values.confirmPassword}
-        />
-        {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-          <ErrorMessage>{formik.errors.confirmPassword}</ErrorMessage>
-        ) : null}
-      </InputField>
-      <Button margin type="submit" handleClick={formik.handleSubmit}>
-        Next
-      </Button>
-      <LinkText>
-        Already have an account? <StyledLink to="/login">Login</StyledLink>
-      </LinkText>
-    </Form>
+    <Formik
+        initialValues={registerState}
+        validationSchema={firstStepValidation}
+        onSubmit={values => {
+        setRegisterState(prevState => {
+          return {
+            ...prevState,
+            email: values.email,
+            password: values.password,
+            confirmPassword: values.confirmPassword,
+          };
+        });
+          setSecondPage(true);
+      }}
+    >
+      {props => (
+        <Form onSubmit={props.handleSubmit}>
+          <Title>Registration</Title>
+          <InputField>
+            <Input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.email}
+            />
+            {props.isSubmitting && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
+          </InputField>
+          <InputField>
+            <Input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.password}
+            />
+            {props.isSubmitting && props.errors.password ? Notify.failure(props.errors.password, notifyOptions) : null}
+          </InputField>
+          <InputField margin>
+            <Input
+              id="confirmPassword"
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm password"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.confirmPassword}
+            />
+            {props.isSubmitting && props.errors.confirmPassword ? Notify.failure(props.errors.confirmPassword, notifyOptions) : null}
+          </InputField>
+          <Button margin type="submit" handleClick={props.handleSubmit}>
+            Next
+          </Button>
+          <LinkText>
+            Already have an account? <StyledLink to="/login">Login</StyledLink>
+          </LinkText>
+        </Form>
+      )}
+    </Formik>
   );
 }

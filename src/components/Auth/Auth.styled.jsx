@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 import { theme } from '../../styles/theme';
+
 
 export const BackgroundContainer = styled.div`
   @media (min-width: 768px) {
   width: 608px;
-  height: 517px;
+  height: 100%;
   padding-left: 80px;
   padding-right: 80px;
   padding-top: 60px;
@@ -23,6 +25,7 @@ export const Form = styled.form`
   @media (min-width: 768px) {
     width: 458px;
   }
+
 `;
 
 export const InputField = styled.div`
@@ -63,13 +66,13 @@ export const Button = styled.button`
   padding: 10px;
   border-radius: 40px;
   font-size: ${theme.fontSizes.large};
-  border: ${props => props.outline ? `2px solid ${theme.colors.accent}` : "none"};
+  border: ${props => props.outline ? `2px solid ${theme.colors.accent}` : `2px solid ${theme.colors.accent}`};
   background-color: ${props => props.outline ? "white" : `${theme.colors.accent}`};
   margin-bottom: 20px;
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover, &:focus {
     background-color: #FF6101;
-    border: 1px solid ${theme.colors.accent};
+    border: 2px solid ${theme.colors.accent};
   }
 
   @media (min-width: 768px) {
@@ -98,13 +101,13 @@ text-align: center;
 
 export const StyledLink = styled(Link)`
   position: relative;
-  color: blue;
+  color: ${theme.colors.blue};
   &::before {
     position: absolute;
     display: block;
     content: '';
     width: 100%;
-    height: 1px;
+    height: 0.5px;
     background-color: blue;
     left: 0;
     top: 14px;
@@ -115,4 +118,9 @@ export const Title = styled.h1`
   font-size: 24px;
   text-align: center;
   margin-bottom: 40px;
+  @media (min-width: 480px) {
+    font-size: 36px;
+  }
 `;
+
+

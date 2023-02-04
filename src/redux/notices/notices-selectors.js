@@ -1,6 +1,21 @@
-export const selectSellPets = state => state.notices.items;
-export const selectLostFoundPets = state => state.notice.items;
-export const selectForFreePets = state => state.notice.items;
+import { selectSearch } from 'redux/search/search-selectors';
 
-export const selectIsLoading = state => state.notice.isLoading;
-export const selectError = state => state.notice.error;
+export const selectPets = state => state.pets.items;
+export const selectIsLoading = state => state.pets.isLoading;
+export const selectError = state => state.pets.error;
+
+export const selectFilteredPets = state => {
+  const pets = selectPets(state);
+  const search = selectSearch(state);
+
+  if (!search) {
+    return pets;
+  }
+  const normalizedFilter = search.toLocaleLowerCase();
+  const filteredPets = pets.filter(({ tittle }) => {
+    const normalizedTitle = tittle.toLocaleLowerCase();
+    const resultOfFilter = normalizedTitle.includes(normalizedFilter);
+    return resultOfFilter;
+  });
+  return filteredPets;
+};

@@ -11,21 +11,25 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { petsReducer } from './notices/notices-slice';
+import petsReducer from './notices/notices-slice';
 import authReducer from './auth/auth-slice';
+import { userPetsReducer } from './userpage/userpage-slice';
+import storage from 'redux-persist/lib/storage';
 
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
-// const authPersistConfig = {
-//   key: 'auth',
-//   storage,
-//   whitelist: ['token'],
-// };
+const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    contacts: petsReducer,
+    pets: petsReducer,
     search: searchReducer,
-    auth: authReducer,
+    auth: authPersistedReducer,
+    user: userPetsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

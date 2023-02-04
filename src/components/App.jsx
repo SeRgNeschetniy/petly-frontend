@@ -1,29 +1,52 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import SharedLayout from './SharedLayout';
-import RegisterForm from './Auth/RegisterForm/RegisterForm';
-import UserPage from './UserPage/UserPage';
-import LoginForm from './Auth/LoginForm/LoginForm';
 
-const NoticesPage = lazy(() => import('pages/NoticiesPage/NoticesPage'));
+import PrivateRoute from './PrivateRoute';
+// import RestrictedRoute from './RestrictedRoute';
+import { useDispatch } from 'react-redux';
+import { current } from 'redux/auth/auth-operation';
+import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
+import Loader from './Loader/Loader';
+
+const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
-
+const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const UserPage = lazy(() => import('pages/UserPage/UserPage'));
 
 export const App = () => {
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/user" element={ <UserPage/>}></Route>
-          <Route
-            path="/notices/:categoryName"
-            element={<NoticesPage />}
-          ></Route>
-          <Route path="/friends" element={<FriendsPage />} />
-        </Route>
-      </Routes>
-    </>
+  const dispatch = useDispatch();
+  const isLoading = useSelector(({ auth }) => auth.loading);
+  useEffect(() => {
+    dispatch(current());
+  }, [dispatch]);
+
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route path="/login" element={<LoginPage />} />
+        {/*  <RestrictedRoute component={LoginPage} redirectTo="/news" /> */}
+        <Route path="/register" element={<RegisterPage />} />
+        {/*  <RestrictedRoute component={RegisterPage} redirectTo="/news" /> */}
+
+        <Route path="/restore" element={<PasswordRecoveryForm />} />
+
+        <Route
+          path="/user"
+          element={<PrivateRoute redirectTo="/login" component={UserPage} />}
+        />
+
+        <Route path="/news" element={<NewsPage />} />
+
+        <Route path="/friends" element={<FriendsPage />} />
+
+        <Route path="/notices/:categoryName" element={<NoticesPage />} />
+      </Route>
+    </Routes>
   );
 };

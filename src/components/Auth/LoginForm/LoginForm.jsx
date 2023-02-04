@@ -1,69 +1,67 @@
-import Headline from 'components/Headline/Headline';
-import { useFormik } from 'formik';
+import { Input, Button, Form, InputField } from '../Auth.styled';
+import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/auth-operation';
 import * as Yup from 'yup';
-import { Input, Button, Form, ErrorMessage, InputField, LinkText, StyledLink } from '../Auth.styled';
-import GoogleIcon from '../GoogleSignIn/GoogleIcon';
+import { Notify } from 'notiflix';
 
-export default function Login() {
+export default function LoginForm() {
   const dispatch = useDispatch();
 
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: Yup.object({
-    email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Require'),
-    }),
-    onSubmit: values => {
-      dispatch(login(values));
-    },
-  });
+  const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  }
 
+  const initialLoginState = {
+    email: '',
+    password: '',
+  };
+
+  const validationSchema = Yup.object({
+  email: Yup.string().email('Invalid email format').required('Required'),
+  password: Yup.string().required('Require').min(7),
+  });
+  
   return (
-    <>
-      <div>
-        <Headline title="Login" />
-      <Form
-      onSubmit={formik.handleSubmit}
-      >
-        <InputField>
-        <Input
-      id="email"
-      type="email"
-      name="email"
-      placeholder="Email"
-      onBlur={formik.handleBlur}
-      onChange={formik.handleChange}
-      value={formik.values.email}
-        />
-    {formik.touched.email && formik.errors.email ? (
-        <ErrorMessage>{formik.errors.email}</ErrorMessage>
-        ) : null}
-        </InputField>
-        <InputField>
-        <Input
-      id="password"
-      type="password"
-      name="password"
-      placeholder="Password"
-      onBlur={formik.handleBlur}
-      onChange={formik.handleChange}
-      value={formik.values.password}
-      />
-        {formik.touched.password && formik.errors.password ? (
-        <ErrorMessage>{formik.errors.password}</ErrorMessage>
-      ) : null}
-      </InputField>
-    <Button type="submit">Login</Button>
-          </Form>
-        <GoogleIcon />
-        <LinkText>Don't have an account? <StyledLink to="/register">Register</StyledLink></LinkText>
-        <LinkText>Forgot your password? <StyledLink to="/passwordRecovery">Password recovery</StyledLink></LinkText>
-      </div>
-      </>
+    <Formik
+      initialValues={initialLoginState}
+      validationSchema={validationSchema}
+      validateOnChange={false}
+      validateOnBlur={false}
+      onSubmit={values => {
+        dispatch(login(values));
+      }}
+    >
+      {props => (
+        <Form>
+          <InputField>
+            <Input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.email}
+            />
+          </InputField>
+            {props.isSubmitting && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
+          <InputField margin>
+            <Input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.password}
+            />
+          </InputField>
+            {props.isSubmitting && props.errors.password ? Notify.failure(props.errors.password, notifyOptions) : null}
+        <Button type="submit" onClick={props.handleSubmit}>Login</Button>
+        </Form>
+      )}
+    </Formik>
   )
-};
+}

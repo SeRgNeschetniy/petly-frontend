@@ -1,32 +1,23 @@
-import { useFormik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Input, Button, Form, ErrorMessage, InputField, LinkText, StyledLink } from '../Auth.styled';
+import { Input, Button, Form, InputField, LinkText, StyledLink } from '../Auth.styled';
 import { useDispatch } from 'react-redux';
 import { signup } from 'redux/auth/auth-operation';
 import { Title } from '../Auth.styled';
+import { Notify } from 'notiflix';
 
 export default function SecondStep({ setSecondPage, setRegisterState, registerState }) {
   const dispatch = useDispatch();
 
+    const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  }
 
-    const formik = useFormik({
-    initialValues: registerState,
-    validationSchema: Yup.object({
-    name: Yup.string().required('Required'),
-    city: Yup.string().required('Required'),
+  const secondStepValidation = Yup.object({
+    name: Yup.string().min(2).required('Required'),
+    city: Yup.string().min(2).required('Required'),
     phone: Yup.string().required('Required'),
-    }),
-        onSubmit: values => {
-          setRegisterState(prevState => {
-          return {
-            ...prevState,
-            name: values.name,
-            city: values.city,
-            phone: values.phone
-          }
-          });
-          setSecondPage(false);
-      }
   });
   
   const handleSubmit = (e) => {
@@ -39,52 +30,66 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Title>Registration</Title>
-        <InputField>
-        <Input
-      id="name"
-      type="text"
-      name="name"
-      placeholder="Name"
-      onBlur={formik.handleBlur}
-      onChange={formik.handleChange}
-      value={formik.values.name}
-        />
-    {formik.touched.name && formik.errors.name ? (
-        <ErrorMessage>{formik.errors.name}</ErrorMessage>
-      ) : null}
-        </InputField>
-        <InputField>
-        <Input
-      id="city"
-      type="text"
-      name="city"
-      placeholder="City/Region"
-      onBlur={formik.handleBlur}
-      onChange={formik.handleChange}
-      value={formik.values.city}
-      />
-        {formik.touched.city && formik.errors.city ? (
-        <ErrorMessage>{formik.errors.city}</ErrorMessage>
-      ) : null}
-        </InputField>
-        <InputField margin>
-        <Input
-      id="phone"
-      type="text"
-      name="phone"
-      placeholder="Phone number"
-      onBlur={formik.handleBlur}
-      onChange={formik.handleChange}
-      value={formik.values.phone}
-      />
-      {formik.touched.phone && formik.errors.phone ? (
-        <ErrorMessage>{formik.errors.phone}</ErrorMessage>
-      ) : null}
-        </InputField>
-        <Button type="submit">Registration</Button>
-        <Button outline margin submit type="button" onClick={formik.handleSubmit}>Back</Button>
-      <LinkText>Already have an account? <StyledLink to="/login">Login</StyledLink></LinkText>
-      </Form>
+    <Formik
+      initialValues={registerState}
+      validationSchema={secondStepValidation}
+      onSubmit={
+        values => {
+          setRegisterState(prevState => {
+          return {
+            ...prevState,
+            name: values.name,
+            city: values.city,
+            phone: values.phone
+          }
+          });
+          setSecondPage(false);
+      }
+      }
+    >
+      {props => (
+        <Form onSubmit={handleSubmit}>
+          <Title>Registration</Title>
+          <InputField>
+            <Input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Name"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.name}
+            />
+            {props.isSubmitting && props.errors.name ? Notify.failure(props.errors.name, notifyOptions) : null}
+          </InputField>
+          <InputField>
+            <Input
+              id="city"
+              type="text"
+              name="city"
+              placeholder="City/Region"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.city}
+            />
+            {props.isSubmitting && props.errors.city ? Notify.failure(props.errors.city, notifyOptions) : null}
+          </InputField>
+          <InputField margin>
+            <Input
+              id="phone"
+              type="text"
+              name="phone"
+              placeholder="Phone number"
+              onBlur={props.handleBlur}
+              onChange={props.handleChange}
+              value={props.values.phone}
+            />
+            {props.isSubmitting && props.errors.phone ? Notify.failure(props.errors.phone, notifyOptions) : null}
+          </InputField>
+          <Button type="submit">Registration</Button>
+          <Button outline margin submit type="button" onClick={props.handleSubmit}>Back</Button>
+          <LinkText>Already have an account? <StyledLink to="/login">Login</StyledLink></LinkText>
+        </Form>
+      )}
+      </Formik>
 )}

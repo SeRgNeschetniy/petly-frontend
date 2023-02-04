@@ -1,9 +1,10 @@
+
 import { createSlice } from "@reduxjs/toolkit";
-import { signup, login, logout, current } from "./auth-operation";
+import { signup, login, logout, current, restorePassword } from "./auth-operation";
 
 const initialState = {
   user: {},
-  token: "",
+  token: '',
   isLogin: false,
   loading: false,
   error: null,
@@ -13,7 +14,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [signup.pending]: (store) => {
+    [signup.pending]: store => {
       store.loading = true;
       store.error = null;
     },
@@ -23,11 +24,11 @@ const authSlice = createSlice({
       store.loading = false;
       store.isLogin = true;
     },
-    [signup.rejected]: (store, {error}) => {
+    [signup.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
-    [login.pending]: (store) => {
+    [login.pending]: store => {
       store.loading = true;
       store.error = null;
     },
@@ -37,11 +38,11 @@ const authSlice = createSlice({
       store.loading = false;
       store.isLogin = true;
     },
-    [login.rejected]: (store, {error}) => {
+    [login.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
-    [logout.pending]: (store) => {
+    [logout.pending]: store => {
       store.loading = true;
       store.error = null;
     },
@@ -51,11 +52,11 @@ const authSlice = createSlice({
       store.loading = false;
       store.isLogin = false;
     },
-    [logout.rejected]: (store, {payload}) => {
+    [logout.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },
-    [current.pending]: (store) => {
+    [current.pending]: store => {
       store.loading = true;
       store.error = null;
     },
@@ -64,11 +65,22 @@ const authSlice = createSlice({
       store.loading = false;
       store.isLogin = true;
     },
-    [current.rejected]: (store, {payload}) => {
+    [current.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },
-  }
-})
+    [restorePassword.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [restorePassword.fulfilled]: (store, _) => {
+      store.loading = false;
+    },
+    [restorePassword.rejected]: (store, { error }) => {
+      store.loading = false;
+      store.error = error;
+    },
+  },
+});
 
 export default authSlice.reducer;

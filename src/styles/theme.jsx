@@ -5,6 +5,7 @@ export const theme = Object.freeze({
     black: '#181C27',
     dark: '#111111',
     gray: 'rgba(17, 17, 17, 0.6)',
+    blue: '#3091EB',
     mainBackground: '#FDF7F2',
   },
   fontSizes: {
