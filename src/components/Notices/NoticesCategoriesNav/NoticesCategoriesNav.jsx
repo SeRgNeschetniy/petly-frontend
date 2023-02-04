@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { Link, Nav, AuthWrapper } from './NoticesCategoriesNav.styled';
 
+
 const NoticesCategoriesNav = () => {
   const isLogin = useSelector(selectIsLogin);
 

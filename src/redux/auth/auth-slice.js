@@ -1,3 +1,4 @@
+
 import { createSlice } from '@reduxjs/toolkit';
 import {
   signup,
@@ -8,6 +9,9 @@ import {
   googleAuth,
   addToFavorite,
 } from './auth-operation';
+
+import { createSlice } from "@reduxjs/toolkit";
+import { signup, login, logout, current, restorePassword } from "./auth-operation";
 
 const initialState = {
   user: {},
@@ -87,6 +91,7 @@ const authSlice = createSlice({
       store.loading = false;
       store.error = error;
     },
+
     [addToFavorite.pending]: store => {
       store.error = null;
     },

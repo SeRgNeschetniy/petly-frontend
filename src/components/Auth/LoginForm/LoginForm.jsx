@@ -47,7 +47,7 @@ export default function LoginForm() {
             />
           </InputField>
             {props.isSubmitting && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
-          <InputField>
+          <InputField margin>
             <Input
               id="password"
               type="password"

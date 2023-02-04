@@ -44,7 +44,7 @@ export default function FirstStep({
             confirmPassword: values.confirmPassword,
           };
         });
-        setSecondPage(true);
+          setSecondPage(true);
       }}
     >
       {props => (

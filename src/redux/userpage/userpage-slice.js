@@ -1,10 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { store } from 'redux/store';
-import {
-  userLogOut,
-  removePetCard,
-  fetchUserPets
-} from './userpage-operation';
+
+import { userLogOut, removePetCard, fetchUserPets } from './userpage-operation';
 
 const petsInitialState = {
   items: [],
@@ -17,7 +13,7 @@ const petsSlice = createSlice({
   initialState: petsInitialState,
 
   extraReducers: {
-    [fetchUserPets.pending] (store)   {
+    [fetchUserPets.pending](store) {
       store.isLoading = true;
       store.error = null;
     },
@@ -27,19 +23,19 @@ const petsSlice = createSlice({
       store.isLogin = true;
       store.error = null;
     },
-    [fetchUserPets.rejected]: (store, {error}) => {
+    [fetchUserPets.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
 
-    [removePetCard.pending] (store)  {
+    [removePetCard.pending](store) {
       store.isLoading = true;
     },
     [userLogOut.fulfilled](store) {
-            store.body = { name: null, email: null, password: null };
-            store.token = null;
-            store.isLoggedIn = false;
-        },
+      store.body = { name: null, email: null, password: null };
+      store.token = null;
+      store.isLoggedIn = false;
+    },
   },
 });
 

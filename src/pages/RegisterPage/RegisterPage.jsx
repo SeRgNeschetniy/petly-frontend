@@ -7,9 +7,8 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
 
 export default function RegisterPage() {
-
   const [secondPage, setSecondPage] = useState(false);
-  
+
   const [registerState, setRegisterState] = useState({
     email: '',
     password: '',
@@ -21,33 +20,34 @@ export default function RegisterPage() {
 
   let Child = undefined;
   if (!secondPage) {
-    Child = <FirstStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>
+    Child = (
+      <FirstStep
+        registerState={registerState}
+        setRegisterState={setRegisterState}
+        setSecondPage={setSecondPage}
+      />
+    );
   } else {
-    Child = <SecondStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>
+    Child = (
+      <SecondStep
+        registerState={registerState}
+        setRegisterState={setRegisterState}
+        setSecondPage={setSecondPage}
+      />
+    );
   }
 
   const isLogin = useSelector(selectIsLogin);
 
   if (isLogin) {
-    return <Navigate to="/user" />
+    return <Navigate to="/user" />;
   }
-
-  // const ConditionalComponent = () => {
-  // switch (secondPage) {
-  //   case false:
-  //     return <FirstStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>;
-  //   case true:
-  //     return <SecondStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>;
-  //   default:
-  //     return <FirstStep registerState={registerState} setRegisterState={setRegisterState} setSecondPage={setSecondPage}/>;
-  // }
-  // };
 
   return (
     <>
       <BackgroundContainer>
-              {Child}
+        {Child}
       </BackgroundContainer>
     </>
-  )
-};
+  );
+}

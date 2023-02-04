@@ -25,6 +25,7 @@ export const Form = styled.form`
   @media (min-width: 768px) {
     width: 458px;
   }
+
 `;
 
 export const InputField = styled.div`
@@ -100,13 +101,13 @@ text-align: center;
 
 export const StyledLink = styled(Link)`
   position: relative;
-  color: blue;
+  color: ${theme.colors.blue};
   &::before {
     position: absolute;
     display: block;
     content: '';
     width: 100%;
-    height: 1px;
+    height: 0.5px;
     background-color: blue;
     left: 0;
     top: 14px;
@@ -117,4 +118,9 @@ export const Title = styled.h1`
   font-size: 24px;
   text-align: center;
   margin-bottom: 40px;
+  @media (min-width: 480px) {
+    font-size: 36px;
+  }
 `;
+
+

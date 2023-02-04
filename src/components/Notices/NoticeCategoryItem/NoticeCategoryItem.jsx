@@ -7,7 +7,6 @@ import {
   Container,
   Sticker,
   AddToFavoriteBtn,
-  DeleteBtn,
   Span,
   AddIcon,
   Image,
@@ -17,6 +16,7 @@ import {
   selectFilteredNotices,
   selectNotices,
 } from 'redux/notices/notices-selectors';
+import { selectFilteredPets } from 'redux/notices/notices-selectors';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { addToFavorite } from 'redux/auth/auth-operation';
