@@ -82,6 +82,7 @@ const authSlice = createSlice({
       store.isLogin = true;
     },
     [current.rejected]: (store, { payload }) => {
+      store.token = '';
       store.loading = false;
       store.error = payload;
     },
