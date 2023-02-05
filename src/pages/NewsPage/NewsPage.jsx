@@ -1,6 +1,5 @@
 import NewsSerch from 'components/News/NewsSerch/NewsSerch';
 import Headline from 'components/Headline/Headline';
-import { Container } from 'styles';
 import { useEffect, useState } from 'react';
 import NewsList from 'components/News/NewsList/NewsList';
 
