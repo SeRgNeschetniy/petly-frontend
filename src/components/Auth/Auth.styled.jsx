@@ -42,7 +42,7 @@ export const Input = styled.input`
   width: 100%;
   height: 40px;
   background-color: ${theme.colors.mainBackground};
-  border: 1px solid ${theme.colors.accent};
+  border: 2px solid ${theme.colors.accent};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
