@@ -155,27 +155,6 @@ export const deleteFromFavorites = createAsyncThunk(
   }
 );
 
-export const deleteNotice = createAsyncThunk(
-  'notices/deleteNotice',
-  async (_id, { rejectWithValue, getState }) => {
-    try {
-      const { auth } = getState();
-      setToken(auth.token);
-      const { data } = await axios.delete(`/notices/${_id}`);
-      console.log(data);
-      return data;
-    } catch ({ responce }) {
-      const error = {
-        status: responce.status,
-        message: responce.data.message,
-      };
-      return rejectWithValue(error);
-          }
-  }
-);
-
-
-
 export const refreshToken = createAsyncThunk(
   'users/refresh',
   async (_, thunkApi) => {
@@ -186,4 +165,4 @@ export const refreshToken = createAsyncThunk(
       return thunkApi.rejectWithValue(error);
     }
   }
-)
+);

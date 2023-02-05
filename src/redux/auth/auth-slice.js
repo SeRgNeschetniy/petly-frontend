@@ -7,8 +7,7 @@ import {
   addToFavorite,
   patchAvatar,
   deleteFromFavorites,
-  deleteNotice,
-  refreshToken
+  refreshToken,
 } from './auth-operation';
 
 import { createSlice } from '@reduxjs/toolkit';
@@ -141,17 +140,6 @@ const authSlice = createSlice({
     },
     [deleteFromFavorites.rejected]: (store, action) => {
       store.error = action.payload;
-    },
-    [deleteNotice.pending]: store => {
-      store.error = null;
-    },
-    [deleteNotice.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.notices = store.notices.filter(({ _id }) => _id !== payload._id);
-    },
-    [deleteNotice.rejected]: (store, { payload }) => {
-      store.loading = false;
-      store.error = payload;
     },
   },
 });

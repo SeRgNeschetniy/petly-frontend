@@ -16,17 +16,9 @@ import {
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAge } from 'shared/getAge';
-import {
-  addToFavorite,
-  deleteFromFavorites,
-  deleteNotice,
-} from 'redux/auth/auth-operation';
-import {
-  selectIsLogin,
-  // selectIsFavorite,
-  selectUserId,
-} from 'redux/auth/auth-selectors';
-// import { deleteNotice } from 'redux/notices/notices-operation';
+import { addToFavorite, deleteFromFavorites } from 'redux/auth/auth-operation';
+import { selectIsLogin, selectUserId } from 'redux/auth/auth-selectors';
+import { deleteNotice } from 'redux/notices/notices-operation';
 import { selectFavorites } from 'redux/notices/notices-selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const NoticeCategoryItem = ({ notice, route }) => {
@@ -42,14 +34,14 @@ const NoticeCategoryItem = ({ notice, route }) => {
     owner,
   } = notice;
 
-  // console.log(notice);
+  // console.log(notice._id);
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLogin);
   const favorites = useSelector(selectFavorites);
+  // console.log(favorites);
   const ownerId = useSelector(selectUserId);
-  // const isFavorite = useSelector(selectIsFavorite);
-  // const isFavorite = favorites.includes(id);
+
   // const onChangeFavorite = () => {
   //   if (isLoggedIn) {
   //     dispatch(addToFavorite(id));
@@ -85,10 +77,8 @@ const NoticeCategoryItem = ({ notice, route }) => {
     }
   };
 
-  const onDeleteNotice = e => {
-    const cardId = e.currentTarget.id;
-    console.log(cardId);
-    dispatch(deleteNotice(cardId));
+  const onDeleteNotice = _id => {
+    dispatch(deleteNotice(_id));
   };
 
   // const onDeleteFromFavorite = e => {
