@@ -1,7 +1,8 @@
 import { TbCamera } from 'react-icons/tb';
-import { FiEdit2 } from 'react-icons/fi';
+import { FiEdit2 , FiCheck} from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/auth-selectors';
+import React from 'react';
 import {
   AccentText,
   Profile,
@@ -16,10 +17,43 @@ import {
   EditPhotoButton,
 } from './UserData.styled';
 import Logout from '../Logout/Logout';
+import { patchAvatar } from 'redux/auth/auth-operation';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 export default function UserData() {
 
   const user = useSelector(selectUser);
-  console.log(user)
+  // console.log(user)
+
+  const dispatch = useDispatch();
+  
+ 
+  // const disableBnt = () => {
+  // const  input = document.querySelectorAll("#input")
+  //   const edit = document.querySelectorAll("#edit")
+  //   input.disabled = false;
+  // }
+
+  
+
+ const [disabled, setDisabled] = useState(true);
+
+  function handleGameClick() {
+    setDisabled(!disabled);
+  }
+
+
+
+
+const changeImage = async (event) => {
+    const formData = new FormData();
+  
+    formData.append('avatar', event.target.files[0]);
+  
+  dispatch(patchAvatar(formData))
+
+
+  };
 
     return (
       <Box>
@@ -29,49 +63,57 @@ export default function UserData() {
             <Avatar src={user.avatarURL}></Avatar>
           </div>
           <EditBox>
+            
             <TbCamera
               style={{ width: '18px', height: '18px', color: '#F59256' }}
             ></TbCamera>
-            <EditPhotoButton>Edit photo</EditPhotoButton>
+         
+            <label> 
+                
+              <EditPhotoButton onChange={changeImage} type="file" name="file" style={{ color: "transparent" }}  ></EditPhotoButton>
+              <p>Edit photo</p>
+</label>
+              
+             
           </EditBox>
           <Form >
             <BoxInput>
               <TextField>Name: </TextField>
-              <InputForm disabled value={user.name}></InputForm>
-              <ButtonEdit>
-                <FiEdit2 style={{ color: 'rgba(17, 17, 17, 0.6)' }} />
+              <InputForm value={user.name} id="input" type="text" disabled={disabled }></InputForm>
+              <ButtonEdit type='submit' onClick={handleGameClick}>
+                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
               </ButtonEdit>
             </BoxInput>
 
             <BoxInput>
               <TextField>Email: </TextField>
-              <InputForm disabled value={user.email}/>
-              <ButtonEdit>
-                <FiEdit2 style={{ color: 'rgba(17, 17, 17, 0.6)' }} />
+              <InputForm  value={user.email} id="email"disabled={disabled }/>
+              <ButtonEdit type='submit' onClick={handleGameClick}>
+                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
               </ButtonEdit>
             </BoxInput>
 
             <BoxInput>
               <TextField>Birthday:</TextField>
-              <InputForm disabled value={user.birthday}/>
-              <ButtonEdit>
-                <FiEdit2 style={{ color: 'rgba(17, 17, 17, 0.6)' }} />
+              <InputForm disabled={disabled } value={user.birthday}/>
+              <ButtonEdit type='submit' onClick={handleGameClick}>
+                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
               </ButtonEdit>
             </BoxInput>
 
             <BoxInput>
               <TextField>Phone:</TextField>
-              <InputForm disabled value={user.phone}/>
-              <ButtonEdit>
-                <FiEdit2 style={{ color: 'rgba(17, 17, 17, 0.6)' }} />
+              <InputForm disabled={disabled } value={user.phone}/>
+              <ButtonEdit type='submit' onClick={handleGameClick}>
+                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
               </ButtonEdit>
             </BoxInput>
 
             <BoxInput>
               <TextField>City:</TextField>
-              <InputForm disabled value={user.city}/>
-              <ButtonEdit>
-                <FiEdit2 style={{ color: 'rgba(17, 17, 17, 0.6)' }} />
+              <InputForm disabled={disabled } value={user.city}/>
+              <ButtonEdit type='submit' onClick={handleGameClick}>
+                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
               </ButtonEdit>
             </BoxInput>
           </Form>

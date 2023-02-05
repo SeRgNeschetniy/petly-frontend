@@ -5,8 +5,12 @@ import {
   current,
   restorePassword,
   addToFavorite,
+  patchAvatar
 } from './auth-operation';
-import { createSlice } from '@reduxjs/toolkit';
+
+import { createSlice } from "@reduxjs/toolkit";
+
+
 
 const initialState = {
   user: {},
@@ -19,6 +23,12 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    addTokenToStore(store, action) {
+      console.log(action.payload);
+      store.token = action.payload;
+    }
+  },
   extraReducers: {
     [signup.pending]: store => {
       store.loading = true;
@@ -92,13 +102,26 @@ const authSlice = createSlice({
     },
     [addToFavorite.fulfilled]: (store, action) => {
       store.loading = false;
-      // store.error = error;
-      // store.user.favorites.push(action.payload);
     },
     [addToFavorite.rejected]: (store, action) => {
       store.error = action.payload;
     },
+    [patchAvatar.pending](store) {
+      store.isLoading = true;
+      store.error = null;
+    },
+    [patchAvatar.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.error = null;
+      store.user = {...store.user, avatarURL: payload.avatarURL}
+    },
+    [patchAvatar.rejected]: (store, { error }) => {
+      store.loading = false;
+      store.error = error;
+    },
+
   },
 });
 
+export const { addTokenToStore } = authSlice.actions;
 export default authSlice.reducer;

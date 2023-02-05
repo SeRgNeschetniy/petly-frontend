@@ -11,6 +11,7 @@ import { Navigate } from 'react-router';
 import LoginForm from 'components/Auth/LoginForm/LoginForm';
 import { useSearchParams } from 'react-router-dom';
 import { current } from 'redux/auth/auth-operation';
+import { addTokenToStore } from 'redux/auth/auth-slice';
 
 export default function LoginPage() {
   const isLogin = useSelector(selectIsLogin);
@@ -19,7 +20,8 @@ export default function LoginPage() {
   const token = searchParams.get('token');
 
   if (token) {
-    dispatch(current(token))
+    dispatch(current(token));
+    dispatch(addTokenToStore(token));
   }
 
   if (isLogin) {

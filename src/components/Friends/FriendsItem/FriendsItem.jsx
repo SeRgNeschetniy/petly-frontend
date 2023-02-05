@@ -23,6 +23,7 @@ const FriendsItem = ({
     <Item>
       <a href={url} target="_blank" rel="noopener noreferrer">
         <Heading>{title}</Heading>
+        
       </a>
 
       <InfoWrapper>

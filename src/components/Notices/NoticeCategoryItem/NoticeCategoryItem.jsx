@@ -22,7 +22,6 @@ import { numberToWord } from 'shared/numberToWords';
 const NoticeCategoryItem = ({ items }) => {
   const dispatch = useDispatch();
   const isLogined = useSelector(selectIsLogin);
-  console.log(isLogined);
 
   return (
     <>
@@ -42,7 +41,7 @@ const NoticeCategoryItem = ({ items }) => {
 
           return (
             <Item key={_id}>
-              <Image src={petImage} alt="pet" minwidth={288} height={288} />
+              <Image src={petImage} alt="Pet" minwidth={288} height={288} />
               <Sticker>{category}</Sticker>
               <AddToFavoriteBtn
                 onClick={() => {

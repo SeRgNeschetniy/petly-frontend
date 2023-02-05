@@ -61,6 +61,7 @@ border-radius: 40px;
 height:32px;
 width:216px;
 margin-left:auto;
+margin-right:24px;
 &:hover{
     background: #FDF7F2;
 border: 1px solid rgba(245, 146, 86, 0.5);
@@ -73,7 +74,7 @@ border: 1px solid rgba(245, 146, 86, 0.5);
 export const ButtonEdit = styled.button`
 width: 32px;
 height:32px;
-margin-left:auto;
+
 border-radius: 20px;
 background: #FDF7F2;
 backdrop-filter: blur(2px);
@@ -82,13 +83,31 @@ backdrop-filter: blur(2px);
 export const EditBox = styled.div`
 display: flex;
 position:absolute;
-right: 55px;
-bottom: 290px;
+right: -220px;
+bottom: 270px;
 align-items: center;
 `
-export const EditPhotoButton = styled.button`
-font-weight: 400;
-font-size: 12px;
-line-height: 22px;
-color: #111111
+export const EditPhotoButton = styled.input`
+color: transparent;
+opacity:0;
+// &:before{
+//     content: 'Edit photo';
+//   color: black;
+//   display: inline-block;
+//   background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+//   border: 1px solid #999;
+//   border-radius: 3px;
+//   padding: 5px 8px;
+//   outline: none;
+//   white-space: nowrap;
+//   -webkit-user-select: none;
+//   cursor: pointer;
+//   text-shadow: 1px 1px #fff;
+//   font-weight: 700;
+//   font-size: 10pt;
+// }
+// &:-webkit-file-upload-button{
+//      visibility: hidden;
+}
+
 `

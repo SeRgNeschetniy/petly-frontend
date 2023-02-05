@@ -2,13 +2,13 @@ import NoticesSearch from 'components/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import Headline from 'components/Headline/Headline';
-import AddNoticeButton from 'components/Notices/ AddNoticeButton/AddNoticeButton';
-import AddNoticeButtonMobile from 'components/Notices/ AddNoticeButton/AddNoticeButtonMobile';
+import AddNoticeButton from 'components/Notices/AddNoticeButton/AddNoticeButton';
+import AddNoticeButtonMobile from 'components/Notices/AddNoticeButton/AddNoticeButtonMobile';
 import { Container, Wrapper } from './NoticiesPage.styled';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchNotices } from 'redux/notices/notices-operation';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import {
   selectNotices,
   selectIsLoading,
@@ -21,22 +21,34 @@ const NoticesPage = () => {
   const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
+
   const [matches, setMatches] = useState(
     window.matchMedia('(min-width: 768px)').matches
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchNotices(categoryName));
+    if (query !== '') {
+      dispatch(fetchNotices({ categoryName, query: query }));
+    } else {
+      dispatch(fetchNotices({ categoryName }));
+    }
     window
       .matchMedia('(min-width: 768px)')
       .addEventListener('change', e => setMatches(e.matches));
-  }, [dispatch, categoryName]);
+  }, [dispatch, categoryName, query]);
+
+  const onFormSubmit = searchQuery => {
+    setSearchParams({ query: searchQuery });
+  };
 
   return (
     <Container>
       <Headline title={'Find your favorite pet'}></Headline>
-      <NoticesSearch />
+      <NoticesSearch onSubmit={onFormSubmit} />
       <Wrapper>
         <NoticesCategoriesNav />
         {matches && <AddNoticeButton />}
@@ -52,40 +64,3 @@ const NoticesPage = () => {
 };
 
 export default NoticesPage;
-
-// useEffect(() => {
-//   const getPets = async () => {
-//     try {
-//       const data = await fetchPets(categoryName);
-//       console.log(data.notices);
-//       setPets(data.notices);
-//       window
-//         .matchMedia('(min-width: 768px)')
-//         .addEventListener('change', e => setMatches(e.matches));
-//     } catch (error) {
-//       console.log(error);
-//     } finally {
-//     }
-//   };
-//   getPets();
-// }, [categoryName]);
-
-// const handleFilterChange = e => {
-//   const { value } = e.currentTarget;
-//   setSearch(value);
-// };
-
-// const getSearchedPets = () => {
-//   if (!search) {
-//     return pets;
-//   }
-//   const normalizedFilter = search.toLocaleLowerCase();
-//   const filteredPets = pets.filter(({ tittle }) => {
-//     const normalizedTitle = tittle.toLocaleLowerCase();
-//     const resultOfFilter = normalizedTitle.includes(normalizedFilter);
-//     return resultOfFilter;
-//   });
-//   return filteredPets;
-// };
-
-// const filteredPets = getSearchedPets();
