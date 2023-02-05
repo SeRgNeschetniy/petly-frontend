@@ -28,19 +28,23 @@ import {
   ButtonAddPhoto,
   AvatarImg,
   RadioWrapp,
-  LabelRadioBtn,
+  LabelRadioSexBtn,
+  RadioSexBtn,
   RadioBtn,
 } from './NoticeModal.styled';
 import { useDispatch } from 'react-redux';
 import { addNewNotice } from 'redux/notices/notices-operation';
+
+import { MdMale } from 'react-icons/md';
+import { MdFemale } from 'react-icons/md';
 
 export const NoticeSecondForm = props => {
   const [img, setImg] = useState(null);
   const [valid, setValid] = useState(false);
   const dispatch = useDispatch();
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault()
+  const handleSubmitForm = e => {
+    e.preventDefault();
     const { category, title, name, dateOfBirth, breed } = props.data;
     const { sex, location, price, petImage, comments } = e.target;
     console.log(e.target);
@@ -73,7 +77,7 @@ export const NoticeSecondForm = props => {
         price: values.price,
         comments: values.comments,
       };
-    })
+    });
     props.setPage(prev => prev - 1);
   };
 
@@ -90,16 +94,26 @@ export const NoticeSecondForm = props => {
           onSubmit={handleBackClick}
         >
           {({ setFieldValue, handleChange, handleSubmit, values }) => (
-            <FormSecond onSubmit={handleSubmitForm} encType="multipart/form-data">
+            <FormSecond
+              onSubmit={handleSubmitForm}
+              encType="multipart/form-data"
+            >
               <RadioWrapp role="group" aria-labelledby="sex-group">
-                <LabelRadioBtn>
-                  <RadioBtn type="radio" name="sex" value="male" />
+                <RadioSexBtn id="male" type="radio" name="sex" value="male" />
+                <LabelRadioSexBtn for="male">
+                  <MdMale size="4rem"></MdMale>
                   Male
-                </LabelRadioBtn>
-                <LabelRadioBtn>
-                  <RadioBtn type="radio" name="sex" value="female" />
+                </LabelRadioSexBtn>
+                <RadioSexBtn
+                  id="female"
+                  type="radio"
+                  name="sex"
+                  value="female"
+                />
+                <LabelRadioSexBtn for="female">
+                  <MdFemale size="4rem"></MdFemale>
                   Female
-                </LabelRadioBtn>
+                </LabelRadioSexBtn>
               </RadioWrapp>
               <Label htmlFor="location">Location*:</Label>
               <InputWrapper>
@@ -129,7 +143,7 @@ export const NoticeSecondForm = props => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('petImage', e.target.files[0]);
                     setImg(URL.createObjectURL(fileUploaded));
-                  //   // setValid(string().required().isValidSync(e.target.files[0]));
+                    //   // setValid(string().required().isValidSync(e.target.files[0]));
                   }}
                 />
                 <ErrMessage>{!valid && 'Image is required'}</ErrMessage>
@@ -148,11 +162,10 @@ export const NoticeSecondForm = props => {
               </WraperTextarea>
 
               <ButtonWrapper>
-                <ButtonFill type="submit" onSubmit={handleSubmitForm}>Done</ButtonFill>
-                <ButtonEmpty
-                  type="button"
-                  onClick={handleSubmit}
-                >
+                <ButtonFill type="submit" onSubmit={handleSubmitForm}>
+                  Done
+                </ButtonFill>
+                <ButtonEmpty type="button" onClick={handleSubmit}>
                   Back
                 </ButtonEmpty>
               </ButtonWrapper>
