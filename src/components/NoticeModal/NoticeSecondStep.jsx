@@ -60,7 +60,7 @@ export const NoticeSecondForm = props => {
     // for (let k of formData) {
     //   console.log(k);
     // }
-    // props.closeModal();
+    props.closeModal();
   };
 
   const handleBackClick = values => {
@@ -98,7 +98,7 @@ export const NoticeSecondForm = props => {
                 </LabelRadioBtn>
                 <LabelRadioBtn>
                   <RadioBtn type="radio" name="sex" value="female" />
-                  Famale
+                  Female
                 </LabelRadioBtn>
               </RadioWrapp>
               <Label htmlFor="location">Location*:</Label>
