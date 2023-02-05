@@ -10,8 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
 import LoginForm from 'components/Auth/LoginForm/LoginForm';
 import { useSearchParams } from 'react-router-dom';
-import { current } from 'redux/auth/auth-operation';
 import { addTokenToStore } from 'redux/auth/auth-slice';
+import { useEffect } from 'react';
 
 export default function LoginPage() {
   const isLogin = useSelector(selectIsLogin);
@@ -19,10 +19,11 @@ export default function LoginPage() {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
 
-  if (token) {
-    dispatch(current(token));
+  console.log("isLogin", isLogin);
+
+  useEffect(() => {
     dispatch(addTokenToStore(token));
-  }
+  }, [dispatch, token]);
 
   if (isLogin) {
     return <Navigate to="/user" />;
