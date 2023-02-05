@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { VscClose } from 'react-icons/vsc';
-import { pet } from '../../../servises';
+import { notice } from '../../../servises';
 import {
   Container,
   ButtonClose,
@@ -49,7 +49,7 @@ const NoticeFirstForm = props => {
       </SubTitle>
       <FormWrapper>
         <Formik
-          validationSchema={pet.formOneValidationSchema}
+          validationSchema={notice.formOneValidationSchema}
           initialValues={props.data}
           onSubmit={handleSubmit}
         >

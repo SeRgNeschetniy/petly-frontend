@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-
-import { pet } from '../../../servises';
+import { notice } from '../../../servises';
 import { VscClose } from 'react-icons/vsc';
 
 import { TfiClose } from 'react-icons/tfi';
@@ -86,7 +85,7 @@ export const NoticeSecondForm = props => {
       <Title>Add pet</Title>
       <FormWrapper>
         <Formik
-          validationSchema={pet.formTwoValidationSchema}
+          validationSchema={notice.formTwoValidationSchema}
           initialValues={props.data}
           onSubmit={handleBackClick}
         >
@@ -130,7 +129,7 @@ export const NoticeSecondForm = props => {
                     <TfiClose size={40} />
                   </CrossBig>
                 ) : (
-                  <AvatarImg src={img} alt="avatar" />
+                  <AvatarImg src={img} alt="Pet Image" />
                 )}
                 <InputPhoto
                   type="file"
