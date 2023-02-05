@@ -65,7 +65,7 @@ const NoticeCategoryItem = ({ items }) => {
                   </Text>
                   <Text>
                     <Span>Age:</Span>
-                    {age}
+                    {/* {age} */}
                   </Text>
                   {category === 'sell' && (
                     <Text>

@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { VscClose } from 'react-icons/vsc';
-import { pet } from '../../servises';
+import { pet } from '../../../servises';
 import {
   Container,
   ButtonClose,

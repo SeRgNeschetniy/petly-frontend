@@ -1,7 +1,7 @@
 import { Text, AddBtn, IconAdd, Wrapper } from './AddNoticeButton.styled';
 import useModal from '../../../hooks/modal';
 import Modal from 'components/Modal';
-import NoticeModal from '../../NoticeModal/NoticeModal';
+import NoticeModal from '../NoticeModal/NoticeModal';
 
 const AddNoticeButtonMobile = () => {
   const { isModalOpen, closeModal, toggleModal } = useModal();

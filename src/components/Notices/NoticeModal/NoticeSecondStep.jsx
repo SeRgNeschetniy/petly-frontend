@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
 
-import { pet } from '../../servises';
+import { pet } from '../../../servises';
 import { VscClose } from 'react-icons/vsc';
 
 import { TfiClose } from 'react-icons/tfi';
