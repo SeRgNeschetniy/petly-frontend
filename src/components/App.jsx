@@ -18,9 +18,13 @@ const UserPage = lazy(() => import('pages/UserPage/UserPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+  const { token } = useAuth();
+
   useEffect(() => {
+    if (token) {
     dispatch(current());
-  }, [dispatch]);
+  };
+  }, [token]);
 
   return (
     !isRefreshing && (
