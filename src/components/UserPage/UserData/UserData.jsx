@@ -15,6 +15,7 @@ import {
   Avatar,
   EditBox,
   EditPhotoButton,
+  FormDiv
 } from './UserData.styled';
 import Logout from '../Logout/Logout';
 import { patchAvatar } from 'redux/auth/auth-operation';
@@ -59,23 +60,22 @@ const changeImage = async (event) => {
       <Box>
         <AccentText>My information:</AccentText>
         <Profile>
-          <div style={{ position: 'relative' }}>
+          <div>
+          <div style={{  display:"flex", justifyContent: "center"}}>
             <Avatar src={user.avatarURL}></Avatar>
           </div>
-          <EditBox>
+           <EditBox>
             
             <TbCamera
               style={{ width: '18px', height: '18px', color: '#F59256' }}
-            ></TbCamera>
-         
-            <label> 
-                
-              <EditPhotoButton onChange={changeImage} type="file" name="file" style={{ color: "transparent" }}  ></EditPhotoButton>
-              <p>Edit photo</p>
-</label>
-              
-             
-          </EditBox>
+            ></TbCamera> 
+             <label>        
+              <EditPhotoButton onChange={changeImage} type="file" name="file" style={{ color: "transparent" }} ></EditPhotoButton>             
+          </label>
+            </EditBox>
+          </div>
+
+          <FormDiv>
           <Form >
             <BoxInput>
               <TextField>Name: </TextField>
@@ -118,6 +118,7 @@ const changeImage = async (event) => {
             </BoxInput>
           </Form>
           <Logout ></Logout>
+          </FormDiv>
         </Profile>
         
            
