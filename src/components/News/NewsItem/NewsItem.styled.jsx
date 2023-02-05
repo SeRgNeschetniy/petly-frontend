@@ -9,18 +9,15 @@ export const Item = styled.li`
   margin-bottom: 60px;
 
   @media screen and (max-width: 767px) {
-  margin-bottom: 60px;
-   width: 336px;
-   height: 276px;
+    margin-bottom: 60px;
+    width: 336px;
+    height: 276px;
   }
-  
 
   @media screen and (min-width: 768px) {
     padding: 16px 4px;
     width: 391px;
     height: 192px;
-   
-    
   }
 `;
 export const Border = styled.div`
@@ -41,28 +38,28 @@ border-top: 8px, solid;
   
 }
 
-`
+`;
 export const Heading = styled.h3`
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
 
-margin-top: 4px;
-/* Черный */
+  margin-top: 4px;
+  /* Черный */
 
-color: #111111;
-overflow: hidden;
- text-overflow: ellipsis;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
-display: -webkit-box;
+  color: #111111;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
 
   @media screen and (min-width: 768px) {
-  margin-bottom: 16px;
-   font-weight: 700;
-   font-size: 24px;
-   line-height: 33px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 33px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -70,64 +67,59 @@ display: -webkit-box;
   }
 `;
 export const Wrapper = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 40px;
 
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 22px;
-margin-bottom: 40px;
+  color: #111321;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
 
-color: #111321;
-width: 392.63px;
-height: 110px;
-overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-
-     @media screen and (min-width: 768px){
-
-     }
-@media screen and (min-width: 1280px){}
-
-`
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1280px) {
+  }
+`;
 export const Box = styled.div`
-    display: flex;
-    justify-content: space-between;`
-
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const Date = styled.span`
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 22px;
-/* identical to box height */
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
 
+  /* Cерый */
 
-/* Cерый */
-
-color: rgba(17, 17, 17, 0.6);
-`
+  color: rgba(17, 17, 17, 0.6);
+`;
 
 export const Link = styled.a`
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 22px;
-/* identical to box height */
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
 
-text-align: right;
-text-decoration-line: underline;
+  text-align: right;
+  text-decoration-line: underline;
 
-/* Акцентный */
+  /* Акцентный */
 
-color: rgba(17, 17, 17, 0.6);
-&:hover,
+  color: rgba(17, 17, 17, 0.6);
+  &:hover,
   &:focus {
-    color: #F59256;
+    color: #f59256;
   }
-`
+`;
