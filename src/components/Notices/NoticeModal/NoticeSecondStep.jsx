@@ -96,7 +96,7 @@ export const NoticeSecondForm = props => {
             >
               <RadioWrapp role="group" aria-labelledby="sex-group">
                 <RadioSexBtn id="male" type="radio" name="sex" value="male" />
-                <LabelRadioSexBtn for="male">
+                <LabelRadioSexBtn htmlFor="male">
                   <MdMale size="4rem"></MdMale>
                   Male
                 </LabelRadioSexBtn>
@@ -106,7 +106,7 @@ export const NoticeSecondForm = props => {
                   name="sex"
                   value="female"
                 />
-                <LabelRadioSexBtn for="female">
+                <LabelRadioSexBtn htmlFor="female">
                   <MdFemale size="4rem"></MdFemale>
                   Female
                 </LabelRadioSexBtn>
