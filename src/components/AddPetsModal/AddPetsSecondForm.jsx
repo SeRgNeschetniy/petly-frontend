@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-
+import { useDispatch } from 'react-redux';
 import { pet } from '../../servises';
 import {VscClose} from 'react-icons/vsc';
-
+import  {fetchPets} from '../../redux/addPets/addPets-operations'
 import {TfiClose} from 'react-icons/tfi'
-import { string } from 'yup';
+//import { string } from 'yup';
 import {Container, 
     ButtonClose, 
     Title, 
     Label, 
     WraperTextarea,    
-    ErrMessage,
+    //ErrMessage,
     FormWrapper,     
     ButtonWrapper,
     ButtonFill,
@@ -28,7 +28,9 @@ import {Container,
 
 export const AddPetsSecondForm = (props) => {
   const [img, setImg] = useState(null);
-  const [valid, setValid] = useState(false);
+  //const [valid, setValid] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
     console.log(values);
@@ -36,8 +38,10 @@ export const AddPetsSecondForm = (props) => {
     formData.append('name', values.name);
     formData.append('dateOfBirth', values.dateOfBirth);
     formData.append('breed', values.breed);
-    formData.append('petImage', values.petImage);
-    formData.append('comments', values.comments);
+    formData.append('photoPet', values.petImage);
+    formData.append('comment', values.comments);
+    dispatch(fetchPets(formData));
+
     // const formData = new FormData(props.data);
     // for (let k of formData) {
     //   console.log(k);
@@ -76,7 +80,7 @@ export const AddPetsSecondForm = (props) => {
                     // setValid(string().required().isValidSync(e.target.files[0]));
                   }}
                 />
-                <ErrMessage>{!valid && 'Image is required'}</ErrMessage>
+                {/* <ErrMessage>{!valid && 'Image is required'}</ErrMessage>                   */}
               </ButtonAddPhoto>
 
               <WraperTextarea>
@@ -102,3 +106,6 @@ export const AddPetsSecondForm = (props) => {
 };
 
 export default AddPetsSecondForm;
+
+
+
