@@ -48,7 +48,7 @@ const noticesSlice = createSlice({
     [deleteNotice.pending]: handlePending,
     [deleteNotice.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.notices = state.notices.filter(({ _id }) => _id !== payload._id);
+      state.notices = state.notices.filter(notice => notice._id !== payload);
     },
     [deleteNotice.rejected]: (state, { payload }) => {
       state.loading = false;

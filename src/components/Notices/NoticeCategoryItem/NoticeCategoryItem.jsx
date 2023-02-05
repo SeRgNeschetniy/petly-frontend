@@ -77,8 +77,9 @@ const NoticeCategoryItem = ({ notice, route }) => {
     }
   };
 
-  const onDeleteNotice = _id => {
-    dispatch(deleteNotice(_id));
+  const onDeleteNotice = e => {
+    const cardId = e.currentTarget.id;
+    dispatch(deleteNotice(cardId));
   };
 
   // const onDeleteFromFavorite = e => {
@@ -118,7 +119,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
         </Wrapper>
         <LearnMoreBtn>Learn more</LearnMoreBtn>
         {ownerId === owner && (
-          <DeleteBtn onClick={onDeleteNotice}>
+          <DeleteBtn id={id} onClick={onDeleteNotice}>
             Delete
             <RiDeleteBin5Fill style={{ marginLeft: '15px' }} />
           </DeleteBtn>
