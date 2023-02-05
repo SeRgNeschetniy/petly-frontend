@@ -1,11 +1,10 @@
 import { Text, AddBtn, Wrapper, IconAdd } from './AddNoticeButton.styled';
 import useModal from '../../../hooks/modal';
 import Modal from 'components/Modal';
-import NoticeModal from '../../NoticeModal/NoticeModal';
+import NoticeModal from '../NoticeModal/NoticeModal';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 
 const AddNoticeButton = () => {
   const isLogined = useSelector(selectIsLogin);
