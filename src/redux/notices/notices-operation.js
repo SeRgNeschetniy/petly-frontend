@@ -38,7 +38,7 @@ export const addNewNotice = createAsyncThunk(
   async (newData, thunkApi) => {
     try {
       const result = await axios.post('/notices', newData);
-      return result;
+      return result.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
