@@ -20,6 +20,8 @@ export default function PetsCard() {
   }, [dispatch]);
 
   const items = useSelector(selectUserPets);
+  // console.log(items)
+  // const items = useSelector(selectUserPets);
   console.log(items);
 
   const deletePetCard = id => {

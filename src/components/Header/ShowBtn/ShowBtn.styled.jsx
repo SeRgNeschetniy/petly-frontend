@@ -4,19 +4,19 @@ import { GrClose } from 'react-icons/gr';
 
 export const Burger = styled(GiHamburgerMenu)`
   display: flex;
-  width: 30px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
 `;
 export const Close = styled(GrClose)`
   display: flex;
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
 `;
 export const Container = styled.button`
   margin-left: auto;
 
   @media screen and (min-width: 768px) {
-    margin-left: ${({ show }) => (show ? '30px' : '20px')};
+    margin-left: ${({ show }) => (show ? '30px' : '23px')};
   }
   @media screen and (min-width: 1280px) {
     display: none;

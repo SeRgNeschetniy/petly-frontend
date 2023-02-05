@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { userLogOut, removePetCard, fetchUserPets } from './userpage-operation';
+import { userLogOut, removePetCard, fetchUserPets, patchContact} from './userpage-operation';
 
 const petsInitialState = {
   items: [],
@@ -27,7 +27,11 @@ const petsSlice = createSlice({
       store.loading = false;
       store.error = error;
     },
-
+    [patchContact.fulfilled] (state, {payload})  {
+      state.isLoading = false;
+      state.items = state.items.filter(item => item.id !== payload);
+    },
+    
     [removePetCard.pending](store) {
       store.isLoading = true;
     },
