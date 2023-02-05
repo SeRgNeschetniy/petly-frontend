@@ -28,15 +28,20 @@ const NewsPage = () => {
       setNews(data);
     });
   }, []);
-  const onSearch = (searchPhrase) => {
-    setFilteredNews(News.filter(item => item.title.toLowerCase().indexOf(searchPhrase.toLowerCase()) !== -1));
+  const onSearch = searchPhrase => {
+    setFilteredNews(
+      News.filter(
+        item =>
+          item.title.toLowerCase().indexOf(searchPhrase.toLowerCase()) !== -1
+      )
+    );
   };
   return (
-    <Container>
+    <>
       <Headline title={'News'}></Headline>
       <NewsSerch onSearch={onSearch} />
       <NewsList News={filteredNews} />
-    </Container>
+    </>
   );
 };
 
