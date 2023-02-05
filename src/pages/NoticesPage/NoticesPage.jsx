@@ -57,7 +57,7 @@ const NoticesPage = () => {
       {notices?.length === 0 && !isLoading && (
         <p>List is empty! Try to add pet :)</p>
       )}
-      {notices?.length > 0 && <NoticesCategoriesList />}
+      {notices?.length > 0 && <NoticesCategoriesList route={categoryName} />}
       {error && <p>Ooops... Something went wrong</p>}
     </Container>
   );

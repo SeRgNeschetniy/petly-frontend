@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-
+import { AiFillHeart } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 
 export const Item = styled.li`
@@ -63,6 +63,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   padding: 20px, 20px, 12px, 20px;
   margin-bottom: 50px;
+  height: 153px;
 `;
 
 export const Title = styled.h2`
@@ -132,6 +133,12 @@ export const Span = styled.span`
   width: 50px;
 `;
 export const AddIcon = styled(AiOutlineHeart)`
+  width: 28px;
+  height: 28px;
+  color: ${theme.colors.accent};
+`;
+
+export const AddedIcon = styled(AiFillHeart)`
   width: 28px;
   height: 28px;
   color: ${theme.colors.accent};

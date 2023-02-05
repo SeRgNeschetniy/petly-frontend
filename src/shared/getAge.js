@@ -1,16 +1,8 @@
-export function getAge(birthDate) {
-  const dateToday = Date.now();
-
-  const birthday = normalizeDate(birthDate);
-  const ageMs = dateToday - birthday;
-  const age = Math.floor(ageMs / 31536000000);
-
-  return age;
-}
-
-function normalizeDate(date) {
-  const array = date.split('.');
-  const result = [array[1], array[0], array[2]];
-
-  return new Date(result.join('.'));
-}
+export const getAge = utcDate => {
+  const date = new Date(utcDate);
+  const day = date.getDay().toString().padStart(2, '0');
+  const month = date.getMonth().toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const convertedDate = [day, month, year].join('.');
+  return convertedDate;
+};

@@ -113,8 +113,8 @@ export const addToFavorite = createAsyncThunk(
     try {
       const { auth } = getState();
       setToken(auth.token);
-      const result = await axios.post(`/notices/${_id}/favorites`);
-      return result.data;
+      const { data } = await axios.post(`/notices/${_id}/favorites`);
+      return data.favorites;
     } catch ({ responce }) {
       const error = {
         status: responce.status,
@@ -125,15 +125,62 @@ export const addToFavorite = createAsyncThunk(
   }
 );
 export const patchAvatar = createAsyncThunk(
-    "users/avatar",
-    async (newdata, thunkApi) => {   
-       try {
-         const { data } = await axios.patch(`/users/avatar`, newdata)
-         console.log(data)
-         return data
-         
-        } catch (error) {
-            return thunkApi.rejectWithValue(error)
-        }
+  'users/avatar',
+  async (newdata, thunkApi) => {
+    try {
+      const { data } = await axios.patch(`/users/avatar`, newdata);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
     }
+  }
+);
+
+export const deleteFromFavorites = createAsyncThunk(
+  'notices/deleteFromFavorites',
+  async (_id, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      setToken(auth.token);
+      const { data } = await axios.delete(`/notices/${_id}/favorites/`);
+      return data.favorites;
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+// export const deleteNotice = createAsyncThunk(
+//   'notices/deleteNotice',
+//   async (_id, thunkApi) => {
+//     try {
+//       const response = await axios.delete(`/notices/${_id}`);
+//       return response.data;
+//     } catch (error) {
+//       return thunkApi.rejectWithValue(error.message);
+//     }
+//   }
+// );
+export const deleteNotice = createAsyncThunk(
+  'notices/deleteNotice',
+  async (_id, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      setToken(auth.token);
+      const { data } = await axios.delete(`/notices/${_id}`);
+      console.log(data);
+      return data;
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
 );
