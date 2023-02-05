@@ -36,6 +36,16 @@ export const InputField = styled.div`
   }
 `;
 
+export const DivPass = styled.div`
+color: #FF6101;
+position: absolute;
+right: 12px;
+top: 12px;
+@media (min-width: 768px) {
+  top: 17px;
+  }  
+`;
+
 export const Input = styled.input`
   outline: none;
   box-sizing: border-box;
@@ -54,7 +64,7 @@ export const Input = styled.input`
   &:hover, &:focus {
     border: 2px solid #FF6101;
   }
-  }
+  
   @media (min-width: 768px) {
     height: 52px;
   }
