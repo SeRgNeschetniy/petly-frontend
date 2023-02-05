@@ -3,19 +3,18 @@ import { theme } from 'styles/theme';
 import { NavLink } from 'react-router-dom';
 
 export const Link = styled(NavLink)`
-  &:not(:last-child) {
-    margin-right: 12px;
-  }
-
   font-size: 14px;
   margin-bottom: 12px;
-
   padding: 10px 28px;
   text-decoration: none;
   background: ${theme.colors.white};
   border: 2px solid ${theme.colors.accent};
   border-radius: 40px;
   align-items: center;
+
+  &:not(:last-child) {
+    margin-right: 12px;
+  }
 
   &.active,
   :hover,
@@ -31,7 +30,6 @@ export const Link = styled(NavLink)`
 `;
 
 export const Nav = styled.div`
-  // margin-right:auto;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;

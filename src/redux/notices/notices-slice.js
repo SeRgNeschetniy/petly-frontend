@@ -3,13 +3,16 @@ import {
   fetchNotices,
   fetchNoticeById,
   deleteNotice,
+
+  addNewNotice
   // addToFavorite,
-  fetchFavorites,
+
 } from './notices-operation';
 
 const initialState = {
   notices: [],
   isLoading: false,
+  error: null,
 };
 
 const handlePending = state => {
@@ -45,14 +48,6 @@ const noticesSlice = createSlice({
       state.error = payload;
       state.isLoading = false;
     },
-    // [addToFavorite.pending]: handlePending,
-    // [addToFavorite.fulfilled](state, { payload }) {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   state.notices = [payload.user.favorites, ...state.favorites];
-    //   console.log(state.notices);
-    // },
-    // [addToFavorite.rejected]: handleRejected,
     [deleteNotice.pending]: handlePending,
     [deleteNotice.fulfilled](state, action) {
       state.isLoading = false;
@@ -61,17 +56,14 @@ const noticesSlice = createSlice({
         notice => notice.id !== action.payload.id
       );
     },
-    [fetchFavorites.pending]: handlePending,
-    [fetchFavorites.fulfilled](state, { payload }) {
-      console.log(payload);
+    [addNewNotice.pending]: handlePending,
+    [addNewNotice.fulfilled] (state, {payload}) {
       state.isLoading = false;
-      state.error = null;
     },
-    [fetchFavorites.rejected](state, { payload }) {
-      state.favorites = [];
-      state.isLoading = false;
+    [addNewNotice.rejected](state, { payload }) {
       state.error = payload;
-    },
+      state.isLoading = false;
+    }
   },
 });
 

@@ -1,5 +1,5 @@
 export function numberToWord(n) {
-  var string = n.toString(),
+  let string = n.toString(),
     units,
     tens,
     scales,
@@ -15,45 +15,45 @@ export function numberToWord(n) {
 
   /* Is number zero? */
   if (parseInt(string) === 0) {
-    return 'Less than one year';
+    return 'less than one year';
   }
 
   /* Array of units as words */
   units = [
     '',
-    'One',
-    'Two',
-    'Three',
-    'Four',
-    'Five',
-    'Six',
-    'Seven',
-    'Eight',
-    'Nine',
-    'Ten',
-    'Eleven',
-    'Twelve',
-    'Thirteen',
-    'Fourteen',
-    'Fifteen',
-    'Sixteen',
-    'Seventeen',
-    'Eighteen',
-    'Nineteen',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'ten',
+    'eleven',
+    'twelve',
+    'thirteen',
+    'fourteen',
+    'fifteen',
+    'sixteen',
+    'seventeen',
+    'eighteen',
+    'nineteen',
   ];
 
   /* Array of tens as words */
   tens = [
     '',
     '',
-    'Twenty',
-    'Thirty',
-    'Forty',
-    'Fifty',
-    'Sixty',
-    'Seventy',
-    'Eighty',
-    'Ninety',
+    'twenty',
+    'thirty',
+    'forty',
+    'fifty',
+    'sixty',
+    'seventy',
+    'eighty',
+    'ninety',
   ];
 
   /* Array of scales as words */
@@ -112,9 +112,9 @@ export function numberToWord(n) {
       }
 
       /* Add scale word if chunk is not zero and array item exists */
-      if ((word = scales[i])) {
-        words.push(word);
-      }
+      // if ((word = scales[i])) {
+      //   words.push(word);
+      // }
 
       /* Add unit word if array item exists */
       if ((word = units[ints[0]])) {
@@ -134,8 +134,8 @@ export function numberToWord(n) {
   }
   const age = words.reverse().join(' ');
   if (!age) return 'Unknown';
-  if (age === 'One') {
-    return 'One year';
+  if (age === 'one') {
+    return 'one year';
   }
 
   return `${age} years`;

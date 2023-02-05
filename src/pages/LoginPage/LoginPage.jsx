@@ -6,12 +6,23 @@ import {
 } from '../../components/Auth/Auth.styled';
 import GoogleIcon from '../../components/Auth/GoogleSignIn/GoogleIcon';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
 import LoginForm from 'components/Auth/LoginForm/LoginForm';
+import { useSearchParams } from 'react-router-dom';
+import { current } from 'redux/auth/auth-operation';
+import { addTokenToStore } from 'redux/auth/auth-slice';
 
 export default function LoginPage() {
   const isLogin = useSelector(selectIsLogin);
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
+
+  if (token) {
+    dispatch(current(token));
+    dispatch(addTokenToStore(token));
+  }
 
   if (isLogin) {
     return <Navigate to="/user" />;

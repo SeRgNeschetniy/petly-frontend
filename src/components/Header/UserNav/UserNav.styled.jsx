@@ -9,6 +9,7 @@ export const UserLinks = styled(NavLink)`
   background-color: #f59256;
   padding: 11px 28px;
   border-radius: 40px;
+  border: 2px solid ${({ theme }) => theme.colors.accent};
 
   font-size: 14px;
   line-height: 1.35;
@@ -26,7 +27,6 @@ export const UserLinks = styled(NavLink)`
   :focus {
     color: ${({ theme }) => theme.colors.accent};
     background-color: inherit;
-    border: 0.5px solid ${({ theme }) => theme.colors.accent};
   }
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);

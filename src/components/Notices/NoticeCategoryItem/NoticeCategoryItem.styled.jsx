@@ -27,7 +27,8 @@ export const LearnMoreBtn = styled.button`
   width: 100%;
   margin-bottom: 12px;
 
-  &:hover {
+  &:hover,
+  :focus {
     background: ${theme.colors.accent};
     color: ${theme.colors.white};
   }
@@ -49,7 +50,8 @@ export const DeleteBtn = styled.button`
   padding: 8px;
   width: 100%;
 
-  &:hover {
+  &:hover,
+  :focus {
     background: #ff6101;
     color: ${theme.colors.white};
   }
@@ -69,6 +71,7 @@ export const Title = styled.h2`
   line-height: 1.3;
   letter-spacing: -0.01em;
   color: #111111;
+  word-wrap: break-word;
 
   margin-bottom: 20px;
 `;
@@ -136,4 +139,5 @@ export const AddIcon = styled(AiOutlineHeart)`
 
 export const Image = styled.img`
   height: 288px;
+  background-size: cover;
 `;

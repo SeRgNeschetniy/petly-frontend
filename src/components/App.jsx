@@ -1,11 +1,11 @@
 import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import SharedLayout from './SharedLayout';
 import PrivateRoute from './PrivateRoute';
-// import RestrictedRoute from './RestrictedRoute';
+import RestrictedRoute from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
+import { useAuth } from 'hooks/useAuth';
 import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
 
 const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
@@ -17,19 +17,28 @@ const UserPage = lazy(() => import('pages/UserPage/UserPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(({ auth }) => auth.loading);
+  const { isRefreshing } = useAuth();
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);
 
   return (
-    !isLoading && (
+    !isRefreshing && (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="/login" element={<LoginPage />} />
-          {/*  <RestrictedRoute component={LoginPage} redirectTo="/news" /> */}
-          <Route path="/register" element={<RegisterPage />} />
-          {/*  <RestrictedRoute component={RegisterPage} redirectTo="/news" /> */}
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={LoginPage} redirectTo="/news" />
+            }
+          />
+
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute component={RegisterPage} redirectTo="/news" />
+            }
+          />
 
           <Route path="/restore" element={<PasswordRecoveryForm />} />
 

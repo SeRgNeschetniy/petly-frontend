@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const setToken = token => {
+export const setToken = token => {
   if (token) {
     return (axios.defaults.headers.common.authorization = `Bearer ${token}`);
   }
@@ -13,7 +13,6 @@ export const signup = createAsyncThunk(
   async (registerData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/register', registerData);
-      console.log(data);
       return data;
     } catch ({ responce }) {
       const error = {
@@ -45,10 +44,7 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue, getState }) => {
     try {
-      const { auth } = getState();
-      setToken(auth.token);
-      const result = await axios.post('/users/logout');
-      return result;
+      await axios.post('/users/logout');
     } catch ({ responce }) {
       const error = {
         status: responce.status,
@@ -61,12 +57,11 @@ export const logout = createAsyncThunk(
 
 export const current = createAsyncThunk(
   'auth/current',
-  async (_, { rejectWithValue, getState }) => {
+  async (data, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      setToken(auth.token);
+      setToken(auth.token || data);
       const result = await axios.get(`/users/current/`);
-      // console.log(result);
       return result.data;
     } catch ({ responce }) {
       const error = {
@@ -101,7 +96,6 @@ export const restorePassword = createAsyncThunk(
     try {
       setToken('');
       const { data } = await axios.patch(`/users/restore`, userEmail);
-      console.log(data);
       return data;
     } catch ({ responce }) {
       const error = {
@@ -120,7 +114,6 @@ export const addToFavorite = createAsyncThunk(
       const { auth } = getState();
       setToken(auth.token);
       const result = await axios.post(`/notices/${_id}/favorites`);
-      console.log(result);
       return result.data;
     } catch ({ responce }) {
       const error = {

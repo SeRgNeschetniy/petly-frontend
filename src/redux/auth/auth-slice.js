@@ -10,6 +10,8 @@ import {
 
 import { createSlice } from "@reduxjs/toolkit";
 
+
+
 const initialState = {
   user: {},
   token: '',
@@ -21,6 +23,12 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    addTokenToStore(store, action) {
+      console.log(action.payload);
+      store.token = action.payload;
+    }
+  },
   extraReducers: {
     [signup.pending]: store => {
       store.loading = true;
@@ -93,7 +101,7 @@ const authSlice = createSlice({
       store.error = null;
     },
     [addToFavorite.fulfilled]: (store, action) => {
-      store.user.favorites.push(action.payload);
+      store.loading = false;
     },
     [addToFavorite.rejected]: (store, action) => {
       store.error = action.payload;
@@ -115,4 +123,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { addTokenToStore } = authSlice.actions;
 export default authSlice.reducer;
