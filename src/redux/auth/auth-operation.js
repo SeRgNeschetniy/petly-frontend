@@ -131,3 +131,16 @@ export const addToFavorite = createAsyncThunk(
     }
   }
 );
+export const patchAvatar = createAsyncThunk(
+    "users/avatar",
+    async (newdata, thunkApi) => {   
+       try {
+         const { data } = await axios.patch(`/users/avatar`, newdata)
+         console.log(data)
+         return data
+         
+        } catch (error) {
+            return thunkApi.rejectWithValue(error)
+        }
+    }
+);

@@ -5,7 +5,9 @@ import {
   current,
   restorePassword,
   addToFavorite,
+  patchAvatar
 } from './auth-operation';
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -96,6 +98,20 @@ const authSlice = createSlice({
     [addToFavorite.rejected]: (store, action) => {
       store.error = action.payload;
     },
+    [patchAvatar.pending](store) {
+      store.isLoading = true;
+      store.error = null;
+    },
+    [patchAvatar.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.error = null;
+      store.user = {...store.user, avatarURL: payload.avatarURL}
+    },
+    [patchAvatar.rejected]: (store, { error }) => {
+      store.loading = false;
+      store.error = error;
+    },
+
   },
 });
 
