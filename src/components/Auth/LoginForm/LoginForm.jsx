@@ -1,17 +1,26 @@
-import { Input, Button, Form, InputField } from '../Auth.styled';
+import { useState } from 'react';
+import { Input, Button, Form, InputField, DivPass } from '../Auth.styled';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/auth-operation';
 import * as Yup from 'yup';
 import { Notify } from 'notiflix';
 
+import { ImEyeBlocked } from 'react-icons/im';
+import { ImEye } from 'react-icons/im';
+
 export default function LoginForm() {
   const dispatch = useDispatch();
+
+  const [show, setShow] = useState(false);
+  const handleShow = () => {
+    setShow(!show);
+  };
 
   const notifyOptions = {
     showOnlyTheLastOne: true,
     timeout: 2000,
-  }
+  };
 
   const initialLoginState = {
     email: '',
@@ -19,10 +28,10 @@ export default function LoginForm() {
   };
 
   const validationSchema = Yup.object({
-  email: Yup.string().email('Invalid email format').required('Required'),
-  password: Yup.string().required('Require').min(7),
+    email: Yup.string().email('Invalid email format').required('Required'),
+    password: Yup.string().required('Require').min(7),
   });
-  
+
   return (
     <Formik
       initialValues={initialLoginState}
@@ -46,22 +55,31 @@ export default function LoginForm() {
               value={props.values.email}
             />
           </InputField>
-            {props.isSubmitting && props.errors.email ? Notify.failure(props.errors.email, notifyOptions) : null}
+          {props.isSubmitting && props.errors.email
+            ? Notify.failure(props.errors.email, notifyOptions)
+            : null}
           <InputField margin>
             <Input
               id="password"
-              type="password"
+              type={show ? "text" : "password"}
               name="password"
               placeholder="Password"
               onBlur={props.handleBlur}
               onChange={props.handleChange}
               value={props.values.password}
             />
+            <DivPass onClick={handleShow}>
+              {show ? <ImEye /> : <ImEyeBlocked />}
+            </DivPass>
           </InputField>
-            {props.isSubmitting && props.errors.password ? Notify.failure(props.errors.password, notifyOptions) : null}
-        <Button type="submit" onClick={props.handleSubmit}>Login</Button>
+          {props.isSubmitting && props.errors.password
+            ? Notify.failure(props.errors.password, notifyOptions)
+            : null}
+          <Button type="submit" onClick={props.handleSubmit}>
+            Login
+          </Button>
         </Form>
       )}
     </Formik>
-  )
+  );
 }

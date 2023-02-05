@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+// axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 export const fetchNotices = createAsyncThunk(
   'notices/categoryName',
@@ -50,7 +50,7 @@ export const deleteNotice = createAsyncThunk(
   async (_id, thunkApi) => {
     try {
       const { data } = await axios.delete(`/notices/${_id}`);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

@@ -62,16 +62,16 @@ const NoticeFirstForm = props => {
                   name="category"
                   value="lost-found"
                 />
-                <LabelRadioBtn for="lost-found">lost/found</LabelRadioBtn>
+                <LabelRadioBtn htmlFor="lost-found">lost/found</LabelRadioBtn>
                 <RadioBtn
                   id="for-free"
                   type="radio"
                   name="category"
                   value="for-free"
                 />
-                <LabelRadioBtn for="for-free">in good hands</LabelRadioBtn>
+                <LabelRadioBtn htmlFor="for-free">in good hands</LabelRadioBtn>
                 <RadioBtn id="sell" type="radio" name="category" value="sell" />
-                <LabelRadioBtn for="sell">sell</LabelRadioBtn>
+                <LabelRadioBtn htmlFor="sell">sell</LabelRadioBtn>
               </RadioWrapp>
               <Label htmlFor="titleAd">Title of ad</Label>
               <InputWrapper>
