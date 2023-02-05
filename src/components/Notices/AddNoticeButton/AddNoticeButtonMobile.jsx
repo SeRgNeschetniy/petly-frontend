@@ -6,6 +6,7 @@ import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+
 const AddNoticeButtonMobile = () => {
   const { isModalOpen, closeModal, toggleModal } = useModal();
   const isLogined = useSelector(selectIsLogin);

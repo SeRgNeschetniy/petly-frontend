@@ -15,10 +15,12 @@ import { selectUserPets } from 'redux/userpage/userpage-selectors';
 
 export default function PetsCard() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchUserPets());
   }, [dispatch]);
 
+    // console.log(items)
   const items = useSelector(selectUserPets);
   // console.log(items)
   // const items = useSelector(selectUserPets);
@@ -32,8 +34,10 @@ export default function PetsCard() {
     ({ _id, name, dateOfBirth, breed, photoPet, comment }) => {
       return (
         <PetCard key={_id}>
-          <PetAvatar src={photoPet} alt="pet"></PetAvatar>
-          <PetInfo>
+              <PetAvatar src={photoPet} alt="pet"></PetAvatar>
+              
+                  <div style={{ position: "relative" }}>
+              <PetInfo>
             <Text>
               Name:<Typography>{name}</Typography>
             </Text>
@@ -45,11 +49,13 @@ export default function PetsCard() {
             </Text>
             <Text>
               Comments: <Typography>{comment}</Typography>
-            </Text>
-          </PetInfo>
-          <DelateButton type="button" onClick={() => deletePetCard(_id)}>
+                      </Text>
+                      
+                  </PetInfo>
+                  <DelateButton type="button" onClick={() => deletePetCard(_id)}>
             <FiTrash />
-          </DelateButton>
+              </DelateButton>
+          </div>
         </PetCard>
       );
     }

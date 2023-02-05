@@ -57,10 +57,10 @@ export const logout = createAsyncThunk(
 
 export const current = createAsyncThunk(
   'auth/current',
-  async (data, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      setToken(auth.token || data);
+      setToken(auth.token);
       const result = await axios.get(`/users/current/`);
       return result.data;
     } catch ({ responce }) {
@@ -155,17 +155,6 @@ export const deleteFromFavorites = createAsyncThunk(
   }
 );
 
-// export const deleteNotice = createAsyncThunk(
-//   'notices/deleteNotice',
-//   async (_id, thunkApi) => {
-//     try {
-//       const response = await axios.delete(`/notices/${_id}`);
-//       return response.data;
-//     } catch (error) {
-//       return thunkApi.rejectWithValue(error.message);
-//     }
-//   }
-// );
 export const deleteNotice = createAsyncThunk(
   'notices/deleteNotice',
   async (_id, { rejectWithValue, getState }) => {
@@ -181,6 +170,20 @@ export const deleteNotice = createAsyncThunk(
         message: responce.data.message,
       };
       return rejectWithValue(error);
-    }
+          }
   }
 );
+
+
+
+export const refreshToken = createAsyncThunk(
+  'users/refresh',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get('/users/refresh');
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+)

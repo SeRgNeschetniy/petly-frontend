@@ -1,19 +1,30 @@
 import styled from '@emotion/styled';
 
 export const MainText = styled.span`
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 38px;
+ font-weight: 500;
+font-size: 20px;
+line-height: 27px;
   color: #111111;
+  @media screen and (min-width: 768px) {
+font-weight: 500;
+font-size: 28px;
+line-height: 38px;
+}
+@media screen and (min-width: 1280px) {
+margin-right:567px;
+}
+
+  
 `;
 export const H3 = styled.h3`
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
+font-weight: 500;
+font-size: 20px;
+line-height: 27px;
   color: #111111;
 
   margin: 0;
   margin-right: 15px;
+ 
 `;
 export const AddButton = styled.button`
   background: #f59256;
@@ -26,13 +37,15 @@ export const AddButton = styled.button`
 `;
 export const SecondBox = styled.div`
   align-items: center;
-  width: 821px;
-  margin-left: 32px;
+  
 `;
 export const Head = styled.div`
   display: flex;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   align-items: baseline;
+  @media screen and (min-width: 1280px) {
+    margin-bottom:24px;
+}
 `;
 export const AddPet = styled.div`
   display: flex;
@@ -41,11 +54,10 @@ export const AddPet = styled.div`
 `;
 export const PetCard = styled.div`
   display: flex;
-  padding: 20px;
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 40px;
-  position: relative;
+  
 `;
 export const PetAvatar = styled.img`
   border-radius: 20%;

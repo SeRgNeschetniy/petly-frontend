@@ -1,16 +1,9 @@
 import { Form, Input, IconSearch } from './NewsSerch.styled';
-// import { useSelector, useDispatch } from "react-redux";
-// import { selectSearch } from "redux/search/search-selectors";
-// import { setSearch } from "redux/search/search-slice";
-
-const NewsSerch = () => {
-  // const search = useSelector(selectSearch);
-  // const dispatch = useDispatch();
-
-  //  const handleChangeSearch = e => {
-  //         const { value } = e.target;
-  //         dispatch(setSearch(value));
-  //     };
+const NewsSerch = (props) => {
+   const handleChangeSearch = e => {
+     props.onSearch(e.target.value);
+     
+   };
 
   return (
     <Form>
@@ -19,7 +12,7 @@ const NewsSerch = () => {
         autoComplete="off"
         autoFocus
         placeholder="Search"
-        // onChange={handleChangeSearch}
+        onChange={handleChangeSearch}
         // value={search}
       />
       <IconSearch size={20} />

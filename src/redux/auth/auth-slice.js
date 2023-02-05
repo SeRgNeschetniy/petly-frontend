@@ -8,6 +8,7 @@ import {
   patchAvatar,
   deleteFromFavorites,
   deleteNotice,
+  refreshToken
 } from './auth-operation';
 
 import { createSlice } from '@reduxjs/toolkit';
@@ -25,7 +26,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     addTokenToStore(store, action) {
-      console.log(action.payload);
       store.token = action.payload;
     },
   },
@@ -55,6 +55,20 @@ const authSlice = createSlice({
       store.isLogin = true;
     },
     [login.rejected]: (store, { error }) => {
+      store.loading = false;
+      store.error = error;
+    },
+    [refreshToken.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [refreshToken.fulfilled]: (store, { payload }) => {
+      store.user = payload.user;
+      store.token = payload.token;
+      store.loading = false;
+      store.isLogin = true;
+    },
+    [refreshToken.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
