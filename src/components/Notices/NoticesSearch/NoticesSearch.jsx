@@ -19,15 +19,11 @@ const NoticesSearch = ({ onSubmit }) => {
       return;
     }
     onSubmit(searchQuery);
-    setSearchQuery('');
+    // setSearchQuery('');
   };
 
   const handleChange = e => setSearchQuery(e.currentTarget.value.toLowerCase());
 
-  // const handleChangeSearch = e => {
-  //   const { value } = e.target;
-  //   dispatch(setSearch(value));
-  // };
   return (
     <Form onSubmit={handleSubmit}>
       <div style={{ position: 'relative' }}>

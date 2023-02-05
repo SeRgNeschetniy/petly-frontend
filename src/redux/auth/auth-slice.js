@@ -6,12 +6,12 @@ import {
   restorePassword,
   addToFavorite,
   patchAvatar,
+  deleteFromFavorites,
+  deleteNotice,
   refreshToken
 } from './auth-operation';
 
-import { createSlice } from "@reduxjs/toolkit";
-
-
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   user: {},
@@ -27,7 +27,7 @@ const authSlice = createSlice({
   reducers: {
     addTokenToStore(store, action) {
       store.token = action.payload;
-    }
+    },
   },
   extraReducers: {
     [signup.pending]: store => {
@@ -127,13 +127,32 @@ const authSlice = createSlice({
     [patchAvatar.fulfilled]: (store, { payload }) => {
       store.loading = false;
       store.error = null;
-      store.user = {...store.user, avatarURL: payload.avatarURL}
+      store.user = { ...store.user, avatarURL: payload.avatarURL };
     },
     [patchAvatar.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
-
+    [deleteFromFavorites.pending]: store => {
+      store.error = null;
+    },
+    [deleteFromFavorites.fulfilled]: (store, action) => {
+      store.loading = false;
+    },
+    [deleteFromFavorites.rejected]: (store, action) => {
+      store.error = action.payload;
+    },
+    [deleteNotice.pending]: store => {
+      store.error = null;
+    },
+    [deleteNotice.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.notices = store.notices.filter(({ _id }) => _id !== payload._id);
+    },
+    [deleteNotice.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
   },
 });
 

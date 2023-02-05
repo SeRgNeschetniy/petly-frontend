@@ -10,9 +10,9 @@ export const fetchNotices = createAsyncThunk(
       const { data } = await axios.get(
         `/notices/${categoryName}?page=${page}&limit=${limit}&query=${query}`
       );
-      console.log(data.notices);
+      // console.log(data.notices);
       // console.log(data.favorites);
-      console.log(data);
+      // console.log(data);
       return data.notices || data.favorites;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -43,41 +43,15 @@ export const addNewNotice = createAsyncThunk(
       return thunkApi.rejectWithValue(error.message);
     }
   }
-)
-
-// export const addToFavorite = createAsyncThunk(
-//   'notices/addFavorite',
-//   async (_id, thunkAPI) => {
-//     try {
-//       const tokenLS = thunkAPI.getState().auth.accessToken;
-//       setToken.set(tokenLS);
-//       await axios.patch(`/notices/user/${_id}/favorites`);
-//       return _id;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.request.status);
-//     }
-//   }
-// );
-
-// export const addToFavorite = createAsyncThunk(
-//   'notices/addToFavorite',
-//   async (_id, thunkApi) => {
-//     try {
-//       const response = await axios.post(`notices/${_id}/favorites`);
-//       console.log(response.data);
-//       return response.data;
-//     } catch (error) {
-//       return thunkApi.rejectWithValue(error.message);
-//     }
-//   }
-// );
+);
 
 export const deleteNotice = createAsyncThunk(
   'notices/deleteNotice',
   async (_id, thunkApi) => {
     try {
-      const response = await axios.delete(`/notices/${_id}`);
-      return response.data;
+      const { data } = await axios.delete(`/notices/${_id}`);
+      console.log(data);
+      return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
