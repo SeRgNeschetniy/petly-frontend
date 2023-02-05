@@ -83,19 +83,20 @@ position: absolute;
     height: 40px;
     padding: 10px 28px;
     border-radius: 40px;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, 
       border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     color: rgb(255, 255, 255);
     background-color: #f59256;
-    box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
     width: 100%;
+    
   
     &:hover,
     &:focus {
-      transition: box-shadow 250ms ease-out;
-      box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-      -webkit-box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-      -moz-box-shadow: 0px 0px 4px 2px rgba(245, 146, 86, 0.7);
+      transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      background-color:${theme.colors.mainBackground};
+      border: 2px solid ${theme.colors.accent};
+      color: #FF6101;
+      
     }
       @media screen and (min-width: 767px) {        
           max-width: 180px;
@@ -103,12 +104,16 @@ position: absolute;
           margin-left: 20px;
         }`  
   
+    //     box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
+    // 
+
+
   export const ButtonEmpty= styled.button`
   max-width: 240px;
   height: 40px;
   border-radius: 40px;
   background: #ffffff;
-  border: 2px solid #f59256;
+  border: 2px solid ${theme.colors.accent};
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -119,10 +124,10 @@ position: absolute;
 
   &:hover,
   &:focus {
-    transition: box-shadow 250ms ease-out;
-    box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-    -webkit-box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-    -moz-box-shadow: 0px 0px 4px 2px rgba(245, 146, 86, 0.7);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    background-color:${theme.colors.accent};
+      
+      color: ${theme.colors.mainBackground};
   }
   @media screen and (min-width: 767px) {    
       width: 180px;
@@ -181,6 +186,9 @@ position: absolute;
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover, &:focus {
+    border: 2px solid #FF6101;
+  }
   &::placeholder {
     font-size: 14px;
     color: ${theme.colors.gray};
@@ -205,6 +213,9 @@ position: absolute;
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover, &:focus {
+    border: 2px solid #FF6101;
+  }
   &::placeholder {
     font-size: 14px;
     color: ${theme.colors.gray};
@@ -268,7 +279,9 @@ position: absolute;
     margin-top: 20px;
     border: none;
     overflow: hidden;
-    
+    &:hover, &:focus {
+      border: 2px solid #FF6101;
+    }
     @media screen and (min-width: 767px) {
       
         width: 182px;
@@ -277,8 +290,20 @@ position: absolute;
   
   
 //   }
-  
-  export const CrossBig =styled.div`
+
+export const ErrMessagePhoto = styled.p`
+@extend .error_text_size;
+position: absolute;
+top: 85%;
+right: 32%;
+color: red;
+@media screen and (min-width: 767px) {
+  top: 82%;
+  right: 21%;
+}`
+
+
+export const CrossBig =styled.svg`
   position: absolute;
     top: 80px;
     right: 75px;
@@ -290,6 +315,19 @@ position: absolute;
         top: 65px;
         right: 63px;
       }` 
+  
+  // export const CrossBig =styled.div`
+  // position: absolute;
+  //   top: 80px;
+  //   right: 75px;
+  //   width: 45px;
+  //   height: 45px;
+  //   rotate: 45deg;
+  //   fill: lightgray;
+  //   @media screen and (min-width: 767px) {
+  //       top: 65px;
+  //       right: 63px;
+  //     }` 
       
   
   export const Label =styled.label`
@@ -323,6 +361,9 @@ position: absolute;
     margin-top: 8px;
     outline: none;
     resize: none;
+    &:hover, &:focus {
+      border: 2px solid #FF6101;
+    }
     @media screen and (min-width: 767px) {
               width: 394px;
         height: 116px;
