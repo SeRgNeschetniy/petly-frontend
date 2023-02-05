@@ -5,9 +5,9 @@ export default function UserPage() {
   // const loading = useSelector(isLoading)
   return (
     <Container>
-      <div>
+      
         <UserData></UserData>
-      </div>
+      
       <PetsData></PetsData>
     </Container>
   );
