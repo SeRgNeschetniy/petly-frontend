@@ -133,7 +133,19 @@ export const patchAvatar = createAsyncThunk(
          return data
          
         } catch (error) {
-            return thunkApi.rejectWithValue(error)
+         return thunkApi.rejectWithValue(error);
         }
     }
 );
+
+export const refreshToken = createAsyncThunk(
+  'users/refresh',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get('/users/refresh');
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+)
