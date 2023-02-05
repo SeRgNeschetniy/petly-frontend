@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Field, ErrorMessage, Form } from 'formik';
-import { theme } from '../../styles/theme';
+import { theme } from '../../../styles/theme';
 
 export const Container = styled.div`
   background-color: #ffffff;
@@ -349,8 +349,81 @@ export const Textarea = styled(Field)`
   }
 `;
 
-export const RadioWrapp = styled.div``;
+export const RadioWrapp = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: baseline;
+`;
 
-export const LabelRadioBtn = styled.label``;
+export const LabelRadioBtn = styled.label`
+  font-size: 14px;
+  margin-bottom: 12px;
+  padding: 10px 28px;
+  text-decoration: none;
+  background: ${theme.colors.white};
+  border: 2px solid ${theme.colors.accent};
+  border-radius: 40px;
+  align-items: center;
+  cursor: pointer;
 
-export const RadioBtn = styled(Field)``;
+  &:not(:last-child) {
+    margin-right: 12px;
+  }
+
+  &.active,
+  :hover,
+  :focus {
+    background: ${theme.colors.accent};
+    color: ${theme.colors.white};
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+`;
+
+export const RadioBtn = styled(Field)`
+  display: none;
+
+  :checked + label {
+    background: ${theme.colors.accent};
+    color: ${theme.colors.white};
+  }
+`;
+
+export const LabelRadioSexBtn = styled.label`
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  margin-bottom: 12px;
+  padding: 10px 28px;
+  text-decoration: none;
+  align-items: center;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 12px;
+  }
+
+  &.active,
+  :hover,
+  :focus {
+    color: ${theme.colors.accent};
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-bottom: 16px;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+`;
+
+export const RadioSexBtn = styled(Field)`
+  display: none;
+
+  :checked + label {
+    color: ${theme.colors.accent};
+  }
+`;

@@ -1,6 +1,6 @@
-import { Field, Formik } from 'formik';
+import { Formik } from 'formik';
 import { VscClose } from 'react-icons/vsc';
-import { pet } from '../../servises';
+import { notice } from '../../../servises';
 import {
   Container,
   ButtonClose,
@@ -49,30 +49,33 @@ const NoticeFirstForm = props => {
       </SubTitle>
       <FormWrapper>
         <Formik
-          validationSchema={pet.formOneValidationSchema}
+          validationSchema={notice.formOneValidationSchema}
           initialValues={props.data}
           onSubmit={handleSubmit}
         >
           {() => (
             <FormFirst>
               <RadioWrapp role="group" aria-labelledby="category-group">
-                <LabelRadioBtn>
-                  <RadioBtn type="radio" name="category" value="lost-found" />
-                  lost/found
-                </LabelRadioBtn>
-                <LabelRadioBtn>
-                  <RadioBtn type="radio" name="category" value="for-free" />
-                  in good hands
-                </LabelRadioBtn>
-                <LabelRadioBtn>
-                  <RadioBtn type="radio" name="category" value="sell" />
-                  sell
-                </LabelRadioBtn>
+                <RadioBtn
+                  id="lost-found"
+                  type="radio"
+                  name="category"
+                  value="lost-found"
+                />
+                <LabelRadioBtn for="lost-found">lost/found</LabelRadioBtn>
+                <RadioBtn
+                  id="for-free"
+                  type="radio"
+                  name="category"
+                  value="for-free"
+                />
+                <LabelRadioBtn for="for-free">in good hands</LabelRadioBtn>
+                <RadioBtn id="sell" type="radio" name="category" value="sell" />
+                <LabelRadioBtn for="sell">sell</LabelRadioBtn>
               </RadioWrapp>
               <Label htmlFor="titleAd">Title of ad</Label>
               <InputWrapper>
                 <Input id="titleAd" name="title" placeholder="Type title ad" />
-
                 <ErrMessage name="title" component="p" />
               </InputWrapper>
               <Label htmlFor="namePet">Name pet</Label>
@@ -80,7 +83,6 @@ const NoticeFirstForm = props => {
                 <Input id="namePet" name="name" placeholder="Type name pet" />
                 <ErrMessage name="name" component="p" />
               </InputWrapper>
-
               <Label htmlFor="dateOfBirth">Date of birth</Label>
               <InputWrapper>
                 <Input

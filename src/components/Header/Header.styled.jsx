@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.header`
   display: flex;
-  align-items: baseline;
+  /* align-items: center; */
   background-color: ${({ theme }) => theme.colors.mainBackground};
   padding-top: 16px;
   margin-bottom: 42px;

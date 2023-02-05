@@ -1,6 +1,12 @@
 import * as Yup from 'yup';
 
 export const formOneValidationSchema = Yup.object({
+  title: Yup.string()
+    .min(2, 'Too Short!')
+    .max(16, 'Too Long!')
+    .label('Name')
+    .required('Name is required')
+    .matches(/^[a-zA-Z\s]+?$/iu, 'Only Latin letters'),
   name: Yup.string()
     .min(2, 'Too Short!')
     .max(16, 'Too Long!')
@@ -34,9 +40,11 @@ export const formOneValidationSchema = Yup.object({
 });
 
 export const formTwoValidationSchema = Yup.object({
+  sex: Yup.string().required('Sex is required'),
   comments: Yup.string()
     .min(8, 'Too Short!')
     .label('Comment')
     .required('Comment is required'),
+  location: Yup.string().required('Location is required'),
   petImage: Yup.mixed().label('Pet image').required('Pet image is required'),
 });
