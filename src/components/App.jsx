@@ -47,13 +47,13 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <RestrictedRoute component={LoginPage} redirectTo="/news" />
+              <RestrictedRoute component={LoginPage} redirectTo="/user" />
             }
           />
           <Route
             path="/register"
             element={
-              <RestrictedRoute component={RegisterPage} redirectTo="/news" />
+              <RestrictedRoute component={RegisterPage} redirectTo="/user" />
             }
           />
           <Route path="/restore" element={<PasswordRecoveryForm />} />
