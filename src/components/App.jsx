@@ -15,6 +15,7 @@ import lazyPages from 'utils/lazyPages';
 import NoticesLayoutPage from 'pages/NoticesPage/NoticesLayoutPage';
 import NoticesFavorites from 'pages/NoticesPage/NoticesFavorites';
 import NoticesCategory from 'pages/NoticesPage/NoticesCategory';
+import NoticesOwn from 'pages/NoticesPage/NoticesOwn';
 
 const {
   //NoticesPage,
@@ -66,7 +67,7 @@ export const App = () => {
           <Route path="/friends" element={<FriendsPage />} />
           <Route path="/notices" element={<NoticesLayoutPage />}>
             <Route path="favorites" element={<NoticesFavorites />} />
-            {/* //<Route path="/own" element={<NoticesOwn />} /> */}
+            <Route path="/own" element={<NoticesOwn />} />
             <Route path=":categoryName" element={<NoticesCategory />} />
           </Route>
         </Route>
