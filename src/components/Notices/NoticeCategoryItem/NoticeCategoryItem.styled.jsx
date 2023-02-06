@@ -110,7 +110,7 @@ export const AddToFavoriteBtn = styled.button`
   justify-content: center;
   width: 44px;
   height: 44px;
-  ackdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   background-color: hsla(0, 0%, 100%, 0.6);
   position: absolute;
   top: 12px;
