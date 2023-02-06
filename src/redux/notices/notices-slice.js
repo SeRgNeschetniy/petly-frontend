@@ -98,7 +98,7 @@ const noticesSlice = createSlice({
       state.loading = false;
       state.error = null;
       state.favorites = state.favorites.filter(item => item !== payload);
-      state.notices = state.notices.filter(item => item._id !== payload);
+      //state.notices = state.notices.filter(item => item._id !== payload);
     },
     [deleteFromFavorites.rejected]: (state, { payload }) => {
       state.isLoading = false;

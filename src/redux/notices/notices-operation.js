@@ -13,8 +13,8 @@ export const fetchNotices = createAsyncThunk(
       );
       // console.log(data.notices);
       // console.log(data.favorites);
-      // console.log(data);
-      return data.notices || data.favorites;
+      //console.log(data);
+      return data.notices;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -114,7 +114,7 @@ export const addToFavorite = createAsyncThunk(
 );
 
 export const fetchFavoritesNotices = createAsyncThunk(
-  'notices/favorites',
+  'notices/fetchFavoritesNotices',
   async (_, thunkApi) => {
     try {
       const { data } = await axios.get(`/notices/favorites`);
