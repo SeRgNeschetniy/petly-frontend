@@ -157,7 +157,10 @@ export const addToFavorite = createAsyncThunk(
       const { auth } = getState();
       setToken(auth.token);
       const { data } = await axios.post(`/notices/${_id}/favorites`);
-      return data.favorites;
+
+      if (data.status === 200) {
+        return _id;
+      }
     } catch ({ responce }) {
       const error = {
         status: responce.status,

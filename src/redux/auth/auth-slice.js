@@ -111,10 +111,13 @@ const authSlice = createSlice({
     },
 
     [addToFavorite.pending]: store => {
+      store.isLoading = true;
       store.error = null;
     },
-    [addToFavorite.fulfilled]: (store, action) => {
+    [addToFavorite.fulfilled]: (store, { payload }) => {
       store.loading = false;
+      store.error = null;
+      store.user.favorites.push(payload);
     },
     [addToFavorite.rejected]: (store, action) => {
       store.error = action.payload;
@@ -133,12 +136,18 @@ const authSlice = createSlice({
       store.error = error;
     },
     [deleteFromFavorites.pending]: store => {
+      store.isLoading = true;
       store.error = null;
     },
-    [deleteFromFavorites.fulfilled]: (store, action) => {
+    [deleteFromFavorites.fulfilled]: (store, { payload }) => {
       store.loading = false;
+      store.error = null;
+      store.user.favorites = store.user.favorites.filter(
+        item => item !== payload
+      );
     },
     [deleteFromFavorites.rejected]: (store, action) => {
+      store.isLoading = false;
       store.error = action.payload;
     },
   },

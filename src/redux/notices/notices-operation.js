@@ -53,6 +53,7 @@ export const deleteNotice = createAsyncThunk(
       const data = await axios.delete(`/notices/${_id}`);
       // console.log(data);
       if (data.status === 200) {
+        console.log(_id);
         return _id;
       }
     } catch (error) {
