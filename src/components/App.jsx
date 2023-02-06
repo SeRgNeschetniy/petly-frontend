@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import SharedLayout from './SharedLayout';
 import PrivateRoute from './PrivateRoute';
+import MainPage from './MainPage/MainPage';
 // import RestrictedRoute from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
@@ -26,6 +27,7 @@ export const App = () => {
     !isLoading && (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
+          <Route index element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           {/*  <RestrictedRoute component={LoginPage} redirectTo="/news" /> */}
           <Route path="/register" element={<RegisterPage />} />
