@@ -10,6 +10,7 @@ import {
   SharedLayout,
   PasswordRecoveryForm,
 } from './components';
+import MainPage from './MainPageImages/MainPage';
 import lazyPages from 'utils/lazyPages';
 import NoticesLayoutPage from 'pages/NoticesPage/NoticesLayoutPage';
 import NoticesFavorites from 'pages/NoticesPage/NoticesFavorites';
@@ -38,6 +39,7 @@ export const App = () => {
     !isRefreshing && (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
+          <Route index element={<MainPage />} />
           <Route
             path="/login"
             element={
