@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { addToFavorite, deleteFromFavorites } from 'redux/notices/notices-operation';
@@ -28,7 +27,6 @@ export default function ReadMoreModal() {
   const handleAddClick = (e) => {
     if (isLoggedIn) {
       const cardId = e.target.id;
-      console.log(cardId);
       const result = favorites.find(favorite => favorite === cardId);
       if (result === cardId) {
         dispatch(deleteFromFavorites(cardId));
