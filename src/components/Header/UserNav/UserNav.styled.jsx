@@ -23,10 +23,9 @@ export const UserLinks = styled(NavLink)`
     height: 16px;
   }
 
-  :hover,
-  :focus {
-    color: ${({ theme }) => theme.colors.accent};
-    background-color: inherit;
+  &:hover,
+  &:focus {
+    background-color: #ff6101;
   }
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);

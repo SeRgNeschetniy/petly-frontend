@@ -89,9 +89,9 @@ export const AuthLinks = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.accent};
 
-  :hover,
-  :focus {
-    background-color: inherit;
+  &:hover,
+  &:focus {
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
   ${({ accent }) =>
@@ -100,7 +100,7 @@ export const AuthLinks = styled(NavLink)`
       color: white;
       background-color: #f59256;
       &:hover,
-      :focus {
+      &:focus {
         background-color: #ff6101;
       }
     `};

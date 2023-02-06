@@ -20,6 +20,7 @@ export const Container = styled.header`
 `;
 
 export const Logo = styled(LogoIcon)`
+  display: flex;
   width: 82px;
   height: 42px;
 
