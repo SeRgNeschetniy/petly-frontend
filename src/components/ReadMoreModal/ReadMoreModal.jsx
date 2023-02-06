@@ -12,9 +12,11 @@ import {
   TabletWrapper,
   TabletTextWrapper,
   ButtonWrapper,
-  ModalButton
+  ModalButton,
+  HeartIcon
 } from './ReadMoreModal.styled';
 import { Notify } from 'notiflix';
+import { AddButton } from 'components/UserPage/PetsData/PetsData.styled';
 
 export default function ReadMoreModal() {
 
@@ -80,8 +82,8 @@ export default function ReadMoreModal() {
         <Text>{comments}</Text>
       </ModalCommentWrapper>
       <ButtonWrapper>
-      <ModalButton>Contact</ModalButton>
-      <ModalButton id={_id} onClick={handleAddClick} outline noMargin>Add to</ModalButton>
+          <ModalButton>Contact</ModalButton>
+          <ModalButton icon id={_id} onClick={handleAddClick} outline noMargin>Add to<HeartIcon src={require('../../images/readModal/heart.png')}></HeartIcon></ModalButton>
       </ButtonWrapper>
       </ModalBackground>
     )
