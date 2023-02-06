@@ -35,7 +35,3 @@ export const Logo = styled(LogoIcon)`
     margin-right: 80px;
   }
 `;
-
-export const AccentText = styled.span`
-  color: ${({ theme }) => theme.colors.accent};
-`;
