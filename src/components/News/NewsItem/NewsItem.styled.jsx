@@ -2,23 +2,20 @@ import styled from 'styled-components';
 // import { theme } from 'styles/theme';
 
 export const Item = styled.li`
-  padding: 12px 4px;
+  // padding: 12px 4px;
 
-  width: 280px;
-  height: 300px;
-  margin-bottom: 60px;
+  
+  // margin-bottom: 60px;
 
-  @media screen and (max-width: 767px) {
-    margin-bottom: 60px;
-    width: 336px;
-    height: 276px;
-  }
+  // @media screen and (max-width: 767px) {
+  //   margin-bottom: 60px;
+    
+  // }
 
-  @media screen and (min-width: 768px) {
-    padding: 16px 4px;
-    width: 391px;
-    height: 192px;
-  }
+  // @media screen and (min-width: 768px) {
+  //   padding: 16px 4px;
+    
+  // }
 `;
 export const Border = styled.div`
 
@@ -26,16 +23,19 @@ export const Border = styled.div`
   height: 4px;
   background: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
   border-radius: 40px;
-  
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
 }
 @media screen and (min-width: 768px){
   width: 280px;
   height: 8px;
+  
 }
 @media screen and (min-width: 1280px){
     width: 340px;
     height: 8px;
+   
+    
 }
 
 `;
@@ -63,7 +63,7 @@ export const Wrapper = styled.p`
   
 
   color: #111321;
-  height: 176px;
+  
   margin-bottom: 20px;
   -webkit-line-clamp: 8;
   display: -webkit-box;
@@ -71,14 +71,19 @@ export const Wrapper = styled.p`
   overflow: hidden;
 
   @media screen and (min-width: 768px) {
- height: 132px;
+
   margin-bottom: 40px;
   -webkit-line-clamp: 6;
-
+display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   }
   @media screen and (min-width: 1280px) {
-     height: 110px;
+    
   -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   }
 `;
 export const Box = styled.div`
@@ -109,7 +114,7 @@ export const Link = styled.a`
   /* identical to box height */
 
   text-align: right;
-  text-decoration: none;
+  text-decoration: underline;
 
   /* Акцентный */
 
@@ -117,5 +122,6 @@ export const Link = styled.a`
   &:hover,
   &:focus {
     color: #f59256;
+    
   }
 `;

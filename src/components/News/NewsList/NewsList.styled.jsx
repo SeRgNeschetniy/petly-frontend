@@ -9,12 +9,12 @@ export const List = styled.ul`
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   grid-template-columns:  1fr 1fr;
-    gap: 32px 60px;
+    gap: 60px 33px;
 }
 
 @media screen and (min-width: 1280px) {
   grid-template-columns: 1fr 1fr 1fr;
-    gap: 32px;
+    gap: 60px 33px;
 }
 `;
 
