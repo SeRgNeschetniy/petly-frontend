@@ -18,6 +18,7 @@ import {
 const NoticesPage = () => {
   const { categoryName } = useParams();
 
+
   const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -46,6 +47,7 @@ const NoticesPage = () => {
   };
 
   return (
+    <>
     <Container>
       <Headline title={'Find your favorite pet'}></Headline>
       <NoticesSearch onSubmit={onFormSubmit} />
@@ -60,6 +62,7 @@ const NoticesPage = () => {
       {notices?.length > 0 && <NoticesCategoriesList route={categoryName} />}
       {error && <p>Ooops... Something went wrong</p>}
     </Container>
+    </>
   );
 };
 

@@ -26,7 +26,7 @@ export const fetchNoticeById = createAsyncThunk(
   async (_id, thunkApi) => {
     try {
       const response = await axios.get(`/notices/find/${_id}`);
-      return response.data.notices;
+      return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
