@@ -1,4 +1,3 @@
-import { Button } from 'components/Auth/Auth.styled';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectOneNotice } from 'redux/notices/notices-selectors';
@@ -11,7 +10,8 @@ import {
   ModalCommentWrapper,
   TabletWrapper,
   TabletTextWrapper,
-  ButtonWrapper
+  ButtonWrapper,
+  ModalButton
 } from './ReadMoreModal.styled';
 
 export default function ReadMoreModal() {
@@ -23,36 +23,36 @@ export default function ReadMoreModal() {
       <ModalBackground key={_id}>
         <TabletWrapper>
       <Image src={petImage} alt="" />
-      <TabletTextWrapper>
-      <h2>{title}</h2>
+        <TabletTextWrapper>
+          <h2>{title}</h2>
       <FieldText>
         <ModalTextWrapper>
-        <Text>Name:</Text>
-        <Text>{name}</Text>
+            <Text>Name:</Text>
+            <Text>{name}</Text>
         </ModalTextWrapper>
         <ModalTextWrapper>
-        <Text>Birthday:</Text>
-        <Text>{dateOfBirth}</Text>
+            <Text>Birthday:</Text>
+            <Text>{dateOfBirth}</Text>
         </ModalTextWrapper>
         <ModalTextWrapper>
-        <Text>Breed:</Text>
-        <Text>{breed}</Text>
+            <Text>Breed:</Text>
+            <Text>{breed}</Text>
         </ModalTextWrapper>
         <ModalTextWrapper>
-        <Text>Location:</Text>
-        <Text>{location}</Text>
+            <Text>Location:</Text>
+            <Text>{location}</Text>
         </ModalTextWrapper>
         <ModalTextWrapper>
-        <Text>The sex:</Text>
-        <Text>{sex}</Text>
+            <Text>The sex:</Text>
+            <Text>{sex}</Text>
         </ModalTextWrapper>
         <ModalTextWrapper>
-        <Text>Email:</Text>
-        <Text>{owner.email}</Text>
+            <Text>Email:</Text>
+            <Text>{owner.email}</Text>
         </ModalTextWrapper>
         <ModalTextWrapper>
-        <Text>Phone:</Text>
-        <Text>{owner.phone}</Text>
+            <Text>Phone:</Text>
+            <Text>{owner.phone}</Text>
         </ModalTextWrapper>
       </FieldText>
       </TabletTextWrapper>
@@ -62,8 +62,8 @@ export default function ReadMoreModal() {
         <Text>{comments}</Text>
       </ModalCommentWrapper>
       <ButtonWrapper>
-      <Button>Contact</Button>
-      <Button outline noMargin>Add to</Button>
+      <ModalButton>Contact</ModalButton>
+      <ModalButton outline noMargin>Add to</ModalButton>
       </ButtonWrapper>
       </ModalBackground>
     )
