@@ -25,7 +25,7 @@ import { deleteNotice } from 'redux/notices/notices-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   selectFavorites,
-  selectIsLoading,
+  // selectIsLoading,
 } from 'redux/notices/notices-selectors';
 
 const NoticeCategoryItem = ({ notice, route }) => {
@@ -48,7 +48,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
   const favorites = useSelector(selectFavorites);
   // console.log(favorites);
   const ownerId = useSelector(selectUserId);
-  const isFetchLoading = useSelector(selectIsLoading);
+  // const isFetchLoading = useSelector(selectIsLoading);
 
   // const onChangeFavorite = () => {
   //   if (isLoggedIn) {
@@ -130,9 +130,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
             </Text>
           )}
         </Wrapper>
-        <LearnMoreBtn id={id}>
-          Learn more
-        </LearnMoreBtn>
+        <LearnMoreBtn id={id}>Learn more</LearnMoreBtn>
         {ownerId === owner && (
           <DeleteBtn id={id} onClick={onDeleteNotice}>
             Delete
@@ -140,7 +138,6 @@ const NoticeCategoryItem = ({ notice, route }) => {
           </DeleteBtn>
         )}
       </Container>
-      
     </Item>
   );
 };
