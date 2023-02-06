@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 import { useAuth } from 'hooks/useAuth';
@@ -47,13 +47,13 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <RestrictedRoute component={LoginPage} redirectTo="/news" />
+              <RestrictedRoute component={LoginPage} redirectTo="/user" />
             }
           />
           <Route
             path="/register"
             element={
-              <RestrictedRoute component={RegisterPage} redirectTo="/news" />
+              <RestrictedRoute component={RegisterPage} redirectTo="/user" />
             }
           />
           <Route path="/restore" element={<PasswordRecoveryForm />} />
@@ -68,6 +68,7 @@ export const App = () => {
             <Route path="own" element={<NoticesOwn />} />
             <Route path=":categoryName" element={<NoticesCategory />} />
           </Route>
+          <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>
       </Routes>
     )

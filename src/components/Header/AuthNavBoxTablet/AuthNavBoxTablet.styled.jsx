@@ -10,7 +10,6 @@ export const Container = styled.nav`
     display: flex;
     align-items: center;
     gap: 12px;
-
     font-size: 20px;
     line-height: 1.35;
     letter-spacing: 0.04em;
@@ -36,23 +35,18 @@ export const AuthLinks = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.accent};
 
-  &:hover,
-  &:focus {
-    background-color: rgba(0, 0, 0, 0.2);
+  &.active {
+    color: white;
+    background-color: #f59256;
   }
-
-  ${({ accent }) =>
-    accent === 'true' &&
-    css`
-      color: white;
-      background-color: #f59256;
-      &:hover,
-      &:focus {
-        background-color: #ff6101;
-      }
-    `};
-
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &.active:hover {
+    background-color: #ff6101;
+  }
+  :hover:not(.active),
+  :focus-visible:not(.active) {
+    background-color: rgba(0, 0, 0, 0.07);
+    color: black;
+  }
 
   @media screen and (min-width: 768px) {
     padding: 8.5px 28px;

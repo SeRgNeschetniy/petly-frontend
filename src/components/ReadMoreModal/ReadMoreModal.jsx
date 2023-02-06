@@ -25,7 +25,6 @@ export default function ReadMoreModal({notice}) {
   const favorites = useSelector(selectFavorites);
   const dispatch = useDispatch();
 
-
   const handleAddClick = (e) => {
     if (isLoggedIn) {
       const cardId = e.target.id;

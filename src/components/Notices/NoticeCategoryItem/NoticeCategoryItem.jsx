@@ -130,7 +130,10 @@ const NoticeCategoryItem = ({ notice, route }) => {
             </Text>
           )}
         </Wrapper>
-        <LearnMoreBtn id={id}>Learn more</LearnMoreBtn>
+        <LearnMoreBtn readMore={id} id={id}>
+          Learn more
+        </LearnMoreBtn>
+
         {ownerId === owner && (
           <DeleteBtn id={id} onClick={onDeleteNotice}>
             Delete
