@@ -7,7 +7,10 @@ import AddNoticeButtonMobile from 'components/Notices/AddNoticeButton/AddNoticeB
 import { Container, Wrapper } from './NoticiesPage.styled';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchNotices } from 'redux/notices/notices-operation';
+import {
+  fetchFavoritesNotices,
+  fetchNotices,
+} from 'redux/notices/notices-operation';
 import { useParams, useSearchParams } from 'react-router-dom';
 import {
   selectNotices,
@@ -17,7 +20,6 @@ import {
 
 const NoticesPage = () => {
   const { categoryName } = useParams();
-
 
   const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
@@ -37,6 +39,9 @@ const NoticesPage = () => {
     } else {
       dispatch(fetchNotices({ categoryName }));
     }
+
+    dispatch(fetchFavoritesNotices());
+
     window
       .matchMedia('(min-width: 768px)')
       .addEventListener('change', e => setMatches(e.matches));
@@ -48,20 +53,20 @@ const NoticesPage = () => {
 
   return (
     <>
-    <Container>
-      <Headline title={'Find your favorite pet'}></Headline>
-      <NoticesSearch onSubmit={onFormSubmit} />
-      <Wrapper>
-        <NoticesCategoriesNav />
-        {matches && <AddNoticeButton />}
-      </Wrapper>
-      {!matches && <AddNoticeButtonMobile />}
-      {notices?.length === 0 && !isLoading && (
-        <p>List is empty! Try to add pet :)</p>
-      )}
-      {notices?.length > 0 && <NoticesCategoriesList route={categoryName} />}
-      {error && <p>Ooops... Something went wrong</p>}
-    </Container>
+      <Container>
+        <Headline title={'Find your favorite pet'}></Headline>
+        <NoticesSearch onSubmit={onFormSubmit} />
+        <Wrapper>
+          <NoticesCategoriesNav />
+          {matches && <AddNoticeButton />}
+        </Wrapper>
+        {!matches && <AddNoticeButtonMobile />}
+        {notices?.length === 0 && !isLoading && (
+          <p>List is empty! Try to add pet :)</p>
+        )}
+        {notices?.length > 0 && <NoticesCategoriesList route={categoryName} />}
+        {error && <p>Ooops... Something went wrong</p>}
+      </Container>
     </>
   );
 };

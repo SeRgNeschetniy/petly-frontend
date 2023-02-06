@@ -10,6 +10,8 @@ import { selectNotices } from 'redux/notices/notices-selectors';
 
 const NoticesCategoriesList = ({ route }) => {
   const notices = useSelector(selectNotices);
+  //const noticeFavoreite = useSelector(selectFaNotices);
+
   // const isLoggedIn = useSelector(selectIsLogin);
 
   return (

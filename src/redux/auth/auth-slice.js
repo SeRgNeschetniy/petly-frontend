@@ -110,18 +110,18 @@ const authSlice = createSlice({
       store.error = error;
     },
 
-    [addToFavorite.pending]: store => {
-      store.isLoading = true;
-      store.error = null;
-    },
-    [addToFavorite.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.error = null;
-      store.user.favorites.push(payload);
-    },
-    [addToFavorite.rejected]: (store, action) => {
-      store.error = action.payload;
-    },
+    // [addToFavorite.pending]: store => {
+    //   store.isLoading = true;
+    //   store.error = null;
+    // },
+    // [addToFavorite.fulfilled]: (store, { payload }) => {
+    //   store.loading = false;
+    //   store.error = null;
+    //   store.user.favorites.push(payload);
+    // },
+    // [addToFavorite.rejected]: (store, action) => {
+    //   store.error = action.payload;
+    // },
     [patchAvatar.pending](store) {
       store.isLoading = true;
       store.error = null;
@@ -135,21 +135,21 @@ const authSlice = createSlice({
       store.loading = false;
       store.error = error;
     },
-    [deleteFromFavorites.pending]: store => {
-      store.isLoading = true;
-      store.error = null;
-    },
-    [deleteFromFavorites.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.error = null;
-      store.user.favorites = store.user.favorites.filter(
-        item => item !== payload
-      );
-    },
-    [deleteFromFavorites.rejected]: (store, action) => {
-      store.isLoading = false;
-      store.error = action.payload;
-    },
+    // [deleteFromFavorites.pending]: store => {
+    //   store.isLoading = true;
+    //   store.error = null;
+    // },
+    // [deleteFromFavorites.fulfilled]: (store, { payload }) => {
+    //   store.loading = false;
+    //   store.error = null;
+    //   store.user.favorites = store.user.favorites.filter(
+    //     item => item !== payload
+    //   );
+    // },
+    // [deleteFromFavorites.rejected]: (store, action) => {
+    //   store.isLoading = false;
+    //   store.error = action.payload;
+    // },
   },
 });
 

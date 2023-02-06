@@ -53,7 +53,6 @@ export const deleteNotice = createAsyncThunk(
       const data = await axios.delete(`/notices/${_id}`);
       // console.log(data);
       if (data.status === 200) {
-        console.log(_id);
         return _id;
       }
     } catch (error) {
@@ -73,3 +72,58 @@ export const deleteNotice = createAsyncThunk(
 //     }
 //   }
 // );
+
+export const deleteFromFavorites = createAsyncThunk(
+  'notices/deleteFromFavorites',
+  async (_id, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      setToken(auth.token);
+      const data = await axios.delete(`/notices/${_id}/favorites/`);
+      if (data.status === 200) {
+        return _id;
+      }
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const addToFavorite = createAsyncThunk(
+  'notices/addFavorite',
+  async (_id, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      setToken(auth.token);
+      const data = await axios.post(`/notices/${_id}/favorites`);
+      if (data.status === 200) {
+        return _id;
+      }
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const fetchFavoritesNotices = createAsyncThunk(
+  'notices/favorites',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get(`/notices/favorites`);
+      const favorites = data.favorites.map(item => item._id.toString());
+      console.log(favorites);
+
+      return favorites;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

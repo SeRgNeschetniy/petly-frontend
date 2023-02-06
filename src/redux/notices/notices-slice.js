@@ -6,10 +6,12 @@ import {
   addNewNotice,
   addToFavorite,
   deleteFromFavorites,
+  fetchFavoritesNotices,
 } from './notices-operation';
 
 const initialState = {
   notices: [],
+  favorites: [],
   isLoading: false,
   error: null,
   oneNotice: [],
@@ -36,6 +38,15 @@ const noticesSlice = createSlice({
       state.notices = action.payload;
     },
     [fetchNotices.rejected]: handleRejected,
+
+    [fetchFavoritesNotices.pending]: handlePending,
+    [fetchFavoritesNotices.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.favorites = action.payload;
+    },
+    [fetchFavoritesNotices.rejected]: handleRejected,
+
     [fetchNoticeById.pending]: state => {
       state.isLoading = true;
       state.error = null;
@@ -64,6 +75,34 @@ const noticesSlice = createSlice({
     [addNewNotice.rejected](state, { payload }) {
       state.error = payload;
       state.isLoading = false;
+    },
+
+    [addToFavorite.pending]: state => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [addToFavorite.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.error = null;
+      state.favorites.push(payload);
+    },
+    [addToFavorite.rejected]: (state, { payload }) => {
+      state.error = payload;
+    },
+
+    [deleteFromFavorites.pending]: state => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [deleteFromFavorites.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.error = null;
+      state.favorites = state.favorites.filter(item => item !== payload);
+      state.notices = state.notices.filter(item => item._id !== payload);
+    },
+    [deleteFromFavorites.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
     },
   },
 });

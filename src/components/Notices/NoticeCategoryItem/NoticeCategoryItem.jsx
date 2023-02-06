@@ -16,7 +16,10 @@ import {
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAge } from 'shared/getAge';
-import { addToFavorite, deleteFromFavorites } from 'redux/auth/auth-operation';
+import {
+  addToFavorite,
+  deleteFromFavorites,
+} from 'redux/notices/notices-operation';
 import {
   selectIsFavorite,
   selectIsLogin,
@@ -28,8 +31,10 @@ import ReadMoreModal from 'components/ReadMoreModal/ReadMoreModal';
 import Modal from 'components/Modal/Modal';
 import useModal from 'hooks/modal';
 import { fetchNoticeById } from 'redux/notices/notices-operation';
-import { selectIsLoading } from 'redux/notices/notices-selectors';
-
+import {
+  selectFavorites,
+  selectIsLoading,
+} from 'redux/notices/notices-selectors';
 
 const NoticeCategoryItem = ({ notice, route }) => {
   const {
@@ -48,7 +53,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLogin);
-  const favorites = useSelector(selectIsFavorite);
+  const favorites = useSelector(selectFavorites);
   // console.log(favorites);
   const ownerId = useSelector(selectUserId);
   const isFetchLoading = useSelector(selectIsLoading);
@@ -77,16 +82,12 @@ const NoticeCategoryItem = ({ notice, route }) => {
   // console.log(age);
   const onAddToFavorite = e => {
     if (isLoggedIn) {
-      console.log('favorites', favorites);
       const cardId = e.currentTarget.id;
 
       const result = favorites.find(favorite => favorite === cardId);
-      console.log(result);
       if (result === cardId) {
-        console.log('On favorites');
         dispatch(deleteFromFavorites(cardId));
       } else {
-        console.log('NOT favorites');
         dispatch(addToFavorite(cardId));
       }
     } else Notify.warning('Sorry, you should to sing in');
@@ -98,12 +99,12 @@ const NoticeCategoryItem = ({ notice, route }) => {
     dispatch(deleteNotice(cardId));
   };
 
-  const handleMoreClick = async (id) => {
+  const handleMoreClick = async id => {
     dispatch(fetchNoticeById(id));
     if (!isFetchLoading) {
       openModal();
     }
-  }
+  };
   // const onDeleteFromFavorite = e => {
   //   const cardId = e.currentTarget.id;
 
@@ -139,7 +140,9 @@ const NoticeCategoryItem = ({ notice, route }) => {
             </Text>
           )}
         </Wrapper>
-        <LearnMoreBtn onClick={() => handleMoreClick(id)} >Learn more</LearnMoreBtn>
+        <LearnMoreBtn onClick={() => handleMoreClick(id)}>
+          Learn more
+        </LearnMoreBtn>
         {ownerId === owner && (
           <DeleteBtn id={id} onClick={onDeleteNotice}>
             Delete
@@ -147,9 +150,11 @@ const NoticeCategoryItem = ({ notice, route }) => {
           </DeleteBtn>
         )}
       </Container>
-      {isModalOpen && <Modal onCloseModal={closeModal}>
-      <ReadMoreModal onCloseModal={closeModal}/>
-      </Modal>}
+      {isModalOpen && (
+        <Modal onCloseModal={closeModal}>
+          <ReadMoreModal onCloseModal={closeModal} />
+        </Modal>
+      )}
     </Item>
   );
 };
