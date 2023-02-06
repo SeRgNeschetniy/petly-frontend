@@ -39,7 +39,7 @@ const noticesSlice = createSlice({
     },
     [fetchNotices.rejected]: handleRejected,
 
-    [fetchFavoritesNotices.pending]: handlePending,
+    //[fetchFavoritesNotices.pending]: handlePending,
     [fetchFavoritesNotices.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
@@ -77,7 +77,7 @@ const noticesSlice = createSlice({
       state.isLoading = false;
     },
 
-    [addToFavorite.pending]: handlePending,
+    // [addToFavorite.pending]: handlePending,
     [addToFavorite.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.error = null;
@@ -85,7 +85,7 @@ const noticesSlice = createSlice({
     },
     [addToFavorite.rejected]: handleRejected,
 
-    [deleteFromFavorites.pending]: handlePending,
+    // [deleteFromFavorites.pending]: handlePending,
     [deleteFromFavorites.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.error = null;
