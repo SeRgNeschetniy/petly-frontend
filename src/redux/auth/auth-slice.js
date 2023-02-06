@@ -4,9 +4,7 @@ import {
   logout,
   current,
   restorePassword,
-  addToFavorite,
   patchAvatar,
-  deleteFromFavorites,
   refreshToken,
 } from './auth-operation';
 
