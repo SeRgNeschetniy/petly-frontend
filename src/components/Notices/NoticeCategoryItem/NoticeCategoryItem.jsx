@@ -64,17 +64,20 @@ const NoticeCategoryItem = ({ notice, route }) => {
   const age = difOfAge(birthday);
   // console.log(age);
   const onAddToFavorite = e => {
-    const cardId = e.currentTarget.id;
-    // console.log(cardId);
-    const result = favorites.find(favorite => favorite._id === cardId);
-    // console.log(result._id);
-    if (result._id === cardId) {
-      isLoggedIn
-        ? dispatch(addToFavorite(cardId))
-        : Notify.warning('Sorry, you should to sing in');
-    } else {
-      dispatch(deleteFromFavorites(cardId));
-    }
+    if (isLoggedIn) {
+      console.log('favorites', favorites);
+
+      const cardId = e.currentTarget.id;
+      const result = favorites.find(favorite => favorite._id === cardId);
+      console.log(result._id);
+      if (result._id === cardId) {
+        console.log('On favorites');
+        dispatch(deleteFromFavorites(cardId));
+      } else {
+        console.log('NOT favorites');
+        dispatch(addToFavorite(cardId));
+      }
+    } else Notify.warning('Sorry, you should to sing in');
   };
 
   const onDeleteNotice = e => {

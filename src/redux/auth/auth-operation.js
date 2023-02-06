@@ -107,29 +107,24 @@ export const restorePassword = createAsyncThunk(
   }
 );
 
-export const addToFavorite = createAsyncThunk(
-  'notices/addFavorite',
-  async (_id, { rejectWithValue, getState }) => {
-    try {
-      const { auth } = getState();
-      setToken(auth.token);
-      const { data } = await axios.post(`/notices/${_id}/favorites`);
-      return data.favorites;
-    } catch ({ responce }) {
-      const error = {
-        status: responce.status,
-        message: responce.data.message,
-      };
-      return rejectWithValue(error);
-    }
-  }
-);
 export const patchAvatar = createAsyncThunk(
   'users/avatar',
   async (newdata, thunkApi) => {
     try {
       const { data } = await axios.patch(`/users/avatar`, newdata);
       console.log(data);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
+export const refreshToken = createAsyncThunk(
+  'users/refresh',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get('/users/refresh');
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -155,14 +150,20 @@ export const deleteFromFavorites = createAsyncThunk(
   }
 );
 
-export const refreshToken = createAsyncThunk(
-  'users/refresh',
-  async (_, thunkApi) => {
+export const addToFavorite = createAsyncThunk(
+  'notices/addFavorite',
+  async (_id, { rejectWithValue, getState }) => {
     try {
-      const { data } = await axios.get('/users/refresh');
-      return data;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      const { auth } = getState();
+      setToken(auth.token);
+      const { data } = await axios.post(`/notices/${_id}/favorites`);
+      return data.favorites;
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
     }
   }
 );

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { setToken } from 'redux/auth/auth-operation';
 
 // axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
@@ -60,14 +61,14 @@ export const deleteNotice = createAsyncThunk(
   }
 );
 
-export const deleteFromFavorites = createAsyncThunk(
-  'notices/deleteFromFavorites',
-  async (_id, thunkApi) => {
-    try {
-      const response = await axios.delete(`/notices/${_id}/favorites/`);
-      return response.data.notices;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
+// export const deleteFromFavorites = createAsyncThunk(
+//   'notices/deleteFromFavorites',
+//   async (_id, thunkApi) => {
+//     try {
+//       const response = await axios.delete(`/notices/${_id}/favorites/`);
+//       return response.data.notices;
+//     } catch (error) {
+//       return thunkApi.rejectWithValue(error.message);
+//     }
+//   }
+// );

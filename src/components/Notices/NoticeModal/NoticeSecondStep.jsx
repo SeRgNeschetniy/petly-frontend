@@ -3,7 +3,6 @@ import { Formik } from 'formik';
 import { notice } from '../../../servises';
 import { VscClose } from 'react-icons/vsc';
 
-import { TfiClose } from 'react-icons/tfi';
 import {
   Container,
   ButtonClose,
@@ -34,6 +33,7 @@ import { addNewNotice } from 'redux/notices/notices-operation';
 
 import { MdMale } from 'react-icons/md';
 import { MdFemale } from 'react-icons/md';
+import { IoAdd } from 'react-icons/io5';
 
 export const NoticeSecondForm = props => {
   const [img, setImg] = useState(null);
@@ -113,12 +113,24 @@ export const NoticeSecondForm = props => {
               </RadioWrapp>
               <Label htmlFor="location">Location*:</Label>
               <InputWrapper>
-                <Input name="location" placeholder="Type location" />
+                <Input
+                  id="location"
+                  name="location"
+                  onChange={handleChange}
+                  value={values.location}
+                  placeholder="Type location"
+                />
                 <ErrMessage name="location" component="p" />
               </InputWrapper>
               <Label htmlFor="price">Price*:</Label>
               <InputWrapper>
-                <Input name="price" placeholder="Type price" />
+                <Input
+                  id="price"
+                  name="price"
+                  onChange={handleChange}
+                  value={values.price}
+                  placeholder="Type price"
+                />
 
                 <ErrMessage name="price" component="p" />
               </InputWrapper>
@@ -126,7 +138,7 @@ export const NoticeSecondForm = props => {
               <ButtonAddPhoto type="button">
                 {!img ? (
                   <CrossBig>
-                    <TfiClose size={40} />
+                    <IoAdd size={60} />
                   </CrossBig>
                 ) : (
                   <AvatarImg src={img} alt="Pet Image" />

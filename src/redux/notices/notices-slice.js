@@ -4,6 +4,8 @@ import {
   fetchNoticeById,
   deleteNotice,
   addNewNotice,
+  addToFavorite,
+  deleteFromFavorites,
 } from './notices-operation';
 
 const initialState = {

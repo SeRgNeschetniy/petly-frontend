@@ -66,7 +66,6 @@ export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 40px;
   @media screen and (min-width: 767px) {
     flex-direction: row-reverse;
     justify-content: center;
@@ -166,26 +165,20 @@ export const FormSecond = styled(Form)`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 20px;
   margin-bottom: 20px;
 `;
 
 export const InputWrapper = styled.div`
   position: relative;
-  margin-top: 8px;
   margin-bottom: 16px;
   @media screen and (min-width: 767px) {
-    margin-top: 12px;
     margin-bottom: 28px;
   }
 `;
 
 export const InputWrapperLast = styled.div`
   position: relative;
-  margin-top: 8px;
-  @media screen and (min-width: 767px) {
-    margin-top: 12px;
-  }
+  margin-bottom: 40px;
 `;
 
 export const Input = styled(Field)`
@@ -267,12 +260,11 @@ export const AvatarImg = styled.img`
 `;
 
 export const Text = styled.p`
-  text-align: center;
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-bottom: 40px;
+
   @media screen and (min-width: 767px) {
     font-size: 20px;
     font-weight: 500;
@@ -280,42 +272,36 @@ export const Text = styled.p`
 `;
 
 export const ButtonAddPhoto = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  width: 208px;
-  height: 208px;
+  width: 116px;
+  height: 116px;
   background: ${theme.colors.mainBackground};
   border-radius: 20px;
-  margin: auto;
-  margin-top: 20px;
   border: none;
   overflow: hidden;
+  margin-bottom: 28px;
+  cursor: pointer;
 
   @media screen and (min-width: 767px) {
-    width: 182px;
-    height: 182px;
+    width: 140px;
+    height: 140px;
   }
 `;
 
-//   }
-
 export const CrossBig = styled.div`
   position: absolute;
-  top: 80px;
-  right: 75px;
-  width: 45px;
-  height: 45px;
-  rotate: 45deg;
-  fill: lightgray;
-  @media screen and (min-width: 767px) {
-    top: 65px;
-    right: 63px;
-  }
+  top: 50%;
+  transform: translate(0, -50%);
 `;
 
 export const Label = styled.label`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
+  margin-bottom: 12px;
   @media screen and (min-width: 767px) {
     font-size: 24px;
     line-height: 26px;
@@ -326,10 +312,7 @@ export const WraperTextarea = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
-  @media screen and (min-width: 767px) {
-    margin-top: 40px;
-  }
+  margin-bottom: 40px;
 `;
 
 export const Textarea = styled(Field)`
@@ -339,7 +322,6 @@ export const Textarea = styled(Field)`
   background: ${theme.colors.mainBackground};
   border: 1px solid ${theme.colors.accent};
   border-radius: 20px;
-  margin-top: 8px;
   outline: none;
   resize: none;
   @media screen and (min-width: 767px) {
