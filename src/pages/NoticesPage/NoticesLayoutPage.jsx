@@ -1,6 +1,5 @@
 import NoticesSearch from 'components/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
-import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import Headline from 'components/Headline/Headline';
 import AddNoticeButton from 'components/Notices/AddNoticeButton/AddNoticeButton';
 import AddNoticeButtonMobile from 'components/Notices/AddNoticeButton/AddNoticeButtonMobile';
@@ -13,7 +12,7 @@ import {
 } from 'redux/notices/notices-operation';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
 import {
-  selectNotices,
+  // selectNotices,
   selectIsLoading,
   selectError,
 } from 'redux/notices/notices-selectors';
@@ -21,7 +20,7 @@ import {
 const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
 
-  const notices = useSelector(selectNotices);
+  // const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 

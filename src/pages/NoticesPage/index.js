@@ -1,1 +1,1 @@
-export { default } from './NoticesCategory';
+export { default } from './NoticesLayoutPage';

@@ -21,7 +21,7 @@ import {
   deleteFromFavorites,
 } from 'redux/notices/notices-operation';
 import {
-  selectIsFavorite,
+  //  selectIsFavorite,
   selectIsLogin,
   selectUserId,
 } from 'redux/auth/auth-selectors';

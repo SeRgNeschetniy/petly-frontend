@@ -17,7 +17,7 @@ import NoticesFavorites from 'pages/NoticesPage/NoticesFavorites';
 import NoticesCategory from 'pages/NoticesPage/NoticesCategory';
 
 const {
-  NoticesPage,
+  //NoticesPage,
   FriendsPage,
   NewsPage,
   RegisterPage,

@@ -1,10 +1,10 @@
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 import { List } from './NoticesCategoriesList.styled';
-import {
-  useSelector,
-  // useDispatch
-} from 'react-redux';
-import { selectNotices } from 'redux/notices/notices-selectors';
+// import {
+//   //useSelector,
+//   // useDispatch
+// } from 'react-redux';
+//import { selectNotices } from 'redux/notices/notices-selectors';
 // import { deleteNotice } from 'redux/notices/notices-operation';
 // import { selectIsLogin } from 'redux/auth/auth-selectors';
 

@@ -1,6 +1,5 @@
 import { NoticesCategoriesList } from 'components/components';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import {
   selectFavorites,
   selectIsLoading,
