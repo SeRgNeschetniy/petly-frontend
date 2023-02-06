@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { selectOneNotice } from 'redux/notices/notices-selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLogin } from 'redux/auth/auth-selectors';
+import { addToFavorite, deleteFromFavorites } from 'redux/notices/notices-operation';
+import { selectOneNotice, selectFavorites } from 'redux/notices/notices-selectors';
 import {
   ModalBackground,
   Image,
@@ -13,10 +15,28 @@ import {
   ButtonWrapper,
   ModalButton
 } from './ReadMoreModal.styled';
+import { Notify } from 'notiflix';
 
 export default function ReadMoreModal() {
 
   const oneNotice = useSelector(selectOneNotice);
+  const isLoggedIn = useSelector(selectIsLogin);
+  const favorites = useSelector(selectFavorites);
+  const dispatch = useDispatch();
+
+
+  const handleAddClick = (e) => {
+    if (isLoggedIn) {
+      const cardId = e.target.id;
+      console.log(cardId);
+      const result = favorites.find(favorite => favorite === cardId);
+      if (result === cardId) {
+        dispatch(deleteFromFavorites(cardId));
+      } else {
+        dispatch(addToFavorite(cardId));
+      }
+    } else Notify.warning('Sorry, you should to sing in');
+  };
 
   const elements = oneNotice.map(({ _id, title, name, dateOfBirth, breed, location, petImage, price, sex, updatedAt, comments, owner }) => {
     return (
@@ -63,7 +83,7 @@ export default function ReadMoreModal() {
       </ModalCommentWrapper>
       <ButtonWrapper>
       <ModalButton>Contact</ModalButton>
-      <ModalButton outline noMargin>Add to</ModalButton>
+      <ModalButton id={_id} onClick={handleAddClick} outline noMargin>Add to</ModalButton>
       </ButtonWrapper>
       </ModalBackground>
     )
