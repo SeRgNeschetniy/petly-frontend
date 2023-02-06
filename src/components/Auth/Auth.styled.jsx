@@ -78,7 +78,7 @@ export const Button = styled.button`
   font-size: ${theme.fontSizes.large};
   border: ${props => props.outline ? `2px solid ${theme.colors.accent}` : `2px solid ${theme.colors.accent}`};
   background-color: ${props => props.outline ? "white" : `${theme.colors.accent}`};
-  margin-bottom: 20px;
+  margin-bottom: ${props => props.noMargin ? "0" : "20px"};
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover, &:focus {
     background-color: #FF6101;
