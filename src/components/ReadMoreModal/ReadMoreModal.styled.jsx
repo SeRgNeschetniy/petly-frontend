@@ -36,7 +36,7 @@ export const ModalCommentWrapper = styled.div`
 `;
 
 export const Text = styled.p`
-  width: 35%;
+  width: 50%;
   &:not(:last-child) {
     amrgin-bottom: 8px;
   }
