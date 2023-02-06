@@ -2,26 +2,22 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { NavLink } from 'react-router-dom';
 
-// const switchStyle = css`
-//   color: black;
-//   background-color: green;
-//   :hover {
-//     color: black;
-//     background: blue;
-//   }
-// `;
+const body = document.body;
+const showScroll = active => {
+  body.style.overflowY = active ? 'hidden' : 'visible';
+};
+
 export const Container = styled.nav`
   display: flex;
   flex-direction: column;
 
   position: absolute;
-  left: 0;
-
   margin-top: 42px;
   padding-top: 42px;
 
-  width: 100vw;
-  height: 100vh;
+  max-width: none;
+  width: 100%;
+  height: 100%;
 
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.mainBackground};
@@ -32,12 +28,16 @@ export const Container = styled.nav`
 
   z-index: 10;
 
-  ${({ active }) =>
-    active &&
-    css`
-      opacity: 1;
-      pointer-events: auto;
-    `}
+  ${({ active }) => {
+    showScroll(active);
+    return (
+      active &&
+      css`
+        opacity: 1;
+        pointer-events: auto;
+      `
+    );
+  }}
 
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -91,7 +91,7 @@ export const AuthLinks = styled(NavLink)`
 
   &:hover,
   &:focus {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.07);
   }
 
   ${({ accent }) =>

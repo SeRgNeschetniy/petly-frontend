@@ -10,7 +10,6 @@ export const Container = styled.nav`
     display: flex;
     align-items: center;
     gap: 12px;
-
     font-size: 20px;
     line-height: 1.35;
     letter-spacing: 0.04em;
