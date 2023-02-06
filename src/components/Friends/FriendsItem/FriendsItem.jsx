@@ -23,7 +23,6 @@ const FriendsItem = ({
     <Item>
       <a href={url} target="_blank" rel="noopener noreferrer">
         <Heading>{title}</Heading>
-        
       </a>
 
       <InfoWrapper>
@@ -36,7 +35,7 @@ const FriendsItem = ({
         <TextList>
           <TextField>
             Time: <br />
-            {workDays ? (
+            {workDays?.length > 0 ? (
               <WorkHours workDays={workDays} />
             ) : (
               <span>-------------</span>

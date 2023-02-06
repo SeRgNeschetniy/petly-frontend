@@ -3,7 +3,7 @@ import FriendsItem from '../FriendsItem/FriendsItem';
 
 import { List } from './FriendsList.styled';
 
-const FriendsList = ({ friends }) => {
+const FriendsList = ({ friends = [] }) => {
   if (friends.length < 1) {
     return <p>Something went wrong...</p>;
   }
