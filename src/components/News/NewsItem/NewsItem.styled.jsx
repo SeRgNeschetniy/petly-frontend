@@ -23,7 +23,7 @@ export const Border = styled.div`
   height: 4px;
   background: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
   border-radius: 40px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  
 
 }
 @media screen and (min-width: 768px){
@@ -44,7 +44,7 @@ export const Heading = styled.h3`
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
-
+  line-height: 1.37;
   color: #111111;
     margin-top: 4px;
   margin-bottom: 16px;
@@ -59,7 +59,7 @@ export const Wrapper = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 1.37;
   
 
   color: #111321;
@@ -112,7 +112,7 @@ export const Link = styled.a`
   font-size: 16px;
   line-height: 22px;
   /* identical to box height */
-
+line-height: 1.37;
   text-align: right;
   text-decoration: underline;
 
