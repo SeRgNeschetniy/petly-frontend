@@ -91,7 +91,7 @@ export const AuthLinks = styled(NavLink)`
 
   :hover,
   :focus {
-    background-color: inherit;
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
   ${({ accent }) =>
