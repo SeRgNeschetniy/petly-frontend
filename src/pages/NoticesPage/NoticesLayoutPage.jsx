@@ -16,6 +16,7 @@ import {
   selectIsLoading,
   selectError,
   selectNotices,
+  selectFavorites,
 } from 'redux/notices/notices-selectors';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import useModal from 'hooks/modal';
@@ -29,6 +30,7 @@ const NoticesLayoutPage = () => {
   const isLoggedIn = useSelector(selectIsLogin);
   const error = useSelector(selectError);
   const notices = useSelector(selectNotices);
+  const favorites = useSelector(selectFavorites);
   const { isModalOpen, closeModal, openModal } = useModal();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -60,12 +62,15 @@ const NoticesLayoutPage = () => {
   };
 
   const handleMoreClick = (e) => {
-    if (e.target.id) {
-      const result =  notices.filter(item => item._id === e.target.id);
-      setOneNotice(result);
-      if (result) {
-        openModal();
+    if (e.target.textContent === "Learn more") {
+      if (notices.length > 0) {
+        const result = notices.filter(item => item._id === e.target.id);
+        setOneNotice(result);
+      } else {
+        const resultFavorites = favorites.filter(item => item._id === e.target.id);
+        setOneNotice(resultFavorites);
       }
+        openModal();
     }
   };
 

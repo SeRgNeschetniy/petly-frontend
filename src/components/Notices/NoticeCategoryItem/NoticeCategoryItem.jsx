@@ -130,7 +130,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
             </Text>
           )}
         </Wrapper>
-        <LearnMoreBtn id={id}>
+        <LearnMoreBtn readMore={id} id={id}>
           Learn more
         </LearnMoreBtn>
         {ownerId === owner && (
