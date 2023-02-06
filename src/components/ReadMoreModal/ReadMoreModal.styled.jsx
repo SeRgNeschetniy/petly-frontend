@@ -36,6 +36,7 @@ export const ModalCommentWrapper = styled.div`
 `;
 
 export const Text = styled.p`
+  width: 50%;
   &:not(:last-child) {
     amrgin-bottom: 8px;
   }
@@ -56,9 +57,39 @@ export const TabletTextWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   @media(min-width: 768px) {
     display:flex;
-    width: 352px;
-    margin-left: auto;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+`;
+
+export const ModalButton = styled.button`
+  position: relative;
+  padding: 9px 87px;
+  border-radius: 40px;
+  background-color: ${theme.colors.accent};
+  background-color: ${props => props.outline ? "white" : `${theme.colors.accent}`};
+  border: 2px solid ${theme.colors.accent};
+  @media (max-width: 767px) {
+    &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+  }
+  @media (min-width: 768px) {
+  padding: 9px 45px;
+  &:not(:last-child) {
+    margin-right: 12px;
+  }
+  }
+  &:hover, &:focus {
+    background-color: ${props => props.outline ? `${ theme.colors.accent }` : "#FF6101"};
+    border: 2px solid ${props => props.outline ? `${theme.colors.accent}` : "#FF6101"};
+  }
+  &::before{
+    position: absolute;
+    background-image: ;
   }
 `;
