@@ -2,7 +2,7 @@ import NewsSerch from 'components/News/NewsSerch/NewsSerch';
 import Headline from 'components/Headline/Headline';
 import { useEffect, useState } from 'react';
 import NewsList from 'components/News/NewsList/NewsList';
-
+import Container from './NewsPage.styled'
 const { REACT_APP_BASE_URL } = process.env;
 
 const fetchNews = async () => {
@@ -37,9 +37,11 @@ const NewsPage = () => {
   };
   return (
     <>
+       <Container>
       <Headline title={'News'}></Headline>
       <NewsSerch onSearch={onSearch} />
-      <NewsList News={filteredNews} />
+        <NewsList News={filteredNews} />
+        </Container>
     </>
   );
 };
