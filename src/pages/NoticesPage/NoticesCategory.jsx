@@ -20,7 +20,7 @@ const NoticesCategory = () => {
       {!isLoading && (
         <NoticesCategoriesList route={categoryName} notices={notices} />
       )}
-      {!isLoading && <Loader />}
+      {isLoading && <Loader />}
     </>
   );
 };

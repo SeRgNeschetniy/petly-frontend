@@ -18,7 +18,7 @@ const NoticesFavorites = () => {
       {!isLoading && (
         <NoticesCategoriesList route="favorites" notices={notices} />
       )}
-      {!isLoading && <Loader />}
+      {isLoading && <Loader />}
     </>
   );
 };
