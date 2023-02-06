@@ -15,7 +15,6 @@ export const Container = styled.nav`
   margin-top: 42px;
   padding-top: 42px;
 
-  max-width: none;
   width: 100%;
   height: 100%;
 
