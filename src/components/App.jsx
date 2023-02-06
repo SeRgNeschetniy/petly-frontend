@@ -12,9 +12,12 @@ import {
 } from './components';
 import MainPage from './MainPageImages/MainPage';
 import lazyPages from 'utils/lazyPages';
+import NoticesLayoutPage from 'pages/NoticesPage/NoticesLayoutPage';
+import NoticesFavorites from 'pages/NoticesPage/NoticesFavorites';
+import NoticesCategory from 'pages/NoticesPage/NoticesCategory';
 
 const {
-  NoticesPage,
+  //NoticesPage,
   FriendsPage,
   NewsPage,
   RegisterPage,
@@ -61,8 +64,11 @@ export const App = () => {
           <Route path="/news" element={<NewsPage />} />
 
           <Route path="/friends" element={<FriendsPage />} />
-
-          <Route path="/notices/:categoryName" element={<NoticesPage />} />
+          <Route path="/notices" element={<NoticesLayoutPage />}>
+            <Route path="favorites" element={<NoticesFavorites />} />
+            {/* //<Route path="/own" element={<NoticesOwn />} /> */}
+            <Route path=":categoryName" element={<NoticesCategory />} />
+          </Route>
         </Route>
       </Routes>
     )

@@ -1,6 +1,5 @@
 import NoticesSearch from 'components/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
-import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import Headline from 'components/Headline/Headline';
 import AddNoticeButton from 'components/Notices/AddNoticeButton/AddNoticeButton';
 import AddNoticeButtonMobile from 'components/Notices/AddNoticeButton/AddNoticeButtonMobile';
@@ -11,17 +10,17 @@ import {
   fetchFavoritesNotices,
   fetchNotices,
 } from 'redux/notices/notices-operation';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { Outlet, useParams, useSearchParams } from 'react-router-dom';
 import {
-  selectNotices,
+  // selectNotices,
   selectIsLoading,
   selectError,
 } from 'redux/notices/notices-selectors';
 
-const NoticesPage = () => {
+const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
 
-  const notices = useSelector(selectNotices);
+  // const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
@@ -61,14 +60,12 @@ const NoticesPage = () => {
           {matches && <AddNoticeButton />}
         </Wrapper>
         {!matches && <AddNoticeButtonMobile />}
-        {notices?.length === 0 && !isLoading && (
-          <p>List is empty! Try to add pet :)</p>
-        )}
-        {notices?.length > 0 && <NoticesCategoriesList route={categoryName} />}
+        {!isLoading && <Outlet />}
+        {isLoading && <p>...loading</p>}
         {error && <p>Ooops... Something went wrong</p>}
       </Container>
     </>
   );
 };
 
-export default NoticesPage;
+export default NoticesLayoutPage;

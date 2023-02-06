@@ -13,8 +13,8 @@ export const fetchNotices = createAsyncThunk(
       );
       // console.log(data.notices);
       // console.log(data.favorites);
-      //console.log(data);
-      return data.notices;
+      console.log('DATA', data);
+      return data.notices || data.favorites;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -99,10 +99,10 @@ export const addToFavorite = createAsyncThunk(
     try {
       const { auth } = getState();
       setToken(auth.token);
-      const data = await axios.post(`/notices/${_id}/favorites`);
-      if (data.status === 200) {
-        return _id;
-      }
+
+      const { data } = await axios.post(`/notices/${_id}/favorites`);
+
+      return data.notices;
     } catch ({ responce }) {
       const error = {
         status: responce.status,
@@ -118,10 +118,10 @@ export const fetchFavoritesNotices = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await axios.get(`/notices/favorites`);
-      const favorites = data.favorites.map(item => item._id.toString());
-      console.log(favorites);
+      //const favorites = data.favorites.map(item => item._id.toString());
+      //console.log(data.favorites);
 
-      return favorites;
+      return data.favorites;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
