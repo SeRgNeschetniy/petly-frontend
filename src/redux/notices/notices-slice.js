@@ -12,6 +12,7 @@ const initialState = {
   notices: [],
   isLoading: false,
   error: null,
+  oneNotice: [],
 };
 
 const handlePending = state => {
