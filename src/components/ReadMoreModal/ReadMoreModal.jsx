@@ -16,7 +16,6 @@ import {
   HeartIcon
 } from './ReadMoreModal.styled';
 import { Notify } from 'notiflix';
-import { AddButton } from 'components/UserPage/PetsData/PetsData.styled';
 
 export default function ReadMoreModal() {
 

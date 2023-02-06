@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchFavoritesNotices,
+  fetchNoticeById,
   fetchNotices,
 } from 'redux/notices/notices-operation';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
@@ -15,11 +16,17 @@ import {
   // selectNotices,
   selectIsLoading,
   selectError,
+  selectOneNotice,
 } from 'redux/notices/notices-selectors';
+import useModal from 'hooks/modal';
+import Modal from 'components/Modal/Modal';
+import ReadMoreModal from 'components/ReadMoreModal/ReadMoreModal';
+
 
 const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
-
+  const { isModalOpen, closeModal, openModal } = useModal();
+  const isOneNotice = useSelector(selectOneNotice);
   // const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -50,6 +57,18 @@ const NoticesLayoutPage = () => {
     setSearchParams({ query: searchQuery });
   };
 
+  const handleMoreClick = (e) => {
+    console.log(e.target.id);
+    dispatch(fetchNoticeById(e.target.id));
+    console.log(!isOneNotice);
+    if (isOneNotice.length) {
+      openModal();
+    }
+    };
+  
+  window.addEventListener('click', handleMoreClick);
+
+
   return (
     <>
       <Container>
@@ -61,6 +80,11 @@ const NoticesLayoutPage = () => {
         </Wrapper>
         {!matches && <AddNoticeButtonMobile />}
         {!isLoading && <Outlet />}
+        {isModalOpen && (
+        <Modal onCloseModal={closeModal}>
+          <ReadMoreModal onCloseModal={closeModal} />
+        </Modal>
+      )}
         {isLoading && <p>...loading</p>}
         {error && <p>Ooops... Something went wrong</p>}
       </Container>
