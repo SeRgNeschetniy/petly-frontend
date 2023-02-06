@@ -1,4 +1,4 @@
-import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
+import NoticeCategoryItem from '../../Notices/NoticeCategoryItem/NoticeCategoryItem';
 import { List } from './NoticesCategoriesList.styled';
 // import {
 //   //useSelector,
