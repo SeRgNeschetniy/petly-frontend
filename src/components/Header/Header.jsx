@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <Container>
-      <Logo to={'/'}>
+      <Logo>
         pe<AccentText>t</AccentText>ly
       </Logo>
 
