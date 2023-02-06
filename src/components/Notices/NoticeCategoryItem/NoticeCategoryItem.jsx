@@ -84,8 +84,9 @@ const NoticeCategoryItem = ({ notice, route }) => {
     if (isLoggedIn) {
       const cardId = e.currentTarget.id;
 
-      const result = favorites.find(favorite => favorite === cardId);
-      if (result === cardId) {
+      const result = favorites.filter(favorite => favorite._id === cardId);
+
+      if (result.length > 0) {
         dispatch(deleteFromFavorites(cardId));
       } else {
         dispatch(addToFavorite(cardId));
