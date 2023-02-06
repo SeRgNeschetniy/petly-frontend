@@ -138,8 +138,10 @@ export const deleteFromFavorites = createAsyncThunk(
     try {
       const { auth } = getState();
       setToken(auth.token);
-      const { data } = await axios.delete(`/notices/${_id}/favorites/`);
-      return data.favorites;
+      const data = await axios.delete(`/notices/${_id}/favorites/`);
+      if (data.status === 200) {
+        return _id;
+      }
     } catch ({ responce }) {
       const error = {
         status: responce.status,
@@ -156,8 +158,7 @@ export const addToFavorite = createAsyncThunk(
     try {
       const { auth } = getState();
       setToken(auth.token);
-      const { data } = await axios.post(`/notices/${_id}/favorites`);
-
+      const data = await axios.post(`/notices/${_id}/favorites`);
       if (data.status === 200) {
         return _id;
       }
