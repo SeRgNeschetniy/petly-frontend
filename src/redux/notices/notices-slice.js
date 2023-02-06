@@ -42,16 +42,16 @@ const noticesSlice = createSlice({
 
     //[fetchFavoritesNotices.pending]: handlePending,
     [fetchFavoritesNotices.fulfilled](state, action) {
+      state.favorites = action.payload;
       state.isLoading = false;
       state.error = null;
-      state.favorites = action.payload;
     },
     [fetchFavoritesNotices.rejected]: handleRejected,
 
     [fetchUserNotices.fulfilled](state, action) {
+      state.favorites = action.payload;
       state.isLoading = false;
       state.error = null;
-      state.notices = action.payload;
     },
     [fetchUserNotices.rejected]: handleRejected,
 
@@ -62,6 +62,7 @@ const noticesSlice = createSlice({
     [fetchNoticeById.fulfilled]: (state, { payload }) => {
       state.oneNotice = payload;
       state.isLoading = false;
+      state.error = null;
     },
     [fetchNoticeById.rejected]: (state, { payload }) => {
       state.error = payload;
@@ -69,8 +70,9 @@ const noticesSlice = createSlice({
     },
     [deleteNotice.pending]: handlePending,
     [deleteNotice.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
       state.notices = state.notices.filter(notice => notice._id !== payload);
+      state.isLoading = false;
+      state.error = null;
     },
     [deleteNotice.rejected]: (state, { payload }) => {
       state.isLoading = false;
@@ -87,17 +89,17 @@ const noticesSlice = createSlice({
 
     // [addToFavorite.pending]: handlePending,
     [addToFavorite.fulfilled]: (state, { payload }) => {
+      state.favorites.push(payload);
       state.isLoading = false;
       state.error = null;
-      state.favorites.push(payload);
     },
     [addToFavorite.rejected]: handleRejected,
 
     // [deleteFromFavorites.pending]: handlePending,
     [deleteFromFavorites.fulfilled]: (state, { payload }) => {
+      state.favorites = state.favorites.filter(item => item._id !== payload);
       state.isLoading = false;
       state.error = null;
-      state.favorites = state.favorites.filter(item => item._id !== payload);
     },
     [deleteFromFavorites.rejected]: handleRejected,
   },

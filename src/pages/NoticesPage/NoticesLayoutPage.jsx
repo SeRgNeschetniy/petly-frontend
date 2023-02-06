@@ -102,7 +102,7 @@ const NoticesLayoutPage = () => {
             <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
           </Modal>
         )}
-        {isLoading && <p>...loading</p>}
+        {/* {isLoading && <p>...loading</p>} */}
         {error && <p>Ooops... Something went wrong</p>}
       </Container>
     </>
