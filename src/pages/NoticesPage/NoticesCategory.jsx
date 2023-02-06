@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -11,8 +12,6 @@ const NoticesCategory = () => {
   const isLoading = useSelector(selectIsLoading);
   const notices = useSelector(selectNotices);
 
-  console.log('Render NoticesCategory');
-
   return (
     <>
       {notices?.length === 0 && !isLoading && (
@@ -21,6 +20,7 @@ const NoticesCategory = () => {
       {!isLoading && (
         <NoticesCategoriesList route={categoryName} notices={notices} />
       )}
+      {!isLoading && <Loader />}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { NoticesCategoriesList } from 'components/components';
+import { Loader, NoticesCategoriesList } from 'components/components';
 import { useSelector } from 'react-redux';
 import {
   selectFavorites,
@@ -18,7 +18,7 @@ const NoticesFavorites = () => {
       {!isLoading && (
         <NoticesCategoriesList route="favorites" notices={notices} />
       )}
-      ;
+      {!isLoading && <Loader />}
     </>
   );
 };

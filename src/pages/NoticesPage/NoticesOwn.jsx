@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import { useSelector } from 'react-redux';
 import {
@@ -17,6 +18,7 @@ const NoticesOwn = () => {
         <p>List is empty! Try to add pet :)</p>
       )}
       {!isLoading && <NoticesCategoriesList route="own" notices={notices} />}
+      {!isLoading && <Loader />}
     </>
   );
 };

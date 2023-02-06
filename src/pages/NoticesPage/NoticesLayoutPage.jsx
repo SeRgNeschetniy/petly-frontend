@@ -16,12 +16,14 @@ import {
   selectIsLoading,
   selectError,
 } from 'redux/notices/notices-selectors';
+import { selectIsLogin } from 'redux/auth/auth-selectors';
 
 const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
 
   // const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
+  const isLoggedIn = useSelector(selectIsLogin);
   const error = useSelector(selectError);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -39,12 +41,14 @@ const NoticesLayoutPage = () => {
       dispatch(fetchNotices({ categoryName }));
     }
 
-    dispatch(fetchFavoritesNotices());
+    if (isLoggedIn) {
+      dispatch(fetchFavoritesNotices());
+    }
 
     window
       .matchMedia('(min-width: 768px)')
       .addEventListener('change', e => setMatches(e.matches));
-  }, [dispatch, categoryName, query]);
+  }, [dispatch, categoryName, query, isLoggedIn]);
 
   const onFormSubmit = searchQuery => {
     setSearchParams({ query: searchQuery });
@@ -61,7 +65,7 @@ const NoticesLayoutPage = () => {
         </Wrapper>
         {!matches && <AddNoticeButtonMobile />}
         {!isLoading && <Outlet />}
-        {isLoading && <p>...loading</p>}
+        {/* {isLoading && <p>...loading</p>} */}
         {error && <p>Ooops... Something went wrong</p>}
       </Container>
     </>
