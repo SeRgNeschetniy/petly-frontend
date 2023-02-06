@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 import { ReactComponent as LogoIcon } from '../../images/logo/petly.svg';
-console.log(LogoIcon);
 
 export const Container = styled.header`
   display: flex;
