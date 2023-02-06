@@ -3,7 +3,6 @@ import { Logo, AccentText, Container } from './Header.styled';
 import NavBox from './NavBox';
 import AuthNavBoxTablet from './AuthNavBoxTablet';
 import ShowBtn from './ShowBtn';
-// import UserNav from './UserNav';
 
 export default function Header() {
   const [show, setShow] = useState(false);
@@ -20,7 +19,6 @@ export default function Header() {
       <AuthNavBoxTablet show={show} />
       <ShowBtn show={show} showContent={showContent} />
       <NavBox show={show} showContent={showContent} />
-      {/* <UserNav /> */}
     </Container>
   );
 }
