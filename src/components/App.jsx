@@ -1,19 +1,25 @@
-import { lazy, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import SharedLayout from './SharedLayout';
-import PrivateRoute from './PrivateRoute';
-import RestrictedRoute from './RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 import { useAuth } from 'hooks/useAuth';
-import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
 
-const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
-const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
-const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
-const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
-const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
-const UserPage = lazy(() => import('pages/UserPage/UserPage'));
+import {
+  RestrictedRoute,
+  PrivateRoute,
+  SharedLayout,
+  PasswordRecoveryForm,
+} from './components';
+import lazyPages from 'utils/lazyPages';
+
+const {
+  NoticesPage,
+  FriendsPage,
+  NewsPage,
+  RegisterPage,
+  LoginPage,
+  UserPage,
+} = lazyPages;
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -21,8 +27,8 @@ export const App = () => {
 
   useEffect(() => {
     if (token) {
-    dispatch(current());
-    };
+      dispatch(current());
+    }
   }, [dispatch, token]);
 
   return (
