@@ -8,10 +8,11 @@ export const fetchNotices = createAsyncThunk(
   'notices/categoryName',
   async ({ categoryName, query = '', page = 1, limit = 8 }, thunkApi) => {
     try {
+      console.log(categoryName);
       const { data } = await axios.get(
         `/notices/${categoryName}?page=${page}&limit=${limit}&query=${query}`
       );
-      // console.log(data.notices);
+      console.log(data.notices);
       // console.log(data.favorites);
       console.log('DATA', data);
       return data.notices || data.favorites;
@@ -119,10 +120,19 @@ export const fetchFavoritesNotices = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await axios.get(`/notices/favorites`);
-      //const favorites = data.favorites.map(item => item._id.toString());
-      //console.log(data.favorites);
-
       return data.favorites;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchUserNotices = createAsyncThunk(
+  'notices/fetchUserNotices',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get(`/notices/own`);
+      return data.notices;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

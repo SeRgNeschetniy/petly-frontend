@@ -10,7 +10,7 @@ const NoticesOwn = () => {
   const isLoading = useSelector(selectIsLoading);
   const notices = useSelector(selectNotices);
 
-  console.log('Render NoticesCategory');
+  console.log('Render NoticesOwn', notices);
 
   return (
     <>

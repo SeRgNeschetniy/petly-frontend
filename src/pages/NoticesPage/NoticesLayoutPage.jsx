@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchFavoritesNotices,
   fetchNotices,
+  fetchUserNotices,
 } from 'redux/notices/notices-operation';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
 import {
@@ -42,10 +43,17 @@ const NoticesLayoutPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (query !== '') {
-      dispatch(fetchNotices({ categoryName, query: query }));
+    if (categoryName) {
+      if (query !== '') {
+        dispatch(fetchNotices({ categoryName, query: query }));
+      } else {
+        dispatch(fetchNotices({ categoryName }));
+      }
     } else {
-      dispatch(fetchNotices({ categoryName }));
+      if (isLoggedIn) {
+        console.log('идем зя юзера нотисами');
+        dispatch(fetchUserNotices());
+      }
     }
 
     if (isLoggedIn) {
@@ -61,20 +69,22 @@ const NoticesLayoutPage = () => {
     setSearchParams({ query: searchQuery });
   };
 
-  const handleMoreClick = (e) => {
-    if (e.target.textContent === "Learn more") {
+  const handleMoreClick = e => {
+    if (e.target.textContent === 'Learn more') {
       if (notices.length > 0) {
         const result = notices.filter(item => item._id === e.target.id);
         setOneNotice(result);
       } else {
-        const resultFavorites = favorites.filter(item => item._id === e.target.id);
+        const resultFavorites = favorites.filter(
+          item => item._id === e.target.id
+        );
         setOneNotice(resultFavorites);
       }
-        openModal();
+      openModal();
     }
   };
 
-  window.addEventListener('click', handleMoreClick)
+  window.addEventListener('click', handleMoreClick);
 
   return (
     <>
@@ -88,10 +98,10 @@ const NoticesLayoutPage = () => {
         {!matches && <AddNoticeButtonMobile />}
         {!isLoading && <Outlet />}
         {isModalOpen && (
-        <Modal onCloseModal={closeModal}>
-          <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
-        </Modal>
-      )}
+          <Modal onCloseModal={closeModal}>
+            <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
+          </Modal>
+        )}
         {isLoading && <p>...loading</p>}
         {error && <p>Ooops... Something went wrong</p>}
       </Container>

@@ -7,6 +7,7 @@ import {
   addToFavorite,
   deleteFromFavorites,
   fetchFavoritesNotices,
+  fetchUserNotices,
 } from './notices-operation';
 
 const initialState = {
@@ -46,6 +47,13 @@ const noticesSlice = createSlice({
       state.favorites = action.payload;
     },
     [fetchFavoritesNotices.rejected]: handleRejected,
+
+    [fetchUserNotices.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.notices = action.payload;
+    },
+    [fetchUserNotices.rejected]: handleRejected,
 
     [fetchNoticeById.pending]: state => {
       state.isLoading = true;
