@@ -15,16 +15,21 @@ import {
   // selectNotices,
   selectIsLoading,
   selectError,
+  selectNotices,
 } from 'redux/notices/notices-selectors';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
+import useModal from 'hooks/modal';
+import Modal from 'components/Modal/Modal';
+import ReadMoreModal from 'components/ReadMoreModal/ReadMoreModal';
 
 const NoticesLayoutPage = () => {
+  const [oneNotice, setOneNotice] = useState([]);
   const { categoryName } = useParams();
-
-  // const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const isLoggedIn = useSelector(selectIsLogin);
   const error = useSelector(selectError);
+  const notices = useSelector(selectNotices);
+  const { isModalOpen, closeModal, openModal } = useModal();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
@@ -54,6 +59,18 @@ const NoticesLayoutPage = () => {
     setSearchParams({ query: searchQuery });
   };
 
+  const handleMoreClick = (e) => {
+    if (e.target.id) {
+      const result =  notices.filter(item => item._id === e.target.id);
+      setOneNotice(result);
+      if (result) {
+        openModal();
+      }
+    }
+  };
+
+  window.addEventListener('click', handleMoreClick)
+
   return (
     <>
       <Container>
@@ -65,7 +82,12 @@ const NoticesLayoutPage = () => {
         </Wrapper>
         {!matches && <AddNoticeButtonMobile />}
         {!isLoading && <Outlet />}
-        {/* {isLoading && <p>...loading</p>} */}
+        {isModalOpen && (
+        <Modal onCloseModal={closeModal}>
+          <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
+        </Modal>
+      )}
+        {isLoading && <p>...loading</p>}
         {error && <p>Ooops... Something went wrong</p>}
       </Container>
     </>

@@ -18,7 +18,7 @@ import {
 import { Notify } from 'notiflix';
 import { AddButton } from 'components/UserPage/PetsData/PetsData.styled';
 
-export default function ReadMoreModal() {
+export default function ReadMoreModal({notice}) {
 
   const oneNotice = useSelector(selectOneNotice);
   const isLoggedIn = useSelector(selectIsLogin);
@@ -38,7 +38,7 @@ export default function ReadMoreModal() {
     } else Notify.warning('Sorry, you should to sing in');
   };
 
-  const elements = oneNotice.map(({ _id, title, name, dateOfBirth, breed, location, petImage, price, sex, updatedAt, comments, owner }) => {
+  const elements = notice.map(({ _id, title, name, dateOfBirth, breed, location, petImage, price, sex, updatedAt, comments, owner }) => {
     return (
       <ModalBackground key={_id}>
         <TabletWrapper>

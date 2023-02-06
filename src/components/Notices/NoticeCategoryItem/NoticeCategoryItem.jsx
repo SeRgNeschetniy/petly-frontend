@@ -23,10 +23,6 @@ import {
 import { selectIsLogin, selectUserId } from 'redux/auth/auth-selectors';
 import { deleteNotice } from 'redux/notices/notices-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import ReadMoreModal from 'components/ReadMoreModal/ReadMoreModal';
-import Modal from 'components/Modal/Modal';
-import useModal from 'hooks/modal';
-import { fetchNoticeById } from 'redux/notices/notices-operation';
 import {
   selectFavorites,
   selectIsLoading,
@@ -54,7 +50,6 @@ const NoticeCategoryItem = ({ notice, route }) => {
   const ownerId = useSelector(selectUserId);
   const isFetchLoading = useSelector(selectIsLoading);
 
-  const { isModalOpen, closeModal, openModal } = useModal();
   // const onChangeFavorite = () => {
   //   if (isLoggedIn) {
   //     dispatch(addToFavorite(id));
@@ -96,15 +91,6 @@ const NoticeCategoryItem = ({ notice, route }) => {
     dispatch(deleteNotice(cardId));
   };
 
-  const handleMoreClick = async id => {
-    console.log(id);
-
-    dispatch(fetchNoticeById(id));
-
-    // if (!isFetchLoading) {
-    openModal();
-    //   }
-  };
   // const onDeleteFromFavorite = e => {
   //   const cardId = e.currentTarget.id;
 
@@ -144,7 +130,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
             </Text>
           )}
         </Wrapper>
-        <LearnMoreBtn onClick={() => handleMoreClick(id)}>
+        <LearnMoreBtn id={id}>
           Learn more
         </LearnMoreBtn>
         {ownerId === owner && (
@@ -154,11 +140,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
           </DeleteBtn>
         )}
       </Container>
-      {isModalOpen && (
-        <Modal onCloseModal={closeModal}>
-          <ReadMoreModal onCloseModal={closeModal} />
-        </Modal>
-      )}
+      
     </Item>
   );
 };
