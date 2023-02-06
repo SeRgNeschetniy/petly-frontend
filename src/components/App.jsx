@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 import { useAuth } from 'hooks/useAuth';
@@ -68,6 +68,7 @@ export const App = () => {
             <Route path="own" element={<NoticesOwn />} />
             <Route path=":categoryName" element={<NoticesCategory />} />
           </Route>
+          <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>
       </Routes>
     )
