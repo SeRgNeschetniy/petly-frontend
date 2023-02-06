@@ -10,6 +10,7 @@ import {
   Span,
   AddIcon,
   Image,
+  AddedIcon,
   DeleteBtn,
 } from './NoticeCategoryItem.styled';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
@@ -19,10 +20,7 @@ import {
   addToFavorite,
   deleteFromFavorites,
 } from 'redux/notices/notices-operation';
-import {
-  selectIsLogin,
-  selectUserId,
-} from 'redux/auth/auth-selectors';
+import { selectIsLogin, selectUserId } from 'redux/auth/auth-selectors';
 import { deleteNotice } from 'redux/notices/notices-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
@@ -93,19 +91,22 @@ const NoticeCategoryItem = ({ notice, route }) => {
     dispatch(deleteNotice(cardId));
   };
 
-
   // const onDeleteFromFavorite = e => {
   //   const cardId = e.currentTarget.id;
 
   //   dispatch(deleteFromFavorites(cardId));
   // };
 
+  const isFavorite = id => {
+    return favorites.filter(favorite => favorite._id === id);
+  };
+
   return (
     <Item>
       <Image src={petImage} alt="Pet" minwidth={288} height={288} />
       <Sticker>{category}</Sticker>
       <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
-        <AddIcon />
+        {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
       </AddToFavoriteBtn>
       <Container>
         <Wrapper>
