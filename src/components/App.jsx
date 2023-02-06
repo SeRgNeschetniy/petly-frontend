@@ -12,13 +12,16 @@ import {
 } from './components';
 import MainPage from './MainPageImages/MainPage';
 import lazyPages from 'utils/lazyPages';
-import NoticesLayoutPage from 'pages/NoticesPage/NoticesLayoutPage';
-import NoticesFavorites from 'pages/NoticesPage/NoticesFavorites';
-import NoticesCategory from 'pages/NoticesPage/NoticesCategory';
-import NoticesOwn from 'pages/NoticesPage/NoticesOwn';
+// import NoticesLayoutPage from 'pages/NoticesPage/NoticesLayoutPage';
+// import NoticesFavorites from 'pages/NoticesPage/NoticesFavorites';
+// import NoticesCategory from 'pages/NoticesPage/NoticesCategory';
+// import NoticesOwn from 'pages/NoticesPage/NoticesOwn';
 
 const {
-  //NoticesPage,
+  NoticesLayoutPage,
+  NoticesFavorites,
+  NoticesCategory,
+  NoticesOwn,
   FriendsPage,
   NewsPage,
   RegisterPage,

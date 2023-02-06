@@ -15,10 +15,10 @@ const NoticesFavorites = () => {
       {notices?.length === 0 && !isLoading && (
         <p>List is empty! Try to add pet :)</p>
       )}
+      {isLoading && <Loader />}
       {!isLoading && (
         <NoticesCategoriesList route="favorites" notices={notices} />
       )}
-      {isLoading && <Loader />}
     </>
   );
 };

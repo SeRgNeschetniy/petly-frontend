@@ -17,10 +17,10 @@ const NoticesCategory = () => {
       {notices?.length === 0 && !isLoading && (
         <p>List is empty! Try to add pet :)</p>
       )}
+      {isLoading && <Loader />}
       {!isLoading && (
         <NoticesCategoriesList route={categoryName} notices={notices} />
       )}
-      {isLoading && <Loader />}
     </>
   );
 };
