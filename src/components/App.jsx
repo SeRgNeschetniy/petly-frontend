@@ -71,11 +71,7 @@ export const App = () => {
           <Route path="/notices" element={<NoticesLayoutPage />}>
             <Route path="favorites" element={<NoticesFavorites />} />
             <Route path="own" element={<NoticesOwn />} />
-            <Route path="/notices" element={<NoticesLayoutPage />}>
-              <Route index path=":categoryName" element={<NoticesCategory />} />
-              <Route path="favorites" element={<NoticesFavorites />} />
-              <Route path="own" element={<NoticesOwn />} />
-            </Route>
+            <Route path=":categoryName" element={<NoticesCategory />} />
           </Route>
           <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>
