@@ -9,7 +9,7 @@ const showScroll = active => {
 
 export const Container = styled.nav`
   display: flex;
-  display: none;
+  /* display: none; */
   flex-direction: column;
 
   position: absolute;
