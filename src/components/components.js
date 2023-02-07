@@ -20,7 +20,7 @@ import NewsList from './News/NewsList';
 import NewsSerch from './News/NewsSerch';
 import AddNoticeButton from './Notices/AddNoticeButton';
 import AddNoticeButtonMobile from './Notices/AddNoticeButton/AddNoticeButtonMobile';
-import NoticeCategoryItem from './Notices/NoticeCategoryItem';
+// import NoticeCategoryItem from './Notices/NoticeCategoryItem';
 import NoticeFirstForm from './Notices/NoticeModal/NoticeFirstStep';
 import NoticeModal from './Notices/NoticeModal/NoticeModal';
 import NoticeSecondForm from './Notices/NoticeModal/NoticeSecondStep';
@@ -52,7 +52,7 @@ export {
   NewsSerch,
   AddNoticeButton,
   AddNoticeButtonMobile,
-  NoticeCategoryItem,
+  // NoticeCategoryItem,
   NoticeFirstForm,
   NoticeModal,
   NoticeSecondForm,

@@ -7,6 +7,7 @@ import {
   addToFavorite,
   deleteFromFavorites,
   fetchFavoritesNotices,
+  fetchUserNotices,
 } from './notices-operation';
 
 const initialState = {
@@ -39,13 +40,20 @@ const noticesSlice = createSlice({
     },
     [fetchNotices.rejected]: handleRejected,
 
-    [fetchFavoritesNotices.pending]: handlePending,
+    //[fetchFavoritesNotices.pending]: handlePending,
     [fetchFavoritesNotices.fulfilled](state, action) {
+      state.favorites = action.payload;
       state.isLoading = false;
       state.error = null;
-      state.favorites = action.payload;
     },
     [fetchFavoritesNotices.rejected]: handleRejected,
+
+    [fetchUserNotices.fulfilled](state, action) {
+      state.favorites = action.payload;
+      state.isLoading = false;
+      state.error = null;
+    },
+    [fetchUserNotices.rejected]: handleRejected,
 
     [fetchNoticeById.pending]: state => {
       state.isLoading = true;
@@ -54,6 +62,7 @@ const noticesSlice = createSlice({
     [fetchNoticeById.fulfilled]: (state, { payload }) => {
       state.oneNotice = payload;
       state.isLoading = false;
+      state.error = null;
     },
     [fetchNoticeById.rejected]: (state, { payload }) => {
       state.error = payload;
@@ -61,11 +70,12 @@ const noticesSlice = createSlice({
     },
     [deleteNotice.pending]: handlePending,
     [deleteNotice.fulfilled]: (state, { payload }) => {
-      state.loading = false;
       state.notices = state.notices.filter(notice => notice._id !== payload);
+      state.isLoading = false;
+      state.error = null;
     },
     [deleteNotice.rejected]: (state, { payload }) => {
-      state.loading = false;
+      state.isLoading = false;
       state.error = payload;
     },
     [addNewNotice.pending]: handlePending,
@@ -77,33 +87,21 @@ const noticesSlice = createSlice({
       state.isLoading = false;
     },
 
-    [addToFavorite.pending]: state => {
-      state.isLoading = true;
-      state.error = null;
-    },
+    // [addToFavorite.pending]: handlePending,
     [addToFavorite.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.error = null;
       state.favorites.push(payload);
-    },
-    [addToFavorite.rejected]: (state, { payload }) => {
-      state.error = payload;
-    },
-
-    [deleteFromFavorites.pending]: state => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    [deleteFromFavorites.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.error = null;
-      state.favorites = state.favorites.filter(item => item !== payload);
-      //state.notices = state.notices.filter(item => item._id !== payload);
-    },
-    [deleteFromFavorites.rejected]: (state, { payload }) => {
       state.isLoading = false;
-      state.error = payload;
+      state.error = null;
     },
+    [addToFavorite.rejected]: handleRejected,
+
+    // [deleteFromFavorites.pending]: handlePending,
+    [deleteFromFavorites.fulfilled]: (state, { payload }) => {
+      state.favorites = state.favorites.filter(item => item._id !== payload);
+      state.isLoading = false;
+      state.error = null;
+    },
+    [deleteFromFavorites.rejected]: handleRejected,
   },
 });
 

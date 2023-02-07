@@ -10,7 +10,7 @@ import {
   Span,
   AddIcon,
   Image,
-  // AddedIcon,
+  AddedIcon,
   DeleteBtn,
 } from './NoticeCategoryItem.styled';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
@@ -20,20 +20,12 @@ import {
   addToFavorite,
   deleteFromFavorites,
 } from 'redux/notices/notices-operation';
-import {
-  selectIsFavorite,
-  selectIsLogin,
-  selectUserId,
-} from 'redux/auth/auth-selectors';
+import { selectIsLogin, selectUserId } from 'redux/auth/auth-selectors';
 import { deleteNotice } from 'redux/notices/notices-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import ReadMoreModal from 'components/ReadMoreModal/ReadMoreModal';
-import Modal from 'components/Modal/Modal';
-import useModal from 'hooks/modal';
-import { fetchNoticeById } from 'redux/notices/notices-operation';
 import {
   selectFavorites,
-  selectIsLoading,
+  // selectIsLoading,
 } from 'redux/notices/notices-selectors';
 
 const NoticeCategoryItem = ({ notice, route }) => {
@@ -56,9 +48,8 @@ const NoticeCategoryItem = ({ notice, route }) => {
   const favorites = useSelector(selectFavorites);
   // console.log(favorites);
   const ownerId = useSelector(selectUserId);
-  const isFetchLoading = useSelector(selectIsLoading);
+  // const isFetchLoading = useSelector(selectIsLoading);
 
-  const { isModalOpen, closeModal, openModal } = useModal();
   // const onChangeFavorite = () => {
   //   if (isLoggedIn) {
   //     dispatch(addToFavorite(id));
@@ -84,8 +75,9 @@ const NoticeCategoryItem = ({ notice, route }) => {
     if (isLoggedIn) {
       const cardId = e.currentTarget.id;
 
-      const result = favorites.find(favorite => favorite === cardId);
-      if (result === cardId) {
+      const result = favorites.filter(favorite => favorite._id === cardId);
+
+      if (result.length > 0) {
         dispatch(deleteFromFavorites(cardId));
       } else {
         dispatch(addToFavorite(cardId));
@@ -99,24 +91,22 @@ const NoticeCategoryItem = ({ notice, route }) => {
     dispatch(deleteNotice(cardId));
   };
 
-  const handleMoreClick = async id => {
-    dispatch(fetchNoticeById(id));
-    if (!isFetchLoading) {
-      openModal();
-    }
-  };
   // const onDeleteFromFavorite = e => {
   //   const cardId = e.currentTarget.id;
 
   //   dispatch(deleteFromFavorites(cardId));
   // };
 
+  const isFavorite = id => {
+    return favorites.filter(favorite => favorite._id === id);
+  };
+
   return (
     <Item>
       <Image src={petImage} alt="Pet" minwidth={288} height={288} />
       <Sticker>{category}</Sticker>
       <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
-        <AddIcon />
+        {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
       </AddToFavoriteBtn>
       <Container>
         <Wrapper>
@@ -140,9 +130,10 @@ const NoticeCategoryItem = ({ notice, route }) => {
             </Text>
           )}
         </Wrapper>
-        <LearnMoreBtn onClick={() => handleMoreClick(id)}>
+        <LearnMoreBtn readMore={id} id={id}>
           Learn more
         </LearnMoreBtn>
+
         {ownerId === owner && (
           <DeleteBtn id={id} onClick={onDeleteNotice}>
             Delete
@@ -150,11 +141,6 @@ const NoticeCategoryItem = ({ notice, route }) => {
           </DeleteBtn>
         )}
       </Container>
-      {isModalOpen && (
-        <Modal onCloseModal={closeModal}>
-          <ReadMoreModal onCloseModal={closeModal} />
-        </Modal>
-      )}
     </Item>
   );
 };

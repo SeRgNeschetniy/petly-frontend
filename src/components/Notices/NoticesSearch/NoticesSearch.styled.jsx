@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-import { AiOutlineSearch } from 'react-icons/ai';
 
 export const Form = styled.form`
   display: flex;
@@ -11,6 +10,12 @@ export const Form = styled.form`
   @media screen and (min-width: 768px) {
     margin-bottom: 40px;
   }
+`;
+
+export const Wrapper = styled.div`
+  // &:hover > svg {
+  //   fill: ${theme.colors.accent};
+  // }
 `;
 
 export const Label = styled.label`
@@ -35,11 +40,6 @@ export const Input = styled.input`
   :focus {
     border: 1px solid ${theme.colors.accent};
   }
-
-  &:hover,
-  :focus > {
-    fill: ${theme.colors.accent};
-  }
 `;
 
 export const BtnSearch = styled.button`
@@ -50,4 +50,3 @@ export const BtnSearch = styled.button`
   width: 24px;
   height: 24px;
 `;
-export const IconSearch = styled(AiOutlineSearch)``;

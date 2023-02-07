@@ -8,13 +8,14 @@ export const fetchNotices = createAsyncThunk(
   'notices/categoryName',
   async ({ categoryName, query = '', page = 1, limit = 8 }, thunkApi) => {
     try {
+      console.log(categoryName);
       const { data } = await axios.get(
         `/notices/${categoryName}?page=${page}&limit=${limit}&query=${query}`
       );
-      // console.log(data.notices);
+      console.log(data.notices);
       // console.log(data.favorites);
-      //console.log(data);
-      return data.notices;
+      console.log('DATA', data);
+      return data.notices || data.favorites;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -27,6 +28,7 @@ export const fetchNoticeById = createAsyncThunk(
   async (_id, thunkApi) => {
     try {
       const response = await axios.get(`/notices/find/${_id}`);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -99,10 +101,10 @@ export const addToFavorite = createAsyncThunk(
     try {
       const { auth } = getState();
       setToken(auth.token);
-      const data = await axios.post(`/notices/${_id}/favorites`);
-      if (data.status === 200) {
-        return _id;
-      }
+
+      const { data } = await axios.post(`/notices/${_id}/favorites`);
+
+      return data.notices;
     } catch ({ responce }) {
       const error = {
         status: responce.status,
@@ -118,10 +120,19 @@ export const fetchFavoritesNotices = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await axios.get(`/notices/favorites`);
-      const favorites = data.favorites.map(item => item._id.toString());
-      console.log(favorites);
+      return data.favorites;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
 
-      return favorites;
+export const fetchUserNotices = createAsyncThunk(
+  'notices/fetchUserNotices',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get(`/notices/own`);
+      return data.notices;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

@@ -1,13 +1,14 @@
+import axios from 'axios';
 import NewsSerch from 'components/News/NewsSerch/NewsSerch';
 import Headline from 'components/Headline/Headline';
 import { useEffect, useState } from 'react';
 import NewsList from 'components/News/NewsList/NewsList';
-
+import Container from './NewsPage.styled';
 const { REACT_APP_BASE_URL } = process.env;
 
 const fetchNews = async () => {
-  const response = await fetch(`${REACT_APP_BASE_URL}/api/news`);
-  return await response.json();
+  const { data } = await axios.get(`${REACT_APP_BASE_URL}/api/news`);
+  return data;
 };
 
 const NewsPage = () => {
@@ -22,11 +23,13 @@ const NewsPage = () => {
         console.log(error);
       }
     };
+
     getNews().then(data => {
       setFilteredNews(data);
       setNews(data);
     });
   }, []);
+
   const onSearch = searchPhrase => {
     setFilteredNews(
       News.filter(
@@ -37,9 +40,11 @@ const NewsPage = () => {
   };
   return (
     <>
-      <Headline title={'News'}></Headline>
-      <NewsSerch onSearch={onSearch} />
-      <NewsList News={filteredNews} />
+      <Container>
+        <Headline title={'News'}></Headline>
+        <NewsSerch onSearch={onSearch} />
+        <NewsList News={filteredNews} />
+      </Container>
     </>
   );
 };

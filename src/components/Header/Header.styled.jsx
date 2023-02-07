@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+
+import { ReactComponent as LogoIcon } from '../../images/logo/petly.svg';
 
 export const Container = styled.header`
   display: flex;
-  /* align-items: center; */
+
   background-color: ${({ theme }) => theme.colors.mainBackground};
   padding-top: 16px;
   margin-bottom: 42px;
@@ -18,26 +19,19 @@ export const Container = styled.header`
   }
 `;
 
-export const Logo = styled(Link)`
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1.5;
-  letter-spacing: 0.07em;
-  color: ${({ theme }) => theme.colors.black};
+export const Logo = styled(LogoIcon)`
+  display: flex;
+  width: 82px;
+  height: 42px;
 
   margin: 0;
 
   @media screen and (min-width: 768px) {
-    font-size: 32px;
+    width: 94px;
+    height: 48px;
   }
 
   @media screen and (min-width: 1280px) {
     margin-right: 80px;
   }
-`;
-
-export const AccentText = styled.span`
-  color: ${({ theme }) => theme.colors.accent};
 `;

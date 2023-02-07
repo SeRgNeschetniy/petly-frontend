@@ -1,6 +1,6 @@
 const mainLinksData = [
   { id: '1', to: '/news', title: 'News' },
-  { id: '2', to: '/notices/sell', title: 'Find Pet' },
+  { id: '2', to: '/notices', title: 'Find Pet' },
   { id: '3', to: '/friends', title: 'Our Friends' },
 ];
 const authLinksData = [

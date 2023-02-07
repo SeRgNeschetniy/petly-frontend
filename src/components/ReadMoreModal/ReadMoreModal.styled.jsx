@@ -67,7 +67,10 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const ModalButton = styled.button`
-  position: relative;
+  display: ${props => props.icon ? "flex" : "block"};
+  justify-content: center;
+  align-items: center;
+
   padding: 9px 87px;
   border-radius: 40px;
   background-color: ${theme.colors.accent};
@@ -79,6 +82,8 @@ export const ModalButton = styled.button`
   }
   }
   @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
   padding: 9px 45px;
   &:not(:last-child) {
     margin-right: 12px;
@@ -92,4 +97,7 @@ export const ModalButton = styled.button`
     position: absolute;
     background-image: ;
   }
+`;
+
+export const HeartIcon = styled.img`
 `;

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 import { useAuth } from 'hooks/useAuth';
@@ -12,9 +12,16 @@ import {
 } from './components';
 import MainPage from './MainPageImages/MainPage';
 import lazyPages from 'utils/lazyPages';
+// import NoticesLayoutPage from 'pages/NoticesPage/NoticesLayoutPage';
+// import NoticesFavorites from 'pages/NoticesPage/NoticesFavorites';
+// import NoticesCategory from 'pages/NoticesPage/NoticesCategory';
+// import NoticesOwn from 'pages/NoticesPage/NoticesOwn';
 
 const {
-  NoticesPage,
+  NoticesLayoutPage,
+  NoticesFavorites,
+  NoticesCategory,
+  NoticesOwn,
   FriendsPage,
   NewsPage,
   RegisterPage,
@@ -40,29 +47,28 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <RestrictedRoute component={LoginPage} redirectTo="/news" />
+              <RestrictedRoute component={LoginPage} redirectTo="/user" />
             }
           />
-
           <Route
             path="/register"
             element={
-              <RestrictedRoute component={RegisterPage} redirectTo="/news" />
+              <RestrictedRoute component={RegisterPage} redirectTo="/user" />
             }
           />
-
           <Route path="/restore" element={<PasswordRecoveryForm />} />
-
           <Route
             path="/user"
             element={<PrivateRoute redirectTo="/login" component={UserPage} />}
           />
-
           <Route path="/news" element={<NewsPage />} />
-
           <Route path="/friends" element={<FriendsPage />} />
-
-          <Route path="/notices/:categoryName" element={<NoticesPage />} />
+          <Route path="/notices" element={<NoticesLayoutPage />}>
+            <Route path="favorites" element={<NoticesFavorites />} />
+            <Route path="own" element={<NoticesOwn />} />
+            <Route path=":categoryName" element={<NoticesCategory />} />
+          </Route>
+          <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>
       </Routes>
     )
