@@ -1,17 +1,13 @@
 import { TbCamera } from 'react-icons/tb';
-import { FiEdit2 , FiCheck} from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/auth-selectors';
+
 import React from 'react';
 import {
   AccentText,
   Profile,
-  TextField,
   Box,
   Form,
-  BoxInput,
-  InputForm,
-  ButtonEdit,
   Avatar,
   EditBox,
   EditPhotoButton,
@@ -20,40 +16,21 @@ import {
 import Logout from '../Logout/Logout';
 import { patchAvatar } from 'redux/auth/auth-operation';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import  UserInputName  from "./UserInput/UserName/UserName";
+import UserInputEmail  from "./UserInput/UserEmail/UserEmail";
+import UserInputCity  from "./UserInput/UserCity/UserCity";
+import  UserInputBirthday  from "./UserInput/UserBirthday/UserBirthday";
+import UserInputPhone from "./UserInput/UserPhone/UserPhone";
+
 export default function UserData() {
-
   const user = useSelector(selectUser);
-  // console.log(user)
-
   const dispatch = useDispatch();
-  
- 
-  // const disableBnt = () => {
-  // const  input = document.querySelectorAll("#input")
-  //   const edit = document.querySelectorAll("#edit")
-  //   input.disabled = false;
-  // }
 
   
-
- const [disabled, setDisabled] = useState(true);
-
-  function handleGameClick() {
-    setDisabled(!disabled);
-  }
-
-
-
-
 const changeImage = async (event) => {
     const formData = new FormData();
-  
     formData.append('avatar', event.target.files[0]);
-  
   dispatch(patchAvatar(formData))
-
-
   };
 
     return (
@@ -74,51 +51,23 @@ const changeImage = async (event) => {
           </label>
             </EditBox>
           </div>
+         
+          <FormDiv> 
+           <Form >
+            <UserInputName/>
+          
+            <UserInputEmail/>
 
-          <FormDiv>
-          <Form >
-            <BoxInput>
-              <TextField>Name: </TextField>
-              <InputForm value={user.name} id="input" type="text" disabled={disabled }></InputForm>
-              <ButtonEdit type='submit' onClick={handleGameClick}>
-                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
-              </ButtonEdit>
-            </BoxInput>
+            <UserInputBirthday/>
 
-            <BoxInput>
-              <TextField>Email: </TextField>
-              <InputForm  value={user.email} id="email"disabled={disabled }/>
-              <ButtonEdit type='submit' onClick={handleGameClick}>
-                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
-              </ButtonEdit>
-            </BoxInput>
+            <UserInputPhone  />
 
-            <BoxInput>
-              <TextField>Birthday:</TextField>
-              <InputForm disabled={disabled } value={user.birthday}/>
-              <ButtonEdit type='submit' onClick={handleGameClick}>
-                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
-              </ButtonEdit>
-            </BoxInput>
-
-            <BoxInput>
-              <TextField>Phone:</TextField>
-              <InputForm disabled={disabled } value={user.phone}/>
-              <ButtonEdit type='submit' onClick={handleGameClick}>
-                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
-              </ButtonEdit>
-            </BoxInput>
-
-            <BoxInput>
-              <TextField>City:</TextField>
-              <InputForm disabled={disabled } value={user.city}/>
-              <ButtonEdit type='submit' onClick={handleGameClick}>
-                <div>{disabled ? <FiEdit2/> : <FiCheck/> }</div>
-              </ButtonEdit>
-            </BoxInput>
-          </Form>
+            <UserInputCity /> 
+              
+            </Form>
           <Logout ></Logout>
-          </FormDiv>
+            </FormDiv>
+            
         </Profile>
         
            
