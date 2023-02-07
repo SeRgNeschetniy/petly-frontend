@@ -26,15 +26,12 @@ export const ButtonClose = styled.button`
   align-items: center;
   justify-content: center;
   background: ${theme.colors.mainBackground};
-  //border: 2px solid ${theme.colors.white};
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  border: 2px solid ${theme.colors.white};
+  transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
-  &:focus {
-    //border: 2px solid ${theme.colors.accent};
-    background-color: #ff6101;
-    color: ${theme.colors.white};
+  &:focus {      
+         
+    border: 2px solid ${theme.colors.accent};
   }
   @media screen and (min-width: 767px) {
     width: 44px;
@@ -90,7 +87,7 @@ export const ButtonFill = styled.button`
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   outline: 0px;
-  border: 0px;
+  border: 2px solid ${theme.colors.accent};
   margin-bottom: 12px;
   cursor: pointer;
   text-decoration: none;
@@ -103,19 +100,20 @@ export const ButtonFill = styled.button`
   height: 40px;
   padding: 10px 28px;
   border-radius: 40px;
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: ${theme.colors.white};
-  background-color: ${theme.colors.accent};
-  width: 100%;
-  &:hover,
-  &:focus {
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    background-color: ${theme.colors.mainBackground};
-    border: 2px solid ${theme.colors.accent};
-    color: ${theme.colors.dark};
-  }
+  color: ${theme.colors.dark};
+  border-color: ${theme.colors.accent};
+  background-color: #00000012;
+transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
+
+&:hover,
+&:focus {
+  background-color: rgb(245,97,1);    
+              color: ${theme.colors.white};
+              border-color: #ff6101;
+              background-color: #ff6101; 
+}          
   @media screen and (min-width: 767px) {
     max-width: 180px;
     height: 44px;
@@ -126,23 +124,28 @@ export const ButtonFill = styled.button`
 export const ButtonEmpty = styled.button`
   max-width: 240px;
   height: 40px;
-  border-radius: 40px;
-  background: ${theme.colors.white};
+  border-radius: 40px;  
   border: 2px solid ${theme.colors.accent};
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
-  line-height: 1.4rem;
-  color: ${theme.colors.dark};
+  line-height: 1.4rem;  
   cursor: pointer;
+  color: ${theme.colors.dark};
+  border-color: ${theme.colors.accent};
+  background-color: #00000012;
+transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
 
-  &:hover,
-  &:focus {
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    background-color: ${theme.colors.accent};
-    color: ${theme.colors.mainBackground};
-  }
+&:hover,
+&:focus {
+  background-color: rgb(245,97,1);    
+              color: ${theme.colors.white};
+              border-color: #ff6101;
+              background-color: #ff6101; 
+}          
   @media screen and (min-width: 767px) {
     width: 180px;
     height: 44px;

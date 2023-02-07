@@ -32,11 +32,16 @@ const petsSlice = createSlice({
       store.loading = false;
       store.error = error;
     },
+    [patchContact.pending](state) {
+      state.isLoading = true;
+    },
     [patchContact.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.items = state.items.filter(item => item.id !== payload);
     },
-
+    [patchContact.rejected](state, error) {
+      state.error = error;
+    },
     [removePetCard.pending](store) {
       store.isLoading = true;
     },

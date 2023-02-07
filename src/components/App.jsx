@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -9,13 +10,9 @@ import {
   PrivateRoute,
   SharedLayout,
   PasswordRecoveryForm,
+  Loader,
 } from './components';
-import MainPage from './MainPageImages/MainPage';
 import lazyPages from 'utils/lazyPages';
-// import NoticesLayoutPage from 'pages/NoticesPage/NoticesLayoutPage';
-// import NoticesFavorites from 'pages/NoticesPage/NoticesFavorites';
-// import NoticesCategory from 'pages/NoticesPage/NoticesCategory';
-// import NoticesOwn from 'pages/NoticesPage/NoticesOwn';
 
 const {
   NoticesLayoutPage,
@@ -27,6 +24,7 @@ const {
   RegisterPage,
   LoginPage,
   UserPage,
+  MainPage,
 } = lazyPages;
 
 export const App = () => {
@@ -43,7 +41,14 @@ export const App = () => {
     !isRefreshing && (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<MainPage />} />
+          <Route
+            index
+            element={
+              <React.Suspense fallback={<Loader />}>
+                <MainPage />
+              </React.Suspense>
+            }
+          />
           <Route
             path="/login"
             element={
@@ -59,7 +64,7 @@ export const App = () => {
           <Route path="/restore" element={<PasswordRecoveryForm />} />
           <Route
             path="/user"
-            element={<PrivateRoute redirectTo="/login" component={UserPage} />}
+            element={<PrivateRoute component={UserPage} redirectTo="/login" />}
           />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/friends" element={<FriendsPage />} />

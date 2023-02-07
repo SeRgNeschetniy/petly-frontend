@@ -85,9 +85,7 @@ export const NoticeSecondForm = props => {
             formData.append('petImage', petImage);
             formData.append('comments', comments);
             dispatch(addNewNotice(formData));
-            // for (let k of formData) {
-            //   console.log(k);
-            // }
+
             props.closeModal();
           }}
         >

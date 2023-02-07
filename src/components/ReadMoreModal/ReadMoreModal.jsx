@@ -138,7 +138,7 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
             </CommentsText>
           </ModalCommentWrapper>
           <ButtonWrapper>
-            <ModalBtnAdd
+             <ModalBtnAdd
               icon
               id={_id}
               onClick={handleAddClick}

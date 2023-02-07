@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { BackgroundContainer } from '../../components/Auth/Auth.styled';
 import FirstStep from '../../components/Auth/RegisterForm/FirstStep';
 import SecondStep from '../../components/Auth/RegisterForm/SecondStep';
-import MobileBgImage from '../../components/MainPageImages/MobileBgImage';
-import TabletBgImage from '../../components/MainPageImages/TabletBgImage';
-import DesktopBgImage from '../../components/MainPageImages/DesktopBgImage';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
+import { Container, Main } from 'styles';
 
 export default function RegisterPage() {
   const [secondPage, setSecondPage] = useState(false);
@@ -47,13 +45,10 @@ export default function RegisterPage() {
   }
 
   return (
-    <>
-      <BackgroundContainer>
-        {Child}
-        <MobileBgImage />
-      </BackgroundContainer>
-      <TabletBgImage />
-      <DesktopBgImage />
-    </>
+    <Main page="login">
+      <Container>
+        <BackgroundContainer>{Child}</BackgroundContainer>
+      </Container>
+    </Main>
   );
 }

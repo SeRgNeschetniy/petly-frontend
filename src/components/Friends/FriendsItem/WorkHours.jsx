@@ -15,13 +15,19 @@ const WorkHours = ({ workDays }) => {
     return currentDay - 1;
   };
 
-  const handleClick = () => {
-    setShowModal(!showModal);
-  };
+  // console.log(currentDay);
 
   return (
     <>
-      <TimeBtn type="button" onClick={handleClick}>
+      <TimeBtn
+        type="button"
+        onClick={() => {
+          setShowModal(true);
+        }}
+        onMouseLeave={() => {
+          setShowModal(false);
+        }}
+      >
         {workDays[updateIdx()].from && workDays[updateIdx()].to
           ? `${workDays[updateIdx()]?.from} - ${workDays[updateIdx()]?.to}`
           : 'Closed'}
@@ -44,6 +50,10 @@ const WorkHours = ({ workDays }) => {
                   <span>Closed</span>
                 </DayItem>
               )}
+              {/* {days[index] === workDays[updateIdx()] && (
+                <DayItem style={{ backgroundColor: 'orange' }} />
+              )}
+              {console.log(currentDay === workDays[updateIdx()])} */}
             </li>
           ))}
         </TimeList>

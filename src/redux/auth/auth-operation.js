@@ -5,9 +5,9 @@ axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 export const setToken = token => {
   if (token) {
-    return (axios.defaults.headers.common.authorization = `Bearer ${token}`);
+    return (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
   }
-  axios.defaults.headers.common.authorization = ``;
+  axios.defaults.headers.common.Authorization = ``;
 };
 
 export const signup = createAsyncThunk(
@@ -75,23 +75,6 @@ export const current = createAsyncThunk(
   }
 );
 
-// export const googleAuth = createAsyncThunk(
-//   'auth/google',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const result = await axios.get('/google');
-//       console.log(result);
-//       return result;
-//     } catch ({ responce }) {
-//       const error = {
-//         status: responce.status,
-//         message: responce.data.message,
-//       };
-//       return rejectWithValue(error);
-//     }
-//   }
-// )
-
 export const restorePassword = createAsyncThunk(
   'auth/restore',
   async (userEmail, { rejectWithValue }) => {
@@ -114,7 +97,6 @@ export const patchAvatar = createAsyncThunk(
   async (newdata, thunkApi) => {
     try {
       const { data } = await axios.patch(`/users/avatar`, newdata);
-      console.log(data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
