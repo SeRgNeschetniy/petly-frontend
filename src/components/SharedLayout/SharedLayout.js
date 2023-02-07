@@ -8,7 +8,7 @@ export default function SharedLayout() {
     <>
       <Suspense fallback={<Loader />}>
         <Header />
-        <Main>
+        <Main page="main">
           <Container>
             <Outlet />
           </Container>

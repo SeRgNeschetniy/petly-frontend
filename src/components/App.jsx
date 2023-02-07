@@ -10,12 +10,7 @@ import {
   SharedLayout,
   PasswordRecoveryForm,
 } from './components';
-import MainPage from './MainPageImages/MainPage';
 import lazyPages from 'utils/lazyPages';
-// import NoticesLayoutPage from 'pages/NoticesPage/NoticesLayoutPage';
-// import NoticesFavorites from 'pages/NoticesPage/NoticesFavorites';
-// import NoticesCategory from 'pages/NoticesPage/NoticesCategory';
-// import NoticesOwn from 'pages/NoticesPage/NoticesOwn';
 
 const {
   NoticesLayoutPage,
@@ -27,6 +22,7 @@ const {
   RegisterPage,
   LoginPage,
   UserPage,
+  MainPage,
 } = lazyPages;
 
 export const App = () => {

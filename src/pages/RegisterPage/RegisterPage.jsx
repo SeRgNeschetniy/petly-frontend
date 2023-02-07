@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { BackgroundContainer } from '../../components/Auth/Auth.styled';
 import FirstStep from '../../components/Auth/RegisterForm/FirstStep';
 import SecondStep from '../../components/Auth/RegisterForm/SecondStep';
-import MobileBgImage from '../../components/MainPageImages/MobileBgImage';
-import TabletBgImage from '../../components/MainPageImages/TabletBgImage';
-import DesktopBgImage from '../../components/MainPageImages/DesktopBgImage';
+// import MobileBgImage from '../../components/MainPageImages/MobileBgImage';
+// import TabletBgImage from '../../components/MainPageImages/TabletBgImage';
+// import DesktopBgImage from '../../components/MainPageImages/DesktopBgImage';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
@@ -50,10 +50,10 @@ export default function RegisterPage() {
     <>
       <BackgroundContainer>
         {Child}
-        <MobileBgImage />
+        {/* <MobileBgImage /> */}
       </BackgroundContainer>
-      <TabletBgImage />
-      <DesktopBgImage />
+      {/* <TabletBgImage />
+      <DesktopBgImage /> */}
     </>
   );
 }

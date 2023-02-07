@@ -15,6 +15,8 @@ const NoticesFavorites = lazy(() =>
 const NoticesCategory = lazy(() => import('pages/NoticesPage/NoticesCategory'));
 const NoticesOwn = lazy(() => import('pages/NoticesPage/NoticesOwn'));
 
+const MainPage = lazy(() => import('pages/MainPage'));
+
 const lazyPages = {
   NoticesLayoutPage,
   NoticesFavorites,
@@ -25,6 +27,7 @@ const lazyPages = {
   RegisterPage,
   LoginPage,
   UserPage,
+  MainPage,
 };
 
 export default lazyPages;

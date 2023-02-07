@@ -4,9 +4,9 @@ import {
   StyledLink,
   BackgroundContainer,
 } from '../../components/Auth/Auth.styled';
-import MobileBgImage from '../../components/MainPageImages/MobileBgImage';
-import TabletBgImage from '../../components/MainPageImages/TabletBgImage';
-import DesktopBgImage from '../../components/MainPageImages/DesktopBgImage';
+// import MobileBgImage from '../../components/MainPageImages/MobileBgImage';
+// import TabletBgImage from '../../components/MainPageImages/TabletBgImage';
+// import DesktopBgImage from '../../components/MainPageImages/DesktopBgImage';
 import GoogleIcon from '../../components/Auth/GoogleSignIn/GoogleIcon';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,9 +47,9 @@ export default function LoginPage() {
           <StyledLink to="/restore">Password recovery</StyledLink>
         </LinkText>
       </BackgroundContainer>
-      <MobileBgImage />
+      {/* <MobileBgImage />
       <TabletBgImage />
-      <DesktopBgImage />
+      <DesktopBgImage /> */}
     </>
   );
 }

@@ -3,11 +3,14 @@ import styled from '@emotion/styled';
 import { theme } from 'styles/theme';
 import { normalize } from 'styled-normalize';
 
-import mobileImage from '../images/mainPage/home-bg-m@2x.png';
-import tabImage from '../images/mainPage/home-bg-t@2x.png';
-
+// import mobileImage from '../images/mainPage/home-bg-m@2x.png';
+// import tabImage from '../images/mainPage/home-bg-t@2x.png';
+import dsctpImageHomeBg from '../images/mainPage/home-bg-d@1x.png';
 import dsctpImageGirl from '../images/mainPage/home-bg3-d@1x.png';
 import dsctpImageHeart from '../images/mainPage/home-bg4-d@1x.png';
+import dsctpImageHomeBg2x from '../images/mainPage/home-bg-d@2x.png';
+import dsctpImageGirl2x from '../images/mainPage/home-bg3-d@2x.png';
+import dsctpImageHeart2x from '../images/mainPage/home-bg4-d@2x.png';
 
 export const GlobalStyles = css`
   ${normalize}
@@ -131,6 +134,27 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   flex: 1 0 auto;
-  background: url(${dsctpImageHeart}) right 476px top 170px no-repeat,
-    url(${dsctpImageGirl}) right 20px bottom 0 no-repeat;
+
+  ${({ page }) =>
+    page === 'main' &&
+    css`
+      @media (min-width: 768) {
+      }
+
+      @media (min-width: 1280px) {
+        background-image: url(${dsctpImageGirl}), url(${dsctpImageHeart}),
+          url(${dsctpImageHomeBg});
+        background-position: right 20px bottom 0, right 38% bottom 90%,
+          right 0 bottom 0;
+        background-repeat: no-repeat, no-repeat, no-repeat;
+        background-size: auto 100%, 92px 89px, 100% auto;
+
+        @media (min-device-pixel-ratio: 2),
+          (min-resolution: 192dpi),
+          (min-resolution: 2dppx) {
+          background-image: url(${dsctpImageGirl2x}), url(${dsctpImageHeart2x}),
+            url(${dsctpImageHomeBg2x});
+        }
+      }
+    `}
 `;
