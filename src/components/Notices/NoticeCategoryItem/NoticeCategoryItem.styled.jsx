@@ -7,11 +7,18 @@ export const Item = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   background: ${theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 40px 40px;
-  padding-bottom: 20px;
+  padding-bottom: 12px;
+`;
+
+export const BtnWrapper = styled.div`
+  height: 100%;
+  height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 `;
 
 export const LearnMoreBtn = styled.button`
@@ -26,16 +33,30 @@ export const LearnMoreBtn = styled.button`
   text-align: center;
   display: block;
   padding: 8px;
-  width: 288px;
+  width: 100%;
+  width: 248px;
   margin-bottom: 12px;
   margin-right: auto;
   margin-left: auto;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  &:last-child {
+    margin-bottom: 20px;
+    margin-top: 50px;
+  }
+
+  &:first-child:not(:last-child) {
+    margin-top: 20px;
+  }
+
   &:hover,
   :focus {
     background: ${theme.colors.accent};
     color: ${theme.colors.white};
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 288px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -44,8 +65,8 @@ export const LearnMoreBtn = styled.button`
 `;
 
 export const DeleteBtn = styled.button`
-  border: 2px solid #ff6101;
-  color: #ff6101;
+  border: 2px solid ${theme.colors.brightAccent};
+  color: ${theme.colors.brightAccent};
   background: ${theme.colors.white};
   border-radius: 40px;
   font-weight: 500;
@@ -57,10 +78,10 @@ export const DeleteBtn = styled.button`
   justify-content: center;
   align-items: center;
   padding: 8px;
-  width: 288px;
+  width: 100%;
+  width: 248px;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 12px;
   transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
@@ -69,18 +90,17 @@ export const DeleteBtn = styled.button`
     color: ${theme.colors.white};
   }
 
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 288px;
+  }
+
   @media screen and (min-width: 1280px) {
     width: 248px;
   }
 `;
 export const Container = styled.div`
   padding: 20px;
-`;
-
-export const Wrapper = styled.div`
-  padding: 20px, 20px, 12px, 20px;
-  // margin-bottom: 50px;
-  // height: 153px;
+  padding-bottom: 0;
 `;
 
 export const Title = styled.h2`
@@ -98,6 +118,7 @@ export const Text = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 1.37;
+
   &:not(:last-child) {
     margin-bottom: 8px;
   }

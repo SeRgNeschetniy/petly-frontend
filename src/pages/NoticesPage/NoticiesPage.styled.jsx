@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   position: relative;
   @media screen and (min-width: 320px) {
-    margin-bottom: 18px;
+    margin-bottom: 30px;
   }
 
   @media screen and (min-width: 768px) {
@@ -21,7 +21,6 @@ export const Wrapper = styled.div`
     margin-bottom: 44px;
   }
   @media screen and (min-width: 768px) {
-    // display: flex;
     margin-bottom: 60px;
   }
 `;
