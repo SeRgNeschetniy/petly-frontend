@@ -2,19 +2,28 @@ import styled from '@emotion/styled';
 
 import { ReactComponent as LogoIcon } from '../../images/logo/petly.svg';
 
-export const Container = styled.header`
+import { Container as Main } from 'styles';
+
+export const MainContainer = styled(Main)`
+  margin-bottom: 42px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 88px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 59px;
+  }
+`;
+
+export const HeaderContainer = styled.header`
   display: flex;
 
   background-color: ${({ theme }) => theme.colors.mainBackground};
   padding-top: 16px;
-  margin-bottom: 42px;
+  /* margin-bottom: 42px; */
 
-  padding: 0 20px;
   margin: 0 auto;
-
-  @media screen and (min-width: 320px) {
-    width: 320px;
-  }
 
   /* @media screen and (min-width: 768px) {
     width: 768px;
@@ -27,16 +36,13 @@ export const Container = styled.header`
   } */
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 88px;
-    width: 768px;
-    padding: 0 32px;
+    padding-top: 24px;
+    /* margin-bottom: 88px; */
   }
 
   @media screen and (min-width: 1280px) {
-    /* padding-top: 30px; */
-    margin-bottom: 59px;
-    width: 1280px;
-    padding: 30px 16px 0px;
+    padding-top: 20px;
+    /* margin-bottom: 59px; */
   }
 `;
 
