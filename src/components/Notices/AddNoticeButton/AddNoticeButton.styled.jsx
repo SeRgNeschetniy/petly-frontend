@@ -4,24 +4,7 @@ import { IoAdd } from 'react-icons/io5';
 
 export const Wrapper = styled.div`
   @media screen and (max-width: 767px) {
-    // width: 80px;
-    // height: 80px;
-    // background: ${theme.colors.accent};
-    // border-radius: 50%;
-
-    // margin-left: auto;
-    // display: flex;
-    // flex-direction: column-reverse;
-    // align-items: center;
-    // justify-content: center;
-
-    // position: absolute;
-    // right: 0;
-    // z-index: 1;
-    height: 100%;
-    position: fixed;
-    top: 485px;
-    z-index: 2;
+    // height: 100%;
   }
 
   @media screen and (min-width: 768px) {
@@ -52,14 +35,9 @@ export const Text = styled.p`
 
 export const AddBtn = styled.button`
 
-    // display: flex;
-    // width: 44px;
-    // height: 44px;
-    // background: ${theme.colors.accent};
-    // border-radius: 50%;
-    // justify-content: center;
-    // align-items: center;
-
+&:hover{
+   background: ${theme.colors.brightAccent}
+}
     @media screen and (max-width: 767px)  {
       width: 80px;
     height: 80px;
@@ -69,14 +47,12 @@ export const AddBtn = styled.button`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
-    
-// height:100%;
+    position: fixed;
+    top: 485px;
+    z-index: 2;
 }
 
-      }
-
-      @media screen and (min-width: 768px)  {
+   @media screen and (min-width: 768px)  {
       width: 44px;
     height: 44px;
     background: ${theme.colors.accent};
@@ -84,8 +60,6 @@ export const AddBtn = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-
-   
       }
 }
 

@@ -15,7 +15,7 @@ export const formOneValidationSchema = Yup.object({
     .test(
       'is-date-valid',
       () => `Future date not allowed`,
-      (value) => {
+      value => {
         if (value) {
           let date = value.split('.');
           const corectFormat = new Date(`${date[2]}/${date[1]}/${date[0]}`);
@@ -26,10 +26,18 @@ export const formOneValidationSchema = Yup.object({
     )
     .label('Date of birth')
     .required('Date of birth is required'),
-  breed: Yup.string().min(2, 'Too Short!').max(16, 'Too Long!').label('Date of birth').required('Breed is required')
+  breed: Yup.string()
+    .min(2, 'Too Short!')
+    .max(16, 'Too Long!')
+    .label('Date of birth')
+    .required('Breed is required'),
 });
 
 export const formTwoValidationSchema = Yup.object({
-  // comments: Yup.string().min(8, 'Too Short!').max(120, 'Too Long!').label('Comment').required('Comment is required'),
-  petImage: Yup.mixed().label('Pet image').required('Pet image is required')
+  comments: Yup.string()
+    .min(8, 'Too Short!')
+    .max(120, 'To mach')
+    .label('Comment')
+    .required('Comment is required'),
+  petImage: Yup.mixed().label('Pet image').required('Pet photo is required'),
 });

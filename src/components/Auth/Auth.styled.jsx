@@ -30,10 +30,17 @@ export const Form = styled.form`
 
 export const InputField = styled.div`
   position: relative;
-  margin-bottom: 16px;
-  @media (min-width: 768px) {
-    margin-bottom: ${props => props.margin ? "40px" : "16px"};
-  }
+  margin-bottom: ${props => props.margin ? "40px" : "16px"};
+`;
+
+export const DivPass = styled.div`
+color: #FF6101;
+position: absolute;
+right: 12px;
+top: 12px;
+@media (min-width: 768px) {
+  top: 17px;
+  }  
 `;
 
 export const Input = styled.input`
@@ -42,7 +49,7 @@ export const Input = styled.input`
   width: 100%;
   height: 40px;
   background-color: ${theme.colors.mainBackground};
-  border: 1px solid ${theme.colors.accent};
+  border: 2px solid ${theme.colors.accent};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
@@ -54,7 +61,7 @@ export const Input = styled.input`
   &:hover, &:focus {
     border: 2px solid #FF6101;
   }
-  }
+  
   @media (min-width: 768px) {
     height: 52px;
   }
@@ -65,10 +72,10 @@ export const Button = styled.button`
   width: 100%;
   padding: 10px;
   border-radius: 40px;
-  font-size: ${theme.fontSizes.large};
+  font-size: 20px;
   border: ${props => props.outline ? `2px solid ${theme.colors.accent}` : `2px solid ${theme.colors.accent}`};
   background-color: ${props => props.outline ? "white" : `${theme.colors.accent}`};
-  margin-bottom: 20px;
+  margin-bottom: ${props => props.margin ? "40px" : "16px"};
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover, &:focus {
     background-color: #FF6101;

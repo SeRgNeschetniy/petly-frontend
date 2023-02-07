@@ -1,35 +1,33 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-
+import { useDispatch } from 'react-redux';
 import { pet } from '../../servises';
-import { VscClose } from 'react-icons/vsc';
-
-import { TfiClose } from 'react-icons/tfi';
-//import { string } from 'yup';
-import {
-  Container,
-  ButtonClose,
-  Title,
-  Label,
-  WraperTextarea,
-  ErrMessage,
-  FormWrapper,
-  ButtonWrapper,
-  ButtonFill,
-  ButtonEmpty,
-  InputPhoto,
-  FormSecond,
-  Textarea,
-  ErrorTextarea,
-  Text,
-  CrossBig,
-  ButtonAddPhoto,
-  AvatarImg,
+import {TfiPlus} from 'react-icons/tfi';
+import {VscClose} from 'react-icons/vsc';
+import  {fetchPets} from '../../redux/addPets/addPets-operations'
+import {Container, 
+    ButtonClose, 
+    TitleSecondForm, 
+    Label, 
+    WraperTextarea,       
+    FormWrapper,     
+    ButtonWrapper,
+    ButtonFill,
+    ButtonEmpty,
+    InputPhoto,
+    FormSecond,
+    Textarea,
+    ErrorTextarea,
+    Text,
+    CrossBig,    
+    ButtonAddPhoto,
+    AvatarImg,
 } from './AddPetsModal.styled';
 
 export const AddPetsSecondForm = props => {
-  const [img, setImg] = useState(null);
-  // const [valid, setValid] = useState(false);
+  const [img, setImg] = useState(null); 
+
+  const dispatch = useDispatch();
 
   const handleSubmit = values => {
     console.log(values);
@@ -37,12 +35,10 @@ export const AddPetsSecondForm = props => {
     formData.append('name', values.name);
     formData.append('dateOfBirth', values.dateOfBirth);
     formData.append('breed', values.breed);
-    formData.append('petImage', values.petImage);
-    formData.append('comments', values.comments);
-    // const formData = new FormData(props.data);
-    // for (let k of formData) {
-    //   console.log(k);
-    // }
+    formData.append('photoPet', values.petImage);
+    formData.append('comment', values.comments);
+    dispatch(fetchPets(formData));
+   
     props.closeModal();
   };
 
@@ -51,7 +47,7 @@ export const AddPetsSecondForm = props => {
       <ButtonClose type="button" onClick={props.closeModal}>
         <VscClose size={65} />
       </ButtonClose>
-      <Title>Add pet</Title>
+      <TitleSecondForm>Add pet</TitleSecondForm>
       <FormWrapper>
         <Formik
           validationSchema={pet.formTwoValidationSchema}
@@ -62,27 +58,24 @@ export const AddPetsSecondForm = props => {
             <FormSecond encType="multipart/form-data">
               <Text>Add photo and some comments</Text>
               <ButtonAddPhoto type="button">
-                {!img ? (
-                  <CrossBig>
-                    <TfiClose size={40} />
+              {!img ? (
+                  <CrossBig >
+                    <TfiPlus size={48} />
                   </CrossBig>
-                ) : (
+                  ) : (
                   <AvatarImg src={img} alt="avatar" />
-                )}
-                <InputPhoto
+                    )}                
+                <InputPhoto name="petImage"
                   type="file"
                   accept="image/*"
                   onChange={e => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('petImage', e.target.files[0]);
-                    setImg(URL.createObjectURL(fileUploaded));
-                    //setValid(string().required().isValidSync(e.target.files[0]));
+                    setImg(URL.createObjectURL(fileUploaded));                    
                   }}
-                />
-                {/* <ErrMessage>{!valid && 'Image is required'}</ErrMessage> */}
-                <ErrMessage></ErrMessage>
+                />                  
+                  <ErrorTextarea name="petImage" component="p" />
               </ButtonAddPhoto>
-
               <WraperTextarea>
                 <Label> Comments</Label>
                 <Textarea
@@ -93,7 +86,6 @@ export const AddPetsSecondForm = props => {
                 />
                 <ErrorTextarea name="comments" component="p" />
               </WraperTextarea>
-
               <ButtonWrapper>
                 <ButtonFill type="submit">Done</ButtonFill>
                 <ButtonEmpty
@@ -112,3 +104,4 @@ export const AddPetsSecondForm = props => {
 };
 
 export default AddPetsSecondForm;
+

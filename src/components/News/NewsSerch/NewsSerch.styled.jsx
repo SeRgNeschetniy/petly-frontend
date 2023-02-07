@@ -44,8 +44,13 @@ export const Input = styled.input`
   }
 `;
 
-export const IconSearch = styled(AiOutlineSearch)`
-  position: absolute;
-  top: 10px;
-  right: 12px;
+export const BtnSearch = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  width: 24px;
+  height: 24px;
 `;
+export const IconSearch = styled(AiOutlineSearch)``;
+

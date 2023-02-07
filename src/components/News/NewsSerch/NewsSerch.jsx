@@ -1,28 +1,38 @@
 import { Form, Input, IconSearch } from './NewsSerch.styled';
-// import { useSelector, useDispatch } from "react-redux";
-// import { selectSearch } from "redux/search/search-selectors";
-// import { setSearch } from "redux/search/search-slice";
+import { HiXMark } from "react-icons/hi2";
+import {useState} from 'react';
+const NewsSerch = (props) => {
+const [searchQuery, setSearchQuery] = useState("");
 
-const NewsSerch = () => {
-  // const search = useSelector(selectSearch);
-  // const dispatch = useDispatch();
+   const handleChangeSearch = (e) => {
+     props.onSearch(e.target.value);
+     
+  };
+  
+  const searchHandler = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
-  //  const handleChangeSearch = e => {
-  //         const { value } = e.target;
-  //         dispatch(setSearch(value));
-  //     };
+   const removeQuery = () => {
+    setSearchQuery("");
+    props.onSearch("");
+  };
+
 
   return (
-    <Form>
+    <Form onChange={searchHandler} >
       <Input
         type="text"
         autoComplete="off"
         autoFocus
         placeholder="Search"
-        // onChange={handleChangeSearch}
-        // value={search}
+        onChange={handleChangeSearch} 
+        value={searchQuery} 
       />
-      <IconSearch size={20} />
+      <div style={{ position: 'absolute', right: '10px', top: '10px' }}>
+       {!searchQuery &&  <IconSearch size={20} />} 
+        {searchQuery && <HiXMark size={20} onClick={ removeQuery} />} 
+      </div>
     </Form>
   );
 };

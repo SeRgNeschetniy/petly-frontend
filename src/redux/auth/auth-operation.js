@@ -57,10 +57,10 @@ export const logout = createAsyncThunk(
 
 export const current = createAsyncThunk(
   'auth/current',
-  async (data, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      setToken(auth.token || data);
+      setToken(auth.token);
       const result = await axios.get(`/users/current/`);
       return result.data;
     } catch ({ responce }) {
@@ -107,33 +107,27 @@ export const restorePassword = createAsyncThunk(
   }
 );
 
-export const addToFavorite = createAsyncThunk(
-  'notices/addFavorite',
-  async (_id, { rejectWithValue, getState }) => {
+export const patchAvatar = createAsyncThunk(
+  'users/avatar',
+  async (newdata, thunkApi) => {
     try {
-      const { auth } = getState();
-      setToken(auth.token);
-      const result = await axios.post(`/notices/${_id}/favorites`);
-      return result.data;
-    } catch ({ responce }) {
-      const error = {
-        status: responce.status,
-        message: responce.data.message,
-      };
-      return rejectWithValue(error);
+      const { data } = await axios.patch(`/users/avatar`, newdata);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
     }
   }
 );
-export const patchAvatar = createAsyncThunk(
-    "users/avatar",
-    async (newdata, thunkApi) => {   
-       try {
-         const { data } = await axios.patch(`/users/avatar`, newdata)
-         console.log(data)
-         return data
-         
-        } catch (error) {
-            return thunkApi.rejectWithValue(error)
-        }
+
+export const refreshToken = createAsyncThunk(
+  'users/refresh',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get('/users/refresh');
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
     }
+  }
 );

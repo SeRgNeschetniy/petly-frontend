@@ -16,10 +16,12 @@ export const Link = styled(NavLink)`
     margin-right: 12px;
   }
 
-  &.active,
-  :hover,
-  :focus {
+  &.active {
     background: ${theme.colors.accent};
+    color: ${theme.colors.white};
+  }
+  &:hover {
+    background: ${theme.colors.brightAccent};
     color: ${theme.colors.white};
   }
 

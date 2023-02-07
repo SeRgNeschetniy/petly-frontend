@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-
-import { pet } from '../../servises';
+import { notice } from '../../../servises';
 import { VscClose } from 'react-icons/vsc';
 
-import { TfiClose } from 'react-icons/tfi';
-import { string } from 'yup';
 import {
   Container,
   ButtonClose,
@@ -28,19 +25,22 @@ import {
   ButtonAddPhoto,
   AvatarImg,
   RadioWrapp,
-  LabelRadioBtn,
-  RadioBtn,
+  LabelRadioSexBtn,
+  RadioSexBtn,
 } from './NoticeModal.styled';
 import { useDispatch } from 'react-redux';
 import { addNewNotice } from 'redux/notices/notices-operation';
 
+import { MdMale } from 'react-icons/md';
+import { MdFemale } from 'react-icons/md';
+import {TfiPlus} from 'react-icons/tfi';
+
 export const NoticeSecondForm = props => {
   const [img, setImg] = useState(null);
-  const [valid, setValid] = useState(false);
   const dispatch = useDispatch();
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault()
+  const handleSubmitForm = e => {
+    e.preventDefault();
     const { category, title, name, dateOfBirth, breed } = props.data;
     const { sex, location, price, petImage, comments } = e.target;
     console.log(e.target);
@@ -73,7 +73,7 @@ export const NoticeSecondForm = props => {
         price: values.price,
         comments: values.comments,
       };
-    })
+    });
     props.setPage(prev => prev - 1);
   };
 
@@ -85,41 +85,62 @@ export const NoticeSecondForm = props => {
       <Title>Add pet</Title>
       <FormWrapper>
         <Formik
-          validationSchema={pet.formTwoValidationSchema}
+          validationSchema={notice.formTwoValidationSchema}
           initialValues={props.data}
           onSubmit={handleBackClick}
         >
           {({ setFieldValue, handleChange, handleSubmit, values }) => (
-            <FormSecond onSubmit={handleSubmitForm} encType="multipart/form-data">
+            <FormSecond
+              onSubmit={handleSubmitForm}
+              encType="multipart/form-data"
+            >
               <RadioWrapp role="group" aria-labelledby="sex-group">
-                <LabelRadioBtn>
-                  <RadioBtn type="radio" name="sex" value="male" />
+                <RadioSexBtn id="male" type="radio" name="sex" value="male" />
+                <LabelRadioSexBtn htmlFor="male">
+                  <MdMale size="4rem"></MdMale>
                   Male
-                </LabelRadioBtn>
-                <LabelRadioBtn>
-                  <RadioBtn type="radio" name="sex" value="female" />
+                </LabelRadioSexBtn>
+                <RadioSexBtn
+                  id="female"
+                  type="radio"
+                  name="sex"
+                  value="female"
+                />
+                <LabelRadioSexBtn htmlFor="female">
+                  <MdFemale size="4rem"></MdFemale>
                   Female
-                </LabelRadioBtn>
+                </LabelRadioSexBtn>
               </RadioWrapp>
               <Label htmlFor="location">Location*:</Label>
               <InputWrapper>
-                <Input name="location" placeholder="Type location" />
+                <Input
+                  id="location"
+                  name="location"
+                  onChange={handleChange}
+                  value={values.location}
+                  placeholder="Type location"
+                />
                 <ErrMessage name="location" component="p" />
               </InputWrapper>
               <Label htmlFor="price">Price*:</Label>
               <InputWrapper>
-                <Input name="price" placeholder="Type price" />
-
+                <Input
+                  id="price"
+                  name="price"
+                  onChange={handleChange}
+                  value={values.price}
+                  placeholder="Type price"
+                />
                 <ErrMessage name="price" component="p" />
               </InputWrapper>
               <Text>Load the pet’s image</Text>
               <ButtonAddPhoto type="button">
                 {!img ? (
-                  <CrossBig>
-                    <TfiClose size={40} />
+                  <CrossBig>                    
+                    <TfiPlus size={48} />
                   </CrossBig>
                 ) : (
-                  <AvatarImg src={img} alt="avatar" />
+                  <AvatarImg src={img} alt="Pet Image" />
                 )}
                 <InputPhoto
                   type="file"
@@ -129,12 +150,11 @@ export const NoticeSecondForm = props => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('petImage', e.target.files[0]);
                     setImg(URL.createObjectURL(fileUploaded));
-                  //   // setValid(string().required().isValidSync(e.target.files[0]));
+                    //   // setValid(string().required().isValidSync(e.target.files[0]));
                   }}
                 />
-                <ErrMessage>{!valid && 'Image is required'}</ErrMessage>
+                {/* <ErrMessage>{!valid && 'Image is required'}</ErrMessage> */}
               </ButtonAddPhoto>
-
               <WraperTextarea>
                 <Label>Comments</Label>
                 <Textarea
@@ -148,11 +168,10 @@ export const NoticeSecondForm = props => {
               </WraperTextarea>
 
               <ButtonWrapper>
-                <ButtonFill type="submit" onSubmit={handleSubmitForm}>Done</ButtonFill>
-                <ButtonEmpty
-                  type="button"
-                  onClick={handleSubmit}
-                >
+                <ButtonFill type="submit" onSubmit={handleSubmitForm}>
+                  Done
+                </ButtonFill>
+                <ButtonEmpty type="button" onClick={handleSubmit}>
                   Back
                 </ButtonEmpty>
               </ButtonWrapper>
@@ -164,4 +183,7 @@ export const NoticeSecondForm = props => {
   );
 };
 
+
 export default NoticeSecondForm;
+
+

@@ -14,17 +14,14 @@ import { fetchUserPets } from 'redux/userpage/userpage-operation';
 import { selectUserPets } from 'redux/userpage/userpage-selectors';
 
 export default function PetsCard() {
+  const dispatch = useDispatch();
 
-        const dispatch = useDispatch();
-            useEffect(() => {
-                dispatch(fetchUserPets());
-            }, [dispatch]);
-    
-   
+  useEffect(() => {
+    dispatch(fetchUserPets());
+  }, [dispatch]);
+
     // console.log(items)
   const items = useSelector(selectUserPets);
-
-
   const deletePetCard = id => {
     return dispatch(removePetCard(id));
   };
