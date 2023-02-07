@@ -3,7 +3,7 @@ import { Field, ErrorMessage, Form } from 'formik';
 import { theme } from '../../../styles/theme';
 
 export const Container = styled.div`
-  background-color: #ffffff;
+  background-color: ${theme.colors.white};
   padding: 18px;
   width: 280px;
   border-radius: 20px;
@@ -26,14 +26,12 @@ export const ButtonClose = styled.button`
   align-items: center;
   justify-content: center;
   background: ${theme.colors.mainBackground};
-  border: none;
+  border: 2px solid ${theme.colors.white};
 
   &:hover,
-  &:focus {
-    transition: box-shadow 250ms ease-out;
-    box-shadow: 0px 0px 1px 2px rgba(245, 146, 86, 0.7);
-    -webkit-box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-    -moz-box-shadow: 0px 0px 3px 1px rgba(245, 146, 86, 0.7);
+  &:focus {      
+    transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);      
+    border: 2px solid ${theme.colors.accent};
   }
   @media screen and (min-width: 767px) {
     width: 44px;
@@ -43,13 +41,13 @@ export const ButtonClose = styled.button`
 
 export const Title = styled.h3`
   font-weight: 500;
-  font-size: 24px;
-  line-height: 33px;
+  font-size: 1.5rem;
+  line-height: 2rem;
   text-align: center;
   margin-top: 20px;
   @media screen and (min-width: 767px) {
-    font-size: 36px;
-    line-height: 49px;
+    font-size: 2.25rem;
+    line-height: 3rem;
   }
 `;
 
@@ -87,29 +85,26 @@ export const ButtonFill = styled.button`
   text-decoration: none;
   font-family: Manrope, sans-serif;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
+    font-size: 1rem;
+    line-height: 1.4rem;
   letter-spacing: 0.02857em;
   max-width: 240px;
   height: 40px;
   padding: 10px 28px;
   border-radius: 40px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: rgb(255, 255, 255);
-  background-color: #f59256;
-  box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px,
-    rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
-  width: 100%;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, 
+      border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    color: rgb(255, 255, 255);
+    background-color: ${theme.colors.accent};
+    
+    width: 100%;
 
   &:hover,
   &:focus {
-    transition: box-shadow 250ms ease-out;
-    box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-    -webkit-box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-    -moz-box-shadow: 0px 0px 4px 2px rgba(245, 146, 86, 0.7);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      background-color:${theme.colors.mainBackground};
+      border: 2px solid ${theme.colors.accent};
+      color: ${theme.colors.dark};
   }
   @media screen and (min-width: 767px) {
     max-width: 180px;
@@ -122,22 +117,21 @@ export const ButtonEmpty = styled.button`
   max-width: 240px;
   height: 40px;
   border-radius: 40px;
-  background: #ffffff;
-  border: 2px solid #f59256;
+  background: ${theme.colors.white};
+  border: 2px solid ${theme.colors.accent};
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: #111111;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  color:${theme.colors.dark};
   cursor: pointer;
 
   &:hover,
   &:focus {
-    transition: box-shadow 250ms ease-out;
-    box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-    -webkit-box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-    -moz-box-shadow: 0px 0px 4px 2px rgba(245, 146, 86, 0.7);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    background-color:${theme.colors.accent};      
+      color: ${theme.colors.mainBackground};
   }
   @media screen and (min-width: 767px) {
     width: 180px;
@@ -184,16 +178,19 @@ export const InputWrapperLast = styled.div`
 export const Input = styled(Field)`
   font-weight: 500;
   font-size: 0.8rem;
-  line-height: 26px;
+  line-height: 1.6rem;
   width: 240px;
   height: 40px;
 
   background-color: ${theme.colors.mainBackground};
-  border: 1px solid ${theme.colors.accent};
+  border: 2px solid ${theme.colors.accent};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover, &:focus {
+    border: 2px solid #FF6101;
+  }
   &::placeholder {
     font-size: 14px;
     color: ${theme.colors.gray};
@@ -211,11 +208,14 @@ export const InputLast = styled(Field)`
   width: 240px;
   height: 40px;
   background-color: ${theme.colors.mainBackground};
-  border: 1px solid ${theme.colors.accent};
+  border: 2px solid ${theme.colors.accent};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover, &:focus {
+    border: 2px solid #FF6101;
+  }
   &::placeholder {
     font-size: 14px;
     color: ${theme.colors.gray};
@@ -261,8 +261,8 @@ export const AvatarImg = styled.img`
 
 export const Text = styled.p`
   font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 1rem;
+  line-height: 1.4rem;
   margin-bottom: 40px;
 
   @media screen and (min-width: 767px) {
@@ -271,42 +271,42 @@ export const Text = styled.p`
   }
 `;
 
-export const ButtonAddPhoto = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const ButtonAddPhoto=styled.button`
   position: relative;
-  width: 116px;
-  height: 116px;
-  background: ${theme.colors.mainBackground};
-  border-radius: 20px;
-  border: none;
-  overflow: hidden;
-  margin-bottom: 28px;
-  cursor: pointer;
+    display: flex;        
+    justify-content: center;
+    align-items: center; 
+    width: 208px;
+    height: 208px;
+    background: ${theme.colors.mainBackground};
+    border-radius: 20px;
+    margin-bottom: 28px;
+    border: 2px solid ${theme.colors.mainBackground};
+    overflow: hidden;
+    &:hover, &:focus {
+      border: 2px solid ${theme.colors.accent};
+    }
+    @media screen and (min-width: 767px) {
+      
+        width: 182px;
+        height: 182px;
+      }`   
 
-  @media screen and (min-width: 767px) {
-    width: 140px;
-    height: 140px;
-  }
-`;
-
-export const CrossBig = styled.div`
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-`;
+      export const CrossBig =styled.div`
+  position: absolute;    
+    width: 48px;
+    height: 48px;    
+    color: #D9D9D9;    
+    ` ;
 
 export const Label = styled.label`
   font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  margin-bottom: 12px;
+  font-size: 1.1rem;
+  line-height: 1.6rem;
   @media screen and (min-width: 767px) {
-    font-size: 24px;
-    line-height: 26px;
-  }
-`;
+        font-size: 1.5rem;
+        line-height: 1.6rem;
+        }`;
 
 export const WraperTextarea = styled.div`
   position: relative;
@@ -324,6 +324,9 @@ export const Textarea = styled(Field)`
   border-radius: 20px;
   outline: none;
   resize: none;
+  &:hover, &:focus {
+    border: 2px solid #FF6101;
+  }
   @media screen and (min-width: 767px) {
     width: 394px;
     height: 116px;
