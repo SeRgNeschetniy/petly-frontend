@@ -4,10 +4,12 @@ import Headline from 'components/Headline/Headline';
 import { useEffect, useState } from 'react';
 import NewsList from 'components/News/NewsList/NewsList';
 import Container from './NewsPage.styled';
+
 const { REACT_APP_BASE_URL } = process.env;
+axios.defaults.baseURL = REACT_APP_BASE_URL;
 
 const fetchNews = async () => {
-  const { data } = await axios.get(`${REACT_APP_BASE_URL}/api/news`);
+  const { data } = await axios.get('/news');
   return data;
 };
 
