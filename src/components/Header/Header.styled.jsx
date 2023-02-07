@@ -21,28 +21,14 @@ export const HeaderContainer = styled.header`
 
   background-color: ${({ theme }) => theme.colors.mainBackground};
   padding-top: 16px;
-  /* margin-bottom: 42px; */
-
   margin: 0 auto;
-
-  /* @media screen and (min-width: 768px) {
-    width: 768px;
-    padding: 0 32px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 1280px;
-    padding: 0 16px;
-  } */
 
   @media screen and (min-width: 768px) {
     padding-top: 24px;
-    /* margin-bottom: 88px; */
   }
 
   @media screen and (min-width: 1280px) {
     padding-top: 20px;
-    /* margin-bottom: 59px; */
   }
 `;
 
