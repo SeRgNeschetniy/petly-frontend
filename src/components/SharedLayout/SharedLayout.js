@@ -2,14 +2,18 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Header, Loader } from '../components';
 
-import { Container } from 'styles';
+import { Container, Main } from 'styles';
 export default function SharedLayout() {
   return (
-    <Container>
+    <>
       <Suspense fallback={<Loader />}>
         <Header />
-        <Outlet />
+        <Main>
+          <Container>
+            <Outlet />
+          </Container>
+        </Main>
       </Suspense>
-    </Container>
+    </>
   );
 }
