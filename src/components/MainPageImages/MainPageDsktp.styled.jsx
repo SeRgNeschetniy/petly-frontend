@@ -7,6 +7,9 @@ export const Wrapper = styled.section`
 
 export const ImageLong = styled.img`
   position: absolute;
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
   @media screen and (min-width: 320px) {
     display: none;
   }
@@ -18,14 +21,15 @@ export const ImageLong = styled.img`
     width: 80%;
     bottom: 0;
 
-    margine-rigth: auto;
-    margine-left: auto;
     z-index: -1;
   }
 `;
 
 export const ImageRight = styled.img`
   position: absolute;
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
   @media screen and (min-width: 320px) {
     display: none;
   }
@@ -43,6 +47,9 @@ export const ImageRight = styled.img`
 `;
 export const ImageGirl = styled.img`
   position: absolute;
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
   @media screen and (min-width: 320px) {
     display: none;
   }
@@ -59,6 +66,9 @@ export const ImageGirl = styled.img`
 `;
 export const ImageHeart = styled.img`
   position: absolute;
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
   @media screen and (min-width: 320px) {
     display: none;
   }
@@ -68,8 +78,8 @@ export const ImageHeart = styled.img`
   @media screen and (min-width: 1280px) {
     display: block;
     width: 6%;
-    left: 870px;
+    margin-left: 800px;
+    bottom: 650px;
     z-index: -2;
-    top: 250px;
   }
 `;
