@@ -27,6 +27,7 @@ const NoticesLayoutPage = () => {
   const [matches, setMatches] = useState(
     window.matchMedia('(min-width: 768px)').matches
   );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,7 +39,6 @@ const NoticesLayoutPage = () => {
       }
     } else {
       if (isLoggedIn) {
-        console.log('идем зя юзера нотисами');
         dispatch(fetchUserNotices());
       }
     }

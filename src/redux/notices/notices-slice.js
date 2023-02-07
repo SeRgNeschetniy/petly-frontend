@@ -49,7 +49,7 @@ const noticesSlice = createSlice({
     [fetchFavoritesNotices.rejected]: handleRejected,
 
     [fetchUserNotices.fulfilled](state, action) {
-      state.favorites = action.payload;
+      state.notices = action.payload;
       state.isLoading = false;
       state.error = null;
     },
