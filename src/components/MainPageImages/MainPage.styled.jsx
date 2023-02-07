@@ -46,7 +46,9 @@ export const Title = styled.h1`
 
 export const MainPageImage = styled.img`
   @media screen and (min-width: 320px) {
-    margin-top: -55px;
+    display: block;
+    bottom: 0;
+    margin-top: -50px;
   }
   @media screen and (min-width: 768px) {
     display: none;
@@ -57,11 +59,15 @@ export const MainPageImage = styled.img`
 `;
 
 export const MainPageImageTab = styled.img`
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
   @media screen and (min-width: 320px) {
     display: none;
   }
   @media screen and (min-width: 768px) {
     display: block;
+    bottom: 0;
     margin-top: -235px;
   }
   @media screen and (min-width: 1280px) {
@@ -70,8 +76,12 @@ export const MainPageImageTab = styled.img`
 `;
 
 export const MobileBgImageLogin = styled.img`
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
   @media screen and (min-width: 320px) {
     display: block;
+    bottom: 0;
     margin-top: 0px;
   }
   @media screen and (min-width: 768px) {
@@ -84,6 +94,9 @@ export const MobileBgImageLogin = styled.img`
 
 export const TabletBgImg = styled.img`
   position: absolute;
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
   @media screen and (min-width: 320px) {
     display: none;
   }
@@ -99,6 +112,9 @@ export const TabletBgImg = styled.img`
 
 export const DesktopBgImageLogin = styled.img`
   position: absolute;
+  @media screen and (max-width: 319px) {
+    display: none;
+  }
   @media screen and (min-width: 320px) {
     display: none;
   }
