@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const ContainerWrapp = styled.div`
   width: 100%;
   position: relative;
   margin-bottom: 100px;

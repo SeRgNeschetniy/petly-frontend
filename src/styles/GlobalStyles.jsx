@@ -22,6 +22,15 @@ import mblImageGirl from '../images/mainPage/home-bg3-m@1x.png';
 import mblImageHomeBg2x from '../images/mainPage/home-bg-m@2x.png';
 import mblImageGirl2x from '../images/mainPage/home-bg3-m@2x.png';
 
+import dsctpImageLoginBg from '../images/mainPage/loginReg-bg-d@1x.png';
+import dsctpImageLoginBg2x from '../images/mainPage/loginReg-bg-d@2x.png';
+
+import tbltImageLoginBg from '../images/mainPage/loginReg-bg-t@1x.png';
+import tbltImageLoginBg2x from '../images/mainPage/loginReg-bg-t@2x.png';
+
+import mblImageLoginBg from '../images/mainPage/loginReg-bg-m@1x.png';
+import mblImageLoginBg2x from '../images/mainPage/loginReg-bg-m@2x.png';
+
 export const GlobalStyles = css`
   ${normalize}
 
@@ -185,6 +194,47 @@ export const Main = styled.main`
           (min-resolution: 2dppx) {
           background-image: url(${dsctpImageGirl2x}), url(${dsctpImageHeart2x}),
             url(${dsctpImageHomeBg2x});
+        }
+      }
+    `}
+
+  ${({ page }) =>
+    page === 'login' &&
+    css`
+      background-image: url(${mblImageLoginBg});
+      background-position: left 0 bottom 0;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+
+      @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url(${mblImageLoginBg2x});
+      }
+
+      @media (min-width: 768px) {
+        background-image: url(${tbltImageLoginBg});
+        background-position: left 0 bottom 0;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+
+        @media (min-device-pixel-ratio: 2),
+          (min-resolution: 192dpi),
+          (min-resolution: 2dppx) {
+          background-image: url(${tbltImageLoginBg2x});
+        }
+      }
+
+      @media (min-width: 1280px) {
+        background-image: url(${dsctpImageLoginBg});
+        background-position: right 0 bottom 0;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+
+        @media (min-device-pixel-ratio: 2),
+          (min-resolution: 192dpi),
+          (min-resolution: 2dppx) {
+          background-image: url(${dsctpImageLoginBg2x});
         }
       }
     `}

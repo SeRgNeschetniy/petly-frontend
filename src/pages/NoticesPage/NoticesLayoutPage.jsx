@@ -3,7 +3,7 @@ import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav/Notice
 import Headline from 'components/Headline/Headline';
 import AddNoticeButton from 'components/Notices/AddNoticeButton/AddNoticeButton';
 import AddNoticeButtonMobile from 'components/Notices/AddNoticeButton/AddNoticeButtonMobile';
-import { Container, Wrapper } from './NoticiesPage.styled';
+import { ContainerWrapp, Wrapper } from './NoticiesPage.styled';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -14,6 +14,7 @@ import {
 import { Navigate, Outlet, useParams, useSearchParams } from 'react-router-dom';
 import { selectIsLoading, selectError } from 'redux/notices/notices-selectors';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
+import { Container, Main } from 'styles';
 
 const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
@@ -67,26 +68,28 @@ const NoticesLayoutPage = () => {
   };
 
   return (
-    <>
+    <Main>
       <Container>
-        {isDefaultNav && <Navigate to={'/notices/sell'} />}
-        <Headline title={'Find your favorite pet'}></Headline>
-        <NoticesSearch onSubmit={onFormSubmit} />
-        <Wrapper>
-          <NoticesCategoriesNav />
-          {matches && <AddNoticeButton />}
-        </Wrapper>
-        {!matches && <AddNoticeButtonMobile />}
-        {!isLoading && <Outlet />}
-        {/* {isModalOpen && (
+        <ContainerWrapp>
+          {isDefaultNav && <Navigate to={'/notices/sell'} />}
+          <Headline title={'Find your favorite pet'}></Headline>
+          <NoticesSearch onSubmit={onFormSubmit} />
+          <Wrapper>
+            <NoticesCategoriesNav />
+            {matches && <AddNoticeButton />}
+          </Wrapper>
+          {!matches && <AddNoticeButtonMobile />}
+          {!isLoading && <Outlet />}
+          {/* {isModalOpen && (
           <Modal onCloseModal={closeModal}>
             <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
           </Modal>
         )} */}
-        {isLoading && <p>...loading</p>}
-        {error && <p>Ooops... Something went wrong</p>}
+          {isLoading && <p>...loading</p>}
+          {error && <p>Ooops... Something went wrong</p>}
+        </ContainerWrapp>
       </Container>
-    </>
+    </Main>
   );
 };
 

@@ -1,14 +1,17 @@
-import { Title, Wrapper } from './MainPage.styled';
+import { Title } from './MainPage.styled';
+import { Container, Main } from 'styles';
 
 const Headline = () => {
   return (
     <>
-      <Wrapper>
-        <Title>
-          Take good care of <br />
-          your small pets
-        </Title>
-      </Wrapper>
+      <Main page="main">
+        <Container>
+          <Title>
+            Take good care of <br />
+            your small pets
+          </Title>
+        </Container>
+      </Main>
     </>
   );
 };
