@@ -4,7 +4,15 @@ import { IoAdd } from 'react-icons/io5';
 
 export const Wrapper = styled.div`
   @media screen and (max-width: 767px) {
-    // height: 100%;
+    width: 100px;
+    position: fixed;
+    top: 70%;
+    right: 0px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
   }
 
   @media screen and (min-width: 768px) {
@@ -48,9 +56,7 @@ export const AddBtn = styled.button`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    top: 485px;
-    z-index: 2;
+   
 }
 
    @media screen and (min-width: 768px)  {

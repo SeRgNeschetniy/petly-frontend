@@ -99,7 +99,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
   return (
     <>
       <Item>
-        <Image src={petImage} alt="Pet" minwidth={288} height={288} />
+        <Image src={petImage} alt="Pet" minwidth={240} height={288} />
         <Sticker>{category}</Sticker>
         <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
           {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
@@ -117,12 +117,14 @@ const NoticeCategoryItem = ({ notice, route }) => {
           </Text>
           <Text>
             <Span>Age:</Span>
-            {age} years
+            {age === 0 && 'one year'}
+            {age === 1 && `${age} year`}
+            {age !== 1 && age !== 0 && `${age} years`}
           </Text>
           {category === 'sell' && (
             <Text>
               <Span>Price:</Span>
-              {price ? `${price} $` : '--------'}
+              {price ? `${price}` : '--------'}
             </Text>
           )}
           {/* </Wrapper> */}
