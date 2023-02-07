@@ -2,7 +2,7 @@ import styled from "styled-components"
 export const BoxInput = styled.div`
 display:flex;
 align-items:centre;
-padding-bottom:15px;
+
 align-items: center;
 `
 export const TextField = styled.span`
@@ -10,6 +10,7 @@ font-weight: 500;
 font-size: 12px;
 line-height: 16px;
 color: #111111;
+margin-right:auto;
 @media screen and (min-width: 768px) {
     font-weight: 500;
     font-size: 18px;
@@ -34,7 +35,8 @@ line-height: 16px;
     font-weight: 400;
     font-size: 18px;
     line-height: 25px;
-    width:216px
+    width:216px;
+    margin-right:24px;
 }
 @media screen and (min-width: 1280px) {
    margin-left:auto;
@@ -44,13 +46,6 @@ line-height: 16px;
 font-size: 18px;
 line-height: 25px;
 }
-&:hover{
-    background: #FDF7F2;
-border: 1px solid rgba(245, 146, 86, 0.5);
-}
-&:focus{
-    background: #FDF7F2;
-border: 1px solid rgba(245, 146, 86, 0.5);
 
 `
 export const ButtonEdit = styled.button`
