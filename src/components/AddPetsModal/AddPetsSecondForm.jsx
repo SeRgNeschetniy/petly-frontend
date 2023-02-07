@@ -60,7 +60,7 @@ export const AddPetsSecondForm = props => {
           initialValues={props.data}
           onSubmit={handleSubmit}
         >
-          {({ setFieldValue }) => (
+          {({ setFieldValue, ...props }) => (
             <FormSecond encType="multipart/form-data">
               <Text>Add photo and some comments</Text>
               <ButtonAddPhoto type="button">
