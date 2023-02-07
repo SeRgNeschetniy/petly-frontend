@@ -69,20 +69,19 @@ const NoticesLayoutPage = () => {
     setSearchParams({ query: searchQuery });
   };
 
-  const handleMoreClick = e => {
-    if (e.target.textContent === 'Learn more') {
-      if (notices.length > 0) {
-        const result = notices.filter(item => item._id === e.target.id);
-        console.log(result);
-        setOneNotice(result);
-        openModal();
-        return;
-      } 
-    }
-  };
+  // const handleMoreClick = e => {
+  //   if (e.target.textContent === 'Learn more') {
+  //     if (notices.length > 0) {
+  //       const result = notices.filter(item => item._id === e.target.id);
+  //       console.log(result);
+  //       setOneNotice(result);
+  //       openModal();
+  //       return;
+  //     }
+  //   }
+  // };
 
-
-  window.addEventListener('click', handleMoreClick);
+  // window.addEventListener('click', handleMoreClick);
 
   return (
     <>
@@ -95,11 +94,11 @@ const NoticesLayoutPage = () => {
         </Wrapper>
         {!matches && <AddNoticeButtonMobile />}
         {!isLoading && <Outlet />}
-        {isModalOpen && (
+        {/* {isModalOpen && (
           <Modal onCloseModal={closeModal}>
             <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
           </Modal>
-        )}
+        )} */}
         {isLoading && <p>...loading</p>}
         {error && <p>Ooops... Something went wrong</p>}
       </Container>
