@@ -16,7 +16,7 @@ import { userPetsReducer } from './userpage/userpage-slice';
 import storage from 'redux-persist/lib/storage';
 
 const authPersistConfig = {
-  key: 'root',
+  key: 'auth',
   storage,
   whitelist: ['token'],
 };
