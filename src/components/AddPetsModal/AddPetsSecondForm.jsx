@@ -5,6 +5,7 @@ import { pet } from '../../servises';
 import {TfiPlus} from 'react-icons/tfi';
 import {VscClose} from 'react-icons/vsc';
 import  {fetchPets} from '../../redux/addPets/addPets-operations'
+import { Notify } from 'notiflix';
 import {Container, 
     ButtonClose, 
     TitleSecondForm, 
@@ -25,6 +26,12 @@ import {Container,
 } from './AddPetsModal.styled';
 
 export const AddPetsSecondForm = props => {
+
+  const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  };
+
   const [img, setImg] = useState(null); 
 
   const dispatch = useDispatch();
@@ -73,7 +80,10 @@ export const AddPetsSecondForm = props => {
                     setFieldValue('petImage', e.target.files[0]);
                     setImg(URL.createObjectURL(fileUploaded));                    
                   }}
-                />                  
+                />        
+                    {props.isSubmitting && props.errors.petImage
+              ? Notify.failure(props.errors.petImage, notifyOptions)
+              : null}
                   <ErrorTextarea name="petImage" component="p" />
               </ButtonAddPhoto>
               <WraperTextarea>
@@ -84,6 +94,9 @@ export const AddPetsSecondForm = props => {
                   as="textarea"
                   placeholder="Type comments"
                 />
+                {props.isSubmitting && props.errors.comments
+              ? Notify.failure(props.errors.comments, notifyOptions)
+              : null}
                 <ErrorTextarea name="comments" component="p" />
               </WraperTextarea>
               <ButtonWrapper>
