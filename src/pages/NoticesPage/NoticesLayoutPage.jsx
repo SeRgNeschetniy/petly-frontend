@@ -13,14 +13,12 @@ import {
   fetchUserNotices,
 } from 'redux/notices/notices-operation';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
-import { selectIsLoading, selectError } from 'redux/notices/notices-selectors';
+import { selectError } from 'redux/notices/notices-selectors';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { Container, Main } from 'styles';
-import Loader from 'components/Loader';
 
 const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
-  const isLoading = useSelector(selectIsLoading);
   const isLoggedIn = useSelector(selectIsLogin);
   const error = useSelector(selectError);
 
