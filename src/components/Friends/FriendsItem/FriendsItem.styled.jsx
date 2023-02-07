@@ -74,6 +74,7 @@ export const TextField = styled.li`
 `;
 
 export const TimeBtn = styled.button`
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
     color: ${theme.colors.accent};
