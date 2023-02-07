@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { pet } from '../../servises';
-import sprite from '../../images/addPets/symbol.svg';
+import {TfiPlus} from 'react-icons/tfi';
 import {VscClose} from 'react-icons/vsc';
 import  {fetchPets} from '../../redux/addPets/addPets-operations'
 import {Container, 
     ButtonClose, 
-    Title, 
+    TitleSecondForm, 
     Label, 
     WraperTextarea,       
     FormWrapper,     
@@ -38,11 +38,7 @@ export const AddPetsSecondForm = props => {
     formData.append('photoPet', values.petImage);
     formData.append('comment', values.comments);
     dispatch(fetchPets(formData));
-
-    // const formData = new FormData(props.data);
-    // for (let k of formData) {
-    //   console.log(k);
-    // }
+   
     props.closeModal();
   };
 
@@ -51,7 +47,7 @@ export const AddPetsSecondForm = props => {
       <ButtonClose type="button" onClick={props.closeModal}>
         <VscClose size={65} />
       </ButtonClose>
-      <Title>Add pet</Title>
+      <TitleSecondForm>Add pet</TitleSecondForm>
       <FormWrapper>
         <Formik
           validationSchema={pet.formTwoValidationSchema}
@@ -63,12 +59,12 @@ export const AddPetsSecondForm = props => {
               <Text>Add photo and some comments</Text>
               <ButtonAddPhoto type="button">
               {!img ? (
-                  <CrossBig>
-                    <use href={sprite + '#icon-blackCross'} />
+                  <CrossBig >
+                    <TfiPlus size={48} />
                   </CrossBig>
-                ) : (
+                  ) : (
                   <AvatarImg src={img} alt="avatar" />
-                )}                
+                    )}                
                 <InputPhoto name="petImage"
                   type="file"
                   accept="image/*"

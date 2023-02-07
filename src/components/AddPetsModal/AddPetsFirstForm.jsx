@@ -3,7 +3,7 @@ import {VscClose} from 'react-icons/vsc';
 import { pet } from '../../servises';
 import {Container, 
     ButtonClose, 
-    Title, 
+    TitleFirstForm, 
     Label, 
     InputWrapper, 
     Input, 
@@ -35,7 +35,7 @@ import {Container,
             >
                <VscClose size={65}/> 
             </ButtonClose> 
-           <Title>Add pet</Title>
+           <TitleFirstForm>Add pet</TitleFirstForm>
              <FormWrapper>
                 <Formik 
                 validationSchema={pet.formOneValidationSchema}

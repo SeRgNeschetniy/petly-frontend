@@ -3,7 +3,7 @@ import { Field, ErrorMessage, Form} from 'formik';
 import { theme } from '../../styles/theme';
 
 export const Container = styled.div`
-background-color: #ffffff;
+background-color: ${theme.colors.white};
     padding: 18px;
     width: 280px;
     border-radius: 20px;
@@ -25,29 +25,42 @@ position: absolute;
     align-items: center;
     justify-content: center;
     background: ${theme.colors.mainBackground};
-    border: none;
+    border: 2px solid ${theme.colors.white};
   
     &:hover,
-    &:focus {
-      transition: box-shadow 250ms ease-out;
-      box-shadow: 0px 0px 1px 2px rgba(245, 146, 86, 0.7);
-      -webkit-box-shadow: 0px 0px 2px 4px rgba(245, 146, 86, 0.7);
-      -moz-box-shadow: 0px 0px 3px 1px rgba(245, 146, 86, 0.7);
+    &:focus {      
+      transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);      
+      border: 2px solid ${theme.colors.accent};
     }
       @media screen and (min-width: 767px) {
           width: 44px;
           height: 44px;
-        }` 
-    
-  export const Title= styled.h3`
+        }`      
+
+  export const TitleFirstForm= styled.h3`
   font-weight: 500;
-    font-size: 24px;
-    line-height: 33px;
+    font-size: 1.5rem;
+    line-height: 2rem;
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 28px;
     @media screen and (min-width: 767px) {
-          font-size: 36px;
-          line-height: 49px;
+          font-size: 2.25rem;
+          line-height: 3rem;
+          margin-bottom: 40px;
+        }`  
+
+        export const TitleSecondForm= styled.h3`
+  font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    @media screen and (min-width: 767px) {
+          font-size: 2.25rem;
+          line-height: 3rem;
+          margin-bottom: 20px;
         }`  
 
    export const  ButtonWrapper =styled.div`
@@ -76,64 +89,55 @@ position: absolute;
     text-decoration: none;
     font-family: Manrope, sans-serif;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 1rem;
+    line-height: 1.4rem;
     letter-spacing: 0.02857em;
     max-width: 240px;
     height: 40px;
     padding: 10px 28px;
     border-radius: 40px;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, 
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, 
       border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    color: rgb(255, 255, 255);
-    background-color: #f59256;
-    width: 100%;
-    
-  
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.accent};
+    width: 100%;    
     &:hover,
     &:focus {
-      transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
       background-color:${theme.colors.mainBackground};
       border: 2px solid ${theme.colors.accent};
-      color: #FF6101;
-      
-    }
+      color: ${theme.colors.dark};
+  }
       @media screen and (min-width: 767px) {        
           max-width: 180px;
           height: 44px;
           margin-left: 20px;
         }`  
-  
-    //     box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
-    // 
-
-
+    
   export const ButtonEmpty= styled.button`
   max-width: 240px;
   height: 40px;
   border-radius: 40px;
-  background: #ffffff;
+  background: ${theme.colors.white};
   border: 2px solid ${theme.colors.accent};
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: #111111;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  color:${theme.colors.dark};
   cursor: pointer;
 
   &:hover,
   &:focus {
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    background-color:${theme.colors.accent};
-      
+    background-color:${theme.colors.accent};      
       color: ${theme.colors.mainBackground};
   }
   @media screen and (min-width: 767px) {    
       width: 180px;
       height: 44px;    
-  }` 
-  
+  }`   
  
   export const FormWrapper =styled.div `
   display: flex;
@@ -144,18 +148,16 @@ position: absolute;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 28px;
+    
     margin-bottom: 20px;
     width: 448px;` 
-  
+
   export const FormSecond=styled(Form)`
   display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    margin-top: 20px;
-    margin-bottom: 20px;`     
-    
+    align-items: flex-start;    
+    margin-bottom: 20px;`    
 
   export const InputWrapper = styled.div`
   position: relative;
@@ -176,12 +178,12 @@ position: absolute;
   export const Input = styled(Field)`
   font-weight: 500;
     font-size: 0.8rem;
-    line-height: 26px;
+    line-height: 1.6rem;
     width: 240px;
     height: 40px;
 
     background-color: ${theme.colors.mainBackground};
-  border: 1px solid ${theme.colors.accent};
+  border: 2px solid ${theme.colors.accent};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
@@ -201,14 +203,11 @@ position: absolute;
           height: 48px;
         }`
 
-  
-  
-  
   export const InputLast = styled(Field)`
   width: 240px;
   height: 40px;
   background-color: ${theme.colors.mainBackground};
-  border: 1px solid ${theme.colors.accent};
+  border: 2px solid ${theme.colors.accent};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
@@ -255,32 +254,38 @@ position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    object-fit: cover;`     
+    object-fit: cover;
+    height: -webkit-fill-available;
+    width: inherit;`     
 
   export const Text= styled.p`
   text-align: center;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 1rem;
+    line-height: 1.4rem;
     margin-right: auto;
     margin-left: auto;
     @media screen and (min-width: 767px) {
           
-            font-size: 20px;
+            font-size: 1.2rem;
             font-weight: 500; }`  
 
   export const ButtonAddPhoto=styled.button`
   position: relative;
+  display: flex;        
+    justify-content: center;
+    align-items: center;    
+  text-align: center;
     width: 208px;
     height: 208px;
     background: ${theme.colors.mainBackground};
     border-radius: 20px;
     margin: auto;
     margin-top: 20px;
-    border: none;
+    border: 2px solid ${theme.colors.mainBackground};
     overflow: hidden;
     &:hover, &:focus {
-      border: 2px solid #FF6101;
+      border: 2px solid ${theme.colors.accent};
     }
     @media screen and (min-width: 767px) {
       
@@ -288,9 +293,6 @@ position: absolute;
         height: 182px;
       }` 
   
-  
-//   }
-
 export const ErrMessagePhoto = styled.p`
 @extend .error_text_size;
 position: absolute;
@@ -302,41 +304,21 @@ color: red;
   right: 21%;
 }`
 
-
-export const CrossBig =styled.svg`
-  position: absolute;
-    top: 80px;
-    right: 75px;
-    width: 45px;
-    height: 45px;
-    rotate: 45deg;
-    fill: lightgray;
-    @media screen and (min-width: 767px) {
-        top: 65px;
-        right: 63px;
-      }` 
-  
-  // export const CrossBig =styled.div`
-  // position: absolute;
-  //   top: 80px;
-  //   right: 75px;
-  //   width: 45px;
-  //   height: 45px;
-  //   rotate: 45deg;
-  //   fill: lightgray;
-  //   @media screen and (min-width: 767px) {
-  //       top: 65px;
-  //       right: 63px;
-  //     }` 
+  export const CrossBig =styled.div`
+  position: absolute;   
+    width: 48px;
+    height: 48px;    
+    color: #D9D9D9;    
+    ` ;
       
   
   export const Label =styled.label`
   font-weight: 500;
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 1.1rem;
+    line-height: 1.6rem;
     @media screen and (min-width: 767px) {
-          font-size: 24px;
-          line-height: 26px;
+          font-size: 1.5rem;
+          line-height: 1.6rem;
         }`
   
   export const WraperTextarea=styled.div`
@@ -348,15 +330,12 @@ export const CrossBig =styled.svg`
       margin-top: 40px;
       }`
   
-  
-  
-  
   export const Textarea = styled(Field)`
   padding: 12px;
     width: 240px;
     height: 100px;
     background: ${theme.colors.mainBackground};
-    border: 1px solid ${theme.colors.accent};
+    border: 2px solid ${theme.colors.accent};
     border-radius: 20px;
     margin-top: 8px;
     outline: none;
