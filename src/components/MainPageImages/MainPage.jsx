@@ -17,9 +17,9 @@ const Headline = () => {
           Take good care of <br />
           your small pets
         </Title>
-        <MainPageImageDsktp />
+        {/* <MainPageImageDsktp />
         <MainPageImage src={mobileImage} />
-        <MainPageImageTab src={tabImage} />
+        <MainPageImageTab src={tabImage} /> */}
       </Wrapper>
       {/* <MainPageImageDsktp /> */}
     </>

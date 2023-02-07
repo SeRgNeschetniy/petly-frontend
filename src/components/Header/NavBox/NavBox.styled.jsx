@@ -8,15 +8,19 @@ const showScroll = active => {
 };
 
 export const Container = styled.nav`
-  display: flex;
+  display: none;
   flex-direction: column;
 
   position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 72px;
   margin-top: 42px;
   padding-top: 42px;
 
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.mainBackground};
@@ -31,9 +35,11 @@ export const Container = styled.nav`
     if (window.matchMedia('(max-width: 1280px)').matches) {
       showScroll(active);
     }
+
     return (
       active &&
       css`
+        display: block;
         opacity: 1;
         pointer-events: auto;
       `
@@ -48,6 +54,7 @@ export const Container = styled.nav`
   }
 
   @media screen and (min-width: 1280px) {
+    display: flex;
     position: static;
     flex-direction: row;
     height: 50px;

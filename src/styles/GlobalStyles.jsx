@@ -3,6 +3,12 @@ import styled from '@emotion/styled';
 import { theme } from 'styles/theme';
 import { normalize } from 'styled-normalize';
 
+import mobileImage from '../images/mainPage/home-bg-m@2x.png';
+import tabImage from '../images/mainPage/home-bg-t@2x.png';
+
+import dsctpImageGirl from '../images/mainPage/home-bg3-d@1x.png';
+import dsctpImageHeart from '../images/mainPage/home-bg4-d@1x.png';
+
 export const GlobalStyles = css`
   ${normalize}
 
@@ -38,8 +44,9 @@ export const GlobalStyles = css`
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
-    background: ${theme.colors.mainBackground};
+    background-color: ${theme.colors.mainBackground};
     min-height: 100vh;
+    height: 100%;
     font-style: normal;
     font-weight: 500;
   }
@@ -95,6 +102,12 @@ export const GlobalStyles = css`
     border-radius: 2px;
     background-color: #f59256;
   }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 `;
 
 export const Container = styled.div`
@@ -116,4 +129,8 @@ export const Container = styled.div`
   }
 `;
 
-export const Main = styled.main``;
+export const Main = styled.main`
+  flex: 1 0 auto;
+  background: url(${dsctpImageHeart}) right 476px top 170px no-repeat,
+    url(${dsctpImageGirl}) right 20px bottom 0 no-repeat;
+`;
