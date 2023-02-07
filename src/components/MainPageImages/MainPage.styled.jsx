@@ -108,6 +108,8 @@ export const DesktopBgImageLogin = styled.img`
   @media screen and (min-width: 1280px) {
     z-index: -2;
     display: block;
-    margin-top: -200px;
+    right: 0;
+
+    bottom: 0;
   }
 `;

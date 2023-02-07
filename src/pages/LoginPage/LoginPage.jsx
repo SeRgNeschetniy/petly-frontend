@@ -46,8 +46,8 @@ export default function LoginPage() {
           Forgot your password?{' '}
           <StyledLink to="/restore">Password recovery</StyledLink>
         </LinkText>
-        <MobileBgImage />
       </BackgroundContainer>
+      <MobileBgImage />
       <TabletBgImage />
       <DesktopBgImage />
     </>
