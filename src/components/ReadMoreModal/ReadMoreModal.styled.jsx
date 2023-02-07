@@ -82,6 +82,7 @@ export const ModalCommentWrapper = styled.div`
 
   @media (min-width: 768px) {
     margin-bottom: 32px;
+    width: 660px;
   }
 `;
 
