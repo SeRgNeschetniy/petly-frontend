@@ -21,7 +21,6 @@ const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
   const isLoggedIn = useSelector(selectIsLogin);
   const error = useSelector(selectError);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
@@ -68,7 +67,6 @@ const NoticesLayoutPage = () => {
             {matches && <AddNoticeButton />}
           </Wrapper>
           {!matches && <AddNoticeButtonMobile />}
-
           <Outlet />
 
           {error && Notify.warning('Sorry, you should to sing in')}

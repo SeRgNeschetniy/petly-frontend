@@ -3,11 +3,7 @@ import styled from 'styled-components';
 export const ContainerWrapp = styled.div`
   width: 100%;
   position: relative;
-  margin-bottom: 100px;
-
-  @media screen and (min-width: 1280px) {
-    margin-bottom: 200px;
-  }
+  margin-bottom: 50px;
 `;
 
 export const Wrapper = styled.div`

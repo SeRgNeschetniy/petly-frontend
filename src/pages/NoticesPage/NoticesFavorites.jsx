@@ -1,4 +1,5 @@
 import { Loader, NoticesCategoriesList } from 'components/components';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { useSelector } from 'react-redux';
 import {
   selectFavorites,
@@ -16,7 +17,10 @@ const NoticesFavorites = () => {
         <p>List is empty! Try to add pet :)</p>
       )}
       {isLoading && <Loader />}
-      <NoticesCategoriesList route="favorites" notices={notices} />
+
+      <LazyLoadComponent>
+        <NoticesCategoriesList route="favorites" notices={notices} />
+      </LazyLoadComponent>
     </>
   );
 };

@@ -1,3 +1,5 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import {
   Item,
   LearnMoreBtn,
@@ -8,7 +10,7 @@ import {
   AddToFavoriteBtn,
   Span,
   AddIcon,
-  Image,
+  //  Image,
   AddedIcon,
   DeleteBtn,
   BtnWrapper,
@@ -98,7 +100,15 @@ const NoticeCategoryItem = ({ notice, route }) => {
   return (
     <>
       <Item>
-        <Image src={petImage} alt="Pet" minwidth={240} height={288} />
+        {/* <Image src={petImage} alt="Pet" width={288} height={288} /> */}
+        <LazyLoadImage
+          alt={title}
+          effect="blur"
+          src={petImage}
+          width={288}
+          height={288}
+        />
+
         <Sticker>{category}</Sticker>
         <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
           {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}

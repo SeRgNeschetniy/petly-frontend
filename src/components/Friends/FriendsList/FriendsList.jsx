@@ -4,9 +4,9 @@ import FriendsItem from '../FriendsItem/FriendsItem';
 import { List } from './FriendsList.styled';
 
 const FriendsList = ({ friends = [] }) => {
-  if (friends.length < 1) {
-    return <p>Something went wrong...</p>;
-  }
+  // if (friends.length < 1) {
+  //   return <p>Something went wrong...</p>;
+  // }
   return (
     <List>
       {friends.map(item => {

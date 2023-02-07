@@ -1,5 +1,6 @@
 import Loader from 'components/Loader';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
@@ -18,7 +19,10 @@ const NoticesCategory = () => {
         <p>List is empty! Try to add pet :)</p>
       )}
       {isLoading && <Loader />}
-      <NoticesCategoriesList route={categoryName} notices={notices} />
+
+      <LazyLoadComponent>
+        <NoticesCategoriesList route={categoryName} notices={notices} />
+      </LazyLoadComponent>
     </>
   );
 };
