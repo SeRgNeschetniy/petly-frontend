@@ -34,6 +34,7 @@ export const Text = styled.p`
 `;
 
 export const AddBtn = styled.button`
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 &:hover{
    background: ${theme.colors.brightAccent}

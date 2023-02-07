@@ -7,9 +7,11 @@ export const Item = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background: ${theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 40px 40px;
+  padding-bottom: 20px;
 `;
 
 export const LearnMoreBtn = styled.button`
@@ -24,13 +26,20 @@ export const LearnMoreBtn = styled.button`
   text-align: center;
   display: block;
   padding: 8px;
-  width: 100%;
+  width: 288px;
   margin-bottom: 12px;
+  margin-right: auto;
+  margin-left: auto;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {
     background: ${theme.colors.accent};
     color: ${theme.colors.white};
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 248px;
   }
 `;
 
@@ -48,12 +57,20 @@ export const DeleteBtn = styled.button`
   justify-content: center;
   align-items: center;
   padding: 8px;
-  width: 100%;
+  width: 288px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 12px;
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {
-    background: #ff6101;
+    background: ${theme.colors.brightAccent};
     color: ${theme.colors.white};
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 248px;
   }
 `;
 export const Container = styled.div`
@@ -62,8 +79,8 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   padding: 20px, 20px, 12px, 20px;
-  margin-bottom: 50px;
-  height: 153px;
+  // margin-bottom: 50px;
+  // height: 153px;
 `;
 
 export const Title = styled.h2`
@@ -78,8 +95,14 @@ export const Title = styled.h2`
 `;
 
 export const Text = styled.p`
-  &:not(last-child) {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.37;
+  &:not(:last-child) {
     margin-bottom: 8px;
+  }
+  &:last-child {
+    margin-bottom: 0;
   }
 `;
 
@@ -147,4 +170,8 @@ export const AddedIcon = styled(AiFillHeart)`
 export const Image = styled.img`
   height: 288px;
   background-size: cover;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 336px;
+  }
 `;

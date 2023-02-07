@@ -4,7 +4,7 @@ import {
   Wrapper,
   Title,
   Text,
-  Container,
+  // Container,
   Sticker,
   AddToFavoriteBtn,
   Span,
@@ -97,20 +97,41 @@ const NoticeCategoryItem = ({ notice, route }) => {
   };
 
   return (
-    <>
-      <Item>
+<>
+    <Item>
+      <div>
+
         <Image src={petImage} alt="Pet" minwidth={288} height={288} />
         <Sticker>{category}</Sticker>
         <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
           {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
         </AddToFavoriteBtn>
-        <Container>
-          <Wrapper>
-            <Title>{title}</Title>
-            <Text>
-              <Span>Breed:</Span>
-              {breed}
-            </Text>
+
+        {/* <Container> */}
+        <Wrapper
+          style={{
+            marginTop: '20px',
+            marginBottom: '50px',
+            paddingRight: '20px',
+            paddingLeft: '20px',
+          }}
+        >
+          <Title>{title}</Title>
+          <Text>
+            <Span>Breed:</Span>
+            {breed}
+          </Text>
+          <Text>
+            <Span>Place:</Span>
+            {location}
+          </Text>
+          <Text>
+            <Span>Age:</Span>
+            {age} years
+          </Text>
+          {category === 'sell' && (
+
+
             <Text>
               <Span>Place:</Span>
               {location}
@@ -136,8 +157,23 @@ const NoticeCategoryItem = ({ notice, route }) => {
               <RiDeleteBin5Fill style={{ marginLeft: '15px' }} />
             </DeleteBtn>
           )}
-        </Container>
-      </Item>
+
+        </Wrapper>
+      </div>
+      <div>
+        <LearnMoreBtn readMore={id} id={id}>
+          Learn more
+        </LearnMoreBtn>
+
+        {ownerId === owner && (
+          <DeleteBtn id={id} onClick={onDeleteNotice}>
+            Delete
+            <RiDeleteBin5Fill style={{ marginLeft: '15px' }} />
+          </DeleteBtn>
+        )}
+      </div>
+      {/* </Container> */}
+    </Item>
 
       {isModalOpen && (
         <Modal onCloseModal={closeModal}>
@@ -145,6 +181,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
         </Modal>
       )}
     </>
+
   );
 };
 

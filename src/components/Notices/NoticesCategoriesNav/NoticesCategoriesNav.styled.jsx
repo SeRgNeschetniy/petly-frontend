@@ -11,6 +11,7 @@ export const Link = styled(NavLink)`
   border: 2px solid ${theme.colors.accent};
   border-radius: 40px;
   align-items: center;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:not(:last-child) {
     margin-right: 12px;
@@ -26,8 +27,11 @@ export const Link = styled(NavLink)`
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    margin-bottom: 16px;
+    margin-bottom: 0;
     font-size: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 0;
   }
 `;
 
