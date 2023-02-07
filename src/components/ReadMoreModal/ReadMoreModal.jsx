@@ -117,7 +117,9 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                 src={require('../../images/readModal/heart.png')}
               ></HeartIcon>
             </ModalButton>
+            <a href={`tel:${owner.phone}`}>
             <ModalButton>Contact</ModalButton>
+            </a>
           </ButtonWrapper>
         </ModalBackground>
       );

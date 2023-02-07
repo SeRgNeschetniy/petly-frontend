@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -9,6 +10,7 @@ import {
   PrivateRoute,
   SharedLayout,
   PasswordRecoveryForm,
+  Loader,
 } from './components';
 import lazyPages from 'utils/lazyPages';
 
@@ -39,7 +41,14 @@ export const App = () => {
     !isRefreshing && (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<MainPage />} />
+          <Route
+            index
+            element={
+              <React.Suspense fallback={<Loader />}>
+                <MainPage />
+              </React.Suspense>
+            }
+          />
           <Route
             path="/login"
             element={
@@ -49,20 +58,64 @@ export const App = () => {
           <Route
             path="/register"
             element={
-              <RestrictedRoute component={RegisterPage} redirectTo="/user" />
+              <React.Suspense fallback={<Loader />}>
+                <RestrictedRoute component={RegisterPage} redirectTo="/user" />
+              </React.Suspense>
             }
           />
           <Route path="/restore" element={<PasswordRecoveryForm />} />
           <Route
             path="/user"
-            element={<PrivateRoute redirectTo="/login" component={UserPage} />}
+            element={<PrivateRoute component={UserPage} redirectTo="/login" />}
           />
-          <Route path="/news" element={<NewsPage />} />
+          <Route
+            path="/news"
+            element={
+              <React.Suspense fallback={<Loader />}>
+                <NewsPage />
+              </React.Suspense>
+            }
+          />
           <Route path="/friends" element={<FriendsPage />} />
+
           <Route path="/notices" element={<NoticesLayoutPage />}>
             <Route index path="favorites" element={<NoticesFavorites />} />
             <Route path="own" element={<NoticesOwn />} />
             <Route path=":categoryName" element={<NoticesCategory />} />
+
+          <Route
+            path="/notices"
+            element={
+              <React.Suspense fallback={<Loader />}>
+                <NoticesLayoutPage />
+              </React.Suspense>
+            }
+          >
+            <Route
+              path="favorites"
+              element={
+                <React.Suspense fallback={<Loader />}>
+                  <NoticesFavorites />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="own"
+              element={
+                <React.Suspense fallback={<Loader />}>
+                  <NoticesOwn />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path=":categoryName"
+              element={
+                <React.Suspense fallback={<Loader />}>
+                  <NoticesCategory />
+                </React.Suspense>
+              }
+            />
+
           </Route>
           <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>

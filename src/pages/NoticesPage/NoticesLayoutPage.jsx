@@ -1,3 +1,4 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import NoticesSearch from 'components/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
 import Headline from 'components/Headline/Headline';
@@ -69,13 +70,8 @@ const NoticesLayoutPage = () => {
           </Wrapper>
           {!matches && <AddNoticeButtonMobile />}
           {!isLoading && <Outlet />}
-          {/* {isModalOpen && (
-          <Modal onCloseModal={closeModal}>
-            <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
-          </Modal>
-        )} */}
-          {isLoading && <p>...loading</p>}
-          {error && <p>Ooops... Something went wrong</p>}
+          {/* {isLoading && <p>...loading</p>} */}
+          {error && Notify.warning('Sorry, you should to sing in')}
         </ContainerWrapp>
       </Container>
     </Main>
