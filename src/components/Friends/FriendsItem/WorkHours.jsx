@@ -24,9 +24,6 @@ const WorkHours = ({ workDays }) => {
         onClick={() => {
           setShowModal(true);
         }}
-        onMouseLeave={() => {
-          setShowModal(false);
-        }}
       >
         {workDays[updateIdx()].from && workDays[updateIdx()].to
           ? `${workDays[updateIdx()]?.from} - ${workDays[updateIdx()]?.to}`
@@ -34,7 +31,14 @@ const WorkHours = ({ workDays }) => {
       </TimeBtn>
 
       {showModal && workDays && (
-        <TimeList>
+        <TimeList
+          onMouseEnter={() => {
+            setShowModal(true);
+          }}
+          onMouseLeave={() => {
+            setShowModal(false);
+          }}
+        >
           {workDays.map(({ from, to, isOpen }, index) => (
             <li key={index}>
               {isOpen ? (
