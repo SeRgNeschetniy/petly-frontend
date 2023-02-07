@@ -33,7 +33,7 @@ import { addNewNotice } from 'redux/notices/notices-operation';
 
 import { MdMale } from 'react-icons/md';
 import { MdFemale } from 'react-icons/md';
-import { IoAdd } from 'react-icons/io5';
+import {TfiPlus} from 'react-icons/tfi';
 
 export const NoticeSecondForm = props => {
   const [img, setImg] = useState(null);
@@ -131,14 +131,13 @@ export const NoticeSecondForm = props => {
                   value={values.price}
                   placeholder="Type price"
                 />
-
                 <ErrMessage name="price" component="p" />
               </InputWrapper>
               <Text>Load the pet’s image</Text>
               <ButtonAddPhoto type="button">
                 {!img ? (
-                  <CrossBig>
-                    <IoAdd size={60} />
+                  <CrossBig>                    
+                    <TfiPlus size={48} />
                   </CrossBig>
                 ) : (
                   <AvatarImg src={img} alt="Pet Image" />
@@ -156,7 +155,6 @@ export const NoticeSecondForm = props => {
                 />
                 {/* <ErrMessage>{!valid && 'Image is required'}</ErrMessage> */}
               </ButtonAddPhoto>
-
               <WraperTextarea>
                 <Label>Comments</Label>
                 <Textarea
@@ -185,4 +183,7 @@ export const NoticeSecondForm = props => {
   );
 };
 
+
 export default NoticeSecondForm;
+
+
