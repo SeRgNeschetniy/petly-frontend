@@ -6,24 +6,24 @@ import { current } from 'redux/auth/auth-operation';
 import { useAuth } from 'hooks/useAuth';
 
 import {
-  RestrictedRoute,
-  PrivateRoute,
   SharedLayout,
-  PasswordRecoveryForm,
-  Loader,
+  // RestrictedRoute,
+  // PrivateRoute,
+  // PasswordRecoveryForm,
+  // Loader,
 } from './components';
 import lazyPages from 'utils/lazyPages';
 
 const {
-  NoticesLayoutPage,
-  NoticesFavorites,
-  NoticesCategory,
-  NoticesOwn,
-  FriendsPage,
-  NewsPage,
-  RegisterPage,
-  LoginPage,
-  UserPage,
+  // NoticesLayoutPage,
+  // NoticesFavorites,
+  // NoticesCategory,
+  // NoticesOwn,
+  // FriendsPage,
+  // NewsPage,
+  // RegisterPage,
+  // LoginPage,
+  // UserPage,
   MainPage,
 } = lazyPages;
 
@@ -41,15 +41,9 @@ export const App = () => {
     !isRefreshing && (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route
-            index
-            element={
-              <React.Suspense fallback={<Loader />}>
-                <MainPage />
-              </React.Suspense>
-            }
-          />
-          <Route
+          <Route index element={<MainPage />} />
+
+          {/* <Route
             path="/login"
             element={
               <RestrictedRoute component={LoginPage} redirectTo="/user" />
@@ -72,7 +66,7 @@ export const App = () => {
             <Route path="favorites" element={<NoticesFavorites />} />
             <Route path="own" element={<NoticesOwn />} />
             <Route path=":categoryName" element={<NoticesCategory />} />
-          </Route>
+          </Route> */}
           <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>
       </Routes>
