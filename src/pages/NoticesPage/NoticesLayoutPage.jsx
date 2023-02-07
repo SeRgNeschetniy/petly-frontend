@@ -12,27 +12,14 @@ import {
   fetchUserNotices,
 } from 'redux/notices/notices-operation';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
-import {
-  // selectNotices,
-  selectIsLoading,
-  selectError,
-  selectNotices,
-  selectFavorites,
-} from 'redux/notices/notices-selectors';
+import { selectIsLoading, selectError } from 'redux/notices/notices-selectors';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
-import useModal from 'hooks/modal';
-import Modal from 'components/Modal/Modal';
-import ReadMoreModal from 'components/ReadMoreModal/ReadMoreModal';
 
 const NoticesLayoutPage = () => {
-  const [oneNotice, setOneNotice] = useState([]);
   const { categoryName } = useParams();
   const isLoading = useSelector(selectIsLoading);
   const isLoggedIn = useSelector(selectIsLogin);
   const error = useSelector(selectError);
-  const notices = useSelector(selectNotices);
-  const favorites = useSelector(selectFavorites);
-  const { isModalOpen, closeModal, openModal } = useModal();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
@@ -68,20 +55,6 @@ const NoticesLayoutPage = () => {
   const onFormSubmit = searchQuery => {
     setSearchParams({ query: searchQuery });
   };
-
-  // const handleMoreClick = e => {
-  //   if (e.target.textContent === 'Learn more') {
-  //     if (notices.length > 0) {
-  //       const result = notices.filter(item => item._id === e.target.id);
-  //       console.log(result);
-  //       setOneNotice(result);
-  //       openModal();
-  //       return;
-  //     }
-  //   }
-  // };
-
-  // window.addEventListener('click', handleMoreClick);
 
   return (
     <>
