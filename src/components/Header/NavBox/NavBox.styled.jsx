@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { NavLink } from 'react-router-dom';
 
-const body = document.body;
 const showScroll = active => {
+  const body = document.body;
   body.style.overflowY = active ? 'hidden' : 'visible';
 };
 
@@ -28,7 +28,9 @@ export const Container = styled.nav`
   z-index: 10;
 
   ${({ active }) => {
-    showScroll(active);
+    if (window.matchMedia('(max-width: 1280px)').matches) {
+      showScroll(active);
+    }
     return (
       active &&
       css`
