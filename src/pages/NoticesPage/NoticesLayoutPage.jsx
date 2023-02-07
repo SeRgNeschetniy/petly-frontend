@@ -73,16 +73,14 @@ const NoticesLayoutPage = () => {
     if (e.target.textContent === 'Learn more') {
       if (notices.length > 0) {
         const result = notices.filter(item => item._id === e.target.id);
+        console.log(result);
         setOneNotice(result);
-      } else {
-        const resultFavorites = favorites.filter(
-          item => item._id === e.target.id
-        );
-        setOneNotice(resultFavorites);
-      }
-      openModal();
+        openModal();
+        return;
+      } 
     }
   };
+
 
   window.addEventListener('click', handleMoreClick);
 
@@ -102,7 +100,7 @@ const NoticesLayoutPage = () => {
             <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
           </Modal>
         )}
-        {/* {isLoading && <p>...loading</p>} */}
+        {isLoading && <p>...loading</p>}
         {error && <p>Ooops... Something went wrong</p>}
       </Container>
     </>
