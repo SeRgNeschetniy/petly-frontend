@@ -79,7 +79,6 @@ const NoticeCategoryItem = ({ notice, route }) => {
 
   const onDeleteNotice = e => {
     const cardId = e.currentTarget.id;
-    console.log(cardId);
     dispatch(deleteNotice(cardId));
   };
 

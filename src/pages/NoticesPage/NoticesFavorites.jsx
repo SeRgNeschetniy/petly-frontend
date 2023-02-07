@@ -16,7 +16,6 @@ const NoticesFavorites = () => {
         <p>List is empty! Try to add pet :)</p>
       )}
       {isLoading && <Loader />}
-
       <NoticesCategoriesList route="favorites" notices={notices} />
     </>
   );
