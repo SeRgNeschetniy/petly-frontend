@@ -60,7 +60,7 @@ export const App = () => {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/friends" element={<FriendsPage />} />
           <Route path="/notices" element={<NoticesLayoutPage />}>
-            <Route path="favorites" element={<NoticesFavorites />} />
+            <Route index path="favorites" element={<NoticesFavorites />} />
             <Route path="own" element={<NoticesOwn />} />
             <Route path=":categoryName" element={<NoticesCategory />} />
           </Route>

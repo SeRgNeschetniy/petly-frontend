@@ -11,7 +11,7 @@ import {
   fetchNotices,
   fetchUserNotices,
 } from 'redux/notices/notices-operation';
-import { Navigate, Outlet, useParams, useSearchParams } from 'react-router-dom';
+import { Outlet, useParams, useSearchParams } from 'react-router-dom';
 import { selectIsLoading, selectError } from 'redux/notices/notices-selectors';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { Container, Main } from 'styles';
@@ -22,8 +22,6 @@ const NoticesLayoutPage = () => {
   const isLoggedIn = useSelector(selectIsLogin);
   const error = useSelector(selectError);
 
-  const [isDefaultNav, setIsDefaultNav] = useState(false);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
@@ -32,14 +30,6 @@ const NoticesLayoutPage = () => {
   );
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!categoryName) {
-      setIsDefaultNav(true);
-    } else {
-      setIsDefaultNav(false);
-    }
-  }, [categoryName]);
 
   useEffect(() => {
     if (categoryName) {
@@ -71,7 +61,6 @@ const NoticesLayoutPage = () => {
     <Main>
       <Container>
         <ContainerWrapp>
-          {isDefaultNav && <Navigate to={'/notices/sell'} />}
           <Headline title={'Find your favorite pet'}></Headline>
           <NoticesSearch onSubmit={onFormSubmit} />
           <Wrapper>
