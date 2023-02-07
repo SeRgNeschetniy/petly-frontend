@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+//axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 export const fetchPets = createAsyncThunk('pet', async (petsData, thunkApi) => {
   try {

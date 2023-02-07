@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+//axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 const fetchFriends = async () => {
   const { data } = await axios.get('/friends');

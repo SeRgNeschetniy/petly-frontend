@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import NewsList from 'components/News/NewsList/NewsList';
 import { Container, Main } from 'styles';
 
-axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+//axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 const fetchNews = async () => {
   const { data } = await axios.get('/news');
