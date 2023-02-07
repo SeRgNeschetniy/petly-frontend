@@ -1,8 +1,9 @@
 import axios from 'axios';
-const { REACT_APP_BASE_URL } = process.env;
+
+axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 const fetchFriends = async () => {
-  const { data } = await axios.get(`${REACT_APP_BASE_URL}/api/friends`);
+  const { data } = await axios.get('/friends');
   return data;
 };
 

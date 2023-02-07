@@ -115,3 +115,5 @@ export const Container = styled.div`
     padding: 0 16px;
   }
 `;
+
+export const Main = styled.main``;

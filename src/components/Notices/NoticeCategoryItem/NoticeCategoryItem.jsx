@@ -25,8 +25,12 @@ import { deleteNotice } from 'redux/notices/notices-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   selectFavorites,
-  // selectIsLoading,
+  selectNotices,
 } from 'redux/notices/notices-selectors';
+import { useState } from 'react';
+import Modal from 'components/Modal/Modal';
+import useModal from 'hooks/modal';
+import ReadMoreModal from 'components/ReadMoreModal/ReadMoreModal';
 
 const NoticeCategoryItem = ({ notice, route }) => {
   const {
@@ -40,29 +44,17 @@ const NoticeCategoryItem = ({ notice, route }) => {
     price,
     owner,
   } = notice;
-
-  // console.log(notice._id);
-
   const dispatch = useDispatch();
+
+  const [oneNotice, setOneNotice] = useState([]);
+  const { isModalOpen, closeModal, openModal } = useModal();
+  const notices = useSelector(selectNotices);
+
   const isLoggedIn = useSelector(selectIsLogin);
   const favorites = useSelector(selectFavorites);
-  // console.log(favorites);
   const ownerId = useSelector(selectUserId);
-  // const isFetchLoading = useSelector(selectIsLoading);
-
-  // const onChangeFavorite = () => {
-  //   if (isLoggedIn) {
-  //     dispatch(addToFavorite(id));
-  //     if (route === 'favorite') {
-  //       dispatch(deleteFromFavorites(id));
-  //     }
-  //   } else {
-  //     setIsShownAlert(true);
-  //   }
-  // };
 
   const birthday = getAge(dateOfBirth);
-  // console.log(birthday);
   const difOfAge = birthday => {
     return Math.trunc(
       (new Date().getTime() - new Date(birthday)) / (24 * 3600 * 365.25 * 1000)
@@ -70,7 +62,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
   };
 
   const age = difOfAge(birthday);
-  // console.log(age);
+
   const onAddToFavorite = e => {
     if (isLoggedIn) {
       const cardId = e.currentTarget.id;
@@ -91,24 +83,30 @@ const NoticeCategoryItem = ({ notice, route }) => {
     dispatch(deleteNotice(cardId));
   };
 
-  // const onDeleteFromFavorite = e => {
-  //   const cardId = e.currentTarget.id;
-
-  //   dispatch(deleteFromFavorites(cardId));
-  // };
-
   const isFavorite = id => {
     return favorites.filter(favorite => favorite._id === id);
   };
 
+  const handleMoreClick = e => {
+    if (notices.length > 0) {
+      const result = notices.filter(item => item._id === e.currentTarget.id);
+      setOneNotice(result);
+      openModal();
+      return;
+    }
+  };
+
   return (
+<>
     <Item>
       <div>
+
         <Image src={petImage} alt="Pet" minwidth={288} height={288} />
         <Sticker>{category}</Sticker>
         <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
           {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
         </AddToFavoriteBtn>
+
         {/* <Container> */}
         <Wrapper
           style={{
@@ -132,11 +130,34 @@ const NoticeCategoryItem = ({ notice, route }) => {
             {age} years
           </Text>
           {category === 'sell' && (
+
+
             <Text>
-              <Span>Price:</Span>
-              {price ? `${price} $` : '--------'}
+              <Span>Place:</Span>
+              {location}
             </Text>
+            <Text>
+              <Span>Age:</Span>
+              {age} years
+            </Text>
+            {category === 'sell' && (
+              <Text>
+                <Span>Price:</Span>
+                {price ? `${price} $` : '--------'}
+              </Text>
+            )}
+          </Wrapper>
+          <LearnMoreBtn readMore={id} id={id} onClick={handleMoreClick}>
+            Learn more
+          </LearnMoreBtn>
+
+          {ownerId === owner && (
+            <DeleteBtn id={id} onClick={onDeleteNotice}>
+              Delete
+              <RiDeleteBin5Fill style={{ marginLeft: '15px' }} />
+            </DeleteBtn>
           )}
+
         </Wrapper>
       </div>
       <div>
@@ -153,6 +174,14 @@ const NoticeCategoryItem = ({ notice, route }) => {
       </div>
       {/* </Container> */}
     </Item>
+
+      {isModalOpen && (
+        <Modal onCloseModal={closeModal}>
+          <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
+        </Modal>
+      )}
+    </>
+
   );
 };
 

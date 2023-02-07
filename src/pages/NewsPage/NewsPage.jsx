@@ -3,11 +3,11 @@ import NewsSerch from 'components/News/NewsSerch/NewsSerch';
 import Headline from 'components/Headline/Headline';
 import { useEffect, useState } from 'react';
 import NewsList from 'components/News/NewsList/NewsList';
-import Container from './NewsPage.styled';
-const { REACT_APP_BASE_URL } = process.env;
+
+axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 const fetchNews = async () => {
-  const { data } = await axios.get(`${REACT_APP_BASE_URL}/api/news`);
+  const { data } = await axios.get('/news');
   return data;
 };
 
@@ -40,11 +40,9 @@ const NewsPage = () => {
   };
   return (
     <>
-      <Container>
-        <Headline title={'News'}></Headline>
-        <NewsSerch onSearch={onSearch} />
-        <NewsList News={filteredNews} />
-      </Container>
+      <Headline title={'News'}></Headline>
+      <NewsSerch onSearch={onSearch} />
+      <NewsList News={filteredNews} />
     </>
   );
 };

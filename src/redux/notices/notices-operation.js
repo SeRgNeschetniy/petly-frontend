@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setToken } from 'redux/auth/auth-operation';
 
-// axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 export const fetchNotices = createAsyncThunk(
   'notices/categoryName',

@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+
 export const setToken = token => {
   if (token) {
     return (axios.defaults.headers.common.authorization = `Bearer ${token}`);
