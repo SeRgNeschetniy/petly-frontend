@@ -30,7 +30,7 @@ export default function PetsData() {
         </AddPet>
         {isModalOpen && (
           <Modal onCloseModal={closeModal}>
-            {<AddPetsModal onCloseModal={closeModal} />}
+            <AddPetsModal onCloseModal={closeModal} />
           </Modal>
         )}
       </Head>
