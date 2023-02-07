@@ -2,12 +2,12 @@ import * as Yup from 'yup';
 
 
 export const validationSchema = Yup.object({
-    email: Yup.string().matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, 'Invalid email format').required('Required'),
+    email: Yup.string().matches(/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/, 'Invalid email format').required('Required'),
     password: Yup.string().required('Require').min(7),
 });
   
 export const firstStepValidation = Yup.object({
-    email: Yup.string().matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, 'Invalid email format').required('Required'),
+    email: Yup.string().matches(/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/, 'Invalid email format').required('Required'),
     password: Yup.string().required('Require').min(7),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), ''], 'Password must match')
