@@ -10,7 +10,7 @@ export const Title = styled.h1`
     font-size: 32px;
     line-height: 1.38;
     display: inline-block;
-    margin-top: 60px;
+    /*margin-top: 60px;*/
     margin-bottom: 0px;
   }
   @media screen and (min-width: 768px) {
@@ -18,7 +18,7 @@ export const Title = styled.h1`
     font-weight: 700;
     font-size: 68px;
     line-height: 1.47;
-    margin-top: 90px;
+    /*margin-top: 90px;*/
     margin-bottom: 0px;
     display: inline-block;
     text-align: left;

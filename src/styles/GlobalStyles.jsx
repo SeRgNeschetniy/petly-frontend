@@ -12,6 +12,16 @@ import dsctpImageHomeBg2x from '../images/mainPage/home-bg-d@2x.png';
 import dsctpImageGirl2x from '../images/mainPage/home-bg3-d@2x.png';
 import dsctpImageHeart2x from '../images/mainPage/home-bg4-d@2x.png';
 
+import tbltImageHomeBg from '../images/mainPage/home-bg-t@1x.png';
+import tbltImageGirl from '../images/mainPage/home-bg3-t@1x.png';
+import tbltImageHomeBg2x from '../images/mainPage/home-bg-t@2x.png';
+import tbltImageGirl2x from '../images/mainPage/home-bg3-t@2x.png';
+
+import mblImageHomeBg from '../images/mainPage/home-bg-m@1x.png';
+import mblImageGirl from '../images/mainPage/home-bg3-m@1x.png';
+import mblImageHomeBg2x from '../images/mainPage/home-bg-m@2x.png';
+import mblImageGirl2x from '../images/mainPage/home-bg3-m@2x.png';
+
 export const GlobalStyles = css`
   ${normalize}
 
@@ -138,7 +148,28 @@ export const Main = styled.main`
   ${({ page }) =>
     page === 'main' &&
     css`
-      @media (min-width: 768) {
+      background-image: url(${mblImageGirl}), url(${mblImageHomeBg});
+      background-position: right 50% bottom 0, left 0 bottom 0;
+      background-repeat: no-repeat, no-repeat;
+      background-size: auto 68%, 100% auto;
+
+      @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+        background-image: url(${mblImageGirl2x}), url(${mblImageHomeBg2x});
+      }
+
+      @media (min-width: 768px) {
+        background-image: url(${tbltImageGirl}), url(${tbltImageHomeBg});
+        background-position: right 50% bottom 0, left 0 bottom 0;
+        background-repeat: no-repeat, no-repeat;
+        background-size: auto 68%, 100% auto;
+
+        @media (min-device-pixel-ratio: 2),
+          (min-resolution: 192dpi),
+          (min-resolution: 2dppx) {
+          background-image: url(${tbltImageGirl2x}), url(${tbltImageHomeBg2x});
+        }
       }
 
       @media (min-width: 1280px) {
