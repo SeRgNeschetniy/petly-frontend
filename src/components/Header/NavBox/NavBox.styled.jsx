@@ -92,18 +92,20 @@ export const AuthLinks = styled(NavLink)`
 
   &.active {
     color: white;
-    background-color: #f59256;
+    background-color: rgb(245, 146, 86);
   }
   &.active:hover {
-    background-color: #ff6101;
+    border: 2px solid rgb(255, 97, 1);
+    background-color: rgb(255, 97, 1);
   }
-  :hover:not(.active),
-  :focus-visible:not(.active) {
-    background-color: rgba(0, 0, 0, 0.07);
-    color: black;
+  &:hover:not(.active),
+  &:focus-visible:not(.active) {
+    color: white;
+    background-color: rgb(255, 97, 1);
+    border: 2px solid rgb(255, 97, 1);
   }
 
-  /* transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     padding: 8.5px 28px;
