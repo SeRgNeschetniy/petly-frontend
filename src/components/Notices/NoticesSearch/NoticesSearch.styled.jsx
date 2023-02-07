@@ -31,6 +31,7 @@ export const Input = styled.input`
   border: 1px solid transparent;
   border-radius: 40px;
   padding: 13px 40px 13px 20px;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     width: 608px;

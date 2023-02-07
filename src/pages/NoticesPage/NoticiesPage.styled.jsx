@@ -20,4 +20,8 @@ export const Wrapper = styled.div`
     display: flex;
     margin-bottom: 44px;
   }
+  @media screen and (min-width: 768px) {
+    // display: flex;
+    margin-bottom: 60px;
+  }
 `;

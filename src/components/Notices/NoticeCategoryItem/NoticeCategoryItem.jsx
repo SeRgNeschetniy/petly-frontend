@@ -4,7 +4,7 @@ import {
   Wrapper,
   Title,
   Text,
-  Container,
+  // Container,
   Sticker,
   AddToFavoriteBtn,
   Span,
@@ -103,13 +103,21 @@ const NoticeCategoryItem = ({ notice, route }) => {
 
   return (
     <Item>
-      <Image src={petImage} alt="Pet" minwidth={288} height={288} />
-      <Sticker>{category}</Sticker>
-      <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
-        {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
-      </AddToFavoriteBtn>
-      <Container>
-        <Wrapper>
+      <div>
+        <Image src={petImage} alt="Pet" minwidth={288} height={288} />
+        <Sticker>{category}</Sticker>
+        <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
+          {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
+        </AddToFavoriteBtn>
+        {/* <Container> */}
+        <Wrapper
+          style={{
+            marginTop: '20px',
+            marginBottom: '50px',
+            paddingRight: '20px',
+            paddingLeft: '20px',
+          }}
+        >
           <Title>{title}</Title>
           <Text>
             <Span>Breed:</Span>
@@ -130,6 +138,8 @@ const NoticeCategoryItem = ({ notice, route }) => {
             </Text>
           )}
         </Wrapper>
+      </div>
+      <div>
         <LearnMoreBtn readMore={id} id={id}>
           Learn more
         </LearnMoreBtn>
@@ -140,7 +150,8 @@ const NoticeCategoryItem = ({ notice, route }) => {
             <RiDeleteBin5Fill style={{ marginLeft: '15px' }} />
           </DeleteBtn>
         )}
-      </Container>
+      </div>
+      {/* </Container> */}
     </Item>
   );
 };

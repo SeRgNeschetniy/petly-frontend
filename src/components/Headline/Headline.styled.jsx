@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-  margin-bottom: 40px;
   font-weight: 700;
   font-size: 48px;
   line-height: 1.3;
@@ -14,5 +13,6 @@ export const Title = styled.h1`
 
   @media screen and (min-width: 768px) {
     font-size: 48px;
+    margin-bottom: 40px;
   }
 `;
