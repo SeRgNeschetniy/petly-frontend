@@ -1,4 +1,5 @@
 import MainPageImageDsktp from './MainPageDsktp';
+
 import {
   Title,
   Wrapper,
@@ -16,10 +17,11 @@ const Headline = () => {
           Take good care of <br />
           your small pets
         </Title>
+        <MainPageImageDsktp />
         <MainPageImage src={mobileImage} />
         <MainPageImageTab src={tabImage} />
-        <MainPageImageDsktp />
       </Wrapper>
+      {/* <MainPageImageDsktp /> */}
     </>
   );
 };

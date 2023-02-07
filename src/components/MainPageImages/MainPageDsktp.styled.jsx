@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
-  position: relative;
+  // position: relative;
+  // border: solid red;
 `;
 
-export const MainPageImageDsktpA = styled.img`
+export const ImageLong = styled.img`
   position: absolute;
   @media screen and (min-width: 320px) {
     display: none;
@@ -14,17 +15,16 @@ export const MainPageImageDsktpA = styled.img`
   }
   @media screen and (min-width: 1280px) {
     display: block;
+    width: 80%;
+    bottom: 0;
 
-    width: 1100px;
-    height: 400px;
-
-    left: -10px;
-    top: 60px;
-    z-index: -5;
+    margine-rigth: auto;
+    margine-left: auto;
+    z-index: -1;
   }
 `;
 
-export const MainPageImageDsktpB = styled.img`
+export const ImageRight = styled.img`
   position: absolute;
   @media screen and (min-width: 320px) {
     display: none;
@@ -34,15 +34,14 @@ export const MainPageImageDsktpB = styled.img`
   }
   @media screen and (min-width: 1280px) {
     display: block;
-    top: 65px;
-    right: -45px;
+    width: 34.6%;
+    bottom: 0;
 
-    width: 511px;
-    height: 393px;
-    // z-index: -4;
+    right: 0px;
+    z-index: -1;
   }
 `;
-export const MainPageImageDsktpC = styled.img`
+export const ImageGirl = styled.img`
   position: absolute;
   @media screen and (min-width: 320px) {
     display: none;
@@ -52,15 +51,13 @@ export const MainPageImageDsktpC = styled.img`
   }
   @media screen and (min-width: 1280px) {
     display: block;
-
-    top: -200px;
-    right: -20px;
-
-    width: 610px;
-    height: 660px;
+    right: 30px;
+    bottom: 0;
+    width: 40%;
+    z-index: -1;
   }
 `;
-export const MainPageImageDsktpD = styled.img`
+export const ImageHeart = styled.img`
   position: absolute;
   @media screen and (min-width: 320px) {
     display: none;
@@ -70,11 +67,9 @@ export const MainPageImageDsktpD = styled.img`
   }
   @media screen and (min-width: 1280px) {
     display: block;
-
-    width: 92px;
-    height: 89px;
-
-    top: -190px;
-    right: 450px;
+    width: 6%;
+    left: 870px;
+    z-index: -2;
+    top: 250px;
   }
 `;

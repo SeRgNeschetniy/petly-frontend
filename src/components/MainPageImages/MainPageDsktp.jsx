@@ -1,24 +1,24 @@
 import {
   Wrapper,
-  MainPageImageDsktpA,
-  MainPageImageDsktpB,
-  MainPageImageDsktpC,
-  MainPageImageDsktpD,
+  ImageLong,
+  ImageRight,
+  ImageGirl,
+  ImageHeart,
 } from './MainPageDsktp.styled';
 
-import dsctpImageFonL from '../../images/mainPage/home-bg1-d@2x.png';
-import dsctpImageFonR from '../../images/mainPage/home-bg2-d@2x.png';
-import dsctpImageGirl from '../../images/mainPage/home-bg3-d@2x.png';
-import dsctpImageHeart from '../../images/mainPage/home-bg4-d@2x.png';
+import dsctpImageFonL from '../../images/mainPage/home-bg1-d@1x.png';
+import dsctpImageFonR from '../../images/mainPage/home-bg2-d@1x.png';
+import dsctpImageGirl from '../../images/mainPage/home-bg3-d@1x.png';
+import dsctpImageHeart from '../../images/mainPage/home-bg4-d@1x.png';
 
 const MainPageImageDsktp = () => {
   return (
     <>
       <Wrapper>
-        <MainPageImageDsktpA src={dsctpImageFonL} />
-        <MainPageImageDsktpB src={dsctpImageFonR} />
-        <MainPageImageDsktpC src={dsctpImageGirl} />
-        <MainPageImageDsktpD src={dsctpImageHeart} />
+        <ImageLong src={dsctpImageFonL} />
+        <ImageRight src={dsctpImageFonR} />
+        <ImageGirl src={dsctpImageGirl} />
+        <ImageHeart src={dsctpImageHeart} />
       </Wrapper>
     </>
   );
