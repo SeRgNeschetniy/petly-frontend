@@ -31,7 +31,7 @@ export const fetchUserPets = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/mypets`);
-
+      console.log(data);
       return data;
     } catch ({ responce }) {
       const error = {
@@ -80,3 +80,16 @@ export const patchContact = createAsyncThunk(
     }
   }
 );
+
+export const fetchPets = createAsyncThunk('pet', async (petsData, thunkApi) => {
+  try {
+    const { data } = await axios.post('/mypets', petsData);
+    return data;
+  } catch ({ responce }) {
+    const error = {
+      status: responce.status,
+      message: responce.data.message,
+    };
+    return thunkApi.rejectWithValue(error);
+  }
+});
