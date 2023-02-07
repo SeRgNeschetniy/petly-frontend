@@ -58,9 +58,7 @@ export const App = () => {
           <Route
             path="/register"
             element={
-              <React.Suspense fallback={<Loader />}>
-                <RestrictedRoute component={RegisterPage} redirectTo="/user" />
-              </React.Suspense>
+              <RestrictedRoute component={RegisterPage} redirectTo="/user" />
             }
           />
           <Route path="/restore" element={<PasswordRecoveryForm />} />
@@ -68,50 +66,15 @@ export const App = () => {
             path="/user"
             element={<PrivateRoute component={UserPage} redirectTo="/login" />}
           />
-          <Route
-            path="/news"
-            element={
-              <React.Suspense fallback={<Loader />}>
-                <NewsPage />
-              </React.Suspense>
-            }
-          />
+          <Route path="/news" element={<NewsPage />} />
           <Route path="/friends" element={<FriendsPage />} />
-          <Route
-            path="/notices"
-            element={
-              <React.Suspense fallback={<Loader />}>
-                <NoticesLayoutPage />
-              </React.Suspense>
-            }
-          >
-            <Route
-              path="favorites"
-              element={
-                <React.Suspense fallback={<Loader />}>
-                  <NoticesFavorites />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="own"
-              element={
-                <React.Suspense fallback={<Loader />}>
-                  <NoticesOwn />
-                </React.Suspense>
-              }
-            />
+          <Route path="/notices" element={<NoticesLayoutPage />}>
+            <Route path="favorites" element={<NoticesFavorites />} />
+            <Route path="own" element={<NoticesOwn />} />
             <Route path="/notices" element={<NoticesLayoutPage />}>
               <Route index path="favorites" element={<NoticesFavorites />} />
               <Route path="own" element={<NoticesOwn />} />
-              <Route
-                path=":categoryName"
-                element={
-                  <React.Suspense fallback={<Loader />}>
-                    <NoticesCategory />
-                  </React.Suspense>
-                }
-              />
+              <Route path=":categoryName" element={<NoticesCategory />} />
             </Route>
           </Route>
           <Route path="*" element={<Navigate to={'/login'} />} />
