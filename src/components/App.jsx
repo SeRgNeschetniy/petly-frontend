@@ -77,12 +77,6 @@ export const App = () => {
             }
           />
           <Route path="/friends" element={<FriendsPage />} />
-
-          <Route path="/notices" element={<NoticesLayoutPage />}>
-            <Route index path="favorites" element={<NoticesFavorites />} />
-            <Route path="own" element={<NoticesOwn />} />
-            <Route path=":categoryName" element={<NoticesCategory />} />
-
           <Route
             path="/notices"
             element={
@@ -107,15 +101,18 @@ export const App = () => {
                 </React.Suspense>
               }
             />
-            <Route
-              path=":categoryName"
-              element={
-                <React.Suspense fallback={<Loader />}>
-                  <NoticesCategory />
-                </React.Suspense>
-              }
-            />
-
+            <Route path="/notices" element={<NoticesLayoutPage />}>
+              <Route index path="favorites" element={<NoticesFavorites />} />
+              <Route path="own" element={<NoticesOwn />} />
+              <Route
+                path=":categoryName"
+                element={
+                  <React.Suspense fallback={<Loader />}>
+                    <NoticesCategory />
+                  </React.Suspense>
+                }
+              />
+            </Route>
           </Route>
           <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>
