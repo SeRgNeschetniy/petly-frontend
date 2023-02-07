@@ -97,10 +97,8 @@ const NoticeCategoryItem = ({ notice, route }) => {
   };
 
   return (
-<>
     <Item>
       <div>
-
         <Image src={petImage} alt="Pet" minwidth={288} height={288} />
         <Sticker>{category}</Sticker>
         <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
@@ -130,38 +128,15 @@ const NoticeCategoryItem = ({ notice, route }) => {
             {age} years
           </Text>
           {category === 'sell' && (
-
-
             <Text>
-              <Span>Place:</Span>
-              {location}
+              <Span>Price:</Span>
+              {price ? `${price} $` : '--------'}
             </Text>
-            <Text>
-              <Span>Age:</Span>
-              {age} years
-            </Text>
-            {category === 'sell' && (
-              <Text>
-                <Span>Price:</Span>
-                {price ? `${price} $` : '--------'}
-              </Text>
-            )}
-          </Wrapper>
-          <LearnMoreBtn readMore={id} id={id} onClick={handleMoreClick}>
-            Learn more
-          </LearnMoreBtn>
-
-          {ownerId === owner && (
-            <DeleteBtn id={id} onClick={onDeleteNotice}>
-              Delete
-              <RiDeleteBin5Fill style={{ marginLeft: '15px' }} />
-            </DeleteBtn>
           )}
-
         </Wrapper>
       </div>
       <div>
-        <LearnMoreBtn readMore={id} id={id}>
+        <LearnMoreBtn readMore={id} id={id} onClick={handleMoreClick}>
           Learn more
         </LearnMoreBtn>
 
@@ -174,14 +149,6 @@ const NoticeCategoryItem = ({ notice, route }) => {
       </div>
       {/* </Container> */}
     </Item>
-
-      {isModalOpen && (
-        <Modal onCloseModal={closeModal}>
-          <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
-        </Modal>
-      )}
-    </>
-
   );
 };
 
