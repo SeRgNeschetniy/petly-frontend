@@ -70,8 +70,9 @@ const NoticesLayoutPage = () => {
             {matches && <AddNoticeButton />}
           </Wrapper>
           {!matches && <AddNoticeButtonMobile />}
-          {isLoading && <Loader />}
+
           <Outlet />
+
           {error && Notify.warning('Sorry, you should to sing in')}
         </ContainerWrapp>
       </Container>
