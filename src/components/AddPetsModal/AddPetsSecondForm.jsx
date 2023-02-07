@@ -2,42 +2,41 @@ import { useState } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { pet } from '../../servises';
-import {TfiPlus} from 'react-icons/tfi';
-import {VscClose} from 'react-icons/vsc';
-import  {fetchPets} from '../../redux/addPets/addPets-operations'
+import { TfiPlus } from 'react-icons/tfi';
+import { VscClose } from 'react-icons/vsc';
+import { fetchPets } from '../../redux/addPets/addPets-operations';
 import { Notify } from 'notiflix';
-import {Container, 
-    ButtonClose, 
-    TitleSecondForm, 
-    Label, 
-    WraperTextarea,       
-    FormWrapper,     
-    ButtonWrapper,
-    ButtonFill,
-    ButtonEmpty,
-    InputPhoto,
-    FormSecond,
-    Textarea,
-    ErrorTextarea,
-    Text,
-    CrossBig,    
-    ButtonAddPhoto,
-    AvatarImg,
+import {
+  Container,
+  ButtonClose,
+  TitleSecondForm,
+  Label,
+  WraperTextarea,
+  FormWrapper,
+  ButtonWrapper,
+  ButtonFill,
+  ButtonEmpty,
+  InputPhoto,
+  FormSecond,
+  Textarea,
+  ErrorTextarea,
+  Text,
+  CrossBig,
+  ButtonAddPhoto,
+  AvatarImg,
 } from './AddPetsModal.styled';
 
 export const AddPetsSecondForm = props => {
-
   const notifyOptions = {
     showOnlyTheLastOne: true,
     timeout: 2000,
   };
 
-  const [img, setImg] = useState(null); 
+  const [img, setImg] = useState(null);
 
   const dispatch = useDispatch();
 
   const handleSubmit = values => {
-    console.log(values);
     const formData = new FormData();
     formData.append('name', values.name);
     formData.append('dateOfBirth', values.dateOfBirth);
@@ -45,7 +44,7 @@ export const AddPetsSecondForm = props => {
     formData.append('photoPet', values.petImage);
     formData.append('comment', values.comments);
     dispatch(fetchPets(formData));
-   
+
     props.closeModal();
   };
 
@@ -65,26 +64,27 @@ export const AddPetsSecondForm = props => {
             <FormSecond encType="multipart/form-data">
               <Text>Add photo and some comments</Text>
               <ButtonAddPhoto type="button">
-              {!img ? (
-                  <CrossBig >
+                {!img ? (
+                  <CrossBig>
                     <TfiPlus size={48} />
                   </CrossBig>
-                  ) : (
+                ) : (
                   <AvatarImg src={img} alt="avatar" />
-                    )}                
-                <InputPhoto name="petImage"
+                )}
+                <InputPhoto
+                  name="petImage"
                   type="file"
                   accept="image/*"
                   onChange={e => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('petImage', e.target.files[0]);
-                    setImg(URL.createObjectURL(fileUploaded));                    
+                    setImg(URL.createObjectURL(fileUploaded));
                   }}
-                />        
-                    {props.isSubmitting && props.errors.petImage
-              ? Notify.failure(props.errors.petImage, notifyOptions)
-              : null}
-                  <ErrorTextarea name="petImage" component="p" />
+                />
+                {props.isSubmitting && props.errors.petImage
+                  ? Notify.failure(props.errors.petImage, notifyOptions)
+                  : null}
+                <ErrorTextarea name="petImage" component="p" />
               </ButtonAddPhoto>
               <WraperTextarea>
                 <Label> Comments</Label>
@@ -95,8 +95,8 @@ export const AddPetsSecondForm = props => {
                   placeholder="Type comments"
                 />
                 {props.isSubmitting && props.errors.comments
-              ? Notify.failure(props.errors.comments, notifyOptions)
-              : null}
+                  ? Notify.failure(props.errors.comments, notifyOptions)
+                  : null}
                 <ErrorTextarea name="comments" component="p" />
               </WraperTextarea>
               <ButtonWrapper>
@@ -117,4 +117,3 @@ export const AddPetsSecondForm = props => {
 };
 
 export default AddPetsSecondForm;
-

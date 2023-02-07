@@ -5,8 +5,8 @@ import { setToken } from 'redux/auth/auth-operation';
 axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 export const jsonInstance = axios.create({
-  headers: {"Content-Type": "application/json"},
-})
+  headers: { 'Content-Type': 'application/json' },
+});
 
 export const fetchCurrentUser = createAsyncThunk(
   'users/current',
@@ -72,7 +72,6 @@ export const patchContact = createAsyncThunk(
     try {
       const state = thunkApi.getState();
       const token = state.auth.token;
-      console.log(token);
       setToken(token);
       const { result } = await axios.patch(`/users/update/`, data);
       return result;
