@@ -1,7 +1,11 @@
 import { useSelector } from 'react-redux';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
-import { Link, Nav, AuthWrapper } from './NoticesCategoriesNav.styled';
-
+import {
+  Link,
+  Nav,
+  AuthWrapper,
+  AuthLink,
+} from './NoticesCategoriesNav.styled';
 
 const NoticesCategoriesNav = () => {
   const isLogin = useSelector(selectIsLogin);
@@ -13,8 +17,8 @@ const NoticesCategoriesNav = () => {
       <Link to="/notices/sell">sell</Link>
       {isLogin && (
         <AuthWrapper>
-          <Link to="/notices/favorites">favorite ads</Link>
-          <Link to="/notices/own">my ads</Link>
+          <AuthLink to="/notices/favorites">favorite ads</AuthLink>
+          <AuthLink to="/notices/own">my ads</AuthLink>
         </AuthWrapper>
       )}
     </Nav>

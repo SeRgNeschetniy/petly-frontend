@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { setToken } from 'redux/auth/auth-operation';
 
-axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+//axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 export const fetchNotices = createAsyncThunk(
   'notices/categoryName',
@@ -10,9 +11,6 @@ export const fetchNotices = createAsyncThunk(
       const { data } = await axios.get(
         `/notices/${categoryName}?page=${page}&limit=${limit}&query=${query}`
       );
-      console.log(data.notices);
-      // console.log(data.favorites);
-      console.log(data);
       return data.notices || data.favorites;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -26,7 +24,7 @@ export const fetchNoticeById = createAsyncThunk(
   async (_id, thunkApi) => {
     try {
       const response = await axios.get(`/notices/find/${_id}`);
-      return response.data.notices;
+      return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -43,41 +41,16 @@ export const addNewNotice = createAsyncThunk(
       return thunkApi.rejectWithValue(error.message);
     }
   }
-)
-
-// export const addToFavorite = createAsyncThunk(
-//   'notices/addFavorite',
-//   async (_id, thunkAPI) => {
-//     try {
-//       const tokenLS = thunkAPI.getState().auth.accessToken;
-//       setToken.set(tokenLS);
-//       await axios.patch(`/notices/user/${_id}/favorites`);
-//       return _id;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.request.status);
-//     }
-//   }
-// );
-
-// export const addToFavorite = createAsyncThunk(
-//   'notices/addToFavorite',
-//   async (_id, thunkApi) => {
-//     try {
-//       const response = await axios.post(`notices/${_id}/favorites`);
-//       console.log(response.data);
-//       return response.data;
-//     } catch (error) {
-//       return thunkApi.rejectWithValue(error.message);
-//     }
-//   }
-// );
+);
 
 export const deleteNotice = createAsyncThunk(
   'notices/deleteNotice',
   async (_id, thunkApi) => {
     try {
-      const response = await axios.delete(`/notices/${_id}`);
-      return response.data;
+      const data = await axios.delete(`/notices/${_id}`);
+      if (data.status === 200) {
+        return _id;
+      }
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -86,10 +59,62 @@ export const deleteNotice = createAsyncThunk(
 
 export const deleteFromFavorites = createAsyncThunk(
   'notices/deleteFromFavorites',
-  async (_id, thunkApi) => {
+  async (_id, { rejectWithValue, getState }) => {
     try {
-      const response = await axios.delete(`/notices/${_id}/favorites/`);
-      return response.data.notices;
+      const { auth } = getState();
+      setToken(auth.token);
+      const data = await axios.delete(`/notices/${_id}/favorites/`);
+      if (data.status === 200) {
+        return _id;
+      }
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const addToFavorite = createAsyncThunk(
+  'notices/addFavorite',
+  async (_id, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      setToken(auth.token);
+
+      const { data } = await axios.post(`/notices/${_id}/favorites`);
+
+      return data.notices;
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const fetchFavoritesNotices = createAsyncThunk(
+  'notices/fetchFavoritesNotices',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get(`/notices/favorites`);
+      return data.favorites;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchUserNotices = createAsyncThunk(
+  'notices/fetchUserNotices',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get(`/notices/own`);
+      return data.notices;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

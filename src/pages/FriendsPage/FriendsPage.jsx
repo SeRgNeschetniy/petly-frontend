@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import Headline from 'components/Headline/Headline';
 import fetchFriends from './friendsFetch';
 import FriendsList from 'components/Friends/FriendsList/FriendsList';
-import { Container } from 'styles';
+import { Wrapper } from './FriendsPage.styled';
+import { Container, Main } from 'styles';
 
 function FriendsPage() {
   const [friends, setFriends] = useState([]);
@@ -19,13 +20,15 @@ function FriendsPage() {
     getFriends();
   }, []);
 
-  console.log(friends);
-
   return (
-    <Container>
-      <Headline title={'Our friends'}></Headline>
-      <FriendsList friends={friends} />
-    </Container>
+    <Main>
+      <Container>
+        <Wrapper>
+          <Headline title={'Our friends'}></Headline>
+          <FriendsList friends={friends} />
+        </Wrapper>
+      </Container>
+    </Main>
   );
 }
 

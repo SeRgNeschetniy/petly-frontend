@@ -7,6 +7,7 @@ import { Overlay } from './Modal.styled';
 const modalRoot = document.querySelector('#modal-root');
 
 function Modal(props) {
+  
   useEffect(() => {
     const handleKeyDown = evt => {
       if (evt.code === 'Escape') {

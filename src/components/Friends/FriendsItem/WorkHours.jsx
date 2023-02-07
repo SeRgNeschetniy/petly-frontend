@@ -4,7 +4,7 @@ import { TimeList, DayItem, TimeBtn } from './FriendsItem.styled';
 const WorkHours = ({ workDays }) => {
   const [showModal, setShowModal] = useState(false);
 
-  const days = ['MN:', 'TU:', 'WE:', 'TH:', 'FR:', 'SA:', 'SU:'];
+  const days = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
   const currentDate = new Date();
   const currentDay = currentDate.getDay();
 
@@ -15,20 +15,25 @@ const WorkHours = ({ workDays }) => {
     return currentDay - 1;
   };
 
-  const handleClick = () => {
-    setShowModal(!showModal);
-  };
-  console.log(workDays);
+  // console.log(currentDay);
 
   return (
     <>
-      <TimeBtn type="button" onClick={handleClick}>
-        {workDays
+      <TimeBtn
+        type="button"
+        onClick={() => {
+          setShowModal(true);
+        }}
+        onMouseLeave={() => {
+          setShowModal(false);
+        }}
+      >
+        {workDays[updateIdx()].from && workDays[updateIdx()].to
           ? `${workDays[updateIdx()]?.from} - ${workDays[updateIdx()]?.to}`
           : 'Closed'}
       </TimeBtn>
 
-      {showModal && (
+      {showModal && workDays && (
         <TimeList>
           {workDays.map(({ from, to, isOpen }, index) => (
             <li key={index}>
@@ -45,6 +50,10 @@ const WorkHours = ({ workDays }) => {
                   <span>Closed</span>
                 </DayItem>
               )}
+              {/* {days[index] === workDays[updateIdx()] && (
+                <DayItem style={{ backgroundColor: 'orange' }} />
+              )}
+              {console.log(currentDay === workDays[updateIdx()])} */}
             </li>
           ))}
         </TimeList>

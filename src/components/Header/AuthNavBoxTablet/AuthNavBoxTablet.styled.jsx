@@ -10,7 +10,6 @@ export const Container = styled.nav`
     display: flex;
     align-items: center;
     gap: 12px;
-
     font-size: 20px;
     line-height: 1.35;
     letter-spacing: 0.04em;
@@ -36,20 +35,19 @@ export const AuthLinks = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.accent};
 
-  ${({ accent }) =>
-    accent === 'true' &&
-    css`
-      color: white;
-      background-color: #f59256;
-      ::hover {
-        color: black;
-        background-color: #fdf7f2;
-      }
-    `};
-
-  :hover {
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.accent};
+  &.active {
+    color: white;
+    background-color: rgb(245, 146, 86);
+  }
+  &.active:hover {
+    border: 2px solid rgb(255, 97, 1);
+    background-color: rgb(255, 97, 1);
+  }
+  &:hover:not(.active),
+  &:focus-visible:not(.active) {
+    color: white;
+    background-color: rgb(255, 97, 1);
+    border: 2px solid rgb(255, 97, 1);
   }
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);

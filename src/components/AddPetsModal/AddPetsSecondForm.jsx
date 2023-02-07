@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-
+import { useDispatch } from 'react-redux';
 import { pet } from '../../servises';
+import { TfiPlus } from 'react-icons/tfi';
 import { VscClose } from 'react-icons/vsc';
-
-import { TfiClose } from 'react-icons/tfi';
-//import { string } from 'yup';
+import { fetchPets } from '../../redux/userpage/userpage-operation';
+import { Notify } from 'notiflix';
 import {
   Container,
   ButtonClose,
-  Title,
+  TitleSecondForm,
   Label,
   WraperTextarea,
-  ErrMessage,
   FormWrapper,
   ButtonWrapper,
   ButtonFill,
@@ -28,21 +27,24 @@ import {
 } from './AddPetsModal.styled';
 
 export const AddPetsSecondForm = props => {
+  const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  };
+
   const [img, setImg] = useState(null);
-  // const [valid, setValid] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = values => {
-    console.log(values);
     const formData = new FormData();
     formData.append('name', values.name);
     formData.append('dateOfBirth', values.dateOfBirth);
     formData.append('breed', values.breed);
-    formData.append('petImage', values.petImage);
-    formData.append('comments', values.comments);
-    // const formData = new FormData(props.data);
-    // for (let k of formData) {
-    //   console.log(k);
-    // }
+    formData.append('photoPet', values.petImage);
+    formData.append('comment', values.comments);
+    dispatch(fetchPets(formData));
+
     props.closeModal();
   };
 
@@ -51,38 +53,39 @@ export const AddPetsSecondForm = props => {
       <ButtonClose type="button" onClick={props.closeModal}>
         <VscClose size={65} />
       </ButtonClose>
-      <Title>Add pet</Title>
+      <TitleSecondForm>Add pet</TitleSecondForm>
       <FormWrapper>
         <Formik
           validationSchema={pet.formTwoValidationSchema}
           initialValues={props.data}
           onSubmit={handleSubmit}
         >
-          {({ setFieldValue }) => (
+          {({ setFieldValue, ...props }) => (
             <FormSecond encType="multipart/form-data">
               <Text>Add photo and some comments</Text>
               <ButtonAddPhoto type="button">
                 {!img ? (
                   <CrossBig>
-                    <TfiClose size={40} />
+                    <TfiPlus size={48} />
                   </CrossBig>
                 ) : (
                   <AvatarImg src={img} alt="avatar" />
                 )}
                 <InputPhoto
+                  name="petImage"
                   type="file"
                   accept="image/*"
                   onChange={e => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('petImage', e.target.files[0]);
                     setImg(URL.createObjectURL(fileUploaded));
-                    //setValid(string().required().isValidSync(e.target.files[0]));
                   }}
                 />
-                {/* <ErrMessage>{!valid && 'Image is required'}</ErrMessage> */}
-                <ErrMessage></ErrMessage>
+                {props.isSubmitting && props.errors.petImage
+                  ? Notify.failure(props.errors.petImage, notifyOptions)
+                  : null}
+                <ErrorTextarea name="petImage" component="p" />
               </ButtonAddPhoto>
-
               <WraperTextarea>
                 <Label> Comments</Label>
                 <Textarea
@@ -91,9 +94,11 @@ export const AddPetsSecondForm = props => {
                   as="textarea"
                   placeholder="Type comments"
                 />
+                {props.isSubmitting && props.errors.comments
+                  ? Notify.failure(props.errors.comments, notifyOptions)
+                  : null}
                 <ErrorTextarea name="comments" component="p" />
               </WraperTextarea>
-
               <ButtonWrapper>
                 <ButtonFill type="submit">Done</ButtonFill>
                 <ButtonEmpty

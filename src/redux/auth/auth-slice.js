@@ -4,13 +4,11 @@ import {
   logout,
   current,
   restorePassword,
-  addToFavorite,
-  patchAvatar
+  patchAvatar,
+  refreshToken,
 } from './auth-operation';
 
-import { createSlice } from "@reduxjs/toolkit";
-
-
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   user: {},
@@ -25,9 +23,8 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     addTokenToStore(store, action) {
-      console.log(action.payload);
       store.token = action.payload;
-    }
+    },
   },
   extraReducers: {
     [signup.pending]: store => {
@@ -55,6 +52,20 @@ const authSlice = createSlice({
       store.isLogin = true;
     },
     [login.rejected]: (store, { error }) => {
+      store.loading = false;
+      store.error = error;
+    },
+    [refreshToken.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [refreshToken.fulfilled]: (store, { payload }) => {
+      store.user = payload.user;
+      store.token = payload.token;
+      store.loading = false;
+      store.isLogin = true;
+    },
+    [refreshToken.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
@@ -97,15 +108,18 @@ const authSlice = createSlice({
       store.error = error;
     },
 
-    [addToFavorite.pending]: store => {
-      store.error = null;
-    },
-    [addToFavorite.fulfilled]: (store, action) => {
-      store.loading = false;
-    },
-    [addToFavorite.rejected]: (store, action) => {
-      store.error = action.payload;
-    },
+    // [addToFavorite.pending]: store => {
+    //   store.isLoading = true;
+    //   store.error = null;
+    // },
+    // [addToFavorite.fulfilled]: (store, { payload }) => {
+    //   store.loading = false;
+    //   store.error = null;
+    //   store.user.favorites.push(payload);
+    // },
+    // [addToFavorite.rejected]: (store, action) => {
+    //   store.error = action.payload;
+    // },
     [patchAvatar.pending](store) {
       store.isLoading = true;
       store.error = null;
@@ -113,13 +127,27 @@ const authSlice = createSlice({
     [patchAvatar.fulfilled]: (store, { payload }) => {
       store.loading = false;
       store.error = null;
-      store.user = {...store.user, avatarURL: payload.avatarURL}
+      store.user = { ...store.user, avatarURL: payload.avatarURL };
     },
     [patchAvatar.rejected]: (store, { error }) => {
       store.loading = false;
       store.error = error;
     },
-
+    // [deleteFromFavorites.pending]: store => {
+    //   store.isLoading = true;
+    //   store.error = null;
+    // },
+    // [deleteFromFavorites.fulfilled]: (store, { payload }) => {
+    //   store.loading = false;
+    //   store.error = null;
+    //   store.user.favorites = store.user.favorites.filter(
+    //     item => item !== payload
+    //   );
+    // },
+    // [deleteFromFavorites.rejected]: (store, action) => {
+    //   store.isLoading = false;
+    //   store.error = action.payload;
+    // },
   },
 });
 

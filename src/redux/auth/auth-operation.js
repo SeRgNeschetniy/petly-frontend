@@ -1,11 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+
 export const setToken = token => {
   if (token) {
-    return (axios.defaults.headers.common.authorization = `Bearer ${token}`);
+    return (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
   }
-  axios.defaults.headers.common.authorization = ``;
+  axios.defaults.headers.common.Authorization = ``;
 };
 
 export const signup = createAsyncThunk(
@@ -57,10 +59,10 @@ export const logout = createAsyncThunk(
 
 export const current = createAsyncThunk(
   'auth/current',
-  async (data, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      setToken(auth.token || data);
+      setToken(auth.token);
       const result = await axios.get(`/users/current/`);
       return result.data;
     } catch ({ responce }) {
@@ -72,23 +74,6 @@ export const current = createAsyncThunk(
     }
   }
 );
-
-// export const googleAuth = createAsyncThunk(
-//   'auth/google',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const result = await axios.get('/google');
-//       console.log(result);
-//       return result;
-//     } catch ({ responce }) {
-//       const error = {
-//         status: responce.status,
-//         message: responce.data.message,
-//       };
-//       return rejectWithValue(error);
-//     }
-//   }
-// )
 
 export const restorePassword = createAsyncThunk(
   'auth/restore',
@@ -107,33 +92,26 @@ export const restorePassword = createAsyncThunk(
   }
 );
 
-export const addToFavorite = createAsyncThunk(
-  'notices/addFavorite',
-  async (_id, { rejectWithValue, getState }) => {
+export const patchAvatar = createAsyncThunk(
+  'users/avatar',
+  async (newdata, thunkApi) => {
     try {
-      const { auth } = getState();
-      setToken(auth.token);
-      const result = await axios.post(`/notices/${_id}/favorites`);
-      return result.data;
-    } catch ({ responce }) {
-      const error = {
-        status: responce.status,
-        message: responce.data.message,
-      };
-      return rejectWithValue(error);
+      const { data } = await axios.patch(`/users/avatar`, newdata);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
     }
   }
 );
-export const patchAvatar = createAsyncThunk(
-    "users/avatar",
-    async (newdata, thunkApi) => {   
-       try {
-         const { data } = await axios.patch(`/users/avatar`, newdata)
-         console.log(data)
-         return data
-         
-        } catch (error) {
-            return thunkApi.rejectWithValue(error)
-        }
+
+export const refreshToken = createAsyncThunk(
+  'users/refresh',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axios.get('/users/refresh');
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
     }
+  }
 );

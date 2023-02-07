@@ -1,29 +1,18 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  
-display: grid;
-  grid-template-columns: repeat(1, minmax(260px, 1fr));
-  // grid-gap: 40px 33px;
-  margin-left: auto;
-  margin-right: auto;
+  display: grid;
+  gap: 40px;
+  justify-content: center;
+  margin-bottom: 100px;
 
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px 33px;
+  }
 
-
-@media screen and (min-width: 768px) {
-display: grid;
-  grid-template-columns: repeat(2, minmax(260px, 1fr));
-  grid-gap: 60px 133px;
-  margin-left: auto;
-  margin-right: auto;
-}
-@media screen and (min-width: 1280px) {
-display: grid;
-  grid-template-columns: repeat(3, minmax(260px, 1fr));
-  grid-gap: 60px 33px;
-  margin-left: auto;
-  margin-right: auto;
-}
+  @media screen and (min-width: 1280px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 60px 33px;
+  }
 `;
-
-

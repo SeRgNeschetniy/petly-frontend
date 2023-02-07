@@ -1,9 +1,10 @@
 import { Formik } from 'formik';
 import {VscClose} from 'react-icons/vsc';
 import { pet } from '../../servises';
+import { Notify } from 'notiflix';
 import {Container, 
     ButtonClose, 
-    Title, 
+    TitleFirstForm, 
     Label, 
     InputWrapper, 
     Input, 
@@ -16,7 +17,14 @@ import {Container,
     InputLast,
     FormFirst} from './AddPetsModal.styled';
 
- const AddPetsFirstForm =(props) => {  //props
+ const AddPetsFirstForm =(props) => {  
+
+  const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  };
+
+
      const handleSubmit =(values) => {
        props.setData(prev => {
          return {
@@ -35,14 +43,14 @@ import {Container,
             >
                <VscClose size={65}/> 
             </ButtonClose> 
-           <Title>Add pet</Title>
+           <TitleFirstForm>Add pet</TitleFirstForm>
              <FormWrapper>
                 <Formik 
                 validationSchema={pet.formOneValidationSchema}
                 initialValues={props.data}
                   onSubmit ={handleSubmit}
                 >
-                {() => (
+                {(props) => (
             <FormFirst >
               <Label htmlFor="namePet" >
                 Name pet
@@ -51,7 +59,9 @@ import {Container,
                 <Input
 			   			    name="name"
 			    placeholder="Type name pet"/> 
-       
+                {props.isSubmitting && props.errors.name
+              ? Notify.failure(props.errors.name, notifyOptions)
+              : null}
                 <ErrMessage name="name" component="p" />
               </InputWrapper>
 
@@ -60,6 +70,9 @@ import {Container,
               </Label>
               <InputWrapper>
                 <Input  name="dateOfBirth" placeholder="Type date of birth" />
+                {props.isSubmitting && props.errors.dateOfBirth
+              ? Notify.failure(props.errors.dateOfBirth, notifyOptions)
+              : null}
                 <ErrMessage name="dateOfBirth" component="p" />
               </InputWrapper>
               <Label htmlFor="breed" >
@@ -67,6 +80,9 @@ import {Container,
               </Label>
               <InputWrapperLast>
                 <InputLast name="breed" placeholder="Type breed" />
+                {props.isSubmitting && props.errors.breed
+              ? Notify.failure(props.errors.breed, notifyOptions)
+              : null}
                 <ErrMessage name="breed" component="p" />
               </InputWrapperLast>
               <ButtonWrapper>

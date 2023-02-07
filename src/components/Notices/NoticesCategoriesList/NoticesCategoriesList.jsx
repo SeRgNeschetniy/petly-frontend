@@ -1,13 +1,12 @@
-import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
+import NoticeCategoryItem from '../../Notices/NoticeCategoryItem/NoticeCategoryItem';
 import { List } from './NoticesCategoriesList.styled';
-import { useSelector } from 'react-redux';
-import { selectNotices } from 'redux/notices/notices-selectors';
 
-const NoticesCategoriesList = () => {
-  const notices = useSelector(selectNotices);
+const NoticesCategoriesList = ({ route, notices }) => {
   return (
     <List>
-      <NoticeCategoryItem items={notices} />
+      {notices.map(notice => (
+        <NoticeCategoryItem key={notice._id} notice={notice} route={route} />
+      ))}
     </List>
   );
 };

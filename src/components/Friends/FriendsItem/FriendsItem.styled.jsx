@@ -74,6 +74,7 @@ export const TextField = styled.li`
 `;
 
 export const TimeBtn = styled.button`
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
     color: ${theme.colors.accent};
@@ -95,7 +96,12 @@ export const TimeList = styled.ul`
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
 `;
 
-export const DayItem = styled.li`
+export const DayItem = styled.p`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 4px;
+
+  :last-child {
+    margin-bottom: 0;
+  }
 `;

@@ -2,26 +2,26 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { NavLink } from 'react-router-dom';
 
-// const switchStyle = css`
-//   color: black;
-//   background-color: green;
-//   :hover {
-//     color: black;
-//     background: blue;
-//   }
-// `;
+const showScroll = active => {
+  const body = document.body;
+  body.style.overflowY = active ? 'hidden' : 'visible';
+};
+
 export const Container = styled.nav`
   display: flex;
+  /* display: none; */
   flex-direction: column;
 
   position: absolute;
   left: 0;
-
-  margin-top: 42px;
+  right: 0;
+  bottom: 0;
+  top: 72px;
+  /* margin-top: 42px; */
   padding-top: 42px;
 
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.mainBackground};
@@ -32,25 +32,34 @@ export const Container = styled.nav`
 
   z-index: 10;
 
-  ${({ active }) =>
-    active &&
-    css`
-      opacity: 1;
-      pointer-events: auto;
-    `}
+  ${({ active }) => {
+    if (window.matchMedia('(max-width: 1280px)').matches) {
+      showScroll(active);
+    }
+
+    return (
+      active &&
+      css`
+        /* display: block; */
+        opacity: 1;
+        pointer-events: auto;
+      `
+    );
+  }}
 
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
-    margin-top: 48px;
+    /* margin-top: 48px; */
     padding-top: 88px;
   }
 
   @media screen and (min-width: 1280px) {
+    display: flex;
     position: static;
     flex-direction: row;
     height: 50px;
-    margin-top: 0px;
+    /* margin-top: 0px; */
     padding-top: 0px;
 
     opacity: 1;
@@ -89,21 +98,20 @@ export const AuthLinks = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid ${({ theme }) => theme.colors.accent};
 
-  :hover {
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.accent};
+  &.active {
+    color: white;
+    background-color: rgb(245, 146, 86);
   }
-
-  ${({ accent }) =>
-    accent === 'true' &&
-    css`
-      color: white;
-      background-color: #f59256;
-      &:hover {
-        color: black;
-        background-color: #fdf7f2;
-      }
-    `};
+  &.active:hover {
+    border: 2px solid rgb(255, 97, 1);
+    background-color: rgb(255, 97, 1);
+  }
+  &:hover:not(.active),
+  &:focus-visible:not(.active) {
+    color: white;
+    background-color: rgb(255, 97, 1);
+    border: 2px solid rgb(255, 97, 1);
+  }
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 

@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { setToken } from 'redux/auth/auth-operation';
 
 axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+
+export const jsonInstance = axios.create({
+  headers: { 'Content-Type': 'application/json' },
+});
 
 export const fetchCurrentUser = createAsyncThunk(
   'users/current',
@@ -26,7 +31,7 @@ export const fetchUserPets = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/mypets`);
-
+      console.log(data);
       return data;
     } catch ({ responce }) {
       const error = {
@@ -61,19 +66,30 @@ export const removePetCard = createAsyncThunk(
   }
 );
 
-
-
-
 export const patchContact = createAsyncThunk(
-    "users/update",
-    async (id, thunkApi) => {
-        const state = thunkApi.getState()
-        const {email,name, city, phone, birthday } = state.editContact
-        try {
-            const { data } = await axios.patch(`/users/${id}`, {email, name, city, phone, birthday})
-            return data
-        } catch (error) {
-            return thunkApi.rejectWithValue(error)
-        }
+  'users/update',
+  async (data, thunkApi) => {
+    try {
+      const state = thunkApi.getState();
+      const token = state.auth.token;
+      setToken(token);
+      const { result } = await axios.patch(`/users/update/`, data);
+      return result;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
     }
+  }
 );
+
+export const fetchPets = createAsyncThunk('pet', async (petsData, thunkApi) => {
+  try {
+    const { data } = await axios.post('/mypets', petsData);
+    return data;
+  } catch ({ responce }) {
+    const error = {
+      status: responce.status,
+      message: responce.data.message,
+    };
+    return thunkApi.rejectWithValue(error);
+  }
+});

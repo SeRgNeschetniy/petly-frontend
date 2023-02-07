@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Logo, AccentText, Container } from './Header.styled';
+import { Logo, HeaderContainer, MainContainer } from './Header.styled';
+// import { Container } from 'styles';
 import NavBox from './NavBox';
 import AuthNavBoxTablet from './AuthNavBoxTablet';
 import ShowBtn from './ShowBtn';
-// import UserNav from './UserNav';
 
 export default function Header() {
   const [show, setShow] = useState(false);
@@ -12,15 +12,13 @@ export default function Header() {
   };
 
   return (
-    <Container>
-      <Logo to={'/'}>
-        pe<AccentText>t</AccentText>ly
-      </Logo>
-
-      <AuthNavBoxTablet show={show} />
-      <ShowBtn show={show} showContent={showContent} />
-      <NavBox show={show} showContent={showContent} />
-      {/* <UserNav /> */}
-    </Container>
+    <MainContainer>
+      <HeaderContainer>
+        <Logo />
+        <AuthNavBoxTablet show={show} />
+        <ShowBtn show={show} showContent={showContent} />
+        <NavBox show={show} showContent={showContent} />
+      </HeaderContainer>
+    </MainContainer>
   );
 }

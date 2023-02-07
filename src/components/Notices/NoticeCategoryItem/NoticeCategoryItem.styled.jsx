@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 export const Item = styled.li`
   position: relative;
@@ -10,6 +9,15 @@ export const Item = styled.li`
   background: ${theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 40px 40px;
+  padding-bottom: 12px;
+`;
+
+export const BtnWrapper = styled.div`
+  height: 100%;
+  height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 `;
 
 export const LearnMoreBtn = styled.button`
@@ -25,18 +33,39 @@ export const LearnMoreBtn = styled.button`
   display: block;
   padding: 8px;
   width: 100%;
+  width: 248px;
   margin-bottom: 12px;
+  margin-right: auto;
+  margin-left: auto;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:last-child {
+    margin-bottom: 20px;
+    margin-top: 50px;
+  }
+
+  &:first-child:not(:last-child) {
+    margin-top: 20px;
+  }
 
   &:hover,
   :focus {
     background: ${theme.colors.accent};
     color: ${theme.colors.white};
   }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 288px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 248px;
+  }
 `;
 
 export const DeleteBtn = styled.button`
-  border: 2px solid #ff6101;
-  color: #ff6101;
+  border: 2px solid ${theme.colors.brightAccent};
+  color: ${theme.colors.brightAccent};
   background: ${theme.colors.white};
   border-radius: 40px;
   font-weight: 500;
@@ -49,20 +78,28 @@ export const DeleteBtn = styled.button`
   align-items: center;
   padding: 8px;
   width: 100%;
+  width: 248px;
+  margin-right: auto;
+  margin-left: auto;
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {
-    background: #ff6101;
+    background: ${theme.colors.brightAccent};
     color: ${theme.colors.white};
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 288px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 248px;
   }
 `;
 export const Container = styled.div`
   padding: 20px;
-`;
-
-export const Wrapper = styled.div`
-  padding: 20px, 20px, 12px, 20px;
-  margin-bottom: 50px;
+  padding-bottom: 0;
 `;
 
 export const Title = styled.h2`
@@ -70,15 +107,22 @@ export const Title = styled.h2`
   font-size: 28px;
   line-height: 1.3;
   letter-spacing: -0.01em;
-  color: #111111;
+  color: ${theme.colors.black};
   word-wrap: break-word;
 
   margin-bottom: 20px;
 `;
 
 export const Text = styled.p`
-  &:not(last-child) {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.37;
+
+  &:not(:last-child) {
     margin-bottom: 8px;
+  }
+  &:last-child {
+    margin-bottom: 0;
   }
 `;
 
@@ -109,7 +153,7 @@ export const AddToFavoriteBtn = styled.button`
   justify-content: center;
   width: 44px;
   height: 44px;
-  ackdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   background-color: hsla(0, 0%, 100%, 0.6);
   position: absolute;
   top: 12px;
@@ -137,7 +181,17 @@ export const AddIcon = styled(AiOutlineHeart)`
   color: ${theme.colors.accent};
 `;
 
+export const AddedIcon = styled(AiFillHeart)`
+  width: 28px;
+  height: 28px;
+  color: ${theme.colors.accent};
+`;
+
 export const Image = styled.img`
   height: 288px;
   background-size: cover;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 336px;
+  }
 `;

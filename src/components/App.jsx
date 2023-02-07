@@ -1,57 +1,72 @@
-import { lazy, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import SharedLayout from './SharedLayout';
-import PrivateRoute from './PrivateRoute';
-import RestrictedRoute from './RestrictedRoute';
+import React from 'react';
+import { useEffect } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { current } from 'redux/auth/auth-operation';
 import { useAuth } from 'hooks/useAuth';
-import PasswordRecoveryForm from './Auth/PasswordRecoveryForm/PasswordRecoveryForm';
 
-const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
-const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
-const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
-const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
-const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
-const UserPage = lazy(() => import('pages/UserPage/UserPage'));
+import {
+  RestrictedRoute,
+  PrivateRoute,
+  SharedLayout,
+  PasswordRecoveryForm,
+} from './components';
+import lazyPages from 'utils/lazyPages';
+
+const {
+  NoticesLayoutPage,
+  NoticesFavorites,
+  NoticesCategory,
+  NoticesOwn,
+  FriendsPage,
+  NewsPage,
+  RegisterPage,
+  LoginPage,
+  UserPage,
+  MainPage,
+} = lazyPages;
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  const { isRefreshing, token } = useAuth();
+
   useEffect(() => {
-    dispatch(current());
-  }, [dispatch]);
+    if (token) {
+      dispatch(current());
+    }
+  }, [dispatch, token]);
 
   return (
     !isRefreshing && (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
+          <Route index element={<MainPage />} />
+
           <Route
             path="/login"
             element={
-              <RestrictedRoute component={LoginPage} redirectTo="/news" />
+              <RestrictedRoute component={LoginPage} redirectTo="/user" />
             }
           />
-
           <Route
             path="/register"
             element={
-              <RestrictedRoute component={RegisterPage} redirectTo="/news" />
+              <RestrictedRoute component={RegisterPage} redirectTo="/user" />
             }
           />
-
           <Route path="/restore" element={<PasswordRecoveryForm />} />
-
           <Route
             path="/user"
-            element={<PrivateRoute redirectTo="/login" component={UserPage} />}
+            element={<PrivateRoute component={UserPage} redirectTo="/login" />}
           />
-
           <Route path="/news" element={<NewsPage />} />
-
           <Route path="/friends" element={<FriendsPage />} />
-
-          <Route path="/notices/:categoryName" element={<NoticesPage />} />
+          <Route path="/notices" element={<NoticesLayoutPage />}>
+            <Route path="favorites" element={<NoticesFavorites />} />
+            <Route path="own" element={<NoticesOwn />} />
+            <Route path=":categoryName" element={<NoticesCategory />} />
+          </Route>
+          <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>
       </Routes>
     )

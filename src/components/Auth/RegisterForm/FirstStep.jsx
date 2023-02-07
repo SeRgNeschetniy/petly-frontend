@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { firstStepValidation } from 'servises/LoginRegisterValidations';
 import {
   Input,
   Button,
@@ -8,8 +9,12 @@ import {
   Title,
   LinkText,
   StyledLink,
+  DivPass
 } from '../Auth.styled';
 import { Notify } from 'notiflix';
+
+import { ImEyeBlocked } from 'react-icons/im';
+import { ImEye } from 'react-icons/im';
 
 export default function FirstStep({
   setSecondPage,
@@ -21,13 +26,10 @@ export default function FirstStep({
     timeout: 2000,
   };
 
-  const firstStepValidation = Yup.object({
-    email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Require').min(7),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), ''], 'Password must match')
-      .required('Require'),
-  });
+  const [show, setShow] = useState(false);
+  const handleShow = () => {
+    setShow(!show);
+  };
 
   return (
     <Formik
@@ -65,13 +67,16 @@ export default function FirstStep({
           <InputField>
             <Input
               id="password"
-              type="password"
+              type={show ? "text" : "password"}
               name="password"
               placeholder="Password"
               onBlur={props.handleBlur}
               onChange={props.handleChange}
               value={props.values.password}
             />
+            <DivPass onClick={handleShow}>
+              {show ? <ImEye /> : <ImEyeBlocked />}
+            </DivPass>
             {props.isSubmitting && props.errors.password
               ? Notify.failure(props.errors.password, notifyOptions)
               : null}
@@ -79,13 +84,14 @@ export default function FirstStep({
           <InputField margin>
             <Input
               id="confirmPassword"
-              type="password"
+              type={show ? "text" : "password"}
               name="confirmPassword"
               placeholder="Confirm password"
               onBlur={props.handleBlur}
               onChange={props.handleChange}
               value={props.values.confirmPassword}
             />
+            
             {props.isSubmitting && props.errors.confirmPassword
               ? Notify.failure(props.errors.confirmPassword, notifyOptions)
               : null}
