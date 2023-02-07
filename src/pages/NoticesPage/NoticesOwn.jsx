@@ -16,7 +16,7 @@ const NoticesOwn = () => {
         <p>List is empty! Try to add pet :)</p>
       )}
       {isLoading && <Loader />}
-      {!isLoading && <NoticesCategoriesList route="own" notices={notices} />}
+      <NoticesCategoriesList route="own" notices={notices} />
     </>
   );
 };

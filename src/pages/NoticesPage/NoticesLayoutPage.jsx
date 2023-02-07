@@ -16,6 +16,7 @@ import { Outlet, useParams, useSearchParams } from 'react-router-dom';
 import { selectIsLoading, selectError } from 'redux/notices/notices-selectors';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { Container, Main } from 'styles';
+import Loader from 'components/Loader';
 
 const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
@@ -69,8 +70,8 @@ const NoticesLayoutPage = () => {
             {matches && <AddNoticeButton />}
           </Wrapper>
           {!matches && <AddNoticeButtonMobile />}
-          {!isLoading && <Outlet />}
-          {/* {isLoading && <p>...loading</p>} */}
+          <Outlet />
+          {isLoading && <Loader />}
           {error && Notify.warning('Sorry, you should to sing in')}
         </ContainerWrapp>
       </Container>
