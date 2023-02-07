@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Headline from 'components/Headline/Headline';
 import fetchFriends from './friendsFetch';
 import FriendsList from 'components/Friends/FriendsList/FriendsList';
-import { Container } from 'styles';
+import { Container } from './FriendsPage.styled';
 
 function FriendsPage() {
   const [friends, setFriends] = useState([]);
