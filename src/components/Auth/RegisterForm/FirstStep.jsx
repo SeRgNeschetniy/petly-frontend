@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { firstStepValidation } from 'servises/LoginRegisterValidations';
 import {
   Input,
   Button,
@@ -25,14 +25,6 @@ export default function FirstStep({
     showOnlyTheLastOne: true,
     timeout: 2000,
   };
-
-  const firstStepValidation = Yup.object({
-    email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Require').min(7),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), ''], 'Password must match')
-      .required('Require'),
-  });
 
   const [show, setShow] = useState(false);
   const handleShow = () => {

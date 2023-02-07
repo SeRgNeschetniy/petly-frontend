@@ -3,9 +3,8 @@ import { Input, Button, Form, InputField, DivPass } from '../Auth.styled';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/auth-operation';
-import * as Yup from 'yup';
 import { Notify } from 'notiflix';
-
+import { validationSchema } from 'servises/LoginRegisterValidations';
 import { ImEyeBlocked } from 'react-icons/im';
 import { ImEye } from 'react-icons/im';
 
@@ -27,10 +26,7 @@ export default function LoginForm() {
     password: '',
   };
 
-  const validationSchema = Yup.object({
-    email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Require').min(7),
-  });
+
 
   return (
     <Formik
