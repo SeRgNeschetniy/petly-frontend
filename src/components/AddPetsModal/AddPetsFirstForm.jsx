@@ -50,7 +50,7 @@ import {Container,
                 initialValues={props.data}
                   onSubmit ={handleSubmit}
                 >
-                {() => (
+                {(props) => (
             <FormFirst >
               <Label htmlFor="namePet" >
                 Name pet

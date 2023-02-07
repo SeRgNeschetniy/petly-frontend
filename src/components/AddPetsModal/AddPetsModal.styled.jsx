@@ -28,6 +28,8 @@ export const ButtonClose = styled.button`
   background: ${theme.colors.mainBackground};
   border: 2px solid ${theme.colors.white};
   transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+
   &:hover,
   &:focus {      
          
@@ -100,9 +102,10 @@ export const ButtonFill = styled.button`
   height: 40px;
   padding: 10px 28px;
   border-radius: 40px;
+  width: 100%;
   color: ${theme.colors.dark};
   border-color: ${theme.colors.accent};
-  background-color: #00000012;
+  background-color: ${theme.colors.white};
 transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
     color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
@@ -132,9 +135,10 @@ export const ButtonEmpty = styled.button`
   font-size: 1rem;
   line-height: 1.4rem;  
   cursor: pointer;
+  outline: none;
   color: ${theme.colors.dark};
   border-color: ${theme.colors.accent};
-  background-color: #00000012;
+  background-color: ${theme.colors.white};
 transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
     color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   

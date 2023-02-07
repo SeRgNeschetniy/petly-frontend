@@ -28,6 +28,7 @@ export const ButtonClose = styled.button`
   background: ${theme.colors.mainBackground};
   border: 2px solid ${theme.colors.white};
   transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
   &:hover,
   &:focus {      
          
@@ -95,7 +96,7 @@ export const ButtonFill = styled.button`
   width: 100%;
   color: ${theme.colors.dark};
     border-color: ${theme.colors.accent};
-    background-color: #00000012;
+    background-color: ${theme.colors.white};
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
       border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
       color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
@@ -127,9 +128,10 @@ export const ButtonEmpty = styled.button`
   font-size: 1rem;
   line-height: 1.4rem;  
   cursor: pointer;
+  outline: none;
   color: ${theme.colors.dark};
   border-color: ${theme.colors.accent};
-  background-color: #00000012;
+  background-color: ${theme.colors.white};
 transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
     color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
@@ -172,8 +174,10 @@ export const FormSecond = styled(Form)`
 
 export const InputWrapper = styled.div`
   position: relative;
+  margin-top: 8px;
   margin-bottom: 16px;
   @media screen and (min-width: 767px) {
+    margin-top: 12px;
     margin-bottom: 28px;
   }
 `;
@@ -181,6 +185,10 @@ export const InputWrapper = styled.div`
 export const InputWrapperLast = styled.div`
   position: relative;
   margin-bottom: 40px;
+  margin-top: 8px;
+  @media screen and (min-width: 767px) {
+    margin-top: 12px;
+  }
 `;
 
 export const Input = styled(Field)`
@@ -330,6 +338,7 @@ export const Textarea = styled(Field)`
   background: ${theme.colors.mainBackground};
   border: 1px solid ${theme.colors.accent};
   border-radius: 20px;
+  margin-top: 8px;
   outline: none;
   resize: none;
   &:hover, &:focus {
