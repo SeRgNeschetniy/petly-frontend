@@ -1,10 +1,10 @@
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 import { Input, Button, Form, InputField, LinkText, StyledLink } from '../Auth.styled';
 import { useDispatch } from 'react-redux';
 import { signup } from 'redux/auth/auth-operation';
 import { Title } from '../Auth.styled';
 import { Notify } from 'notiflix';
+import { secondStepValidation } from 'servises/LoginRegisterValidations';
 
 export default function SecondStep({ setSecondPage, setRegisterState, registerState }) {
   const dispatch = useDispatch();
@@ -14,11 +14,7 @@ export default function SecondStep({ setSecondPage, setRegisterState, registerSt
     timeout: 2000,
   }
 
-  const secondStepValidation = Yup.object({
-    name: Yup.string().min(2).required('Required'),
-    city: Yup.string().min(2).required('Required').matches(/^[a-zA-Z]+,?\s[a-zA-Z]+$/, `Enter data in the format "City, region"`),
-    phone: Yup.string().required('Required').matches(/^\+380\d{9}$/, `Enter phone number in the format +380XXXXXXXXX`),
-  });
+
   
   const handleBackClick = (values) => {
     setSecondPage(false);

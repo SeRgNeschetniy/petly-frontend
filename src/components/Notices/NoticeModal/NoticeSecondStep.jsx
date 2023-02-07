@@ -19,7 +19,6 @@ import {
   InputPhoto,
   FormSecond,
   Textarea,
-  ErrorTextarea,
   Text,
   CrossBig,
   ButtonAddPhoto,
