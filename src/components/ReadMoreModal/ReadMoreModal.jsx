@@ -22,9 +22,11 @@ import {
   HeartIcon,
 } from './ReadMoreModal.styled';
 import { Notify } from 'notiflix';
+import { ButtonClose } from 'components/AddPetsModal/AddPetsModal.styled';
+import { VscClose } from 'react-icons/vsc';
 //import { AddButton } from 'components/UserPage/PetsData/PetsData.styled';
 
-export default function ReadMoreModal({ notice }) {
+export default function ReadMoreModal({ notice, onCloseModal }) {
   //  const oneNotice = useSelector(selectOneNotice);
   const isLoggedIn = useSelector(selectIsLogin);
   const favorites = useSelector(selectFavorites);
@@ -59,8 +61,11 @@ export default function ReadMoreModal({ notice }) {
     }) => {
       return (
         <ModalBackground key={_id}>
+          <ButtonClose type="button" onClick={onCloseModal}>
+            <VscClose size={65} />
+          </ButtonClose>
           <TabletWrapper>
-            <Image src={petImage} alt="" />
+            <Image src={petImage} alt="" width="288" height="328" />
             <TabletTextWrapper>
               <h2>{title}</h2>
               <FieldText>
@@ -100,7 +105,6 @@ export default function ReadMoreModal({ notice }) {
             <Text>{comments}</Text>
           </ModalCommentWrapper>
           <ButtonWrapper>
-            <ModalButton>Contact</ModalButton>
             <ModalButton
               icon
               id={_id}
@@ -113,6 +117,7 @@ export default function ReadMoreModal({ notice }) {
                 src={require('../../images/readModal/heart.png')}
               ></HeartIcon>
             </ModalButton>
+            <ModalButton>Contact</ModalButton>
           </ButtonWrapper>
         </ModalBackground>
       );
