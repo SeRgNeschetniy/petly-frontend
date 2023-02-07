@@ -1,10 +1,9 @@
 import {
   Item,
   LearnMoreBtn,
-  Wrapper,
   Title,
   Text,
-  // Container,
+  Container,
   Sticker,
   AddToFavoriteBtn,
   Span,
@@ -12,6 +11,7 @@ import {
   Image,
   AddedIcon,
   DeleteBtn,
+  BtnWrapper,
 } from './NoticeCategoryItem.styled';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { useSelector, useDispatch } from 'react-redux';
@@ -99,64 +99,45 @@ const NoticeCategoryItem = ({ notice, route }) => {
   return (
     <>
       <Item>
-        <div>
-          <Image src={petImage} alt="Pet" minwidth={288} height={288} />
-          <Sticker>{category}</Sticker>
-          <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
-            {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
-          </AddToFavoriteBtn>
-
-          <Wrapper
-            style={{
-              marginTop: '20px',
-              marginBottom: '50px',
-              paddingRight: '20px',
-              paddingLeft: '20px',
-            }}
-          >
-            <Title>{title}</Title>
+        <Image src={petImage} alt="Pet" minwidth={288} height={288} />
+        <Sticker>{category}</Sticker>
+        <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
+          {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
+        </AddToFavoriteBtn>
+        <Container>
+          {/* <Wrapper> */}
+          <Title>{title}</Title>
+          <Text>
+            <Span>Breed:</Span>
+            {breed}
+          </Text>
+          <Text>
+            <Span>Place:</Span>
+            {location}
+          </Text>
+          <Text>
+            <Span>Age:</Span>
+            {age} years
+          </Text>
+          {category === 'sell' && (
             <Text>
-              <Span>Breed:</Span>
-              {breed}
+              <Span>Price:</Span>
+              {price ? `${price} $` : '--------'}
             </Text>
-            <Text>
-              <Span>Place:</Span>
-              {location}
-            </Text>
-            <Text>
-              <Span>Age:</Span>
-              {age} years
-            </Text>
-            {category === 'sell' && (
-              <>
-                <Text>
-                  <Span>Place:</Span>
-                  {location}
-                </Text>
-                <Text>
-                  <Span>Age:</Span>
-                  {age} years
-                </Text>
-                <Text>
-                  <Span>Price:</Span>
-                  {price ? `${price} $` : '--------'}
-                </Text>
-              </>
-            )}
-          </Wrapper>
-        </div>
-        <div>
+          )}
+          {/* </Wrapper> */}
+        </Container>
+        <BtnWrapper>
           <LearnMoreBtn readMore={id} id={id} onClick={handleMoreClick}>
             Learn more
           </LearnMoreBtn>
-
           {ownerId === owner && (
             <DeleteBtn id={id} onClick={onDeleteNotice}>
               Delete
               <RiDeleteBin5Fill style={{ marginLeft: '15px' }} />
             </DeleteBtn>
           )}
-        </div>
+        </BtnWrapper>
       </Item>
 
       {isModalOpen && (
