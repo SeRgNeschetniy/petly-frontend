@@ -13,9 +13,9 @@ export const Form = styled.form`
 `;
 
 export const Wrapper = styled.div`
-  // &:hover > svg {
-  //   fill: ${theme.colors.accent};
-  // }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const Label = styled.label`
@@ -26,6 +26,7 @@ export const Label = styled.label`
 export const Input = styled.input`
   position: relative;
   display: flex;
+  width: 100%;
   align-items: center;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border: 1px solid transparent;
