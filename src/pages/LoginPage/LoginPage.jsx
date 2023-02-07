@@ -20,8 +20,6 @@ export default function LoginPage() {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
 
-  console.log('isLogin', isLogin);
-
   useEffect(() => {
     dispatch(addTokenToStore(token));
   }, [dispatch, token]);

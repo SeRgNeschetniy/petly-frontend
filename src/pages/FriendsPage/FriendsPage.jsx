@@ -20,8 +20,6 @@ function FriendsPage() {
     getFriends();
   }, []);
 
-  // console.log(friends);
-
   return (
     <Main>
       <Container>

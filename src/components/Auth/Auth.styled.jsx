@@ -89,7 +89,7 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     background-color: #ff6101;
-    border: 2px solid ${theme.colors.accent};
+    border: 2px solid #ff6101;
   }
 
   @media (min-width: 768px) {

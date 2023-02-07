@@ -1,49 +1,127 @@
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
+import { AiFillHeart } from 'react-icons/ai';
 
 export const ModalBackground = styled.div`
   position: relative;
   background-color: white;
-  padding: 40px 20px;
+  padding: 60px 20px 40px 20px;
   border-radius: 20px;
+
   @media (min-width: 768px) {
+    padding: 32px 20px;
+  }
+`;
+
+export const WrapImage = styled.div`
+  margin-bottom: 0;
+  @media (max-width: 767px) {
+    width: 240px;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+  @media (min-width: 768px) {
+    width: 288px;
+    margin-right: 20px;
   }
 `;
 
 export const Image = styled.img`
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
-  margin-bottom: 16px;
+  margin-right: 0;
+  margin-bottom: 0;
+
+  @media (max-width: 767px) {
+    width: 240px;
+  }
   @media (min-width: 768px) {
-    margin-right: 20px;
+    width: 288px;
+    height: 328px;
+  }
+`;
+export const Wrap = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    margin-bottom: 28px;
   }
 `;
 
 export const Title = styled.h2`
   font-size: 24px;
-  text-align: center;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: ${theme.colors.black};
+  word-wrap: break-word;
+
+  margin-bottom: 16px;
+
+  @media (min-width: 768px) {
+    width: 321px;
+    font-size: 28px;
+    margin-bottom: 20px;
+    // padding-bottom: 40px;
+  }
 `;
 
 export const ModalTextWrapper = styled.div`
   display: flex;
-  @media (min-width: 768px) {
-    margin-right: 75px;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
   }
+
+  // @media (min-width: 768px) {
+  //   margin-right: 75px;
+  // }
 `;
 
 export const ModalCommentWrapper = styled.div`
   margin-bottom: 40px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 32px;
+    width: 660px;
+  }
 `;
 
 export const Text = styled.p`
   width: 50%;
-  &:not(:last-child) {
-    amrgin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 0;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    width: 70px;
+    margin-right: 51px;
   }
 `;
 
+export const Span = styled.p`
+  display: inline-block;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.35;
+  margin-bottom: 0;
+  overflow-wrap: break-word;
+`;
+
+export const CommentsText = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+`;
+
 export const FieldText = styled.div`
-  margin-bottom: 28px;
+  @media (max-width: 767px) {
+    margin-bottom: 28px;
+  }
 `;
 
 export const TabletWrapper = styled.div`
@@ -52,11 +130,17 @@ export const TabletWrapper = styled.div`
   }
 `;
 
-export const TabletTextWrapper = styled.div``;
+export const TabletTextWrapper = styled.div`
+  @media (max-width: 767px) {
+    margin-bottom: 28px;
+  }
+`;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  flex-direction: column-reverse;
+
   @media (min-width: 768px) {
     display: flex;
     flex-direction: row;
@@ -64,21 +148,36 @@ export const ButtonWrapper = styled.div`
   }
 `;
 
-export const ModalButton = styled.button`
+export const ModalBtnAdd = styled.button`
+letter-spacing: 0.04em;
   display: ${props => (props.icon ? 'flex' : 'block')};
   justify-content: center;
   align-items: center;
-
+  margin-bottom: 12px;
   padding: 9px 87px;
   border-radius: 40px;
-  background-color: ${theme.colors.accent};
-  background-color: ${props =>
-    props.outline ? 'white' : `${theme.colors.accent}`};
   border: 2px solid ${theme.colors.accent};
-  @media (max-width: 767px) {
-    &:not(:last-child) {
-      margin-bottom: 12px;
-    }
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  &:hover,
+  :focus{
+    background-color: ${theme.colors.accent};
+color: ${theme.colors.white};
+  }
+
+  &.active > * {
+color: ${theme.colors.white};
+  }
+  
+
+  // @media (max-width: 767px) {
+  //   &:not(:last-child) {
+  //     margin-bottom: 12px;
+  //   }
   }
   @media (min-width: 768px) {
     display: flex;
@@ -99,6 +198,88 @@ export const ModalButton = styled.button`
     position: absolute;
     background-image: ;
   }
+  &:hover > *{
+    color: ${theme.colors.white};
+  }
 `;
 
-export const HeartIcon = styled.img``;
+export const ModalBtnContact = styled.button`
+  letter-spacing: 0.04em;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 9px 87px;
+  border-radius: 40px;
+  background-color: ${theme.colors.accent};
+  background-color: ${props =>
+    props.outline ? 'white' : `${theme.colors.accent}`};
+  border: 2px solid ${theme.colors.accent};
+  color: ${theme.colors.white};
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    padding: 9px 45px;
+    margin-bottom: 0;
+    &:not(:last-child) {
+      margin-right: 12px;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: ${props =>
+      props.outline ? `${theme.colors.accent}` : '#FF6101'};
+    border: 2px solid
+      ${props => (props.outline ? `${theme.colors.accent}` : '#FF6101')};
+  }
+
+  &::before {
+    position: absolute;
+    background-image: ;
+  }
+`;
+
+export const Sticker = styled.span`
+  position: absolute;
+  left: 0;
+  top: 80px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  width: 150px;
+  font-weight: 500;
+  font-size: ${theme.fontSizes.small};
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+
+  display: block;
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+
+  @media (min-width: 768px) {
+    top: 52px;
+  }
+`;
+
+export const AddIcon = styled(AiFillHeart)`
+  width: 16px;
+  height: 16px;
+  color: ${theme.colors.accent};
+  margin-left: 8px;
+`;
+
+export const AddedIcon = styled(AiFillHeart)`
+  width: 16px;
+  height: 16px;
+  color: ${theme.colors.accent};
+  margin-left: 8px;
+`;

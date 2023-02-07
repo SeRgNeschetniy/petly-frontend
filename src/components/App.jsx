@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -40,6 +41,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
+
           <Route
             path="/login"
             element={
@@ -55,7 +57,7 @@ export const App = () => {
           <Route path="/restore" element={<PasswordRecoveryForm />} />
           <Route
             path="/user"
-            element={<PrivateRoute redirectTo="/login" component={UserPage} />}
+            element={<PrivateRoute component={UserPage} redirectTo="/login" />}
           />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/friends" element={<FriendsPage />} />

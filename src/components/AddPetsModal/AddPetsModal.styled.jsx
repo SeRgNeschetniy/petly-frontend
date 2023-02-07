@@ -31,10 +31,10 @@ export const ButtonClose = styled.button`
   outline: none;
 
   &:hover,
-  &:focus {      
-         
-    border: 2px solid ${theme.colors.accent};
+  &:focus {
+    background: ${theme.colors.brightAccent};
   }
+
   @media screen and (min-width: 767px) {
     width: 44px;
     height: 44px;
@@ -105,18 +105,20 @@ export const ButtonFill = styled.button`
   width: 100%;
   color: ${theme.colors.dark};
   border-color: ${theme.colors.accent};
+
   background-color: ${theme.colors.white};
 transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
     color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
 
-&:hover,
-&:focus {
-  background-color: rgb(245,97,1);    
-              color: ${theme.colors.white};
-              border-color: #ff6101;
-              background-color: #ff6101; 
-}          
+
+  &:hover,
+  &:focus {
+    background-color: rgb(245, 97, 1);
+    color: ${theme.colors.white};
+    border-color: #ff6101;
+    background-color: #ff6101;
+  }
   @media screen and (min-width: 767px) {
     max-width: 180px;
     height: 44px;
@@ -127,29 +129,30 @@ transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
 export const ButtonEmpty = styled.button`
   max-width: 240px;
   height: 40px;
-  border-radius: 40px;  
+  border-radius: 40px;
   border: 2px solid ${theme.colors.accent};
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
-  line-height: 1.4rem;  
+  line-height: 1.4rem;
   cursor: pointer;
   outline: none;
   color: ${theme.colors.dark};
   border-color: ${theme.colors.accent};
-  background-color: ${theme.colors.white};
+ background-color: ${theme.colors.white};
 transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
     color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
 
-&:hover,
-&:focus {
-  background-color: rgb(245,97,1);    
-              color: ${theme.colors.white};
-              border-color: #ff6101;
-              background-color: #ff6101; 
-}          
+
+  &:hover,
+  &:focus {
+    background-color: rgb(245, 97, 1);
+    color: ${theme.colors.white};
+    border-color: #ff6101;
+    background-color: #ff6101;
+  }
   @media screen and (min-width: 767px) {
     width: 180px;
     height: 44px;

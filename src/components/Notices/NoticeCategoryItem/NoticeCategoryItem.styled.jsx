@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-import { AiFillHeart } from 'react-icons/ai';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 export const Item = styled.li`
   position: relative;
@@ -108,7 +107,7 @@ export const Title = styled.h2`
   font-size: 28px;
   line-height: 1.3;
   letter-spacing: -0.01em;
-  color: #111111;
+  color: ${theme.colors.black};
   word-wrap: break-word;
 
   margin-bottom: 20px;

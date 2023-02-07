@@ -6,7 +6,6 @@ export default function UserNav({ title = 'Account', showContent }) {
     <UserLinks
       onClick={() => {
         showContent();
-        console.log('first');
       }}
       to={'/user'}
     >
