@@ -24,7 +24,6 @@ import {
   Title,
   Span,
   CommentsText,
-  AddIcon,
   Wrap,
   WrapImage,
   AddedIcon,
@@ -53,9 +52,9 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
     } else Notify.warning('Sorry, you should to sing in');
   };
 
-  const isFavorite = _id => {
-    return favorites.filter(favorite => favorite._id === _id);
-  };
+  // const isFavorite = _id => {
+  //   return favorites.filter(favorite => favorite._id === _id);
+  // };
 
   const elements = notice.map(
     ({
@@ -138,7 +137,7 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
             </CommentsText>
           </ModalCommentWrapper>
           <ButtonWrapper>
-             <ModalBtnAdd
+            <ModalBtnAdd
               icon
               id={_id}
               onClick={handleAddClick}

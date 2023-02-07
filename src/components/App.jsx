@@ -6,24 +6,23 @@ import { current } from 'redux/auth/auth-operation';
 import { useAuth } from 'hooks/useAuth';
 
 import {
+  RestrictedRoute,
+  PrivateRoute,
   SharedLayout,
-  // RestrictedRoute,
-  // PrivateRoute,
-  // PasswordRecoveryForm,
-  // Loader,
+  PasswordRecoveryForm,
 } from './components';
 import lazyPages from 'utils/lazyPages';
 
 const {
-  // NoticesLayoutPage,
-  // NoticesFavorites,
-  // NoticesCategory,
-  // NoticesOwn,
-  // FriendsPage,
-  // NewsPage,
-  // RegisterPage,
-  // LoginPage,
-  // UserPage,
+  NoticesLayoutPage,
+  NoticesFavorites,
+  NoticesCategory,
+  NoticesOwn,
+  FriendsPage,
+  NewsPage,
+  RegisterPage,
+  LoginPage,
+  UserPage,
   MainPage,
 } = lazyPages;
 
@@ -43,7 +42,7 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
 
-          {/* <Route
+          <Route
             path="/login"
             element={
               <RestrictedRoute component={LoginPage} redirectTo="/user" />
@@ -66,7 +65,7 @@ export const App = () => {
             <Route path="favorites" element={<NoticesFavorites />} />
             <Route path="own" element={<NoticesOwn />} />
             <Route path=":categoryName" element={<NoticesCategory />} />
-          </Route> */}
+          </Route>
           <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>
       </Routes>
