@@ -15,8 +15,8 @@ export const Container = styled.nav`
   margin-top: 42px;
   padding-top: 42px;
 
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.mainBackground};
