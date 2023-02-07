@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 export const formOneValidationSchema = Yup.object({
+  category: Yup.string().required("Category is required"),
   title: Yup.string()
     .min(2, 'Too Short!')
     .max(16, 'Too Long!')
@@ -47,4 +48,5 @@ export const formTwoValidationSchema = Yup.object({
     .required('Comment is required'),
   location: Yup.string().required('Location is required'),
   petImage: Yup.mixed().label('Pet image').required('Pet image is required'),
+  price: Yup.string().matches(/^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$/, "Price must be in numbers").required("Price is require"),
 });
