@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { setToken } from 'redux/auth/auth-operation';
 
 axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
+
+export const jsonInstance = axios.create({
+  headers: {"Content-Type": "application/json"},
+})
 
 export const fetchCurrentUser = createAsyncThunk(
   'users/current',
@@ -63,18 +68,14 @@ export const removePetCard = createAsyncThunk(
 
 export const patchContact = createAsyncThunk(
   'users/update',
-  async (id, thunkApi) => {
-    const state = thunkApi.getState();
-    const { email, name, city, phone, birthday } = state.editContact;
+  async (data, thunkApi) => {
     try {
-      const { data } = await axios.patch(`/users/${id}`, {
-        email,
-        name,
-        city,
-        phone,
-        birthday,
-      });
-      return data;
+      const state = thunkApi.getState();
+      const token = state.auth.token;
+      console.log(token);
+      setToken(token);
+      const { result } = await axios.patch(`/users/update/`, data);
+      return result;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
     }
