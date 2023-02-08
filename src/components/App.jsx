@@ -65,6 +65,7 @@ export const App = () => {
             <Route path="favorites" element={<NoticesFavorites />} />
             <Route path="own" element={<NoticesOwn />} />
             <Route path=":categoryName" element={<NoticesCategory />} />
+            <Route path="" element={<Navigate to="sell" />} />
           </Route>
           <Route path="*" element={<Navigate to={'/login'} />} />
         </Route>
