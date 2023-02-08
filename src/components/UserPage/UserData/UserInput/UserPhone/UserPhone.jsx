@@ -31,14 +31,14 @@ export default function UserInputPhone() {
       <div>
         {disabled ? (
           <InputForm
-            value={user.phone}
+            value={phone}
             type="text"
             disabled={disabled}
             onChange={e => setPhone(e.target.value)}
           ></InputForm>
         ) : (
           <InputForm
-            value={user.phone}
+            value={phone}
             type="text"
             onChange={e => setPhone(e.target.value)}
             style={{

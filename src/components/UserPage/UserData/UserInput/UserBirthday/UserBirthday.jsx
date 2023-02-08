@@ -35,14 +35,14 @@ export default function UserInputBirthday() {
       <div>
         {disabled ? (
           <InputForm
-            value={user.birthday}
+            value={birthday}
             type="text"
             onChange={e => setBirthday(e.target.value)}
             disabled={disabled}
           ></InputForm>
         ) : (
           <InputForm
-            value={user.birthday}
+            value={birthday}
             type="text"
             onChange={e => setBirthday(e.target.value)}
             style={{

@@ -29,14 +29,14 @@ export default function UserInputName() {
       <div>
         {disabled ? (
           <InputForm
-            value={user.name}
+            value={name}
             type="text"
             disabled={disabled}
             onChange={e => setName(e.target.value)}
           ></InputForm>
         ) : (
           <InputForm
-            value={user.name}
+            value={name}
             type="text"
             onChange={e => setName(e.target.value)}
             style={{
