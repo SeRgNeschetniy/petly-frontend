@@ -133,7 +133,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
           {category === 'sell' && (
             <Text>
               <Span>Price:</Span>
-              {price ? `${price}` : '--------'}
+              {price ? `${price} UAH` : '--------'}
             </Text>
           )}
           {/* </Wrapper> */}
