@@ -5,6 +5,7 @@ import {
   Text,
   DelateButton,
   Typography,
+  PetWrapp,
 } from './PetCard.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { removePetCard } from 'redux/userpage/userpage-operation';
@@ -20,7 +21,7 @@ export default function PetsCard() {
     dispatch(fetchUserPets());
   }, [dispatch]);
 
-    // console.log(items)
+  // console.log(items)
   const items = useSelector(selectUserPets);
   const deletePetCard = id => {
     return dispatch(removePetCard(id));
@@ -30,28 +31,26 @@ export default function PetsCard() {
     ({ _id, name, dateOfBirth, breed, photoPet, comment }) => {
       return (
         <PetCard key={_id}>
-              <PetAvatar src={photoPet} alt="pet"></PetAvatar>
-              
-                  <div style={{ position: "relative" }}>
-              <PetInfo>
-            <Text>
-              Name:<Typography>{name}</Typography>
-            </Text>
-            <Text>
-              Date of birth: <Typography>{dateOfBirth}</Typography>
-            </Text>
-            <Text>
-              Breed: <Typography>{breed}</Typography>
-            </Text>
-            <Text>
-              Comments: <Typography>{comment}</Typography>
-                      </Text>
-                      
-                  </PetInfo>
-                  <DelateButton type="button" onClick={() => deletePetCard(_id)}>
+          <PetAvatar src={photoPet} alt="pet"></PetAvatar>
+          <PetWrapp>
+            <PetInfo>
+              <Text>
+                Name:<Typography>{name}</Typography>
+              </Text>
+              <Text>
+                Date of birth: <Typography>{dateOfBirth}</Typography>
+              </Text>
+              <Text>
+                Breed: <Typography>{breed}</Typography>
+              </Text>
+              <Text>
+                Comments: <Typography>{comment}</Typography>
+              </Text>
+            </PetInfo>
+          </PetWrapp>
+          <DelateButton type="button" onClick={() => deletePetCard(_id)}>
             <FiTrash />
-              </DelateButton>
-          </div>
+          </DelateButton>
         </PetCard>
       );
     }

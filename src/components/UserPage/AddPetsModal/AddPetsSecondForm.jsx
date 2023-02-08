@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { pet } from '../../../servises';
 import { TfiPlus } from 'react-icons/tfi';
 import { VscClose } from 'react-icons/vsc';
-import { fetchPets } from '../../../redux/userpage/userpage-operation';
+import { addMyPet } from '../../../redux/userpage/userpage-operation';
 import { Notify } from 'notiflix';
 import {
   Container,
@@ -43,7 +43,7 @@ export const AddPetsSecondForm = props => {
     formData.append('breed', values.breed);
     formData.append('photoPet', values.petImage);
     formData.append('comment', values.comments);
-    dispatch(fetchPets(formData));
+    dispatch(addMyPet(formData));
 
     props.closeModal();
   };

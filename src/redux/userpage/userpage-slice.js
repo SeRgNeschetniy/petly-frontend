@@ -5,7 +5,7 @@ import {
   removePetCard,
   fetchUserPets,
   patchContact,
-  fetchPets
+  addMyPet,
 } from './userpage-operation';
 
 const petsInitialState = {
@@ -45,7 +45,7 @@ const petsSlice = createSlice({
     [removePetCard.pending](store) {
       store.isLoading = true;
     },
-    [removePetCard.fulfilled](store, {payload}) {
+    [removePetCard.fulfilled](store, { payload }) {
       store.isLoading = true;
       store.items = store.items.filter(item => item._id !== payload);
     },
@@ -57,20 +57,20 @@ const petsSlice = createSlice({
       store.token = null;
       store.isLoggedIn = false;
     },
-          [fetchPets.pending](state) {
-            state.isLoading = true;
-          },
+    [addMyPet.pending](state) {
+      state.isLoading = true;
+    },
 
-          [fetchPets.fulfilled](state, {payload}) {
-            state.isLoading = false;
-            state.error = null;
-            state.items.push(payload);
-          },
-          
-          [fetchPets.rejected](state, action) {
-            state.isLoading = false;
-            state.error = action.payload;
-          },
+    [addMyPet.fulfilled](state, { payload }) {
+      state.items.push(payload);
+      state.isLoading = false;
+      state.error = null;
+    },
+
+    [addMyPet.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 

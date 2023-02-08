@@ -34,7 +34,8 @@ export default function PetsData() {
           </Modal>
         )}
       </Head>
-      <PetsCard></PetsCard>
+
+      <PetsCard />
     </SecondBox>
   );
 }

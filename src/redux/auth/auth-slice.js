@@ -76,8 +76,8 @@ const authSlice = createSlice({
     [logout.fulfilled]: (store, { payload }) => {
       store.user = {};
       store.token = '';
-      store.loading = false;
       store.isLogin = false;
+      store.loading = false;
     },
     [logout.rejected]: (store, { payload }) => {
       store.loading = false;

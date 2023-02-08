@@ -81,15 +81,18 @@ export const patchContact = createAsyncThunk(
   }
 );
 
-export const fetchPets = createAsyncThunk('pet', async (petsData, thunkApi) => {
-  try {
-    const { data } = await axios.post('/mypets', petsData);
-    return data;
-  } catch ({ responce }) {
-    const error = {
-      status: responce.status,
-      message: responce.data.message,
-    };
-    return thunkApi.rejectWithValue(error);
+export const addMyPet = createAsyncThunk(
+  'users/addMyPet',
+  async (petsData, thunkApi) => {
+    try {
+      const { data } = await axios.post('/mypets', petsData);
+      return data;
+    } catch ({ responce }) {
+      const error = {
+        status: responce.status,
+        message: responce.data.message,
+      };
+      return thunkApi.rejectWithValue(error);
+    }
   }
-});
+);

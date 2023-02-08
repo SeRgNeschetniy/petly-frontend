@@ -28,8 +28,8 @@ export const formOneValidationSchema = Yup.object({
     .required('Date of birth is required'),
   breed: Yup.string()
     .min(2, 'Too Short!')
-    .max(16, 'Too Long!')
-    .label('Date of birth')
+    .max(32, 'Too Long!')
+    .label('Breed')
     .required('Breed is required'),
 });
 
