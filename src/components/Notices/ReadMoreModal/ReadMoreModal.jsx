@@ -128,7 +128,7 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                     {owner ? <Span>{owner.phone}</Span> : <Span>-------</Span>}
                   </ModalTextWrapper>
                   <ModalTextWrapper>
-                    <Text>Owner name:</Text>
+                    <Text>Owner:</Text>
                     {owner ? <Span>{owner.name}</Span> : <Span>-------</Span>}
                   </ModalTextWrapper>
                   {category === 'sell' && (
