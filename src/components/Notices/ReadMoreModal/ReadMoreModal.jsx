@@ -69,16 +69,15 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
       petImage,
       price,
       sex,
-      updatedAt,
       comments,
       owner,
       category,
     }) => {
       const birthday = getAge(dateOfBirth);
 
-    const isFavorite = id => {
-    return favorites.filter(favorite => favorite._id === id);
-  };
+      const isFavorite = id => {
+        return favorites.filter(favorite => favorite._id === id);
+      };
 
       return (
         <ModalBackground key={_id}>
@@ -130,7 +129,7 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                   {category === 'sell' && (
                     <ModalTextWrapper>
                       <Text>Price:</Text>
-                      <Span>{price ? `${price}` : '--------'}</Span>
+                      <Span>{price ? `${price} UAH` : '--------'}</Span>
                     </ModalTextWrapper>
                   )}
                 </FieldText>
@@ -143,30 +142,30 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
             </CommentsText>
           </ModalCommentWrapper>
           <ButtonWrapper>
-          {isFavorite(_id).length > 0 ?
-            <ModalBtnRemove
-              icon
-              id={_id}
-              onClick={handleAddClick}
-              outline
-              noMargin
-              orange
-            >
-              Remove
-              <AddIcon />
+            {isFavorite(_id).length > 0 ? (
+              <ModalBtnRemove
+                icon
+                id={_id}
+                onClick={handleAddClick}
+                outline
+                noMargin
+                orange
+              >
+                Remove
+                <AddIcon />
               </ModalBtnRemove>
-            :
-            <ModalBtnAdd
-              icon
-              id={_id}
-              onClick={handleAddClick}
-              outline
-              noMargin
-            >
-              Add to
-              <AddedIcon />
-          </ModalBtnAdd>
-            }            
+            ) : (
+              <ModalBtnAdd
+                icon
+                id={_id}
+                onClick={handleAddClick}
+                outline
+                noMargin
+              >
+                Add to
+                <AddedIcon />
+              </ModalBtnAdd>
+            )}
             <ModalBtnContact>Contact</ModalBtnContact>
           </ButtonWrapper>
         </ModalBackground>

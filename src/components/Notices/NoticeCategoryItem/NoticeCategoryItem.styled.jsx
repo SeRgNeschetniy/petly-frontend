@@ -12,6 +12,10 @@ export const Item = styled.li`
   padding-bottom: 12px;
 `;
 
+export const ImageWrap = styled.div`
+  background-size: cover;
+`;
+
 export const BtnWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
