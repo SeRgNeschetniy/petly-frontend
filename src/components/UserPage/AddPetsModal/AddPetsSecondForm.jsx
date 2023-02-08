@@ -48,6 +48,8 @@ export const AddPetsSecondForm = props => {
     props.closeModal();
   };
 
+  const handleOnClick = () => props.setPage(prev => prev - 1);
+  
   return (
     <Container>
       <ButtonClose type="button" onClick={props.closeModal}>
@@ -103,7 +105,7 @@ export const AddPetsSecondForm = props => {
                 <ButtonFill type="submit">Done</ButtonFill>
                 <ButtonEmpty
                   type="button"
-                  onClick={() => props.setPage(prev => prev - 1)}
+                  onClick={handleOnClick}
                 >
                   Back
                 </ButtonEmpty>

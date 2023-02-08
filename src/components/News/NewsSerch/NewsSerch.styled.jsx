@@ -29,9 +29,9 @@ export const Input = styled.input`
   background: ${theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 40px;
-  padding-top: 11px;
-  padding-bottom: 11px;
-  padding-left: 20px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 12px;
   padding-right: 40px;
   position: relative;
   border: 1px solid transparent;
@@ -40,6 +40,21 @@ export const Input = styled.input`
   :active {
     border: 1px solid ${theme.colors.accent};
   }
+@media screen and (min-width: 768px) {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+@media screen and (min-width: 1280px){
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+
+
+
 `;
 
 export const BtnSearch = styled.button`

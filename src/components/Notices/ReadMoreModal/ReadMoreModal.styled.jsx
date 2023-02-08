@@ -115,7 +115,7 @@ export const Span = styled.p`
   word-wrap: break-word;
 `;
 
-export const CommentsText = styled.p`
+export const CommentsText = styled.div`
   font-size: 14px;
   font-weight: 600;
   line-height: 1.35;

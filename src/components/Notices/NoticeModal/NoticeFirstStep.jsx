@@ -43,6 +43,8 @@ const NoticeFirstForm = props => {
     timeout: 2000,
   };
 
+  const handleOnClick = () =>{props.closeModal()}
+
   return (
     <Container>
       <ButtonClose type="button" onClick={props.closeModal}>
@@ -116,7 +118,7 @@ const NoticeFirstForm = props => {
                 : null}
               <ButtonWrapper>
                 <ButtonFill type="submit">Next</ButtonFill>
-                <ButtonEmpty type="button" onClick={props.closeModal}>
+                <ButtonEmpty type="button" onClick={handleOnClick}>
                   Сancel
                 </ButtonEmpty>
               </ButtonWrapper>
