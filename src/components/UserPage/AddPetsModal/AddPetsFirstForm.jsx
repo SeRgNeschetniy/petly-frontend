@@ -36,6 +36,9 @@ const AddPetsFirstForm = props => {
     });
     props.setPage(prev => prev + 1);
   };
+
+  const handleOnClick = () =>{props.closeModal()}
+
   return (
     <Container>
       <ButtonClose type="button" onClick={props.closeModal}>
@@ -77,7 +80,7 @@ const AddPetsFirstForm = props => {
               </InputWrapperLast>
               <ButtonWrapper>
                 <ButtonFill type="submit">Next</ButtonFill>
-                <ButtonEmpty type="button" onClick={props.closeModal}>
+                <ButtonEmpty type="button" onClick={handleOnClick}>
                   Сancel
                 </ButtonEmpty>
               </ButtonWrapper>
