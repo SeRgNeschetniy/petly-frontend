@@ -9,6 +9,8 @@ import { useState } from 'react';
 import { selectUser } from 'redux/auth/auth-selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { patchContact } from 'redux/userpage/userpage-operation';
+import * as Yup from 'yup';
+import { Notify } from 'notiflix';
 
 export default function UserInputBirthday() {
   const user = useSelector(selectUser);
@@ -20,13 +22,32 @@ export default function UserInputBirthday() {
   // const handleChange = e => {
   //   setBirthday(e.target.value);
   // };
+const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  }
+  const schema = Yup.object({
+     birthday: Yup.string()
+    .matches(
+      /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
+      'Correct format: dd.mm.yyyy'
+    )
+  })
+
+
 
   function handleGameClick(e) {
     if (disabled) {
       setDisabled(false);
     } else {
-      dispatch(patchContact({ birthday: birthday }));
-      setDisabled(true);
+      schema.validate({birthday:birthday}).then(
+          function (valid) {
+       dispatch(patchContact(valid));
+        setDisabled(true);
+    }).catch(
+          function (e) {
+       Notify.failure(e.message, notifyOptions)
+    })
     }
   }
   return (

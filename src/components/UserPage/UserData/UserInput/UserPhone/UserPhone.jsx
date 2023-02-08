@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/auth-selectors';
 import { useDispatch } from 'react-redux';
 import { patchContact } from 'redux/userpage/userpage-operation';
+import * as Yup from 'yup';
+import { Notify } from 'notiflix';
 
 export default function UserInputPhone() {
   const user = useSelector(selectUser);
@@ -16,13 +18,27 @@ export default function UserInputPhone() {
   // const handleChange = e => {
   //   setName(e.target.value);
   // };
+const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  }
+  const schema = Yup.object({
+     phone: Yup.string().required('Required').matches(/^\+380\d{9}$/, `Enter phone number in the format +380XXXXXXXXX`)
+  })
+
 
   function handleGameClick(e) {
     if (disabled) {
       setDisabled(false);
     } else {
-      dispatch(patchContact({ phone: phone }));
-      setDisabled(true);
+      schema.validate({ phone: phone }).then(
+        function (valid) {
+          dispatch(patchContact(valid));
+          setDisabled(true);
+        }).catch(
+          function (e) {
+            Notify.failure(e.message, notifyOptions)
+          })
     }
   }
   return (
