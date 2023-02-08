@@ -24,6 +24,9 @@ const WorkHours = ({ workDays }) => {
         onClick={() => {
           setShowModal(true);
         }}
+        onMouseLeave={() => {
+          setShowModal(false);
+        }}
       >
         {workDays[updateIdx()].from && workDays[updateIdx()].to
           ? `${workDays[updateIdx()]?.from} - ${workDays[updateIdx()]?.to}`
