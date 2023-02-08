@@ -13,7 +13,7 @@ import { FiTrash } from 'react-icons/fi';
 import { useEffect } from 'react';
 import { fetchUserPets } from 'redux/userpage/userpage-operation';
 import { selectUserPets } from 'redux/userpage/userpage-selectors';
-
+import { getAge } from 'shared/getAge';
 export default function PetsCard() {
   const dispatch = useDispatch();
 
@@ -21,14 +21,15 @@ export default function PetsCard() {
     dispatch(fetchUserPets());
   }, [dispatch]);
 
-  // console.log(items)
+ 
   const items = useSelector(selectUserPets);
   const deletePetCard = id => {
     return dispatch(removePetCard(id));
   };
-
+   
   const pet = items.map(
     ({ _id, name, dateOfBirth, breed, photoPet, comment }) => {
+      const dateofbirth = getAge(dateOfBirth)
       return (
         <PetCard key={_id}>
           <PetAvatar src={photoPet} alt="pet"></PetAvatar>
@@ -38,7 +39,7 @@ export default function PetsCard() {
                 Name:<Typography>{name}</Typography>
               </Text>
               <Text>
-                Date of birth: <Typography>{dateOfBirth}</Typography>
+                Date of birth: <Typography> {dateofbirth}</Typography>
               </Text>
               <Text>
                 Breed: <Typography>{breed}</Typography>
