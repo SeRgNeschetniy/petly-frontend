@@ -37,7 +37,7 @@ const petsSlice = createSlice({
     },
     [patchContact.fulfilled](store, { payload }) {
       store.isLoading = false;
-      store.items = store.items.filter(item => item.id !== payload);
+      //store.items = store.items.filter(item => item.id !== payload);
     },
     [patchContact.rejected](store, error) {
       store.error = error;
