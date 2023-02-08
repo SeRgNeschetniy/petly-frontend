@@ -27,12 +27,13 @@ export const ButtonClose = styled.button`
   justify-content: center;
   background: ${theme.colors.mainBackground};
   border: 2px solid ${theme.colors.white};
-  transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
   &:hover,
-  &:focus {      
-         
-    border: 2px solid ${theme.colors.accent};
+  &:focus {
+    background-color: ${theme.colors.accent};
+    color: ${theme.colors.white};
   }
   @media screen and (min-width: 767px) {
     width: 44px;
@@ -86,29 +87,27 @@ export const ButtonFill = styled.button`
   text-decoration: none;
   font-family: Manrope, sans-serif;
   font-weight: 500;
-    font-size: 1rem;
-    line-height: 1.4rem;
+  font-size: 1rem;
+  line-height: 1.4rem;
   letter-spacing: 0.02857em;
   max-width: 240px;
   height: 40px;
   padding: 10px 28px;
   border-radius: 40px;
   width: 100%;
-  color: ${theme.colors.dark};
-    border-color: ${theme.colors.accent};
-    background-color: ${theme.colors.white};
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
-      border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
-      color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
+  color: ${theme.colors.white};
+  border-color: ${theme.colors.accent};
+  background-color: ${theme.colors.accent};
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    background-color: rgb(245,97,1);    
-                color: ${theme.colors.white};
-                border-color: #ff6101;
-                background-color: #ff6101; 
-                
-      
+    background-color: rgb(245, 97, 1);
+    color: ${theme.colors.white};
+    border-color: #ff6101;
+    background-color: #ff6101;
   }
   @media screen and (min-width: 767px) {
     max-width: 180px;
@@ -120,29 +119,29 @@ export const ButtonFill = styled.button`
 export const ButtonEmpty = styled.button`
   max-width: 240px;
   height: 40px;
-  border-radius: 40px;  
+  border-radius: 40px;
   border: 2px solid ${theme.colors.accent};
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
-  line-height: 1.4rem;  
+  line-height: 1.4rem;
   cursor: pointer;
   outline: none;
   color: ${theme.colors.dark};
   border-color: ${theme.colors.accent};
   background-color: ${theme.colors.white};
-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
-    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
-    color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
-&:hover,
-&:focus {
-  background-color: rgb(245,97,1);    
-              color: ${theme.colors.white};
-              border-color: #ff6101;
-              background-color: #ff6101; 
-}          
+  &:hover,
+  &:focus {
+    background-color: rgb(245, 97, 1);
+    color: ${theme.colors.white};
+    border-color: #ff6101;
+    background-color: #ff6101;
+  }
   @media screen and (min-width: 767px) {
     width: 180px;
     height: 44px;
@@ -204,8 +203,9 @@ export const Input = styled(Field)`
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover, &:focus {
-    border: 2px solid #FF6101;
+  &:hover,
+  &:focus {
+    border: 2px solid #ff6101;
   }
   &::placeholder {
     font-size: 14px;
@@ -229,8 +229,9 @@ export const InputLast = styled(Field)`
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover, &:focus {
-    border: 2px solid #FF6101;
+  &:hover,
+  &:focus {
+    border: 2px solid #ff6101;
   }
   &::placeholder {
     font-size: 14px;
@@ -287,42 +288,44 @@ export const Text = styled.p`
   }
 `;
 
-export const ButtonAddPhoto=styled.button`
+export const ButtonAddPhoto = styled.button`
   position: relative;
-    display: flex;        
-    justify-content: center;
-    align-items: center; 
-    width: 208px;
-    height: 208px;
-    background: ${theme.colors.mainBackground};
-    border-radius: 20px;
-    margin-bottom: 28px;
-    border: 2px solid ${theme.colors.mainBackground};
-    overflow: hidden;
-    &:hover, &:focus {
-      border: 2px solid ${theme.colors.accent};
-    }
-    @media screen and (min-width: 767px) {
-      
-        width: 182px;
-        height: 182px;
-      }`   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 208px;
+  height: 208px;
+  background: ${theme.colors.mainBackground};
+  border-radius: 20px;
+  margin-bottom: 28px;
+  border: 2px solid ${theme.colors.mainBackground};
+  overflow: hidden;
+  &:hover,
+  &:focus {
+    border: 2px solid ${theme.colors.accent};
+  }
+  @media screen and (min-width: 767px) {
+    width: 182px;
+    height: 182px;
+  }
+`;
 
-      export const CrossBig =styled.div`
-  position: absolute;    
-    width: 48px;
-    height: 48px;    
-    color: #D9D9D9;    
-    ` ;
+export const CrossBig = styled.div`
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  color: #d9d9d9;
+`;
 
 export const Label = styled.label`
   font-weight: 500;
   font-size: 1.1rem;
   line-height: 1.6rem;
   @media screen and (min-width: 767px) {
-        font-size: 1.5rem;
-        line-height: 1.6rem;
-        }`;
+    font-size: 1.5rem;
+    line-height: 1.6rem;
+  }
+`;
 
 export const WraperTextarea = styled.div`
   position: relative;
@@ -341,8 +344,9 @@ export const Textarea = styled(Field)`
   margin-top: 8px;
   outline: none;
   resize: none;
-  &:hover, &:focus {
-    border: 2px solid #FF6101;
+  &:hover,
+  &:focus {
+    border: 2px solid #ff6101;
   }
   @media screen and (min-width: 767px) {
     width: 394px;
@@ -368,9 +372,9 @@ export const LabelRadioBtn = styled.label`
   border-radius: 40px;
   align-items: center;
   cursor: pointer;
-
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
-  color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:not(:last-child) {
     margin-right: 12px;
   }
@@ -378,7 +382,8 @@ export const LabelRadioBtn = styled.label`
   &.active,
   :hover,
   :focus {
-    background: ${theme.colors.accent};
+    background-color: ${theme.colors.brightAccent};
+    border-color: ${theme.colors.brightAccent};
     color: ${theme.colors.white};
   }
 

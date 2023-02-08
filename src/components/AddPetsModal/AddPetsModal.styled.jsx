@@ -27,12 +27,14 @@ export const ButtonClose = styled.button`
   justify-content: center;
   background: ${theme.colors.mainBackground};
   border: 2px solid ${theme.colors.white};
-  transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
 
   &:hover,
   &:focus {
-    background: ${theme.colors.brightAccent};
+    background-color: ${theme.colors.brightAccent};
+    color: ${theme.colors.white};
   }
 
   @media screen and (min-width: 767px) {
@@ -107,10 +109,9 @@ export const ButtonFill = styled.button`
   border-color: ${theme.colors.accent};
 
   background-color: ${theme.colors.white};
-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
-    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
-    color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
-
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
@@ -140,11 +141,10 @@ export const ButtonEmpty = styled.button`
   outline: none;
   color: ${theme.colors.dark};
   border-color: ${theme.colors.accent};
- background-color: ${theme.colors.white};
-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), 
-    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) ,
-    color 300ms cubic-bezier(0.4, 0, 0.2, 1) ;   
-
+  background-color: ${theme.colors.white};
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {

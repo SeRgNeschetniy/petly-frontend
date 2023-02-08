@@ -22,7 +22,6 @@ import {
 } from './NoticeModal.styled';
 import { Notify } from 'notiflix';
 
-
 const NoticeFirstForm = props => {
   //props
   const handleSubmit = values => {
@@ -60,7 +59,7 @@ const NoticeFirstForm = props => {
           initialValues={props.data}
           onSubmit={handleSubmit}
         >
-          {(props) => (
+          {props => (
             <FormFirst>
               <RadioWrapp role="group" aria-labelledby="category-group">
                 <RadioBtn
@@ -81,22 +80,22 @@ const NoticeFirstForm = props => {
                 <LabelRadioBtn htmlFor="sell">sell</LabelRadioBtn>
               </RadioWrapp>
               {props.isSubmitting && props.errors.category
-            ? Notify.failure(props.errors.category, notifyOptions)
-            : null}
+                ? Notify.failure(props.errors.category, notifyOptions)
+                : null}
               <Label htmlFor="titleAd">Title of ad</Label>
               <InputWrapper>
                 <Input id="title" name="title" placeholder="Type title ad" />
               </InputWrapper>
               {props.isSubmitting && props.errors.title
-            ? Notify.failure(props.errors.title, notifyOptions)
-            : null}
+                ? Notify.failure(props.errors.title, notifyOptions)
+                : null}
               <Label htmlFor="namePet">Name pet</Label>
               <InputWrapper>
                 <Input id="name" name="name" placeholder="Type name pet" />
               </InputWrapper>
               {props.isSubmitting && props.errors.name
-            ? Notify.failure(props.errors.name, notifyOptions)
-            : null}
+                ? Notify.failure(props.errors.name, notifyOptions)
+                : null}
               <Label htmlFor="dateOfBirth">Date of birth</Label>
               <InputWrapper>
                 <Input
@@ -106,15 +105,15 @@ const NoticeFirstForm = props => {
                 />
               </InputWrapper>
               {props.isSubmitting && props.errors.dateOfBirth
-            ? Notify.failure(props.errors.dateOfBirth, notifyOptions)
-            : null}
+                ? Notify.failure(props.errors.dateOfBirth, notifyOptions)
+                : null}
               <Label htmlFor="breed">Breed</Label>
               <InputWrapperLast>
                 <InputLast id="breed" name="breed" placeholder="Type breed" />
               </InputWrapperLast>
               {props.isSubmitting && props.errors.breed
-            ? Notify.failure(props.errors.breed, notifyOptions)
-            : null}
+                ? Notify.failure(props.errors.breed, notifyOptions)
+                : null}
               <ButtonWrapper>
                 <ButtonFill type="submit">Next</ButtonFill>
                 <ButtonEmpty type="button" onClick={props.closeModal}>

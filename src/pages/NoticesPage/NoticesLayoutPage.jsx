@@ -37,14 +37,11 @@ const NoticesLayoutPage = () => {
       } else {
         dispatch(fetchNotices({ categoryName }));
       }
-    } else {
-      if (isLoggedIn) {
-        dispatch(fetchUserNotices());
-      }
     }
 
     if (isLoggedIn) {
       dispatch(fetchFavoritesNotices());
+      dispatch(fetchUserNotices());
     }
 
     window
@@ -67,6 +64,7 @@ const NoticesLayoutPage = () => {
             {matches && <AddNoticeButton />}
           </Wrapper>
           {!matches && <AddNoticeButtonMobile />}
+
           <Outlet />
 
           {error && Notify.warning('Sorry, you should to sing in')}

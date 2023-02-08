@@ -13,8 +13,6 @@ export const Item = styled.li`
 `;
 
 export const BtnWrapper = styled.div`
-  height: 100%;
-  height: 50%;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -50,7 +48,8 @@ export const LearnMoreBtn = styled.button`
 
   &:hover,
   :focus {
-    background: ${theme.colors.accent};
+    background: ${theme.colors.brightAccent};
+    border-color: ${theme.colors.brightAccent};
     color: ${theme.colors.white};
   }
 
@@ -81,11 +80,12 @@ export const DeleteBtn = styled.button`
   width: 248px;
   margin-right: auto;
   margin-left: auto;
-  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {
     background: ${theme.colors.brightAccent};
+    border-color: ${theme.colors.brightAccent};
     color: ${theme.colors.white};
   }
 
@@ -98,6 +98,7 @@ export const DeleteBtn = styled.button`
   }
 `;
 export const Container = styled.div`
+  flex: 1 0 0;
   padding: 20px;
   padding-bottom: 0;
 `;

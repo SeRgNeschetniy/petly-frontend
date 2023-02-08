@@ -32,7 +32,7 @@ import {
 import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import useModal from 'hooks/modal';
-import ReadMoreModal from 'components/ReadMoreModal/ReadMoreModal';
+import ReadMoreModal from 'components/Notices/ReadMoreModal/ReadMoreModal';
 
 const NoticeCategoryItem = ({ notice, route }) => {
   const {

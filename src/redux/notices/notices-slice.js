@@ -12,7 +12,8 @@ import {
 
 const initialState = {
   notices: [],
-  favorites: [],
+  noticesFavorites: [],
+  noticesUser: [],
   isLoading: false,
   error: null,
   oneNotice: [],
@@ -42,14 +43,14 @@ const noticesSlice = createSlice({
 
     //[fetchFavoritesNotices.pending]: handlePending,
     [fetchFavoritesNotices.fulfilled](state, action) {
-      state.favorites = action.payload;
+      state.noticesFavorites = action.payload;
       state.isLoading = false;
       state.error = null;
     },
     [fetchFavoritesNotices.rejected]: handleRejected,
 
     [fetchUserNotices.fulfilled](state, action) {
-      state.notices = action.payload;
+      state.noticesUser = action.payload;
       state.isLoading = false;
       state.error = null;
     },
@@ -71,6 +72,9 @@ const noticesSlice = createSlice({
     [deleteNotice.pending]: handlePending,
     [deleteNotice.fulfilled]: (state, { payload }) => {
       state.notices = state.notices.filter(notice => notice._id !== payload);
+      state.noticesUser = state.noticesUser.filter(
+        notice => notice._id !== payload
+      );
       state.isLoading = false;
       state.error = null;
     },
@@ -80,6 +84,8 @@ const noticesSlice = createSlice({
     },
     [addNewNotice.pending]: handlePending,
     [addNewNotice.fulfilled](state, { payload }) {
+      state.notices.push(payload);
+      state.noticesUser.push(payload);
       state.isLoading = false;
     },
     [addNewNotice.rejected](state, { payload }) {
@@ -89,7 +95,7 @@ const noticesSlice = createSlice({
 
     // [addToFavorite.pending]: handlePending,
     [addToFavorite.fulfilled]: (state, { payload }) => {
-      state.favorites.push(payload);
+      state.noticesFavorites.push(payload);
       state.isLoading = false;
       state.error = null;
     },
@@ -97,7 +103,9 @@ const noticesSlice = createSlice({
 
     // [deleteFromFavorites.pending]: handlePending,
     [deleteFromFavorites.fulfilled]: (state, { payload }) => {
-      state.favorites = state.favorites.filter(item => item._id !== payload);
+      state.noticesFavorites = state.noticesFavorites.filter(
+        item => item._id !== payload
+      );
       state.isLoading = false;
       state.error = null;
     },

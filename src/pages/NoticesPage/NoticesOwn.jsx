@@ -3,13 +3,13 @@ import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/Noti
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { useSelector } from 'react-redux';
 import {
-  selectNotices,
   selectIsLoading,
+  selectUserNoitices,
 } from 'redux/notices/notices-selectors';
 
 const NoticesOwn = () => {
   const isLoading = useSelector(selectIsLoading);
-  const notices = useSelector(selectNotices);
+  const notices = useSelector(selectUserNoitices);
 
   return (
     <>
