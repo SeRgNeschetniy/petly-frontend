@@ -5,3 +5,4 @@ export const selectFavorites = state => state.notices.noticesFavorites;
 export const selectUserNoitices = state => state.notices.noticesUser;
 export const selectNoticeById = state => state.notices.noticeById;
 export const selectOneNotice = state => state.notices.oneNotice;
+export const selectTotalNotice = state => state.notices.total;

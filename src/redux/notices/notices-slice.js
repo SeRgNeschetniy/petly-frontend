@@ -17,6 +17,9 @@ const initialState = {
   isLoading: false,
   error: null,
   oneNotice: [],
+  query: '',
+  page: '',
+  total: '',
 };
 
 const handlePending = state => {
@@ -34,10 +37,13 @@ const noticesSlice = createSlice({
 
   extraReducers: {
     [fetchNotices.pending]: handlePending,
-    [fetchNotices.fulfilled](state, action) {
+    [fetchNotices.fulfilled](state, { payload }) {
+      state.notices = payload.notices;
+      state.query = payload.query;
+      state.page = payload.page;
+      state.total = payload.total;
       state.isLoading = false;
       state.error = null;
-      state.notices = action.payload;
     },
     [fetchNotices.rejected]: handleRejected,
 
