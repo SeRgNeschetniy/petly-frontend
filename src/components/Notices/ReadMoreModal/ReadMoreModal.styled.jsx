@@ -149,7 +149,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const ModalBtnAdd = styled.button`
-letter-spacing: 0.04em;
+  letter-spacing: 0.04em;
   display: ${props => (props.icon ? 'flex' : 'block')};
   justify-content: center;
   align-items: center;
@@ -166,18 +166,8 @@ letter-spacing: 0.04em;
   &:hover,
   :focus{
     background-color: ${theme.colors.accent};
-color: ${theme.colors.white};
+    color: ${theme.colors.white};
   }
-
-  &.active > * {
-color: ${theme.colors.white};
-  }
-  
-
-  // @media (max-width: 767px) {
-  //   &:not(:last-child) {
-  //     margin-bottom: 12px;
-  //   }
   
   @media (min-width: 768px) {
     display: flex;
@@ -202,6 +192,44 @@ color: ${theme.colors.white};
   }
 `;
 
+export const ModalBtnRemove = styled.button`
+  letter-spacing: 0.04em;
+  display: ${props => (props.icon ? 'flex' : 'block')};
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 9px 87px;
+  border-radius: 40px;
+  border: 2px solid ${theme.colors.accent};
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: ${theme.colors.accent};
+  color: white;
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: white;
+    color: ${theme.colors.accent};
+  }
+  
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    padding: 9px 45px;
+    &:not(:last-child) {
+      margin-right: 12px;
+    }
+  }
+  &::before {
+    position: absolute;
+  }
+  &:hover > *{
+    color: ${theme.colors.accent};
+  }
+`;
+
 export const ModalBtnContact = styled.button`
   letter-spacing: 0.04em;
   justify-content: center;
@@ -211,7 +239,7 @@ export const ModalBtnContact = styled.button`
   border-radius: 40px;
   background-color: ${theme.colors.accent};
   background-color: ${props =>
-    props.outline ? 'white' : `${theme.colors.accent}`};
+  props.outline ? 'white' : `${theme.colors.accent}`};
   border: 2px solid ${theme.colors.accent};
   color: ${theme.colors.white};
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -271,8 +299,7 @@ export const Sticker = styled.span`
 export const AddIcon = styled(AiFillHeart)`
   width: 16px;
   height: 16px;
-  color: ${theme.colors.accent};
-  margin-left: 8px;
+  color: white;
 `;
 
 export const AddedIcon = styled(AiFillHeart)`
