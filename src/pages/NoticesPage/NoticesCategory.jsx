@@ -47,34 +47,34 @@ const NoticesCategory = () => {
 
   return (
     <>
-      {notices?.length === 0 && !isLoading && <EmpyList />}
-      {/* {notices?.length === 0 && !isLoading && (
-        <p>List is empty! Try to add pet :)</p>
-      )} */}
       {isLoading && <Loader />}
+      {notices?.length === 0 && !isLoading && <EmpyList />}
 
       <NoticesCategoriesList route={categoryName} notices={notices} />
-      <ReactPaginate
-        previousLabel={'←'}
-        nextLabel={'→'}
-        pageCount={pageCount}
-        onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        previousLinkClassName={'pagination__link'}
-        nextLinkClassName={'pagination__link'}
-        disabledClassName={'pagination__link--disabled'}
-        activeClassName={'pagination__link--active'}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        nextClassName="page-item"
-        breakLabel="..."
-        breakClassName="page-item"
-        breakLinkClassName="page-link"
-        renderOnZeroPageCount={null}
-      />
+
+      {notices?.length > 0 && (
+        <ReactPaginate
+          previousLabel={'←'}
+          nextLabel={'→'}
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          previousLinkClassName={'pagination__link'}
+          nextLinkClassName={'pagination__link'}
+          disabledClassName={'pagination__link--disabled'}
+          activeClassName={'pagination__link--active'}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={2}
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          nextClassName="page-item"
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          renderOnZeroPageCount={null}
+        />
+      )}
     </>
   );
 };

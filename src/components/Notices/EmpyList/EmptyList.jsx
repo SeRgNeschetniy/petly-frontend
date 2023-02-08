@@ -4,7 +4,12 @@ const EmpyList = () => {
   return (
     <Wrapper>
       <Text>List is empty!:( Try to add pet! </Text>
-      <Image src={require('images/notices/dog.jpg')} alt="" width={400} />
+      <Image
+        src={require('images/notices/empty.png')}
+        alt="List empty"
+        width={347}
+        height={347}
+      />
     </Wrapper>
   );
 };
