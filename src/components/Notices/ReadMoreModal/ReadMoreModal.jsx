@@ -14,6 +14,7 @@ import {
   ModalTextWrapper,
   Text,
   FieldText,
+  ModalBtnRemove,
   ModalCommentWrapper,
   TabletWrapper,
   TabletTextWrapper,
@@ -33,6 +34,7 @@ import { ButtonClose } from 'components/UserPage/AddPetsModal/AddPetsModal.style
 import { VscClose } from 'react-icons/vsc';
 //import { AddButton } from 'components/UserPage/PetsData/PetsData.styled';
 import { getAge } from 'shared/getAge';
+import { AddIcon } from './ReadMoreModal.styled';
 
 export default function ReadMoreModal({ notice, onCloseModal }) {
   //  const oneNotice = useSelector(selectOneNotice);
@@ -43,8 +45,8 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
   const handleAddClick = e => {
     if (isLoggedIn) {
       const cardId = e.target.id;
-      const result = favorites.find(favorite => favorite === cardId);
-      if (result === cardId) {
+      const result = favorites.filter(favorite => favorite._id === cardId);
+      if (result.length > 0) {
         dispatch(deleteFromFavorites(cardId));
       } else {
         dispatch(addToFavorite(cardId));
@@ -73,6 +75,10 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
       category,
     }) => {
       const birthday = getAge(dateOfBirth);
+
+    const isFavorite = id => {
+    return favorites.filter(favorite => favorite._id === id);
+  };
 
       return (
         <ModalBackground key={_id}>
@@ -137,6 +143,19 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
             </CommentsText>
           </ModalCommentWrapper>
           <ButtonWrapper>
+          {isFavorite(_id).length > 0 ?
+            <ModalBtnRemove
+              icon
+              id={_id}
+              onClick={handleAddClick}
+              outline
+              noMargin
+              orange
+            >
+              Remove
+              <AddIcon />
+              </ModalBtnRemove>
+            :
             <ModalBtnAdd
               icon
               id={_id}
@@ -146,7 +165,8 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
             >
               Add to
               <AddedIcon />
-            </ModalBtnAdd>
+          </ModalBtnAdd>
+            }            
             <ModalBtnContact>Contact</ModalBtnContact>
           </ButtonWrapper>
         </ModalBackground>
