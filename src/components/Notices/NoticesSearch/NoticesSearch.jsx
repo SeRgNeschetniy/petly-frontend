@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form, Input, BtnSearch, Label, Wrapper } from './NoticesSearch.styled';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { RxCross1 } from 'react-icons/rx';
 import { AiOutlineSearch } from 'react-icons/ai';
 
@@ -11,10 +11,10 @@ const NoticesSearch = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (changeInput === 'search') {
-      if (searchQuery.trim() === '') {
-        Notify.failure('Sorry, enter your query');
-        return;
-      }
+      // if (searchQuery.trim() === '') {
+      //   // Notify.failure('Sorry, enter your query');
+      //   return;
+      // }
     }
     onSubmit(searchQuery);
     setChangeInput('search');
@@ -23,6 +23,11 @@ const NoticesSearch = ({ onSubmit }) => {
 
   const handleChange = e => {
     setSearchQuery(e.currentTarget.value.toLowerCase());
+  };
+
+  const removeQuery = () => {
+    setSearchQuery('');
+    // onSubmit('');
   };
 
   return (
@@ -41,7 +46,7 @@ const NoticesSearch = ({ onSubmit }) => {
         <div style={{ position: 'absolute', right: '12px', top: '10px' }}>
           {Boolean(searchQuery.length > 0) ? (
             <BtnSearch type="submit">
-              <RxCross1 onClick={() => setChangeInput('erase')} />
+              <RxCross1 onClick={() => removeQuery('erase')} />
             </BtnSearch>
           ) : (
             <BtnSearch type="submit">

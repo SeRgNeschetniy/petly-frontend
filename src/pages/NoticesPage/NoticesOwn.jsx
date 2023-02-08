@@ -1,5 +1,6 @@
 import Loader from 'components/Loader';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
+import EmpyList from 'components/Notices/EmpyList/EmptyList';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { useSelector } from 'react-redux';
 import {
@@ -13,9 +14,11 @@ const NoticesOwn = () => {
 
   return (
     <>
-      {notices?.length === 0 && !isLoading && (
+      {/* {notices?.length === 0 && !isLoading && (
         <p>List is empty! Try to add pet :)</p>
-      )}
+      )} */}
+      {notices?.length === 0 && !isLoading && <EmpyList />}
+
       {isLoading && <Loader />}
 
       <LazyLoadComponent>

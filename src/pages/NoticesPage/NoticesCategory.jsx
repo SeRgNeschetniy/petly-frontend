@@ -7,6 +7,7 @@ import {
   selectNotices,
   selectIsLoading,
 } from 'redux/notices/notices-selectors';
+import EmpyList from 'components/Notices/EmpyList/EmptyList';
 
 const NoticesCategory = () => {
   const { categoryName } = useParams();
@@ -15,9 +16,10 @@ const NoticesCategory = () => {
 
   return (
     <>
-      {notices?.length === 0 && !isLoading && (
+      {notices?.length === 0 && !isLoading && <EmpyList />}
+      {/* {notices?.length === 0 && !isLoading && (
         <p>List is empty! Try to add pet :)</p>
-      )}
+      )} */}
       {isLoading && <Loader />}
 
       <LazyLoadComponent>
