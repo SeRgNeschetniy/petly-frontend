@@ -3,7 +3,7 @@ import { theme } from 'styles/theme';
 import { AiOutlineSearch } from 'react-icons/ai';
 
 export const Form = styled.form`
-  margin-bottom: 28px;
+  margin-bottom: 40px;
 
   position: relative;
   display: flex;
@@ -15,7 +15,7 @@ export const Form = styled.form`
   border-radius: 40px;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     width: 608px;
     margin-right: auto;
     margin-left: auto;
