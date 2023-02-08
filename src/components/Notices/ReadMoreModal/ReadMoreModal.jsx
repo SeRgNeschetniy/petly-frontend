@@ -169,6 +169,7 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                 Add to
                 <AddedIcon />
               </ModalBtnAdd>
+            )}
             <a href={owner ? `tel:${owner.phone}` : ''}>
               <ModalBtnContact>Contact</ModalBtnContact>
             </a>
