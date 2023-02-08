@@ -21,15 +21,15 @@ import { getAge } from 'shared/getAge';
 import {
   addToFavorite,
   deleteFromFavorites,
+  fetchNoticeById,
 } from 'redux/notices/notices-operation';
 import { selectIsLogin, selectUserId } from 'redux/auth/auth-selectors';
 import { deleteNotice } from 'redux/notices/notices-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   selectFavorites,
-  selectNotices,
+  selectOneNotice,
 } from 'redux/notices/notices-selectors';
-import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import useModal from 'hooks/modal';
 import ReadMoreModal from 'components/Notices/ReadMoreModal/ReadMoreModal';
@@ -48,10 +48,8 @@ const NoticeCategoryItem = ({ notice, route }) => {
   } = notice;
   const dispatch = useDispatch();
 
-  const [oneNotice, setOneNotice] = useState([]);
+  const oneNotice = useSelector(selectOneNotice)
   const { isModalOpen, closeModal, openModal } = useModal();
-  const notices = useSelector(selectNotices);
-
   const isLoggedIn = useSelector(selectIsLogin);
   const favorites = useSelector(selectFavorites);
   const ownerId = useSelector(selectUserId);
@@ -88,13 +86,9 @@ const NoticeCategoryItem = ({ notice, route }) => {
     return favorites.filter(favorite => favorite._id === id);
   };
 
-  const handleMoreClick = e => {
-    if (notices.length > 0) {
-      const result = notices.filter(item => item._id === e.currentTarget.id);
-      setOneNotice(result);
-      openModal();
-      return;
-    }
+  const handleMoreClick = async e => {
+    dispatch(fetchNoticeById(e.currentTarget.id))
+    openModal();
   };
 
   return (
@@ -150,8 +144,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
           )}
         </BtnWrapper>
       </Item>
-
-      {isModalOpen && (
+      {isModalOpen && oneNotice && (
         <Modal onCloseModal={closeModal}>
           <ReadMoreModal notice={oneNotice} onCloseModal={closeModal} />
         </Modal>
