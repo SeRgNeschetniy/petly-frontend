@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/auth-selectors';
 import { patchContact } from 'redux/userpage/userpage-operation';
+import * as Yup from 'yup';
+import { Notify } from 'notiflix';
 
 export default function UserInputName() {
   const user = useSelector(selectUser);
@@ -14,13 +16,26 @@ export default function UserInputName() {
   // const handleChange = e => {
   //   setName(e.target.value);
   // };
-
+  const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  }
+  const schema = Yup.object({
+     name: Yup.string().min(2).required('Required')
+  })
   function handleGameClick(e) {
     if (disabled) {
       setDisabled(false);
     } else {
-      dispatch(patchContact({ name: name }));
-      setDisabled(true);
+        schema.validate({name:name}).then(
+          function (valid) {
+       dispatch(patchContact(valid));
+        setDisabled(true);
+    }).catch(
+          function (e) {
+       Notify.failure(e.message, notifyOptions)
+    })
+      
     }
   }
   return (

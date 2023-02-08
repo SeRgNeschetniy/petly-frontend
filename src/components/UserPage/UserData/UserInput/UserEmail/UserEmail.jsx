@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { selectUser } from 'redux/auth/auth-selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { patchContact } from 'redux/userpage/userpage-operation';
+import * as Yup from 'yup';
+import { Notify } from 'notiflix';
 
 export default function UserInputEmail() {
   const user = useSelector(selectUser);
@@ -11,6 +13,17 @@ export default function UserInputEmail() {
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(true);
 
+  const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  }
+  const schema = Yup.object({
+     email: Yup.string()
+    .matches(
+      /^((([0-9A-Za-z]{1}[-0-9A-z.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}.){1,2}[-A-Za-z]{2,})$/u,
+      'Invalid email format'
+    ).required('Required'),
+  })
   // const handleChange = e => {
   //   setEmail(e.target.value);
   // };
@@ -19,8 +32,14 @@ export default function UserInputEmail() {
     if (disabled) {
       setDisabled(false);
     } else {
-      dispatch(patchContact({ email: email }));
-      setDisabled(true);
+      schema.validate({email:email}).then(
+          function (valid) {
+       dispatch(patchContact(valid));
+        setDisabled(true);
+    }).catch(
+          function (e) {
+       Notify.failure(e.message, notifyOptions)
+    })
     }
   }
   return (
