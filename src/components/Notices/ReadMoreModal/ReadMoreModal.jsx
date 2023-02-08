@@ -121,11 +121,19 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                   </ModalTextWrapper>
                   <ModalTextWrapper>
                     <Text>Email:</Text>
-                    <Span>{owner.email}</Span>
+                    {owner ? 
+                      <Span>{owner.email}</Span>
+                      :
+                      <Span>-------</Span>
+                    }
                   </ModalTextWrapper>
                   <ModalTextWrapper>
                     <Text>Phone:</Text>
-                    <Span>{owner.phone}</Span>
+                    {owner ? 
+                      <Span>{owner.phone}</Span>
+                      :
+                      <Span>-------</Span>
+                    }
                   </ModalTextWrapper>
                   {category === 'sell' && (
                     <ModalTextWrapper>
@@ -166,8 +174,9 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
               Add to
               <AddedIcon />
           </ModalBtnAdd>
-            }            
+            } <a href={owner ? `tel:${owner.phone}` : ""}>        
             <ModalBtnContact>Contact</ModalBtnContact>
+            </a> 
           </ButtonWrapper>
         </ModalBackground>
       );

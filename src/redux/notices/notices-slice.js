@@ -65,6 +65,7 @@ const noticesSlice = createSlice({
     [fetchNoticeById.pending]: state => {
       state.isLoading = true;
       state.error = null;
+      state.oneNotice = [];
     },
     [fetchNoticeById.fulfilled]: (state, { payload }) => {
       state.oneNotice = payload;
