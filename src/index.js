@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={<Loader />} persistor={persistor}>
-        <BrowserRouter>
+        <BrowserRouter basename="petly-frontend">
           <ThemeProvider theme={theme}>
             <Global styles={GlobalStyles} />
             <App />
