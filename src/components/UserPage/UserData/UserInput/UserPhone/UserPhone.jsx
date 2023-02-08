@@ -1,41 +1,57 @@
-import React from "react";
-import { BoxInput, TextField, InputForm, ButtonEdit } from "./UserPhone.styled"
+import React from 'react';
+import { BoxInput, TextField, InputForm, ButtonEdit } from './UserPhone.styled';
 import { FiEdit2, FiCheck } from 'react-icons/fi';
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { selectUser } from "redux/auth/auth-selectors";
-import { useDispatch } from "react-redux";
-import { patchContact } from "redux/userpage/userpage-operation";    
-
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/auth-selectors';
+import { useDispatch } from 'react-redux';
+import { patchContact } from 'redux/userpage/userpage-operation';
 
 export default function UserInputPhone() {
-    const user = useSelector(selectUser) ;
-    const [phone, setName] = useState(user.phone);
-    const dispatch = useDispatch();
-    const [disabled, setDisabled] = useState(true);
+  const user = useSelector(selectUser);
+  const [phone, setName] = useState(user.phone);
+  const dispatch = useDispatch();
+  const [disabled, setDisabled] = useState(true);
 
-    const handleChange = (e) => {
+  const handleChange = e => {
     setName(e.target.value);
-}
+  };
 
-    function handleGameClick(e) {
+  function handleGameClick(e) {
     if (disabled) {
-    setDisabled(false);
+      setDisabled(false);
     } else {
-      dispatch(patchContact({phone: phone}));
+      dispatch(patchContact({ phone: phone }));
       setDisabled(true);
     }
-    
   }
-return(
+  return (
     <BoxInput>
-        <TextField>Phone:</TextField>
-        <div>
-        {disabled ? <InputForm value={user.phone} type="text" disabled={disabled} ></InputForm> : <InputForm value={user.phone} type="text" style={{background : "#FDF7F2",border: "1px solid rgba(245, 146, 86, 0.5)"} } disabled={disabled}></InputForm> }
+      <TextField>Phone:</TextField>
+      <div>
+        {disabled ? (
+          <InputForm
+            value={user.phone}
+            type="text"
+            disabled={disabled}
+          ></InputForm>
+        ) : (
+          <InputForm
+            value={user.phone}
+            type="text"
+            style={{
+              background: '#FDF7F2',
+              border: '1px solid rgba(245, 146, 86, 0.5)',
+            }}
+            disabled={disabled}
+          ></InputForm>
+        )}
       </div>
-        <ButtonEdit type='submit' onClick={handleGameClick} >
-            <div>{disabled ? <FiEdit2 color="#F59256"/> : <FiCheck color="#F59256"/>}</div>
-        </ButtonEdit>
-        </BoxInput>
-)
+      <ButtonEdit type="submit" onClick={handleGameClick}>
+        <div>
+          {disabled ? <FiEdit2 color="#F59256" /> : <FiCheck color="#F59256" />}
+        </div>
+      </ButtonEdit>
+    </BoxInput>
+  );
 }

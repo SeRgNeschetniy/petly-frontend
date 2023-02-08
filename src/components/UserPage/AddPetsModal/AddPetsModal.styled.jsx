@@ -105,13 +105,13 @@ export const ButtonFill = styled.button`
   padding: 10px 28px;
   border-radius: 40px;
   width: 100%;
-  color: ${theme.colors.dark};
+  color: ${theme.colors.white};
   border-color: ${theme.colors.accent};
 
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.accent};
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {

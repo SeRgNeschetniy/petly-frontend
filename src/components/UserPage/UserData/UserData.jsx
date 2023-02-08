@@ -12,78 +12,78 @@ import {
   EditBox,
   EditPhotoButton,
   FormDiv,
-  Label
+  Label,
 } from './UserData.styled';
 import Logout from '../Logout/Logout';
 import { patchAvatar } from 'redux/auth/auth-operation';
 import { useDispatch } from 'react-redux';
-import  UserInputName  from "./UserInput/UserName/UserName";
-import UserInputEmail  from "./UserInput/UserEmail/UserEmail";
-import UserInputCity  from "./UserInput/UserCity/UserCity";
-import  UserInputBirthday  from "./UserInput/UserBirthday/UserBirthday";
-import UserInputPhone from "./UserInput/UserPhone/UserPhone";
+import UserInputName from './UserInput/UserName/UserName';
+import UserInputEmail from './UserInput/UserEmail/UserEmail';
+import UserInputCity from './UserInput/UserCity/UserCity';
+import UserInputBirthday from './UserInput/UserBirthday/UserBirthday';
+import UserInputPhone from './UserInput/UserPhone/UserPhone';
 
 export default function UserData() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  
-const changeImage = async (event) => {
+  const changeImage = async event => {
     const formData = new FormData();
     formData.append('avatar', event.target.files[0]);
-  dispatch(patchAvatar(formData))
+    dispatch(patchAvatar(formData));
   };
 
-    return (
-      <Box>
-        <AccentText>My information:</AccentText>
-        <Profile>
-          <div>
-          <div style={{  display:"flex", justifyContent: "center", position:"relative"}}>
-              <Avatar src={user.avatarURL}></Avatar>
-               <EditBox>
-            <TbCamera
-              style={{ width: '18px', height: '18px', color: '#F59256' }}
-            ></TbCamera> 
-              <Label>     
-                <EditPhotoButton onChange={changeImage} type="file" name="file" style={{ color: "transparent" }} ></EditPhotoButton>   
-                Edit photo  
-          </Label>
+  return (
+    <Box>
+      <AccentText>My information:</AccentText>
+      <Profile>
+        <div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              position: 'relative',
+            }}
+          >
+            <Avatar src={user.avatarURL}></Avatar>
+            <EditBox>
+              <TbCamera
+                style={{ width: '18px', height: '18px', color: '#F59256' }}
+              ></TbCamera>
+              <Label>
+                <EditPhotoButton
+                  onChange={changeImage}
+                  type="file"
+                  name="file"
+                  style={{ color: 'transparent' }}
+                ></EditPhotoButton>
+                Edit photo
+              </Label>
             </EditBox>
           </div>
-          
-          </div>
-         
-          <FormDiv> 
-           <Form >
-            <UserInputName/>
-          
-            <UserInputEmail/>
+        </div>
 
-            <UserInputBirthday/>
+        <FormDiv>
+          <Form>
+            <UserInputName />
 
-            <UserInputPhone  />
+            <UserInputEmail />
 
-            <UserInputCity /> 
-              
-            </Form>
-          <Logout ></Logout>
-            </FormDiv>
-            
-        </Profile>
-        
-           
-      </Box>)
-      }
-  
+            <UserInputBirthday />
 
-  
+            <UserInputPhone />
+
+            <UserInputCity />
+          </Form>
+          <Logout />
+        </FormDiv>
+      </Profile>
+    </Box>
+  );
+}
+
 //      return (
 //     <div>
 //       {UserData}
 //     </div>
 // )
-         
-
-   
-
