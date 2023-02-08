@@ -9,7 +9,6 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchFavoritesNotices,
-  fetchNotices,
   fetchUserNotices,
 } from 'redux/notices/notices-operation';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
@@ -31,14 +30,6 @@ const NoticesLayoutPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (categoryName) {
-      if (query !== '') {
-        dispatch(fetchNotices({ categoryName, query: query }));
-      } else {
-        dispatch(fetchNotices({ categoryName }));
-      }
-    }
-
     if (isLoggedIn) {
       dispatch(fetchFavoritesNotices());
       dispatch(fetchUserNotices());
@@ -67,7 +58,7 @@ const NoticesLayoutPage = () => {
 
           <Outlet />
 
-          {error && Notify.warning('Sorry, you should to sing in')}
+          {error && Notify.warning(Error)}
         </ContainerWrapp>
       </Container>
     </Main>
