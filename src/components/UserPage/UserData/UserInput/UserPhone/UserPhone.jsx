@@ -9,13 +9,13 @@ import { patchContact } from 'redux/userpage/userpage-operation';
 
 export default function UserInputPhone() {
   const user = useSelector(selectUser);
-  const [phone, setName] = useState(user.phone);
+  const [phone, setPhone] = useState(user.phone);
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(true);
 
-  const handleChange = e => {
-    setName(e.target.value);
-  };
+  // const handleChange = e => {
+  //   setName(e.target.value);
+  // };
 
   function handleGameClick(e) {
     if (disabled) {
@@ -34,11 +34,13 @@ export default function UserInputPhone() {
             value={user.phone}
             type="text"
             disabled={disabled}
+            onChange={e => setPhone(e.target.value)}
           ></InputForm>
         ) : (
           <InputForm
             value={user.phone}
             type="text"
+            onChange={e => setPhone(e.target.value)}
             style={{
               background: '#FDF7F2',
               border: '1px solid rgba(245, 146, 86, 0.5)',

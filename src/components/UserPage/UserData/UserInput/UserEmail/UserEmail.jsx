@@ -11,9 +11,9 @@ export default function UserInputEmail() {
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(true);
 
-  const handleChange = e => {
-    setEmail(e.target.value);
-  };
+  // const handleChange = e => {
+  //   setEmail(e.target.value);
+  // };
 
   function handleGameClick(e) {
     if (disabled) {
@@ -32,11 +32,13 @@ export default function UserInputEmail() {
             value={user.email}
             type="text"
             disabled={disabled}
+            onChange={e => setEmail(e.target.value)}
           ></InputForm>
         ) : (
           <InputForm
             value={user.email}
             type="text"
+            onChange={e => setEmail(e.target.value)}
             style={{
               background: '#FDF7F2',
               border: '1px solid rgba(245, 146, 86, 0.5)',

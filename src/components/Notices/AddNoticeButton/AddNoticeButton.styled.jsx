@@ -68,7 +68,7 @@ export const AddBtn = styled.button`
     align-items: center;
     justify-content: center;
       }
-}
+
 
 `;
 
