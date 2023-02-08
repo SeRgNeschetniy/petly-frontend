@@ -196,7 +196,6 @@ color: ${theme.colors.white};
   }
   &::before {
     position: absolute;
-    background-image: ;
   }
   &:hover > *{
     color: ${theme.colors.white};
@@ -241,7 +240,6 @@ export const ModalBtnContact = styled.button`
 
   &::before {
     position: absolute;
-    background-image: ;
   }
 `;
 

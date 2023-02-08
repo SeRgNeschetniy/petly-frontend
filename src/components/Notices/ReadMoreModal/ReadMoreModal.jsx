@@ -29,7 +29,7 @@ import {
   AddedIcon,
 } from './ReadMoreModal.styled';
 import { Notify } from 'notiflix';
-import { ButtonClose } from 'components/AddPetsModal/AddPetsModal.styled';
+import { ButtonClose } from 'components/UserPage/AddPetsModal/AddPetsModal.styled';
 import { VscClose } from 'react-icons/vsc';
 //import { AddButton } from 'components/UserPage/PetsData/PetsData.styled';
 import { getAge } from 'shared/getAge';

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { pet } from '../../servises';
+import { pet } from '../../../servises';
 import { TfiPlus } from 'react-icons/tfi';
 import { VscClose } from 'react-icons/vsc';
-import { fetchPets } from '../../redux/userpage/userpage-operation';
+import { fetchPets } from '../../../redux/userpage/userpage-operation';
 import { Notify } from 'notiflix';
 import {
   Container,

@@ -1,5 +1,5 @@
 import Modal from 'components/Modal';
-import AddPetsModal from '../../AddPetsModal/AddPetsModal';
+import AddPetsModal from '../AddPetsModal/AddPetsModal';
 import useModal from '../../../hooks/modal';
 import {
   MainText,
