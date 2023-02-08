@@ -178,7 +178,7 @@ color: ${theme.colors.white};
   //   &:not(:last-child) {
   //     margin-bottom: 12px;
   //   }
-  }
+  
   @media (min-width: 768px) {
     display: flex;
     align-items: center;

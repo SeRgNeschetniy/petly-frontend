@@ -11,9 +11,9 @@ export default function UserInputCity() {
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(true);
 
-  const handleChange = e => {
-    setCity(e.target.value);
-  };
+  // const handleChange = e => {
+  //   setCity(e.target.value);
+  // };
 
   function handleGameClick(e) {
     if (disabled) {
@@ -31,6 +31,7 @@ export default function UserInputCity() {
           <InputForm
             value={user.city}
             type="text"
+            onChange={e => setCity(e.target.value)}
             disabled={disabled}
           ></InputForm>
         ) : (

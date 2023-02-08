@@ -17,9 +17,9 @@ export default function UserInputBirthday() {
 
   const [disabled, setDisabled] = useState(true);
 
-  const handleChange = e => {
-    setBirthday(e.target.value);
-  };
+  // const handleChange = e => {
+  //   setBirthday(e.target.value);
+  // };
 
   function handleGameClick(e) {
     if (disabled) {
@@ -37,12 +37,14 @@ export default function UserInputBirthday() {
           <InputForm
             value={user.birthday}
             type="text"
+            onChange={e => setBirthday(e.target.value)}
             disabled={disabled}
           ></InputForm>
         ) : (
           <InputForm
             value={user.birthday}
             type="text"
+            onChange={e => setBirthday(e.target.value)}
             style={{
               background: '#FDF7F2',
               border: '1px solid rgba(245, 146, 86, 0.5)',

@@ -128,7 +128,7 @@ line-height: 25px;
 
 
 
-}
+
 `
 export const ButtonEdit = styled.button`
 width: 20px;
@@ -163,7 +163,7 @@ export const EditPhotoButton = styled.input`
 color: transparent;
 width:100px;
 display:none;
-}
+
 
 `
 export const FormDiv = styled.div`
