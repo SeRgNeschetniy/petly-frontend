@@ -29,15 +29,16 @@ export default function UserInputCity() {
       <div>
         {disabled ? (
           <InputForm
-            value={user.city}
+            value={city}
             type="text"
             onChange={e => setCity(e.target.value)}
             disabled={disabled}
           ></InputForm>
         ) : (
           <InputForm
-            value={user.city}
+            value={city}
             type="text"
+            onChange={e => setCity(e.target.value)}
             style={{
               background: '#FDF7F2',
               border: '1px solid rgba(245, 146, 86, 0.5)',

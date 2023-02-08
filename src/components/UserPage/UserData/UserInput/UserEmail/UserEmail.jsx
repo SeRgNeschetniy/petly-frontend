@@ -29,14 +29,14 @@ export default function UserInputEmail() {
       <div>
         {disabled ? (
           <InputForm
-            value={user.email}
+            value={email}
             type="text"
             disabled={disabled}
             onChange={e => setEmail(e.target.value)}
           ></InputForm>
         ) : (
           <InputForm
-            value={user.email}
+            value={email}
             type="text"
             onChange={e => setEmail(e.target.value)}
             style={{
