@@ -76,9 +76,9 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
     }) => {
       const birthday = getAge(dateOfBirth);
 
-    const isFavorite = id => {
-    return favorites.filter(favorite => favorite._id === id);
-  };
+      const isFavorite = id => {
+        return favorites.filter(favorite => favorite._id === id);
+      };
 
       return (
         <ModalBackground key={_id}>
@@ -121,19 +121,15 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                   </ModalTextWrapper>
                   <ModalTextWrapper>
                     <Text>Email:</Text>
-                    {owner ? 
-                      <Span>{owner.email}</Span>
-                      :
-                      <Span>-------</Span>
-                    }
+                    {owner ? <Span>{owner.email}</Span> : <Span>-------</Span>}
                   </ModalTextWrapper>
                   <ModalTextWrapper>
                     <Text>Phone:</Text>
-                    {owner ? 
-                      <Span>{owner.phone}</Span>
-                      :
-                      <Span>-------</Span>
-                    }
+                    {owner ? <Span>{owner.phone}</Span> : <Span>-------</Span>}
+                  </ModalTextWrapper>
+                  <ModalTextWrapper>
+                    <Text>Owner name:</Text>
+                    {owner ? <Span>{owner.name}</Span> : <Span>-------</Span>}
                   </ModalTextWrapper>
                   {category === 'sell' && (
                     <ModalTextWrapper>
@@ -151,32 +147,33 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
             </CommentsText>
           </ModalCommentWrapper>
           <ButtonWrapper>
-          {isFavorite(_id).length > 0 ?
-            <ModalBtnRemove
-              icon
-              id={_id}
-              onClick={handleAddClick}
-              outline
-              noMargin
-              orange
-            >
-              Remove
-              <AddIcon />
+            {isFavorite(_id).length > 0 ? (
+              <ModalBtnRemove
+                icon
+                id={_id}
+                onClick={handleAddClick}
+                outline
+                noMargin
+                orange
+              >
+                Remove
+                <AddIcon />
               </ModalBtnRemove>
-            :
-            <ModalBtnAdd
-              icon
-              id={_id}
-              onClick={handleAddClick}
-              outline
-              noMargin
-            >
-              Add to
-              <AddedIcon />
-          </ModalBtnAdd>
-            } <a href={owner ? `tel:${owner.phone}` : ""}>        
-            <ModalBtnContact>Contact</ModalBtnContact>
-            </a> 
+            ) : (
+              <ModalBtnAdd
+                icon
+                id={_id}
+                onClick={handleAddClick}
+                outline
+                noMargin
+              >
+                Add to
+                <AddedIcon />
+              </ModalBtnAdd>
+            )}{' '}
+            <a href={owner ? `tel:${owner.phone}` : ''}>
+              <ModalBtnContact>Contact</ModalBtnContact>
+            </a>
           </ButtonWrapper>
         </ModalBackground>
       );
