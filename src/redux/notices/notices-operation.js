@@ -11,7 +11,7 @@ export const fetchNotices = createAsyncThunk(
       const { data } = await axios.get(
         `/notices/${categoryName}?page=${page}&limit=${limit}&query=${query}`
       );
-      return data.notices || data.favorites;
+      return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
