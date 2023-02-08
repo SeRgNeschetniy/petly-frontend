@@ -11,9 +11,11 @@ export const PetCard = styled.div`
   border-radius: 40px;
   display: flex;
   margin-bottom: 20px;
+  flex-direction: column;
   @media screen and (min-width: 768px) {
     display: flex;
     padding: 20px;
+    flex-direction: row;
   }
   @media screen and (min-width: 1280px) {
     margin-bottom: 22px;
@@ -61,7 +63,7 @@ export const DelateButton = styled.button`
   width: 17px;
   height: 17px;
   position: absolute;
-  top: 20px;
+  top: 254px;
   right: 20px;
   background: #fdf7f2;
   backdrop-filter: blur(2px);
@@ -80,6 +82,7 @@ export const DelateButton = styled.button`
   @media screen and (min-width: 768px) {
     width: 44px;
     height: 44px;
+    top:20px;
   }
 `;
 export const Typography = styled.span`
