@@ -16,6 +16,7 @@ import { selectSearch } from 'redux/search/search-selectors';
 
 const NoticesCategory = () => {
   const { categoryName } = useParams();
+  const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const total = useSelector(selectTotalNotice);
   const query = useSelector(selectSearch);
@@ -40,8 +41,6 @@ const NoticesCategory = () => {
     }
   }, [dispatch, categoryName, query, currentPage]);
 
-  const notices = useSelector(selectNotices);
-
   const handlePageClick = event => {
     setCurrentPage(event.selected + 1);
   };
@@ -52,7 +51,6 @@ const NoticesCategory = () => {
       {notices?.length === 0 && !isLoading && <EmpyList />}
 
       <NoticesCategoriesList route={categoryName} notices={notices} />
-
       {notices?.length > 0 && (
         <ReactPaginate
           previousLabel={'←'}
