@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TimeList, DayItem, TimeBtn } from './FriendsItem.styled';
+import { TimeList, DayLi, DayItem, TimeBtn } from './FriendsItem.styled';
 
 const WorkHours = ({ workDays }) => {
   const [showModal, setShowModal] = useState(false);
@@ -14,8 +14,6 @@ const WorkHours = ({ workDays }) => {
     }
     return currentDay - 1;
   };
-
-  // console.log(currentDay);
 
   return (
     <>
@@ -43,7 +41,7 @@ const WorkHours = ({ workDays }) => {
           }}
         >
           {workDays.map(({ from, to, isOpen }, index) => (
-            <li key={index}>
+            <DayLi key={index} index={index}>
               {isOpen ? (
                 <DayItem>
                   <span>{days[index]}</span>
@@ -57,11 +55,7 @@ const WorkHours = ({ workDays }) => {
                   <span>Closed</span>
                 </DayItem>
               )}
-              {/* {days[index] === workDays[updateIdx()] && (
-                <DayItem style={{ backgroundColor: 'orange' }} />
-              )}
-              {console.log(currentDay === workDays[updateIdx()])} */}
-            </li>
+            </DayLi>
           ))}
         </TimeList>
       )}

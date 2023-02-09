@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
+const currentDate = new Date();
+
 export const Item = styled.li`
   padding: 12px 4px;
   background-color: ${theme.colors.white};
@@ -108,6 +110,17 @@ export const TimeList = styled.ul`
   border: 1px solid ${theme.colors.accent};
   border-radius: 8px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+`;
+
+export const DayLi = styled.li`
+  color: ${p =>
+    p.index === currentDate.getDay() - 1
+      ? `${theme.colors.accent}`
+      : `${theme.colors.black}`};
+  background-color: ${p =>
+    p.index === currentDate.getDay() - 1
+      ? `${theme.colors.mainBackground}`
+      : `${theme.colors.white}`};
 `;
 
 export const DayItem = styled.p`
