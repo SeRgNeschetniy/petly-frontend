@@ -34,7 +34,6 @@ const handleRejected = (state, action) => {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState: initialState,
-
   extraReducers: {
     [fetchNotices.pending]: handlePending,
     [fetchNotices.fulfilled](state, { payload }) {

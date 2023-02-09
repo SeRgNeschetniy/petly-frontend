@@ -12,13 +12,14 @@ import EmpyList from 'components/Notices/EmpyList/EmptyList';
 
 import ReactPaginate from 'react-paginate';
 import { fetchNotices } from 'redux/notices/notices-operation';
+import { selectSearch } from 'redux/search/search-selectors';
 
 const NoticesCategory = () => {
   const { categoryName } = useParams();
   const isLoading = useSelector(selectIsLoading);
   const total = useSelector(selectTotalNotice);
+  const query = useSelector(selectSearch);
   const limit = 4;
-  const query = '';
   const [currentPage, setCurrentPage] = useState(1);
   const pageCount = Math.ceil(total / limit);
 

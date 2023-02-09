@@ -11,17 +11,16 @@ import {
   fetchFavoritesNotices,
   fetchUserNotices,
 } from 'redux/notices/notices-operation';
-import { Outlet, useParams, useSearchParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { selectError } from 'redux/notices/notices-selectors';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { Container, Main } from 'styles';
+import { setSearch } from 'redux/search/search-slice';
 
 const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
   const isLoggedIn = useSelector(selectIsLogin);
   const error = useSelector(selectError);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query') ?? '';
 
   const [matches, setMatches] = useState(
     window.matchMedia('(min-width: 768px)').matches
@@ -38,10 +37,12 @@ const NoticesLayoutPage = () => {
     window
       .matchMedia('(min-width: 768px)')
       .addEventListener('change', e => setMatches(e.matches));
-  }, [dispatch, categoryName, query, isLoggedIn]);
+  }, [dispatch, categoryName, isLoggedIn]);
 
   const onFormSubmit = searchQuery => {
-    setSearchParams({ query: searchQuery });
+    // setSearchParams({ query: searchQuery });
+    console.log(searchQuery);
+    dispatch(setSearch(searchQuery));
   };
 
   return (
