@@ -12,13 +12,14 @@ import { patchContact } from 'redux/userpage/userpage-operation';
 import * as Yup from 'yup';
 import { Notify } from 'notiflix';
 import { MdEdit } from "react-icons/md";
-export default function UserInputBirthday() {
+
+export default function UserInputBirthday({setIsEdit, isEdit}) {
+
   const user = useSelector(selectUser);
   const [birthday, setBirthday] = useState(user.birthday);
   const dispatch = useDispatch();
 
   const [disabled, setDisabled] = useState(true);
-
   // const handleChange = e => {
   //   setBirthday(e.target.value);
   // };
@@ -37,18 +38,19 @@ console.log()
 
 
   function handleGameClick(e) {
-    if (disabled) {
+    if (!isEdit) {
+      setIsEdit(true);
       setDisabled(false);
-    } else {
-
+    } else if(!disabled && isEdit){
       schema.validate({birthday:birthday}).then(
         function (valid) {
           const value = (Object.values(valid)).toString()
           const reverse = value.split('-').reverse().join('.')
           console.log(reverse)
           dispatch(patchContact({ birthday: reverse }));
-          setBirthday( reverse )
-        setDisabled(true);
+          setBirthday(reverse);
+          setIsEdit(false);
+          setDisabled(true);
     }).catch(
           function (e) {
        Notify.failure(e.message, notifyOptions)

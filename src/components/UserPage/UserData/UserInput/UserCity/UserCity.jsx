@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { Notify } from 'notiflix';
 import { MdEdit } from "react-icons/md";
 
-export default function UserInputCity() {
+export default function UserInputCity({setIsEdit, isEdit}) {
   const user = useSelector(selectUser);
   const [city, setCity] = useState(user.city);
   const dispatch = useDispatch();
@@ -31,13 +31,15 @@ export default function UserInputCity() {
     )
   })
 
-  function handleGameClick(e) {
-    if (disabled) {
+  function handleGameClick() {
+    if (!isEdit) {
+      setIsEdit(true);
       setDisabled(false);
-    } else {
+    } else if(!disabled && isEdit){
       schema.validate({city:city}).then(
-          function (valid) {
-       dispatch(patchContact(valid));
+        function (valid) {
+        dispatch(patchContact(valid));
+        setIsEdit(false)
         setDisabled(true);
     }).catch(
           function (e) {
