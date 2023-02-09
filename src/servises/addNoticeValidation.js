@@ -44,6 +44,7 @@ export const formTwoValidationSchema = Yup.object({
   sex: Yup.string().required('Sex is required'),
   comments: Yup.string()
     .min(8, 'Too Short!')
+    .max(120, 'Too Long!')
     .label('Comment')
     .required('Comment is required'),
   location: Yup.string().required('Location is required'),
