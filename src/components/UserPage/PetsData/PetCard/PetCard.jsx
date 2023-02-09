@@ -15,6 +15,7 @@ import { fetchUserPets } from 'redux/userpage/userpage-operation';
 import { selectUserPets } from 'redux/userpage/userpage-selectors';
 import { getAge } from 'shared/getAge';
 import EmpyList from 'components/Notices/EmpyList/EmptyList';
+
 export default function PetsCard() {
   const dispatch = useDispatch();
 
@@ -58,6 +59,7 @@ export default function PetsCard() {
     }
   );
   return (
+    <>
     <div>
       {items.length < 1 && (
         // <Typography variant="h6" sx={{ ml: 5 }}>
@@ -66,6 +68,7 @@ export default function PetsCard() {
         <EmpyList></EmpyList>
       )}{' '}
       {pet}
-    </div>
+      </div>
+      </>
   );
 }
