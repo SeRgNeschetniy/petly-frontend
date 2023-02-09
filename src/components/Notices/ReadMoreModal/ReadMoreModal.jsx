@@ -28,6 +28,7 @@ import {
   Wrap,
   WrapImage,
   AddedIcon,
+  LinkToConnect,
 } from './ReadMoreModal.styled';
 import { Notify } from 'notiflix';
 import { ButtonClose } from 'components/UserPage/AddPetsModal/AddPetsModal.styled';
@@ -120,11 +121,27 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                   </ModalTextWrapper>
                   <ModalTextWrapper>
                     <Text>Email:</Text>
-                    {owner ? <Span>{owner.email}</Span> : <Span>-------</Span>}
+                    {owner ? (
+                      <LinkToConnect
+                        href={owner ? `mailto:${owner.email}` : ''}
+                      >
+                        {' '}
+                        <Span>{owner.email}</Span>
+                      </LinkToConnect>
+                    ) : (
+                      <Span>-------</Span>
+                    )}
                   </ModalTextWrapper>
                   <ModalTextWrapper>
                     <Text>Phone:</Text>
-                    {owner ? <Span>{owner.phone}</Span> : <Span>-------</Span>}
+                    {owner ? (
+                      <LinkToConnect href={owner ? `tel:${owner.phone}` : ''}>
+                        {' '}
+                        <Span>{owner.phone}</Span>
+                      </LinkToConnect>
+                    ) : (
+                      <Span>-------</Span>
+                    )}{' '}
                   </ModalTextWrapper>
                   <ModalTextWrapper>
                     <Text>Owner:</Text>

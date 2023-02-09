@@ -115,6 +115,11 @@ export const Span = styled.p`
   word-wrap: break-word;
 `;
 
+export const LinkToConnect = styled.a`
+  &:hover {
+    color: ${theme.colors.accent};
+  }
+`;
 export const CommentsText = styled.div`
   font-size: 14px;
   font-weight: 600;
