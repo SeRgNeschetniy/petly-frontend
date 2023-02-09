@@ -9,7 +9,7 @@ const showScroll = active => {
 
 export const Container = styled.nav`
   display: flex;
-  /* display: none; */
+
   flex-direction: column;
 
   position: absolute;
@@ -17,7 +17,7 @@ export const Container = styled.nav`
   right: 0;
   bottom: 0;
   top: 72px;
-  /* margin-top: 42px; */
+
   padding-top: 42px;
 
   width: 100%;
@@ -40,7 +40,6 @@ export const Container = styled.nav`
     return (
       active &&
       css`
-        /* display: block; */
         opacity: 1;
         pointer-events: auto;
       `
@@ -50,7 +49,6 @@ export const Container = styled.nav`
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
-    /* margin-top: 48px; */
     padding-top: 88px;
   }
 
@@ -59,7 +57,7 @@ export const Container = styled.nav`
     position: static;
     flex-direction: row;
     height: 50px;
-    /* margin-top: 0px; */
+
     padding-top: 0px;
 
     opacity: 1;
@@ -153,8 +151,8 @@ export const Links = styled(NavLink)`
     color: ${({ theme }) => theme.colors.accent};
     border-bottom: 1px solid ${({ theme }) => theme.colors.accent};
   }
-  :hover:not(.active),
-  :focus-visible:not(.active) {
+  &:hover:not(.active),
+  &:focus-visible:not(.active) {
     color: ${({ theme }) => theme.colors.accent};
   }
 
