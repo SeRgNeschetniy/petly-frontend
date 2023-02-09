@@ -325,6 +325,7 @@ export const AddIcon = styled(AiFillHeart)`
   width: 15px;
   height: 15px;
   color: white;
+  margin-left: 8px;
 `;
 
 export const AddedIcon = styled(AiFillHeart)`
