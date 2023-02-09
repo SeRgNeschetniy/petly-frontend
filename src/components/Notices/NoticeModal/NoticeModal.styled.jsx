@@ -100,8 +100,10 @@ export const SubTitle = styled.p`
   @media screen and (max-width: 767px) {
     margin-bottom: 20px;
   }
-  @media screen and (min-width: 1280px) {
-    width: 350px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    width: 443px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
