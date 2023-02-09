@@ -59,12 +59,10 @@ export const ButtonEdit = styled.button`
   height: 20px;
   background: #fdf7f2;
   border-radius: 20px;
-  rgb(245, 146, 86)
   backdrop-filter: blur(2px);
   transition: background 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  :hover{
+  :hover {
     background: ${theme.colors.brightAccent};
-    
   }
   @media screen and (min-width: 768px) {
     width: 32px;
