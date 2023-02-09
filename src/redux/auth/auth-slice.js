@@ -25,21 +25,24 @@ const authSlice = createSlice({
     addTokenToStore(store, action) {
       store.token = action.payload;
     },
+    setError(store, action) {
+      store.error = action.payload;
+    }
   },
   extraReducers: {
     [signup.pending]: store => {
-      store.loading = true;
+      // store.loading = true;
       store.error = null;
     },
     [signup.fulfilled]: (store, { payload }) => {
       store.user = payload.user;
       store.token = payload.token;
-      store.loading = false;
+      // store.loading = false;
       store.isLogin = true;
     },
-    [signup.rejected]: (store, { error }) => {
-      store.loading = false;
-      store.error = error;
+    [signup.rejected]: (store, {payload}) => {
+      store.error = payload;
+      // store.loading = false;
     },
     [login.pending]: store => {
       store.loading = true;
@@ -151,5 +154,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { addTokenToStore } = authSlice.actions;
+export const { addTokenToStore, setError } = authSlice.actions;
 export default authSlice.reducer;
