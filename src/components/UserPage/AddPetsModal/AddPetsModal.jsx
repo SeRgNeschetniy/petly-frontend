@@ -25,7 +25,7 @@ const ModalAddsPet = props => {
     );
   } else {
     Child = (
-      <AddPetsSecondForm
+      <AddPetsSecondForm         
         setData={setData}
         closeModal={props.onCloseModal}
         setPage={setPage}
