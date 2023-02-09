@@ -93,8 +93,8 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                 // width="288"
                 // width="288" height="328"
               />
+              <Sticker>{category}</Sticker>
             </WrapImage>
-            <Sticker>{category}</Sticker>
             <TabletWrapper>
               <TabletTextWrapper>
                 <Title>{title}</Title>
@@ -183,8 +183,9 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                 outline
                 noMargin
               >
-                Add to
-                <AddedIcon />
+                <p style={{ marginBottom: 0 }}>
+                  Add to <AddedIcon />
+                </p>
               </ModalBtnAdd>
             )}
             <a href={owner ? `tel:${owner.phone}` : ''}>

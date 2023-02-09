@@ -24,6 +24,7 @@ export const Heading = styled.h3`
   font-size: 12px;
   line-height: 1.3;
   color: ${theme.colors.accent};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     margin-bottom: 16px;
@@ -33,6 +34,11 @@ export const Heading = styled.h3`
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.brightAccent};
   }
 `;
 
@@ -73,10 +79,19 @@ export const TextField = styled.li`
   }
 `;
 
+export const Contact = styled.span`
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.accent};
+  }
+`;
+
 export const TimeBtn = styled.button`
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
-    color: ${theme.colors.accent};
+    color: ${theme.colors.brightAccent};
   }
 `;
 
