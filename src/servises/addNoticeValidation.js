@@ -3,14 +3,14 @@ import * as Yup from 'yup';
 export const formOneValidationSchema = Yup.object({
   category: Yup.string().required('Category is required'),
   title: Yup.string()
-    .min(2, 'Too Short!')
-    .max(16, 'Too Long!')
+    .min(2, 'Title Too Short!')
+    .max(16, 'Title Too Long!')
     .label('Name')
     .required('Name is required')
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z\s]+?$/iu, 'Only letters in "Title"'),
   name: Yup.string()
-    .min(2, 'Too Short!')
-    .max(16, 'Too Long!')
+    .min(2, 'Name Too Short!')
+    .max(16, 'Name Too Long!')
     .label('Name')
     .required('Name is required')
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z\s]+?$/iu, 'Only letters in "Name"'),
@@ -34,8 +34,8 @@ export const formOneValidationSchema = Yup.object({
     .label('Date of birth')
     .required('Date of birth is required'),
   breed: Yup.string()
-    .min(2, 'Too Short!')
-    .max(16, 'Too Long!')
+    .min(2, 'Breed Too Short!')
+    .max(16, 'Breed Too Long!')
     .label('Date of birth')
     .required('Breed is required'),
 });
@@ -43,7 +43,8 @@ export const formOneValidationSchema = Yup.object({
 export const formTwoValidationSchema = Yup.object({
   sex: Yup.string().required('Sex is required'),
   comments: Yup.string()
-    .min(8, 'Too Short!')
+    .min(8, 'Comments Too Short!')
+    .max(120, 'Comments Too Long!')
     .label('Comment')
     .required('Comment is required'),
   location: Yup.string().required('Location is required'),
