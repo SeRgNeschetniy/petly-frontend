@@ -14,16 +14,30 @@ export const ModalBackground = styled.div`
 `;
 
 export const WrapImage = styled.div`
-  margin-bottom: 0;
-  background-size: cover;
+  position: relative;
+  height: 240px;
+  width: 100%;
+  overflow: hidden;
+
+  & img {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+
+    @media (min-width: 768px) {
+      width: 288px;
+      height: 328px;
+    }
+  }
 
   @media (max-width: 767px) {
-    width: 100%;
-    margin-right: 0;
+    // width: 100%;
+    // margin-right: 0;
     margin-bottom: 16px;
   }
   @media (min-width: 768px) {
     margin-right: 20px;
+    height: 328px;
   }
 `;
 
@@ -162,13 +176,17 @@ export const ButtonWrapper = styled.div`
 export const ModalBtnAdd = styled.button`
   letter-spacing: 0.04em;
   display: ${props => (props.icon ? 'flex' : 'block')};
+  text-align: center;
+  display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 12px;
-  padding: 9px 87px;
+  padding: 9px 0px;
   border-radius: 40px;
   border: 2px solid ${theme.colors.accent};
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
 
   &:not(:last-child) {
     margin-bottom: 0;
@@ -214,14 +232,14 @@ export const ModalBtnRemove = styled.button`
   border: 2px solid ${theme.colors.accent};
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   background-color: ${theme.colors.accent};
-  color: white;
+  ${theme.colors.white};
   &:not(:last-child) {
     margin-bottom: 0;
   }
 
   &:hover,
   &:focus {
-    background-color: white;
+    background-color: ${theme.colors.white};
     color: ${theme.colors.accent};
   }
 
@@ -285,7 +303,7 @@ export const ModalBtnContact = styled.button`
 export const Sticker = styled.span`
   position: absolute;
   left: 0;
-  top: 80px;
+  top: 20px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   width: 150px;
@@ -301,21 +319,17 @@ export const Sticker = styled.span`
 
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
-
-  @media (min-width: 768px) {
-    top: 52px;
-  }
 `;
 
 export const AddIcon = styled(AiFillHeart)`
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   color: white;
 `;
 
 export const AddedIcon = styled(AiFillHeart)`
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   color: ${theme.colors.accent};
   margin-left: 8px;
 `;

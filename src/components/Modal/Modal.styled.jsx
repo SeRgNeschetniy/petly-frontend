@@ -15,4 +15,8 @@ export const Overlay = styled.div`
   overflow-y: scroll;
   inset: 0;
   z-index: 12;
+
+  @media (max-width: 767px) {
+    padding: 200px 20px 20px 20px;
+  }
 `;
