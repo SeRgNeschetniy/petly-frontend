@@ -46,7 +46,7 @@ const noticesSlice = createSlice({
     },
     [fetchNotices.rejected]: handleRejected,
 
-    //[fetchFavoritesNotices.pending]: handlePending,
+    [fetchFavoritesNotices.pending]: handlePending,
     [fetchFavoritesNotices.fulfilled](state, action) {
       state.noticesFavorites = action.payload;
       state.isLoading = false;
@@ -78,6 +78,9 @@ const noticesSlice = createSlice({
     [deleteNotice.pending]: handlePending,
     [deleteNotice.fulfilled]: (state, { payload }) => {
       state.notices = state.notices.filter(notice => notice._id !== payload);
+      state.noticesFavorites = state.noticesFavorites.filter(
+        notice => notice._id !== payload
+      );
       state.noticesUser = state.noticesUser.filter(
         notice => notice._id !== payload
       );
@@ -99,7 +102,7 @@ const noticesSlice = createSlice({
       state.isLoading = false;
     },
 
-    // [addToFavorite.pending]: handlePending,
+    [addToFavorite.pending]: handlePending,
     [addToFavorite.fulfilled]: (state, { payload }) => {
       state.noticesFavorites.push(payload);
       state.isLoading = false;
@@ -107,7 +110,7 @@ const noticesSlice = createSlice({
     },
     [addToFavorite.rejected]: handleRejected,
 
-    // [deleteFromFavorites.pending]: handlePending,
+    [deleteFromFavorites.pending]: handlePending,
     [deleteFromFavorites.fulfilled]: (state, { payload }) => {
       state.noticesFavorites = state.noticesFavorites.filter(
         item => item._id !== payload
