@@ -10,6 +10,7 @@ import {
   Form,
   Avatar,
   EditBox,
+  ImageLoaderContainer,
   EditPhotoButton,
   FormDiv,
   Label,
@@ -22,10 +23,15 @@ import UserInputEmail from './UserInput/UserEmail/UserEmail';
 import UserInputCity from './UserInput/UserCity/UserCity';
 import UserInputBirthday from './UserInput/UserBirthday/UserBirthday';
 import UserInputPhone from './UserInput/UserPhone/UserPhone';
+import { selectIsAvatarLoading } from 'redux/auth/auth-selectors';
+import Loader from 'components/Loader';
+
+
 export default function UserData() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
+  const isAvatarLoading = useSelector(selectIsAvatarLoading);
 
   const changeImage = async event => {
     const formData = new FormData();
@@ -33,8 +39,6 @@ export default function UserData() {
 
     dispatch(patchAvatar(formData));
   };
- 
-  
   return (
     <Box>
       <AccentText>My information:</AccentText>
@@ -47,7 +51,10 @@ export default function UserData() {
               position: 'relative',
             }}
           >
-            <Avatar src={user.avatarURL}></Avatar>
+            <ImageLoaderContainer>
+              {isAvatarLoading && <Loader />}
+              <Avatar src={user.avatarURL}></Avatar>
+            </ImageLoaderContainer>
             <EditBox>
               <TbCamera
                 style={{ width: '18px', height: '18px', color: '#F59256' }}

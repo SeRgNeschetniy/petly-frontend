@@ -19,26 +19,23 @@ import {
   InputPhoto,
   FormSecond,
   Textarea,
-  Text,
   CrossBig,
   ButtonAddPhoto,
   AvatarImg,
   RadioWrapp,
   LabelRadioSexBtn,
   RadioSexBtn,
+  IconMale,
+  IconFemale,
+  SpanStar,
+  AddImg,
 } from './NoticeModal.styled';
 import { useDispatch } from 'react-redux';
 import { addNewNotice } from 'redux/notices/notices-operation';
 
-import { MdMale } from 'react-icons/md';
-import { MdFemale } from 'react-icons/md';
-import {TfiPlus} from 'react-icons/tfi';
-
 export const NoticeSecondForm = props => {
   const [img, setImg] = useState(null);
   const dispatch = useDispatch();
-
-
 
   const handleBackClick = values => {
     props.setData(prev => {
@@ -58,6 +55,8 @@ export const NoticeSecondForm = props => {
     showOnlyTheLastOne: true,
     timeout: 2000,
   };
+
+  const resultOfCategory = props.data.category === 'sell';
 
   return (
     <Container>
@@ -89,15 +88,21 @@ export const NoticeSecondForm = props => {
             props.closeModal();
           }}
         >
-          {({ setFieldValue, handleChange, handleSubmit, values, ...props }) => (
-            <FormSecond
-              onSubmit={handleSubmit}
-              encType="multipart/form-data"
-            >
+          {({
+            setFieldValue,
+            handleChange,
+            handleSubmit,
+            values,
+            ...props
+          }) => (
+            <FormSecond onSubmit={handleSubmit} encType="multipart/form-data">
+              <Label htmlFor="sex">
+                The sex<SpanStar>*</SpanStar>:
+              </Label>
               <RadioWrapp role="group" aria-labelledby="sex-group">
                 <RadioSexBtn id="male" type="radio" name="sex" value="male" />
                 <LabelRadioSexBtn htmlFor="male">
-                  <MdMale size="4rem"></MdMale>
+                  <IconMale />
                   Male
                 </LabelRadioSexBtn>
                 <RadioSexBtn
@@ -107,14 +112,16 @@ export const NoticeSecondForm = props => {
                   value="female"
                 />
                 <LabelRadioSexBtn htmlFor="female">
-                  <MdFemale size="4rem"></MdFemale>
+                  <IconFemale />
                   Female
                 </LabelRadioSexBtn>
               </RadioWrapp>
               {props.isSubmitting && props.errors.sex
-            ? Notify.failure(props.errors.sex, notifyOptions)
-            : null}
-              <Label htmlFor="location">Location*:</Label>
+                ? Notify.failure(props.errors.sex, notifyOptions)
+                : null}
+              <Label htmlFor="location">
+                Location<SpanStar>*</SpanStar>:
+              </Label>
               <InputWrapper>
                 <Input
                   id="location"
@@ -125,26 +132,34 @@ export const NoticeSecondForm = props => {
                 />
               </InputWrapper>
               {props.isSubmitting && props.errors.location
-            ? Notify.failure(props.errors.location, notifyOptions)
-            : null}
-              <Label htmlFor="price">Price*:</Label>
-              <InputWrapper>
-                <Input
-                  id="price"
-                  name="price"
-                  onChange={handleChange}
-                  value={values.price}
-                  placeholder="Type price"
-                />
-              </InputWrapper>
+                ? Notify.failure(props.errors.location, notifyOptions)
+                : null}
+
+              {resultOfCategory && (
+                <Label htmlFor="price">
+                  Price<SpanStar>*</SpanStar>:
+                </Label>
+              )}
+              {resultOfCategory && (
+                <InputWrapper>
+                  <Input
+                    id="price"
+                    name="price"
+                    onChange={handleChange}
+                    value={values.price}
+                    placeholder="Type price"
+                  />
+                </InputWrapper>
+              )}
+
               {props.isSubmitting && props.errors.price
-            ? Notify.failure(props.errors.price, notifyOptions)
-            : null}
-              <Text>Load the pet’s image</Text>
+                ? Notify.failure(props.errors.price, notifyOptions)
+                : null}
+              <Label>Load the pet’s image</Label>
               <ButtonAddPhoto type="button">
                 {!img ? (
-                  <CrossBig>                    
-                    <TfiPlus size={48} />
+                  <CrossBig>
+                    <AddImg />
                   </CrossBig>
                 ) : (
                   <AvatarImg src={img} alt="Pet Image" />
@@ -161,8 +176,8 @@ export const NoticeSecondForm = props => {
                   }}
                 />
                 {props.isSubmitting && props.errors.petImage
-            ? Notify.failure(props.errors.petImage, notifyOptions)
-            : null}
+                  ? Notify.failure(props.errors.petImage, notifyOptions)
+                  : null}
               </ButtonAddPhoto>
               <WraperTextarea>
                 <Label>Comments</Label>
@@ -174,14 +189,17 @@ export const NoticeSecondForm = props => {
                   placeholder="Type comments"
                 />
               </WraperTextarea>
-                  {props.isSubmitting && props.errors.comments
-            ? Notify.failure(props.errors.comments, notifyOptions)
-            : null}
+              {props.isSubmitting && props.errors.comments
+                ? Notify.failure(props.errors.comments, notifyOptions)
+                : null}
               <ButtonWrapper>
                 <ButtonFill type="submit" onSubmit={handleSubmit}>
                   Done
                 </ButtonFill>
-                <ButtonEmpty type="button" onClick={() => handleBackClick(values)}>
+                <ButtonEmpty
+                  type="button"
+                  onClick={() => handleBackClick(values)}
+                >
                   Back
                 </ButtonEmpty>
               </ButtonWrapper>
@@ -193,7 +211,4 @@ export const NoticeSecondForm = props => {
   );
 };
 
-
 export default NoticeSecondForm;
-
-

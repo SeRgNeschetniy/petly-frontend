@@ -11,11 +11,15 @@ import {
 } from './PetsData.styled';
 
 import { TfiPlus } from 'react-icons/tfi';
-
+import Loader from 'components/Loader';
 import PetsCard from './PetCard/PetCard';
+import { selectIsLoading } from 'redux/userpage/userpage-selectors';
+import { useSelector } from 'react-redux';
 
 export default function PetsData() {
+  const isLoading = useSelector(selectIsLoading);
   const { isModalOpen, closeModal, toggleModal } = useModal();
+
   return (
     <SecondBox>
       <Head>
@@ -23,9 +27,11 @@ export default function PetsData() {
         <AddPet>
           <H3>Add pet</H3>
           <AddButton onClick={toggleModal}>
-            <TfiPlus
+            {isLoading ? <Loader position="relative" /> : 
+          <TfiPlus
               style={{ color: '#FFFFFF', height: '18px', width: '16px' }}
             ></TfiPlus>
+          }
           </AddButton>
         </AddPet>
         {isModalOpen && (

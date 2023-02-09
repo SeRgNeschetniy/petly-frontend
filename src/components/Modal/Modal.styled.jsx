@@ -15,4 +15,8 @@ export const Overlay = styled.div`
   overflow-y: scroll;
   inset: 0;
   z-index: 12;
+
+  @media screen and (min-width: 1280px) {
+    align-items: center;
+  }
 `;

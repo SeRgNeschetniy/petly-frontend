@@ -25,10 +25,10 @@ const petsSlice = createSlice({
     },
     [fetchUserPets.fulfilled]: (store, { payload }) => {
       store.items = payload;
-      store.loading = false;
+      store.isLoading = false;
     },
     [fetchUserPets.rejected]: (store, { error }) => {
-      store.loading = false;
+      store.isLoading = false;
       store.error = error;
     },
     [patchContact.pending](store) {
@@ -40,16 +40,18 @@ const petsSlice = createSlice({
       //store.items = store.items.filter(item => item.id !== payload);
     },
     [patchContact.rejected](store, error) {
+      store.isLoading = false;
       store.error = error;
     },
     [removePetCard.pending](store) {
       store.isLoading = true;
     },
     [removePetCard.fulfilled](store, { payload }) {
-      store.isLoading = true;
+      store.isLoading = false;
       store.items = store.items.filter(item => item._id !== payload);
     },
     [removePetCard.rejected](store, error) {
+      store.isLoading = false;
       store.error = error;
     },
     [userLogOut.fulfilled](store) {

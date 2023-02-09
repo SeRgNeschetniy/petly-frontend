@@ -1,13 +1,15 @@
 //import { PropTypes } from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import useScroll from 'hooks/useScroll';
 
 import { Overlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
 function Modal(props) {
-  
+  const { blockScroll, unBlockScroll } = useScroll();
+
   useEffect(() => {
     const handleKeyDown = evt => {
       if (evt.code === 'Escape') {
@@ -16,11 +18,13 @@ function Modal(props) {
     };
 
     window.addEventListener('keydown', handleKeyDown);
+    blockScroll();
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      unBlockScroll();
     };
-  }, [props]);
+  }, [props, blockScroll, unBlockScroll]);
 
   const handleBackdropClick = evt => {
     if (evt.target === evt.currentTarget) {

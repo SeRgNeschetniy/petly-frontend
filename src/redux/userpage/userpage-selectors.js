@@ -1,3 +1,3 @@
 export const selectUserPets = ({ user }) => user.items;
 export const selectUser = ({ state }) => state.user;
-export const selectIsLoading = state => state.isLoading;
+export const selectIsLoading = ({user}) => user.isLoading;
