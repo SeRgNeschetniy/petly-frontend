@@ -8,7 +8,13 @@ export const ModalBackground = styled.div`
   padding: 60px 20px 40px 20px;
   border-radius: 20px;
 
-  @media (min-width: 768px) {
+  @media (max-width: 767px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1279px) {
+    margin-top: 100px;
     padding: 32px 20px;
   }
 `;
@@ -130,6 +136,7 @@ export const Span = styled.p`
 `;
 
 export const LinkToConnect = styled.a`
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     color: ${theme.colors.accent};
   }
