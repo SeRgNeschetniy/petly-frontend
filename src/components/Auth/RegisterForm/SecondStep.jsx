@@ -12,6 +12,7 @@ import { signup } from 'redux/auth/auth-operation';
 import { Title } from '../Auth.styled';
 import { Notify } from 'notiflix';
 import { secondStepValidation } from 'servises/LoginRegisterValidations';
+import { setError } from 'redux/auth/auth-slice';
 
 export default function SecondStep({
   setSecondPage,
@@ -35,6 +36,7 @@ export default function SecondStep({
         phone: values.phone,
       };
     });
+    dispatch(setError(null))
     // const { name, city, phone } = e.target;
     // const { email, password } = registerState;
     // const data = { email, password, name: name.value, city: city.value, phone: phone.value };

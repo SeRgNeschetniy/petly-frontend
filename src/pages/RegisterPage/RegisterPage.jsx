@@ -2,14 +2,15 @@ import { useState } from 'react';
 import { BackgroundContainer } from '../../components/Auth/Auth.styled';
 import FirstStep from '../../components/Auth/RegisterForm/FirstStep';
 import SecondStep from '../../components/Auth/RegisterForm/SecondStep';
-import { selectIsLogin } from 'redux/auth/auth-selectors';
+import { selectError, selectIsLogin } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router';
 import { Container, Main } from 'styles';
+import { Notify } from 'notiflix';
 
 export default function RegisterPage() {
   const [secondPage, setSecondPage] = useState(false);
-
+  const error = useSelector(selectError);
   const [registerState, setRegisterState] = useState({
     email: '',
     password: '',
@@ -38,6 +39,11 @@ export default function RegisterPage() {
     );
   }
 
+  const notifyOptions = {
+    showOnlyTheLastOne: true,
+    timeout: 2000,
+  };
+
   const isLogin = useSelector(selectIsLogin);
 
   if (isLogin) {
@@ -47,6 +53,7 @@ export default function RegisterPage() {
   return (
     <Main page="login">
       <Container>
+        {error && Notify.failure(error.message, notifyOptions)}
         <BackgroundContainer>{Child}</BackgroundContainer>
       </Container>
     </Main>
