@@ -157,4 +157,6 @@ export const Links = styled(NavLink)`
   :focus-visible:not(.active) {
     color: ${({ theme }) => theme.colors.accent};
   }
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
