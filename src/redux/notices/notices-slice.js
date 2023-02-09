@@ -35,7 +35,11 @@ const noticesSlice = createSlice({
   name: 'notices',
   initialState: initialState,
   extraReducers: {
-    [fetchNotices.pending]: handlePending,
+    [fetchNotices.pending](state, { payload }) {
+      state.isLoading = true;
+      state.error = null;
+      state.notice = [];
+    },
     [fetchNotices.fulfilled](state, { payload }) {
       state.notices = payload.notices;
       state.query = payload.query;
@@ -46,7 +50,11 @@ const noticesSlice = createSlice({
     },
     [fetchNotices.rejected]: handleRejected,
 
-    [fetchFavoritesNotices.pending]: handlePending,
+    [fetchFavoritesNotices.pending](state, { payload }) {
+      state.isLoading = true;
+      state.error = null;
+      state.noticesFavorites = [];
+    },
     [fetchFavoritesNotices.fulfilled](state, action) {
       state.noticesFavorites = action.payload;
       state.isLoading = false;
@@ -54,6 +62,11 @@ const noticesSlice = createSlice({
     },
     [fetchFavoritesNotices.rejected]: handleRejected,
 
+    [fetchUserNotices.pending](state, { payload }) {
+      state.isLoading = true;
+      state.error = null;
+      state.noticesUser = [];
+    },
     [fetchUserNotices.fulfilled](state, action) {
       state.noticesUser = action.payload;
       state.isLoading = false;
@@ -75,6 +88,7 @@ const noticesSlice = createSlice({
       state.error = payload;
       state.isLoading = false;
     },
+
     [deleteNotice.pending]: handlePending,
     [deleteNotice.fulfilled]: (state, { payload }) => {
       state.notices = state.notices.filter(notice => notice._id !== payload);
@@ -91,6 +105,7 @@ const noticesSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+
     [addNewNotice.pending]: handlePending,
     [addNewNotice.fulfilled](state, { payload }) {
       state.notices.push(payload);
