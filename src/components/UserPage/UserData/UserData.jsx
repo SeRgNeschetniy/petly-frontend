@@ -22,7 +22,6 @@ import UserInputEmail from './UserInput/UserEmail/UserEmail';
 import UserInputCity from './UserInput/UserCity/UserCity';
 import UserInputBirthday from './UserInput/UserBirthday/UserBirthday';
 import UserInputPhone from './UserInput/UserPhone/UserPhone';
-
 export default function UserData() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -31,9 +30,11 @@ export default function UserData() {
   const changeImage = async event => {
     const formData = new FormData();
     formData.append('avatar', event.target.files[0]);
+
     dispatch(patchAvatar(formData));
   };
-
+ 
+  
   return (
     <Box>
       <AccentText>My information:</AccentText>

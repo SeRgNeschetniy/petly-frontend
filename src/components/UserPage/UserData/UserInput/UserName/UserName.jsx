@@ -1,5 +1,6 @@
 import { BoxInput, TextField, InputForm, ButtonEdit } from './UserName.styled';
-import { FiEdit2, FiCheck } from 'react-icons/fi';
+import {  FiCheck } from 'react-icons/fi';
+import { MdEdit } from "react-icons/md";
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/auth-selectors';
@@ -59,6 +60,7 @@ export default function UserInputName({setIsEdit, isEdit}) {
             style={{
               background: '#FDF7F2',
               border: '1px solid rgba(245, 146, 86, 0.5)',
+              
             }}
             disabled={disabled}
           ></InputForm>
@@ -66,7 +68,7 @@ export default function UserInputName({setIsEdit, isEdit}) {
       </div>
       <ButtonEdit type="submit" onClick={handleGameClick}>
         <div>
-          {disabled ? <FiEdit2 color="#F59256" /> : <FiCheck color="#F59256" />}
+          {disabled ? <MdEdit color="#F59256" size={"24px"}/> : <FiCheck color="#F59256" size={"24px"}/>}
         </div>
       </ButtonEdit>
     </BoxInput>
