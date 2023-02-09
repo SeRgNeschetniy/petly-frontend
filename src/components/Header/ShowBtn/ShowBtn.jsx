@@ -1,10 +1,10 @@
-import { Container, Burger, Close } from './ShowBtn.styled';
+import { Container, BurgerIcon, CloseIcon } from './ShowBtn.styled';
 
 export default function ShowBtn({ show, showContent }) {
   return (
-    <Container onClick={showContent} show={show}>
-      {!show && <Burger />}
-      {show && <Close />}
+    <Container onClick={showContent}>
+      {!show && <BurgerIcon />}
+      {show && <CloseIcon />}
     </Container>
   );
 }

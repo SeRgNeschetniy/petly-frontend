@@ -1,22 +1,19 @@
 import styled from '@emotion/styled';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { GrClose } from 'react-icons/gr';
 
-export const Burger = styled(GiHamburgerMenu)`
+import { ReactComponent as Burger } from '../../../images/burgerAndClose/burger.svg';
+import { ReactComponent as Close } from '../../../images/burgerAndClose/close.svg';
+
+export const BurgerIcon = styled(Burger)`
   display: flex;
-  width: 35px;
-  height: 35px;
 `;
-export const Close = styled(GrClose)`
+export const CloseIcon = styled(Close)`
   display: flex;
-  width: 28px;
-  height: 28px;
 `;
 export const Container = styled.button`
   margin-left: auto;
 
   @media screen and (min-width: 768px) {
-    margin-left: ${({ show }) => (show ? '30px' : '23px')};
+    margin-left: 20px;
   }
   @media screen and (min-width: 1280px) {
     display: none;
