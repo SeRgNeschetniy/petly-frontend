@@ -9,10 +9,12 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
 import noticesReducer from './notices/notices-slice';
 import authReducer from './auth/auth-slice';
 import { userPetsReducer } from './userpage/userpage-slice';
-import storage from 'redux-persist/lib/storage';
+import { searchReducer } from './search/search-slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -27,6 +29,7 @@ export const store = configureStore({
     notices: noticesReducer,
     auth: authPersistedReducer,
     user: userPetsReducer,
+    search: searchReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
