@@ -17,7 +17,6 @@ const initialState = {
   isLoading: false,
   error: null,
   oneNotice: [],
-  query: '',
   page: '',
   total: '',
 };
@@ -42,7 +41,6 @@ const noticesSlice = createSlice({
     },
     [fetchNotices.fulfilled](state, { payload }) {
       state.notices = payload.notices;
-      state.query = payload.query;
       state.page = payload.page;
       state.total = payload.total;
       state.isLoading = false;
