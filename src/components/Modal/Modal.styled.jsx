@@ -12,7 +12,6 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.75);
-  border: 1px solid ${theme.colors.accent};
   overflow: hidden;
   overflow-y: scroll;
   inset: 0;

@@ -92,7 +92,7 @@ export const ModalCommentWrapper = styled.div`
 `;
 
 export const Text = styled.p`
-  width: 50%;
+  width: 40%;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.35;
@@ -100,8 +100,8 @@ export const Text = styled.p`
 
   @media (min-width: 768px) {
     font-size: 16px;
-    width: 70px;
-    margin-right: 51px;
+    // width: 70px;
+    // margin-right: 51px;
   }
 `;
 
