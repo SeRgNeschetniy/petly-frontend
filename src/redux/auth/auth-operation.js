@@ -16,12 +16,14 @@ export const signup = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/register', registerData);
       return data;
-    } catch ({ responce }) {
-      const error = {
-        status: responce.status,
-        message: responce.data.message,
+    } catch (error) {
+      console.log(error.response.data.message);
+      const frontError = {
+        status: error.response.status,
+        message: error.response.data.message,
       };
-      return rejectWithValue(error);
+      console.log(frontError);
+      return rejectWithValue(frontError);
     }
   }
 );
