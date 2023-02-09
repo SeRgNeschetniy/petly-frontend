@@ -7,6 +7,7 @@ import {
   InfoWrapper,
   TextList,
   TextField,
+  Contact,
 } from './FriendsItem.styled';
 
 const FriendsItem = ({
@@ -44,27 +45,35 @@ const FriendsItem = ({
 
           <TextField>
             Address: <br />
-            {address ? (
-              <a href={addressUrl}>{address}</a>
-            ) : (
-              <span>-------------</span>
-            )}
+            <Contact>
+              {address ? (
+                <a href={addressUrl} target="_blank" rel="noopener noreferrer">
+                  {address}
+                </a>
+              ) : (
+                <span>-------------</span>
+              )}
+            </Contact>
           </TextField>
           <TextField>
             Email: <br />
-            {email ? (
-              <a href={`mailto: ${email} `}>{email}</a>
-            ) : (
-              <span>-------------</span>
-            )}
+            <Contact>
+              {email ? (
+                <a href={`mailto: ${email} `}>{email}</a>
+              ) : (
+                <span>-------------</span>
+              )}
+            </Contact>
           </TextField>
           <TextField>
             Phone: <br />
-            {phone ? (
-              <a href={`tel: ${phone} `}>{phone}</a>
-            ) : (
-              <span>-------------</span>
-            )}
+            <Contact>
+              {phone ? (
+                <a href={`tel: ${phone} `}>{phone}</a>
+              ) : (
+                <span>-------------</span>
+              )}
+            </Contact>
           </TextField>
         </TextList>
       </InfoWrapper>
