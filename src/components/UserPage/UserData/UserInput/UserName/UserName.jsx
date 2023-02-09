@@ -7,7 +7,7 @@ import { patchContact } from 'redux/userpage/userpage-operation';
 import * as Yup from 'yup';
 import { Notify } from 'notiflix';
 
-export default function UserInputName() {
+export default function UserInputName({setIsEdit, isEdit}) {
   const user = useSelector(selectUser);
   const [name, setName] = useState(user.name);
   const dispatch = useDispatch();
@@ -24,12 +24,14 @@ export default function UserInputName() {
      name: Yup.string().min(2).required('Required')
   })
   function handleGameClick(e) {
-    if (disabled) {
+    if (!isEdit) {
+      setIsEdit(true);
       setDisabled(false);
-    } else {
+    } else if(!disabled && isEdit){
         schema.validate({name:name}).then(
           function (valid) {
-       dispatch(patchContact(valid));
+            dispatch(patchContact(valid));
+            setIsEdit(false);
         setDisabled(true);
     }).catch(
           function (e) {

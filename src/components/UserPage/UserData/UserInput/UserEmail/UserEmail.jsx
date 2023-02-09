@@ -7,7 +7,7 @@ import { patchContact } from 'redux/userpage/userpage-operation';
 import * as Yup from 'yup';
 import { Notify } from 'notiflix';
 
-export default function UserInputEmail() {
+export default function UserInputEmail({setIsEdit, isEdit}) {
   const user = useSelector(selectUser);
   const [email, setEmail] = useState(user.email);
   const dispatch = useDispatch();
@@ -29,13 +29,15 @@ export default function UserInputEmail() {
   // };
 
   function handleGameClick(e) {
-    if (disabled) {
+    if (!isEdit) {
+      setIsEdit(true);
       setDisabled(false);
-    } else {
+    } else if(!disabled && isEdit){
       schema.validate({email:email}).then(
           function (valid) {
-       dispatch(patchContact(valid));
-        setDisabled(true);
+          dispatch(patchContact(valid));
+          setIsEdit(false);
+          setDisabled(true);
     }).catch(
           function (e) {
        Notify.failure(e.message, notifyOptions)

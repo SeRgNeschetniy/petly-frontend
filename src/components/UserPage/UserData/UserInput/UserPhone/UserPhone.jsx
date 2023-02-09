@@ -9,7 +9,7 @@ import { patchContact } from 'redux/userpage/userpage-operation';
 import * as Yup from 'yup';
 import { Notify } from 'notiflix';
 
-export default function UserInputPhone() {
+export default function UserInputPhone({setIsEdit, isEdit}) {
   const user = useSelector(selectUser);
   const [phone, setPhone] = useState(user.phone);
   const dispatch = useDispatch();
@@ -28,12 +28,14 @@ const notifyOptions = {
 
 
   function handleGameClick(e) {
-    if (disabled) {
+    if (!isEdit) {
+      setIsEdit(true);
       setDisabled(false);
-    } else {
+    } else if(!disabled && isEdit){
       schema.validate({ phone: phone }).then(
         function (valid) {
           dispatch(patchContact(valid));
+          setIsEdit(false)
           setDisabled(true);
         }).catch(
           function (e) {

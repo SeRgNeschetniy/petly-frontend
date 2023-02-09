@@ -2,7 +2,7 @@ import { TbCamera } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/auth-selectors';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AccentText,
   Profile,
@@ -26,6 +26,7 @@ import UserInputPhone from './UserInput/UserPhone/UserPhone';
 export default function UserData() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const [isEdit, setIsEdit] = useState(false);
 
   const changeImage = async event => {
     const formData = new FormData();
@@ -65,15 +66,15 @@ export default function UserData() {
 
         <FormDiv>
           <Form>
-            <UserInputName />
+            <UserInputName setIsEdit={setIsEdit} isEdit={isEdit} />
 
-            <UserInputEmail />
+            <UserInputEmail setIsEdit={setIsEdit} isEdit={isEdit} />
 
-            <UserInputBirthday />
+            <UserInputBirthday setIsEdit={setIsEdit} isEdit={isEdit} />
 
-            <UserInputPhone />
+            <UserInputPhone setIsEdit={setIsEdit} isEdit={isEdit} />
 
-            <UserInputCity />
+            <UserInputCity setIsEdit={setIsEdit} isEdit={isEdit} />
           </Form>
           <Logout />
         </FormDiv>
