@@ -31,9 +31,7 @@ export const AddPetsSecondForm = props => {
     showOnlyTheLastOne: true,
     timeout: 2000,
   };
-
-  const [img, setImg] = useState(null);
-
+  const [img, setImg] = useState(null);   
   const dispatch = useDispatch();
 
   const handleSubmit = values => {
@@ -44,12 +42,19 @@ export const AddPetsSecondForm = props => {
     formData.append('photoPet', values.petImage);
     formData.append('comment', values.comments);
     dispatch(addMyPet(formData));
-
     props.closeModal();
   };
 
-  const handleOnClick = () => props.setPage(prev => prev - 1);
-  
+  const handleOnClick = (values, img) =>{ 
+    props.setData(prev =>{
+      return{
+        ...prev,
+        comments: values.comments,        
+      }
+    });    
+    props.setPage(prev => prev - 1);
+  };
+
   return (
     <Container>
       <ButtonClose type="button" onClick={props.closeModal}>
@@ -62,7 +67,7 @@ export const AddPetsSecondForm = props => {
           initialValues={props.data}
           onSubmit={handleSubmit}
         >
-          {({ setFieldValue, ...props }) => (
+          {({ setFieldValue, values, ...props }) => (
             <FormSecond encType="multipart/form-data">
               <Text>Add photo and some comments</Text>
               <ButtonAddPhoto type="button">
@@ -92,6 +97,7 @@ export const AddPetsSecondForm = props => {
                 <Label> Comments</Label>
                 <Textarea
                   onChange={e => setFieldValue('comments', e.target.value)}
+                  value={values.comments}
                   name="comments"
                   as="textarea"
                   placeholder="Type comments"
@@ -105,7 +111,7 @@ export const AddPetsSecondForm = props => {
                 <ButtonFill type="submit">Done</ButtonFill>
                 <ButtonEmpty
                   type="button"
-                  onClick={handleOnClick}
+                  onClick={() => handleOnClick(values)}
                 >
                   Back
                 </ButtonEmpty>
