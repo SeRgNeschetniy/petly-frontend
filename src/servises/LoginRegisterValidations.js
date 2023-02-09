@@ -27,7 +27,7 @@ export const secondStepValidation = Yup.object({
   name: Yup.string()
     .min(2)
     .matches(
-      /^[а-яА-ЯёЁіІїЇєЄ-\s]+$/,
+      /^[а-яёіїєА-ЯЁІЇЄ-\s]+$/,
       `Enter data in the format "City, region"`
     )
     .required('Required'),
@@ -35,7 +35,7 @@ export const secondStepValidation = Yup.object({
     .min(2)
     .required('Required')
     .matches(
-      /^[а-яА-ЯёЁіІїЇєЄ]+,?\s[а-яА-ЯёЁіІїЇєЄ]+$/,
+      /^[а-яёіїєА-ЯЁІЇЄ]+,?\s[а-яёіїєА-ЯЁІЇЄ]+$/,
       `Enter data in the format "City, region"`
     ),
   phone: Yup.string()

@@ -7,13 +7,13 @@ export const formOneValidationSchema = Yup.object({
     .max(16, 'Too Long!')
     .label('Name')
     .required('Name is required')
-    .matches(/^[а-яА-ЯёЁіІїЇєЄ\s]+?$/iu, 'Only Cyrillic letters in "Title"'),
+    .matches(/^[а-яёіїєА-ЯЁІЇЄ\s]+?$/iu, 'Only letters in "Title"'),
   name: Yup.string()
     .min(2, 'Too Short!')
     .max(16, 'Too Long!')
     .label('Name')
     .required('Name is required')
-    .matches(/^[а-яА-ЯёЁіІїЇєЄ\s]+?$/iu, 'Only Cyrillic letters in "Name"'),
+    .matches(/^[а-яёіїєА-ЯЁІЇЄ\s]+?$/iu, 'Only letters in "Name"'),
   dateOfBirth: Yup.string()
     .matches(
       /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
@@ -48,5 +48,8 @@ export const formTwoValidationSchema = Yup.object({
     .required('Comment is required'),
   location: Yup.string().required('Location is required'),
   petImage: Yup.mixed().label('Pet image').required('Pet image is required'),
-  price: Yup.string().matches(/^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$/, "Price must be in numbers").required("Price is require"),
+  price: Yup.string().matches(
+    /^[1-9]\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$/,
+    'Price must be in numbers'
+  ),
 });
