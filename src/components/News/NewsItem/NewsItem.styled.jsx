@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import { theme } from 'styles/theme';
+import { theme } from 'styles/theme';
 
 export const Item = styled.li`
   // padding: 12px 4px;
@@ -103,12 +103,12 @@ export const Link = styled.a`
   line-height: 1.37;
   text-align: right;
   text-decoration: underline;
+  color: ${theme.colors.accent};
 
   /* Акцентный */
 
-  color: rgba(17, 17, 17, 0.6);
   &:hover,
   &:focus {
-    color: #f59256;
+    color: ${theme.colors.brightAccent};
   }
 `;
