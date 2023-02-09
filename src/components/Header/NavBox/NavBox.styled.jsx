@@ -8,7 +8,7 @@ const showScroll = active => {
 };
 
 export const Container = styled.nav`
-  display: none;
+  display: flex;
   flex-direction: column;
   position: absolute;
   left: 0;
@@ -18,7 +18,7 @@ export const Container = styled.nav`
   margin-top: 72px;
   padding-top: 42px;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 72px);
 
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.mainBackground};
