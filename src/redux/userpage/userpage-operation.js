@@ -27,10 +27,10 @@ export const fetchCurrentUser = createAsyncThunk(
 );
 
 export const fetchUserPets = createAsyncThunk(
-  `/mypets`,
+  `/pets`,
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/mypets`);
+      const { data } = await axios.get(`/mets`);
       console.log(data);
       return data;
     } catch ({ responce }) {
@@ -55,10 +55,10 @@ export const userLogOut = createAsyncThunk(
 );
 
 export const removePetCard = createAsyncThunk(
-  'mypets/delete',
+  'pets/delete',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`/mypets/${id}`);
+      await axios.delete(`/pets/${id}`);
       return id;
     } catch (error) {
       return rejectWithValue(error);
@@ -85,7 +85,7 @@ export const addMyPet = createAsyncThunk(
   'users/addMyPet',
   async (petsData, thunkApi) => {
     try {
-      const { data } = await axios.post('/mypets', petsData);
+      const { data } = await axios.post('/pets', petsData);
       return data;
     } catch ({ responce }) {
       const error = {
