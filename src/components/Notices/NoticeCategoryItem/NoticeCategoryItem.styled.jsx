@@ -13,7 +13,16 @@ export const Item = styled.li`
 `;
 
 export const ImageWrap = styled.div`
-  background-size: cover;
+  position: relative;
+  height: 288px;
+  width: 100%;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: 288px;
+    object-fit: cover;
+  }
 `;
 
 export const BtnWrapper = styled.div`

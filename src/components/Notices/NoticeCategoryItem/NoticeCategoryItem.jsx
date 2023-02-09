@@ -48,7 +48,7 @@ const NoticeCategoryItem = ({ notice }) => {
   } = notice;
   const dispatch = useDispatch();
 
-  const oneNotice = useSelector(selectOneNotice)
+  const oneNotice = useSelector(selectOneNotice);
   const { isModalOpen, closeModal, openModal } = useModal();
   const isLoggedIn = useSelector(selectIsLogin);
   const favorites = useSelector(selectFavorites);
@@ -87,7 +87,7 @@ const NoticeCategoryItem = ({ notice }) => {
   };
 
   const handleMoreClick = async e => {
-    dispatch(fetchNoticeById(e.currentTarget.id))
+    dispatch(fetchNoticeById(e.currentTarget.id));
     openModal();
   };
 
