@@ -111,7 +111,7 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                     <Span>{breed}</Span>
                   </ModalTextWrapper>
                   <ModalTextWrapper>
-                    <Text>Location:</Text>
+                    <Text>Place:</Text>
                     <Span>{location}</Span>
                   </ModalTextWrapper>
                   <ModalTextWrapper>
