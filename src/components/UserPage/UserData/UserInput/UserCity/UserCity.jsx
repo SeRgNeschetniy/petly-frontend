@@ -1,11 +1,12 @@
 import { BoxInput, TextField, InputForm, ButtonEdit } from './UserCity.styled';
-import { FiEdit2, FiCheck } from 'react-icons/fi';
+import { FiCheck } from 'react-icons/fi';
 import { useState } from 'react';
 import { selectUser } from 'redux/auth/auth-selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { patchContact } from 'redux/userpage/userpage-operation';
 import * as Yup from 'yup';
 import { Notify } from 'notiflix';
+import { MdEdit } from "react-icons/md";
 
 export default function UserInputCity() {
   const user = useSelector(selectUser);
@@ -21,13 +22,13 @@ export default function UserInputCity() {
     timeout: 2000,
   }
   const schema = Yup.object({
-     city: Yup.string()
+      city: Yup.string()
     .min(2)
-    .required('Required')
+    .required('City is required!')
     .matches(
-      /^[а-яА-ЯёЁіІїЇєЄ]+,?\s[а-яА-ЯёЁіІїЇєЄ]+$/,
+      /^[а-яёіїєА-ЯЁІЇЄA-Za-z]+,?\s[а-яёіїєА-ЯЁІЇЄA-Za-z]+$/,
       `Enter data in the format "City, region"`
-    ),
+    )
   })
 
   function handleGameClick(e) {
@@ -70,7 +71,7 @@ export default function UserInputCity() {
       </div>
       <ButtonEdit type="submit" onClick={handleGameClick}>
         <div>
-          {disabled ? <FiEdit2 color="#F59256" /> : <FiCheck color="#F59256" />}
+          {disabled ? <MdEdit color="#F59256"  size={"24px"}/> : <FiCheck color="#F59256" size={"24px"}/>}
         </div>
       </ButtonEdit>
     </BoxInput>

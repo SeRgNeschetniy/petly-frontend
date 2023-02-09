@@ -149,6 +149,11 @@ position:absolute;
 right: 0px;
 bottom: 13px;
 align-items: center;
+color:black;
+transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+&:hover {
+    color: rgb(245, 146, 86);
+  }
 @media screen and (min-width: 768px) {
 right: -11px;
 bottom: 11px;
@@ -180,5 +185,6 @@ export const Label = styled.label`
 font-weight: 400;
 font-size: 12px;
 line-height: 22px;
+cursor:pointer;
 
 `
