@@ -38,11 +38,11 @@ const NoticesSearch = ({ onSubmit }) => {
         />
         <div style={{ position: 'absolute', right: '12px', top: '10px' }}>
           {Boolean(searchQuery.length > 0) ? (
-            <BtnSearch type="submit">
+            <BtnSearch>
               <RxCross1 onClick={() => removeQuery('erase')} />
             </BtnSearch>
           ) : (
-            <BtnSearch type="submit">
+            <BtnSearch>
               <AiOutlineSearch size={20} />
             </BtnSearch>
           )}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
