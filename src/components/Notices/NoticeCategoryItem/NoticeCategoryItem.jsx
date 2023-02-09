@@ -10,10 +10,10 @@ import {
   AddToFavoriteBtn,
   Span,
   AddIcon,
-  //  Image,
   AddedIcon,
   DeleteBtn,
   BtnWrapper,
+  ImageWrap,
 } from './NoticeCategoryItem.styled';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,7 +34,7 @@ import Modal from 'components/Modal/Modal';
 import useModal from 'hooks/modal';
 import ReadMoreModal from 'components/Notices/ReadMoreModal/ReadMoreModal';
 
-const NoticeCategoryItem = ({ notice, route }) => {
+const NoticeCategoryItem = ({ notice }) => {
   const {
     _id: id,
     petImage,
@@ -94,21 +94,19 @@ const NoticeCategoryItem = ({ notice, route }) => {
   return (
     <>
       <Item>
-        {/* <Image src={petImage} alt="Pet" width={288} height={288} /> */}
-        <LazyLoadImage
-          alt={title}
-          effect="blur"
-          src={petImage}
-          width={288}
-          height={288}
-        />
-
+        <ImageWrap>
+          <LazyLoadImage
+            alt={title}
+            effect="blur"
+            src={petImage}
+            width="100%"
+          />
+        </ImageWrap>
         <Sticker>{category}</Sticker>
         <AddToFavoriteBtn id={id} onClick={onAddToFavorite}>
           {isFavorite(id).length > 0 ? <AddedIcon /> : <AddIcon />}
         </AddToFavoriteBtn>
         <Container>
-          {/* <Wrapper> */}
           <Title>{title}</Title>
           <Text>
             <Span>Breed:</Span>
@@ -120,7 +118,7 @@ const NoticeCategoryItem = ({ notice, route }) => {
           </Text>
           <Text>
             <Span>Age:</Span>
-            {age === 0 && 'one year'}
+            {age === 0 && 'less than 1 year'}
             {age === 1 && `${age} year`}
             {age !== 1 && age !== 0 && `${age} years`}
           </Text>
@@ -130,7 +128,6 @@ const NoticeCategoryItem = ({ notice, route }) => {
               {price ? `${price} UAH` : '--------'}
             </Text>
           )}
-          {/* </Wrapper> */}
         </Container>
         <BtnWrapper>
           <LearnMoreBtn readMore={id} id={id} onClick={handleMoreClick}>

@@ -15,13 +15,14 @@ export const ModalBackground = styled.div`
 
 export const WrapImage = styled.div`
   margin-bottom: 0;
+  background-size: cover;
+
   @media (max-width: 767px) {
-    width: 240px;
+    width: 100%;
     margin-right: 0;
     margin-bottom: 16px;
   }
   @media (min-width: 768px) {
-    width: 288px;
     margin-right: 20px;
   }
 `;
@@ -29,15 +30,16 @@ export const WrapImage = styled.div`
 export const Image = styled.img`
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
-  margin-right: 0;
   margin-bottom: 0;
 
   @media (max-width: 767px) {
+    margin-left: auto;
+    margin-right: auto;
+
     width: 240px;
   }
   @media (min-width: 768px) {
     width: 288px;
-    height: 328px;
   }
 `;
 export const Wrap = styled.div`
@@ -78,7 +80,10 @@ export const ModalTextWrapper = styled.div`
 `;
 
 export const ModalCommentWrapper = styled.div`
-  margin-bottom: 40px;
+  @media (max-width: 767px) {
+    margin-bottom: 40px;
+    width: 240px;
+  }
 
   @media (min-width: 768px) {
     margin-bottom: 32px;
@@ -107,6 +112,7 @@ export const Span = styled.p`
   line-height: 1.35;
   margin-bottom: 0;
   overflow-wrap: break-word;
+  word-wrap: break-word;
 `;
 
 export const CommentsText = styled.div`
@@ -164,11 +170,11 @@ export const ModalBtnAdd = styled.button`
   }
 
   &:hover,
-  :focus{
+  :focus {
     background-color: ${theme.colors.accent};
     color: ${theme.colors.white};
   }
-  
+
   @media (min-width: 768px) {
     display: flex;
     align-items: center;
@@ -187,7 +193,7 @@ export const ModalBtnAdd = styled.button`
   &::before {
     position: absolute;
   }
-  &:hover > *{
+  &:hover > * {
     color: ${theme.colors.white};
   }
 `;
@@ -213,7 +219,7 @@ export const ModalBtnRemove = styled.button`
     background-color: white;
     color: ${theme.colors.accent};
   }
-  
+
   @media (min-width: 768px) {
     display: flex;
     align-items: center;
@@ -225,7 +231,7 @@ export const ModalBtnRemove = styled.button`
   &::before {
     position: absolute;
   }
-  &:hover > *{
+  &:hover > * {
     color: ${theme.colors.accent};
   }
 `;
@@ -239,11 +245,11 @@ export const ModalBtnContact = styled.button`
   border-radius: 40px;
   background-color: ${theme.colors.accent};
   background-color: ${props =>
-  props.outline ? 'white' : `${theme.colors.accent}`};
+    props.outline ? 'white' : `${theme.colors.accent}`};
   border: 2px solid ${theme.colors.accent};
   color: ${theme.colors.white};
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  width: 100%;
   &:not(:last-child) {
     margin-bottom: 0;
   }

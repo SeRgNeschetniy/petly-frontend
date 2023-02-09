@@ -69,7 +69,6 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
       petImage,
       price,
       sex,
-      updatedAt,
       comments,
       owner,
       category,
@@ -134,7 +133,7 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                   {category === 'sell' && (
                     <ModalTextWrapper>
                       <Text>Price:</Text>
-                      <Span>{price ? `${price}` : '--------'}</Span>
+                      <Span>{price ? `${price} UAH` : '--------'}</Span>
                     </ModalTextWrapper>
                   )}
                 </FieldText>
@@ -170,7 +169,7 @@ export default function ReadMoreModal({ notice, onCloseModal }) {
                 Add to
                 <AddedIcon />
               </ModalBtnAdd>
-            )}{' '}
+            )}
             <a href={owner ? `tel:${owner.phone}` : ''}>
               <ModalBtnContact>Contact</ModalBtnContact>
             </a>
