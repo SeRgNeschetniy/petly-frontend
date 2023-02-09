@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../../../../styles/theme';
 export const BoxInput = styled.div`
   display: flex;
   align-items: centre;
@@ -31,7 +32,12 @@ export const InputForm = styled.input`
   font-size: 12px;
   line-height: 16px;
   padding-left: 12px;
-
+  transition: background 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  &:focus {
+    background: #fdf7f2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+  }
   @media screen and (min-width: 768px) {
     font-weight: 400;
     font-size: 18px;
@@ -51,10 +57,15 @@ export const InputForm = styled.input`
 export const ButtonEdit = styled.button`
   width: 20px;
   height: 20px;
-
-  border-radius: 20px;
   background: #fdf7f2;
+  border-radius: 20px;
+  rgb(245, 146, 86)
   backdrop-filter: blur(2px);
+  transition: background 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  :hover{
+    background: ${theme.colors.brightAccent};
+    
+  }
   @media screen and (min-width: 768px) {
     width: 32px;
     height: 32px;

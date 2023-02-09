@@ -4,14 +4,14 @@ import {
   InputForm,
   ButtonEdit,
 } from './UserBirthday.styled';
-import { FiEdit2, FiCheck } from 'react-icons/fi';
+import { FiCheck } from 'react-icons/fi';
 import { useState } from 'react';
 import { selectUser } from 'redux/auth/auth-selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { patchContact } from 'redux/userpage/userpage-operation';
 import * as Yup from 'yup';
 import { Notify } from 'notiflix';
-
+import { MdEdit } from "react-icons/md";
 export default function UserInputBirthday() {
   const user = useSelector(selectUser);
   const [birthday, setBirthday] = useState(user.birthday);
@@ -80,9 +80,9 @@ console.log()
           ></InputForm>
         )}
       </div>
-      <ButtonEdit type="submit" onClick={handleGameClick}>
+      <ButtonEdit type="submit" onClick={handleGameClick} >
         <div>
-          {disabled ? <FiEdit2 color="#F59256" /> : <FiCheck color="#F59256" />}
+          {disabled ? <MdEdit color="#F59256" size={"24px"}/> : <FiCheck color="#F59256" size={"24px"}/>}
         </div>
       </ButtonEdit>
     </BoxInput>
