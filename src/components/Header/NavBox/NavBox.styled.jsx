@@ -99,18 +99,18 @@ export const AuthLinks = styled(NavLink)`
   border: 2px solid ${({ theme }) => theme.colors.accent};
 
   &.active {
-    color: white;
-    background-color: rgb(245, 146, 86);
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.accent};
   }
   &.active:hover {
-    border: 2px solid rgb(255, 97, 1);
-    background-color: rgb(255, 97, 1);
+    border: 2px solid ${({ theme }) => theme.colors.brightAccent};
+    background-color: ${({ theme }) => theme.colors.brightAccent};
   }
   &:hover:not(.active),
   &:focus-visible:not(.active) {
-    color: white;
-    background-color: rgb(255, 97, 1);
-    border: 2px solid rgb(255, 97, 1);
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.brightAccent};
+    border: 2px solid ${({ theme }) => theme.colors.brightAccent};
   }
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -147,6 +147,7 @@ export const ListLinks = styled.ul`
 `;
 
 export const Links = styled(NavLink)`
+  color: ${p => p.theme.colors.black};
   &.active {
     font-weight: 700;
     color: ${({ theme }) => theme.colors.accent};
@@ -154,6 +155,6 @@ export const Links = styled(NavLink)`
   }
   :hover:not(.active),
   :focus-visible:not(.active) {
-    color: ${p => p.theme.colors.black};
+    color: ${({ theme }) => theme.colors.accent};
   }
 `;
