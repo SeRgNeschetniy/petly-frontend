@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-export const Form = styled.form`
+export const Form = styled.div`
   margin-bottom: 40px;
 
   position: relative;
@@ -40,21 +40,18 @@ export const Input = styled.input`
   :active {
     border: 1px solid ${theme.colors.accent};
   }
-@media screen and (min-width: 768px) {
-  padding-top: 9px;
-  padding-bottom: 9px;
-  padding-left: 20px;
-  padding-right: 40px;
-}
-@media screen and (min-width: 1280px){
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 40px;
-}
-
-
-
+  @media screen and (min-width: 768px) {
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 20px;
+    padding-right: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 40px;
+  }
 `;
 
 export const BtnSearch = styled.button`
