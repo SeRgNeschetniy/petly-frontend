@@ -19,6 +19,7 @@ import {
   RadioWrapp,
   LabelRadioBtn,
   RadioBtn,
+  SpanStar,
 } from './NoticeModal.styled';
 import { Notify } from 'notiflix';
 
@@ -43,7 +44,9 @@ const NoticeFirstForm = props => {
     timeout: 2000,
   };
 
-  const handleOnClick = () =>{props.closeModal()}
+  const handleOnClick = () => {
+    props.closeModal();
+  };
 
   return (
     <Container>
@@ -84,21 +87,27 @@ const NoticeFirstForm = props => {
               {props.isSubmitting && props.errors.category
                 ? Notify.failure(props.errors.category, notifyOptions)
                 : null}
-              <Label htmlFor="titleAd">Title of ad</Label>
+              <Label htmlFor="titleAd">
+                Title of ad<SpanStar>*</SpanStar>
+              </Label>
               <InputWrapper>
                 <Input id="title" name="title" placeholder="Type title ad" />
               </InputWrapper>
               {props.isSubmitting && props.errors.title
                 ? Notify.failure(props.errors.title, notifyOptions)
                 : null}
-              <Label htmlFor="namePet">Name pet</Label>
+              <Label htmlFor="namePet">
+                Name pet<SpanStar>*</SpanStar>
+              </Label>
               <InputWrapper>
                 <Input id="name" name="name" placeholder="Type name pet" />
               </InputWrapper>
               {props.isSubmitting && props.errors.name
                 ? Notify.failure(props.errors.name, notifyOptions)
                 : null}
-              <Label htmlFor="dateOfBirth">Date of birth</Label>
+              <Label htmlFor="dateOfBirth">
+                Date of birth<SpanStar>*</SpanStar>
+              </Label>
               <InputWrapper>
                 <Input
                   id="dateOfBirth"
@@ -109,7 +118,9 @@ const NoticeFirstForm = props => {
               {props.isSubmitting && props.errors.dateOfBirth
                 ? Notify.failure(props.errors.dateOfBirth, notifyOptions)
                 : null}
-              <Label htmlFor="breed">Breed</Label>
+              <Label htmlFor="breed">
+                Breed<SpanStar>*</SpanStar>
+              </Label>
               <InputWrapperLast>
                 <InputLast id="breed" name="breed" placeholder="Type breed" />
               </InputWrapperLast>

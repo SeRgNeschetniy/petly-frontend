@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Field, ErrorMessage, Form } from 'formik';
 import { theme } from '../../../styles/theme';
+import { MdMale } from 'react-icons/md';
+import { MdFemale } from 'react-icons/md';
+import { TfiPlus } from 'react-icons/tfi';
 
 export const Container = styled.div`
   background-color: ${theme.colors.white};
@@ -50,13 +53,37 @@ export const ButtonClose = styled.button`
   }
 `;
 
+export const IconMale = styled(MdMale)`
+  fill: #23c2ef;
+  width: 40px;
+  height: 40px;
+  margin-botom: 20px;
+
+  @media screen and (min-width: 767px) {
+    width: 90px;
+    height: 90px;
+  }
+`;
+
+export const IconFemale = styled(MdFemale)`
+  fill: #ff8787;
+  width: 40px;
+  height: 40px;
+  margin-botom: 20px;
+
+  @media screen and (min-width: 767px) {
+    width: 90px;
+    height: 90px;
+  }
+`;
+
 export const Title = styled.h3`
   font-weight: 500;
   font-size: 1.5rem;
   line-height: 2rem;
   text-align: center;
   margin-top: 20px;
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     font-size: 2.25rem;
     line-height: 3rem;
   }
@@ -69,6 +96,16 @@ export const SubTitle = styled.p`
   line-height: 1.375;
   text-align: center;
   letter-spacing: -0.01em;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -151,7 +188,7 @@ export const ButtonEmpty = styled.button`
     border-color: #ff6101;
     background-color: #ff6101;
   }
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     width: 180px;
     height: 44px;
   }
@@ -167,9 +204,12 @@ export const FormFirst = styled(Form)`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 28px;
   margin-bottom: 20px;
   width: 448px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 28px;
+  }
 `;
 
 export const FormSecond = styled(Form)`
@@ -207,14 +247,14 @@ export const Input = styled(Field)`
   height: 40px;
 
   background-color: ${theme.colors.mainBackground};
-  border: 2px solid ${theme.colors.accent};
+  border: 1px solid ${theme.colors.accent};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    border: 2px solid #ff6101;
+    border: 1px solid ${theme.colors.brightAccent};
   }
   &::placeholder {
     font-size: 14px;
@@ -233,14 +273,14 @@ export const InputLast = styled(Field)`
   width: 240px;
   height: 40px;
   background-color: ${theme.colors.mainBackground};
-  border: 2px solid ${theme.colors.accent};
+  border: 1px solid ${theme.colors.accent};
   border-radius: 40px;
   padding-left: 14px;
   font-size: 14px;
   transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    border: 2px solid #ff6101;
+    border: 1px solid ${theme.colors.brightAccent};
   }
   &::placeholder {
     font-size: 14px;
@@ -302,37 +342,38 @@ export const ButtonAddPhoto = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 208px;
-  height: 208px;
+  width: 116px;
+  height: 116px;
   background: ${theme.colors.mainBackground};
   border-radius: 20px;
   margin-bottom: 28px;
+  margin-top: 12px;
   border: 2px solid ${theme.colors.mainBackground};
   overflow: hidden;
   &:hover,
   &:focus {
     border: 2px solid ${theme.colors.accent};
   }
-  @media screen and (min-width: 767px) {
-    width: 182px;
-    height: 182px;
+  @media screen and (min-width: 768px) {
+    width: 140px;
+    height: 140px;
   }
 `;
 
 export const CrossBig = styled.div`
   position: absolute;
-  width: 48px;
-  height: 48px;
-  color: #d9d9d9;
+  color: #11111199;
 `;
 
 export const Label = styled.label`
   font-weight: 500;
   font-size: 1.1rem;
   line-height: 1.6rem;
+
   @media screen and (min-width: 767px) {
-    font-size: 1.5rem;
-    line-height: 1.6rem;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.08;
   }
 `;
 
@@ -341,11 +382,12 @@ export const WraperTextarea = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
+  width: 100%;
 `;
 
 export const Textarea = styled(Field)`
   padding: 12px;
-  width: 240px;
+  width: 100%;
   height: 100px;
   background: ${theme.colors.mainBackground};
   border: 1px solid ${theme.colors.accent};
@@ -355,10 +397,9 @@ export const Textarea = styled(Field)`
   resize: none;
   &:hover,
   &:focus {
-    border: 2px solid #ff6101;
+    border: 1px solid ${theme.colors.brightAccent};
   }
-  @media screen and (min-width: 767px) {
-    width: 394px;
+  @media screen and (min-width: 768px) {
     height: 116px;
     margin-top: 12px;
   }
@@ -369,11 +410,24 @@ export const RadioWrapp = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   align-items: baseline;
+  margin-bottom: 32px;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 16px;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 1280px) {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
 `;
 
 export const LabelRadioBtn = styled.label`
   font-size: 14px;
-  margin-bottom: 12px;
   padding: 10px 28px;
   text-decoration: none;
   background: ${theme.colors.white};
@@ -383,9 +437,16 @@ export const LabelRadioBtn = styled.label`
   cursor: pointer;
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 12px;
 
   &:not(:last-child) {
-    margin-right: 12px;
+    margin-right: 8px;
+  }
+
+  @media screen and (min-width: 768px) {
+    &:not(:last-child) {
+      margin-right: 12px;
+    }
   }
 
   &.active,
@@ -415,14 +476,20 @@ export const LabelRadioSexBtn = styled.label`
   display: flex;
   flex-direction: column;
   font-size: 14px;
-  margin-bottom: 12px;
-  padding: 10px 28px;
+  // margin-bottom: 12px;
+  // padding: 10px;
   text-decoration: none;
   align-items: center;
   cursor: pointer;
 
   &:not(:last-child) {
-    margin-right: 12px;
+    margin-right: 40px;
+  }
+
+  @media screen and (min-width: 768px) {
+    &:not(:last-child) {
+      margin-right: 80px;
+    }
   }
 
   &.active,
@@ -432,7 +499,6 @@ export const LabelRadioSexBtn = styled.label`
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    margin-bottom: 16px;
     font-size: 20px;
     line-height: 1.3;
   }
@@ -443,5 +509,19 @@ export const RadioSexBtn = styled(Field)`
 
   :checked + label {
     color: ${theme.colors.accent};
+  }
+`;
+
+export const SpanStar = styled.span`
+  color: ${theme.colors.accent};
+`;
+
+export const AddImg = styled(TfiPlus)`
+  width: 40px;
+  height: 40px;
+
+  @media screen and (min-width: 768px) {
+    width: 47px;
+    height: 47px;
   }
 `;
