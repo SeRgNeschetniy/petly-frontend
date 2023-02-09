@@ -30,7 +30,7 @@ export const fetchUserPets = createAsyncThunk(
   `/pets`,
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/mets`);
+      const { data } = await axios.get(`/pets`);
       console.log(data);
       return data;
     } catch ({ responce }) {
