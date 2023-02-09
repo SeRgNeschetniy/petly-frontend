@@ -9,7 +9,16 @@ export const Container = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
+
+  margin-bottom: 0;
+  margin-top: 0;
+
+  @media screen and (max-width: 1279px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
   @media screen and (min-width: 767px) {
     width: 608px;
   }

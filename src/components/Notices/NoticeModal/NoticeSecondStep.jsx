@@ -32,13 +32,11 @@ import { addNewNotice } from 'redux/notices/notices-operation';
 
 import { MdMale } from 'react-icons/md';
 import { MdFemale } from 'react-icons/md';
-import {TfiPlus} from 'react-icons/tfi';
+import { TfiPlus } from 'react-icons/tfi';
 
 export const NoticeSecondForm = props => {
   const [img, setImg] = useState(null);
   const dispatch = useDispatch();
-
-
 
   const handleBackClick = values => {
     props.setData(prev => {
@@ -89,15 +87,18 @@ export const NoticeSecondForm = props => {
             props.closeModal();
           }}
         >
-          {({ setFieldValue, handleChange, handleSubmit, values, ...props }) => (
-            <FormSecond
-              onSubmit={handleSubmit}
-              encType="multipart/form-data"
-            >
+          {({
+            setFieldValue,
+            handleChange,
+            handleSubmit,
+            values,
+            ...props
+          }) => (
+            <FormSecond onSubmit={handleSubmit} encType="multipart/form-data">
               <RadioWrapp role="group" aria-labelledby="sex-group">
                 <RadioSexBtn id="male" type="radio" name="sex" value="male" />
                 <LabelRadioSexBtn htmlFor="male">
-                  <MdMale size="4rem"></MdMale>
+                  <MdMale size="4rem" color="#23C2EF"></MdMale>
                   Male
                 </LabelRadioSexBtn>
                 <RadioSexBtn
@@ -112,8 +113,8 @@ export const NoticeSecondForm = props => {
                 </LabelRadioSexBtn>
               </RadioWrapp>
               {props.isSubmitting && props.errors.sex
-            ? Notify.failure(props.errors.sex, notifyOptions)
-            : null}
+                ? Notify.failure(props.errors.sex, notifyOptions)
+                : null}
               <Label htmlFor="location">Location*:</Label>
               <InputWrapper>
                 <Input
@@ -125,8 +126,8 @@ export const NoticeSecondForm = props => {
                 />
               </InputWrapper>
               {props.isSubmitting && props.errors.location
-            ? Notify.failure(props.errors.location, notifyOptions)
-            : null}
+                ? Notify.failure(props.errors.location, notifyOptions)
+                : null}
               <Label htmlFor="price">Price*:</Label>
               <InputWrapper>
                 <Input
@@ -138,12 +139,12 @@ export const NoticeSecondForm = props => {
                 />
               </InputWrapper>
               {props.isSubmitting && props.errors.price
-            ? Notify.failure(props.errors.price, notifyOptions)
-            : null}
+                ? Notify.failure(props.errors.price, notifyOptions)
+                : null}
               <Text>Load the pet’s image</Text>
               <ButtonAddPhoto type="button">
                 {!img ? (
-                  <CrossBig>                    
+                  <CrossBig>
                     <TfiPlus size={48} />
                   </CrossBig>
                 ) : (
@@ -161,8 +162,8 @@ export const NoticeSecondForm = props => {
                   }}
                 />
                 {props.isSubmitting && props.errors.petImage
-            ? Notify.failure(props.errors.petImage, notifyOptions)
-            : null}
+                  ? Notify.failure(props.errors.petImage, notifyOptions)
+                  : null}
               </ButtonAddPhoto>
               <WraperTextarea>
                 <Label>Comments</Label>
@@ -174,14 +175,17 @@ export const NoticeSecondForm = props => {
                   placeholder="Type comments"
                 />
               </WraperTextarea>
-                  {props.isSubmitting && props.errors.comments
-            ? Notify.failure(props.errors.comments, notifyOptions)
-            : null}
+              {props.isSubmitting && props.errors.comments
+                ? Notify.failure(props.errors.comments, notifyOptions)
+                : null}
               <ButtonWrapper>
                 <ButtonFill type="submit" onSubmit={handleSubmit}>
                   Done
                 </ButtonFill>
-                <ButtonEmpty type="button" onClick={() => handleBackClick(values)}>
+                <ButtonEmpty
+                  type="button"
+                  onClick={() => handleBackClick(values)}
+                >
                   Back
                 </ButtonEmpty>
               </ButtonWrapper>
@@ -193,7 +197,4 @@ export const NoticeSecondForm = props => {
   );
 };
 
-
 export default NoticeSecondForm;
-
-

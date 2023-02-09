@@ -26,6 +26,7 @@ import UserInputPhone from './UserInput/UserPhone/UserPhone';
 import { selectIsAvatarLoading } from 'redux/auth/auth-selectors';
 import Loader from 'components/Loader';
 
+
 export default function UserData() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -35,11 +36,9 @@ export default function UserData() {
   const changeImage = async event => {
     const formData = new FormData();
     formData.append('avatar', event.target.files[0]);
+
     dispatch(patchAvatar(formData));
   };
-
-
-
   return (
     <Box>
       <AccentText>My information:</AccentText>
