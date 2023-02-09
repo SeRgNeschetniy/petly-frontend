@@ -15,6 +15,7 @@ const initialState = {
   token: '',
   isLogin: false,
   loading: false,
+  loadingAvatar: false,
   error: null,
 };
 
@@ -124,16 +125,16 @@ const authSlice = createSlice({
     //   store.error = action.payload;
     // },
     [patchAvatar.pending](store) {
-      store.isLoading = true;
+      store.loadingAvatar = true;
       store.error = null;
     },
     [patchAvatar.fulfilled]: (store, { payload }) => {
-      store.loading = false;
+      store.loadingAvatar = false;
       store.error = null;
       store.user = { ...store.user, avatarURL: payload.avatarURL };
     },
     [patchAvatar.rejected]: (store, { error }) => {
-      store.loading = false;
+      store.loadingAvatar = false;
       store.error = error;
     },
     // [deleteFromFavorites.pending]: store => {
