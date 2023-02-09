@@ -8,13 +8,14 @@ const showScroll = active => {
 };
 
 export const Container = styled.nav`
-  display: flex;
+  display: none;
   flex-direction: column;
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
-  top: 72px;
+  /* bottom: 0; */
+
+  margin-top: 72px;
   padding-top: 42px;
   width: 100%;
   height: 100%;
@@ -36,6 +37,7 @@ export const Container = styled.nav`
     return (
       active &&
       css`
+        display: flex;
         opacity: 1;
         pointer-events: auto;
       `
@@ -53,7 +55,7 @@ export const Container = styled.nav`
     position: static;
     flex-direction: row;
     height: 50px;
-
+    margin-top: 0px;
     padding-top: 0px;
 
     opacity: 1;
