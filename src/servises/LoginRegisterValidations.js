@@ -26,16 +26,13 @@ export const firstStepValidation = Yup.object({
 export const secondStepValidation = Yup.object({
   name: Yup.string()
     .min(2)
-    .matches(
-      /^[а-яёіїєА-ЯЁІЇЄ-\s]+$/,
-      `Enter data in the format "City, region"`
-    )
+    .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z-\s]+$/, `Only Letters`)
     .required('Required'),
   city: Yup.string()
     .min(2)
     .required('Required')
     .matches(
-      /^[а-яёіїєА-ЯЁІЇЄ]+,?\s[а-яёіїєА-ЯЁІЇЄ]+$/,
+      /^[а-яёіїєА-ЯЁІЇЄA-Za-z]+,?\s[а-яёіїєА-ЯЁІЇЄA-Za-z]+$/,
       `Enter data in the format "City, region"`
     ),
   phone: Yup.string()
