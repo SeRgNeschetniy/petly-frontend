@@ -15,7 +15,6 @@ import { Outlet, useParams } from 'react-router-dom';
 import { selectError } from 'redux/notices/notices-selectors';
 import { selectIsLogin } from 'redux/auth/auth-selectors';
 import { Container, Main } from 'styles';
-import { setSearch } from 'redux/search/search-slice';
 
 const NoticesLayoutPage = () => {
   const { categoryName } = useParams();
@@ -39,18 +38,12 @@ const NoticesLayoutPage = () => {
       .addEventListener('change', e => setMatches(e.matches));
   }, [dispatch, categoryName, isLoggedIn]);
 
-  const onFormSubmit = searchQuery => {
-    // setSearchParams({ query: searchQuery });
-    console.log(searchQuery);
-    dispatch(setSearch(searchQuery));
-  };
-
   return (
     <Main>
       <Container>
         <ContainerWrapp>
           <Headline title={'Find your favorite pet'}></Headline>
-          <NoticesSearch onSubmit={onFormSubmit} />
+          <NoticesSearch />
           <Wrapper>
             <NoticesCategoriesNav />
             {matches && <AddNoticeButton />}

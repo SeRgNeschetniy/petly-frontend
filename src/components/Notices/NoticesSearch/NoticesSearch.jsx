@@ -1,25 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Input, BtnSearch, Label, Wrapper } from './NoticesSearch.styled';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { RxCross1 } from 'react-icons/rx';
 import { AiOutlineSearch } from 'react-icons/ai';
+import useDebounce from 'hooks/useDebouce';
+import { useDispatch } from 'react-redux';
+import { setSearch } from 'redux/search/search-slice';
 
 const NoticesSearch = ({ onSubmit }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [changeInput, setChangeInput] = useState('search');
+  const debouncedSearch = useDebounce(searchQuery, 500);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (changeInput === 'search') {
-      // if (searchQuery.trim() === '') {
-      //   // Notify.failure('Sorry, enter your query');
-      //   return;
-      // }
-    }
-    onSubmit(searchQuery);
-    setChangeInput('search');
-    // setSearchQuery('');
-  };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setSearch(debouncedSearch));
+  }, [dispatch, debouncedSearch]);
 
   const handleChange = e => {
     setSearchQuery(e.currentTarget.value.toLowerCase());
@@ -27,18 +22,16 @@ const NoticesSearch = ({ onSubmit }) => {
 
   const removeQuery = () => {
     setSearchQuery('');
-    // onSubmit('');
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form>
       <Wrapper style={{ position: 'relative' }}>
         <Label htmlFor="searchQuery" />
         <Input
           type="text"
           name="searchQuery"
           autoComplete="off"
-          // autoFocus
           placeholder="Search"
           onChange={handleChange}
           value={searchQuery}
