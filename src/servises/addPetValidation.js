@@ -2,8 +2,8 @@ import * as Yup from 'yup';
 
 export const formOneValidationSchema = Yup.object({
   name: Yup.string()
-    .min(2, 'Too Short!')
-    .max(16, 'Too Long!')
+    .min(2, 'Name Too Short!')
+    .max(16, 'Name Too Long!')
     .label('Name')
     .required('Name is required')
     .matches(/^[а-яёіїєА-ЯЁІЇЄA-Za-z\s]+?$/iu, 'Only letters'),
@@ -27,16 +27,16 @@ export const formOneValidationSchema = Yup.object({
     .label('Date of birth')
     .required('Date of birth is required'),
   breed: Yup.string()
-    .min(2, 'Too Short!')
-    .max(32, 'Too Long!')
+    .min(2, 'Breed Too Short!')
+    .max(32, 'Breed Too Long!')
     .label('Breed')
     .required('Breed is required'),
 });
 
 export const formTwoValidationSchema = Yup.object({
   comments: Yup.string()
-    .min(8, 'Too Short!')
-    .max(120, 'To mach')
+    .min(8, 'Comments Too Short!')
+    .max(120, 'Comments Too Long!')
     .label('Comment')
     .required('Comment is required'),
   petImage: Yup.mixed().label('Pet image').required('Pet photo is required'),
