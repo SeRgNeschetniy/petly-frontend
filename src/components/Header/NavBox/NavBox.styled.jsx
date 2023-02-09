@@ -8,7 +8,7 @@ const showScroll = active => {
 };
 
 export const Container = styled.nav`
-  display: flex;
+  display: none;
 
   flex-direction: column;
 
@@ -21,16 +21,16 @@ export const Container = styled.nav`
   padding-top: 42px;
 
   width: 100%;
-  height: 100%;
+  height: calc(100% - 72px);
 
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.mainBackground};
   letter-spacing: 0.04em;
 
-  opacity: 0;
+  /* opacity: 0; */
   pointer-events: none;
 
-  z-index: 10;
+  z-index: 40;
 
   ${({ active }) => {
     if (window.matchMedia('(max-width: 1280px)').matches) {
@@ -40,7 +40,8 @@ export const Container = styled.nav`
     return (
       active &&
       css`
-        opacity: 1;
+        display: flex;
+        /* opacity: 1; */
         pointer-events: auto;
       `
     );
