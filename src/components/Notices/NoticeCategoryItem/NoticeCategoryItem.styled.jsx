@@ -89,7 +89,6 @@ export const DeleteBtn = styled.button`
   justify-content: center;
   align-items: center;
   padding: 8px;
-  width: 100%;
   width: 248px;
   margin-right: auto;
   margin-left: auto;
