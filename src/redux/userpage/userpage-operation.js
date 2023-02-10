@@ -31,7 +31,6 @@ export const fetchUserPets = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/pets`);
-      console.log(data);
       return data;
     } catch ({ responce }) {
       const error = {

@@ -104,11 +104,14 @@ const noticesSlice = createSlice({
       state.error = payload;
     },
 
-    [addNewNotice.pending]: handlePending,
+    [addNewNotice.pending](state, { payload }) {
+      state.isLoading = true;
+    },
     [addNewNotice.fulfilled](state, { payload }) {
       state.notices.push(payload);
       state.noticesUser.push(payload);
       state.isLoading = false;
+      state.error = null;
     },
     [addNewNotice.rejected](state, { payload }) {
       state.error = payload;
