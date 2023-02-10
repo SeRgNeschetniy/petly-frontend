@@ -144,6 +144,7 @@ const noticesSlice = createSlice({
       state.noticesFavorites = state.noticesFavorites.filter(
         item => item._id !== payload
       );
+      state.total = state.total - 1;
       state.isLoading = false;
       state.error = null;
     },
