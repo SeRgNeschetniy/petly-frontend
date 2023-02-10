@@ -6,6 +6,10 @@ export const ContainerWrapp = styled.div`
   margin-bottom: 50px;
 `;
 
+export const ListWrapp = styled.div`
+  position: relative;
+`;
+
 export const Wrapper = styled.div`
   position: relative;
   @media screen and (min-width: 320px) {

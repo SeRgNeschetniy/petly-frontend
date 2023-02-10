@@ -37,7 +37,10 @@ const noticesSlice = createSlice({
   reducers: {
     setPage(state, action) {
       state.page = action.payload;
-    }
+    },
+    clearNotices(state, action) {
+      state.notices = [];
+    },
   },
   extraReducers: {
     [fetchNotices.pending](state, { payload }) {
@@ -148,5 +151,5 @@ const noticesSlice = createSlice({
   },
 });
 
-export const { setPage } = noticesSlice.actions;
+export const { setPage, clearNotices } = noticesSlice.actions;
 export default noticesSlice.reducer;

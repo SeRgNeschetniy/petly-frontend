@@ -33,6 +33,7 @@ import {
 import Modal from 'components/Modal/Modal';
 import useModal from 'hooks/modal';
 import ReadMoreModal from 'components/Notices/ReadMoreModal/ReadMoreModal';
+import { setPage } from 'redux/notices/notices-slice';
 
 const NoticeCategoryItem = ({ notice }) => {
   const {
@@ -80,6 +81,7 @@ const NoticeCategoryItem = ({ notice }) => {
   const onDeleteNotice = e => {
     const cardId = e.currentTarget.id;
     dispatch(deleteNotice(cardId));
+    dispatch(setPage(1));
   };
 
   const isFavorite = id => {

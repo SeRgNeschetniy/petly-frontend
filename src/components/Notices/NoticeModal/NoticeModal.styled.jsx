@@ -53,7 +53,6 @@ export const IconMale = styled(MdMale)`
   fill: #23c2ef;
   width: 40px;
   height: 40px;
-  margin-botom: 20px;
 
   @media screen and (min-width: 767px) {
     width: 90px;
@@ -65,7 +64,6 @@ export const IconFemale = styled(MdFemale)`
   fill: #ff8787;
   width: 40px;
   height: 40px;
-  margin-botom: 20px;
 
   @media screen and (min-width: 767px) {
     width: 90px;

@@ -14,6 +14,7 @@ import ReactPaginate from 'react-paginate';
 import { fetchNotices } from 'redux/notices/notices-operation';
 import { selectSearch } from 'redux/search/search-selectors';
 import { setPage } from 'redux/notices/notices-slice';
+import { ListWrapp } from './NoticiesPage.styled';
 
 const NoticesCategory = () => {
   const { category } = useParams();
@@ -48,33 +49,35 @@ const NoticesCategory = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
-      {notices?.length === 0 && !isLoading && <EmpyList />}
+      {notices && notices?.length === 0 && !isLoading && <EmpyList />}
 
-      <NoticesCategoriesList route={category} notices={notices} />
-      {notices?.length > 0 && (
-        <ReactPaginate
-          previousLabel={'←'}
-          nextLabel={'→'}
-          pageCount={pageCount}
-          onPageChange={handlePageClick}
-          containerClassName={'pagination'}
-          previousLinkClassName={'pagination__link'}
-          nextLinkClassName={'pagination__link'}
-          disabledClassName={'pagination__link--disabled'}
-          activeClassName={'pagination__link--active'}
-          pageRangeDisplayed={3}
-          marginPagesDisplayed={2}
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="page-item"
-          nextClassName="page-item"
-          breakLabel="..."
-          breakClassName="page-item"
-          breakLinkClassName="page-link"
-          renderOnZeroPageCount={null}
-        />
-      )}
+      <ListWrapp>
+        {isLoading && <Loader />}
+        <NoticesCategoriesList route={category} notices={notices} />
+        {notices?.length > 0 && (
+          <ReactPaginate
+            previousLabel={'←'}
+            nextLabel={'→'}
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            containerClassName={'pagination'}
+            previousLinkClassName={'pagination__link'}
+            nextLinkClassName={'pagination__link'}
+            disabledClassName={'pagination__link--disabled'}
+            activeClassName={'pagination__link--active'}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={2}
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            nextClassName="page-item"
+            breakLabel="..."
+            breakClassName="page-item"
+            breakLinkClassName="page-link"
+            renderOnZeroPageCount={null}
+          />
+        )}
+      </ListWrapp>
     </>
   );
 };
