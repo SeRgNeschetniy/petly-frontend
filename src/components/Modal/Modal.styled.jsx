@@ -2,10 +2,8 @@ import styled from 'styled-components';
 
 export const Overlay = styled.div`
   position: fixed;
-  top: 0rem;
-  left: 0rem;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   display: flex;
   align-items: flex-start;
@@ -13,7 +11,8 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.75);
   overflow: hidden;
   overflow-y: scroll;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 12;
 
   @media screen and (min-width: 1280px) {
