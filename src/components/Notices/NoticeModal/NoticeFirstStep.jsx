@@ -24,7 +24,6 @@ import {
 import { Notify } from 'notiflix';
 
 const NoticeFirstForm = props => {
-  //props
   const handleSubmit = values => {
     props.setData(prev => {
       return {
