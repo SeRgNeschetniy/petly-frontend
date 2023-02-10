@@ -31,7 +31,7 @@ export const AddPetsSecondForm = props => {
     showOnlyTheLastOne: true,
     timeout: 2000,
   };
-  const [img, setImg] = useState(null);   
+  const [img, setImg] = useState(null);
   const dispatch = useDispatch();
 
   const handleSubmit = values => {
@@ -45,13 +45,13 @@ export const AddPetsSecondForm = props => {
     props.closeModal();
   };
 
-  const handleOnClick = (values, img) =>{ 
-    props.setData(prev =>{
-      return{
+  const handleOnClick = (values, img) => {
+    props.setData(prev => {
+      return {
         ...prev,
-        comments: values.comments,        
-      }
-    });    
+        comments: values.comments,
+      };
+    });
     props.setPage(prev => prev - 1);
   };
 
@@ -81,7 +81,7 @@ export const AddPetsSecondForm = props => {
                 <InputPhoto
                   name="petImage"
                   type="file"
-                  accept="image/*"
+                  accept="image/png, image/jpeg"
                   onChange={e => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('petImage', e.target.files[0]);

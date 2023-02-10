@@ -167,7 +167,7 @@ export const NoticeSecondForm = props => {
                 <InputPhoto
                   type="file"
                   name="petImage"
-                  accept="image/*"
+                  accept="image/png, image/jpeg"
                   onChange={e => {
                     const fileUploaded = e.target.files[0];
                     setFieldValue('petImage', e.target.files[0]);
