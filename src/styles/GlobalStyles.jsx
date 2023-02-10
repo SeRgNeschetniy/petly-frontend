@@ -234,7 +234,7 @@ export const Main = styled.main`
         background-image: url(${tbltImageGirl}), url(${tbltImageHomeBg});
         background-position: right 50% bottom 0, left 0 bottom 0;
         background-repeat: no-repeat, no-repeat;
-        background-size: auto 68%, 100% auto;
+        background-size: auto 68%, 100% 100%;
 
         @media (min-device-pixel-ratio: 2),
           (min-resolution: 192dpi),
