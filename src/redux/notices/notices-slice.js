@@ -17,8 +17,9 @@ const initialState = {
   isLoading: false,
   error: null,
   oneNotice: [],
-  page: '',
+  page: 1,
   total: '',
+  category: '',
 };
 
 const handlePending = state => {
@@ -33,6 +34,11 @@ const handleRejected = (state, action) => {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState: initialState,
+  reducers: {
+    setPage(state, action) {
+      state.page = action.payload;
+    }
+  },
   extraReducers: {
     [fetchNotices.pending](state, { payload }) {
       state.isLoading = true;
@@ -43,6 +49,7 @@ const noticesSlice = createSlice({
       state.notices = payload.notices;
       state.page = payload.page;
       state.total = payload.total;
+      state.category = payload.category;
       state.isLoading = false;
       state.error = null;
     },
@@ -108,7 +115,10 @@ const noticesSlice = createSlice({
       state.isLoading = true;
     },
     [addNewNotice.fulfilled](state, { payload }) {
-      state.notices.push(payload);
+      if (state.category === payload.category) {
+        state.notices.pop();
+        state.notices.unshift(payload);
+      }
       state.noticesUser.push(payload);
       state.isLoading = false;
       state.error = null;
@@ -138,4 +148,5 @@ const noticesSlice = createSlice({
   },
 });
 
+export const { setPage } = noticesSlice.actions;
 export default noticesSlice.reducer;

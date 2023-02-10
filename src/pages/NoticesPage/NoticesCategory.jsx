@@ -1,6 +1,6 @@
 import Loader from 'components/Loader';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
@@ -9,10 +9,11 @@ import {
   selectTotalNotice,
 } from 'redux/notices/notices-selectors';
 import EmpyList from 'components/Notices/EmpyList/EmptyList';
-
+import { selectPage } from 'redux/notices/notices-selectors';
 import ReactPaginate from 'react-paginate';
 import { fetchNotices } from 'redux/notices/notices-operation';
 import { selectSearch } from 'redux/search/search-selectors';
+import { setPage } from 'redux/notices/notices-slice';
 
 const NoticesCategory = () => {
   const { category } = useParams();
@@ -21,9 +22,9 @@ const NoticesCategory = () => {
   const total = useSelector(selectTotalNotice);
   const query = useSelector(selectSearch);
   const limit = 4;
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
   const pageCount = Math.ceil(total / limit);
-
+  const page = useSelector(selectPage);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,17 +33,17 @@ const NoticesCategory = () => {
         fetchNotices({
           category,
           query: query,
-          page: currentPage,
+          page: page,
           limit: limit,
         })
       );
     } else {
-      dispatch(fetchNotices({ category, page: currentPage, limit: limit }));
+      dispatch(fetchNotices({ category, page: page, limit: limit }));
     }
-  }, [dispatch, category, query, currentPage]);
+  }, [dispatch, category, query, page]);
 
   const handlePageClick = event => {
-    setCurrentPage(event.selected + 1);
+    dispatch(setPage(event.selected + 1));
   };
 
   return (
