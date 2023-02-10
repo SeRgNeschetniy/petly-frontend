@@ -16,6 +16,6 @@ export const Overlay = styled.div`
   z-index: 12;
 
   @media screen and (min-width: 1280px) {
-    align-items: center;
+    // align-items: center;
   }
 `;
