@@ -15,7 +15,7 @@ import { fetchNotices } from 'redux/notices/notices-operation';
 import { selectSearch } from 'redux/search/search-selectors';
 
 const NoticesCategory = () => {
-  const { categoryName } = useParams();
+  const { category } = useParams();
   const notices = useSelector(selectNotices);
   const isLoading = useSelector(selectIsLoading);
   const total = useSelector(selectTotalNotice);
@@ -30,16 +30,16 @@ const NoticesCategory = () => {
     if (query !== '') {
       dispatch(
         fetchNotices({
-          categoryName,
+          category,
           query: query,
           page: currentPage,
           limit: limit,
         })
       );
     } else {
-      dispatch(fetchNotices({ categoryName, page: currentPage, limit: limit }));
+      dispatch(fetchNotices({ category, page: currentPage, limit: limit }));
     }
-  }, [dispatch, categoryName, query, currentPage]);
+  }, [dispatch, category, query, currentPage]);
 
   const handlePageClick = event => {
     setCurrentPage(event.selected + 1);
@@ -50,7 +50,7 @@ const NoticesCategory = () => {
       {isLoading && <Loader />}
       {notices?.length === 0 && !isLoading && <EmpyList />}
 
-      <NoticesCategoriesList route={categoryName} notices={notices} />
+      <NoticesCategoriesList route={category} notices={notices} />
       {notices?.length > 0 && (
         <ReactPaginate
           previousLabel={'←'}

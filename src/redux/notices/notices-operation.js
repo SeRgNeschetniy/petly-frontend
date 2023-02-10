@@ -5,11 +5,11 @@ import { setToken } from 'redux/auth/auth-operation';
 //axios.defaults.baseURL = 'https://petly-backend-vopf.onrender.com/api';
 
 export const fetchNotices = createAsyncThunk(
-  'notices/categoryName',
-  async ({ categoryName, query = '', page = 1, limit = 8 }, thunkApi) => {
+  'notices/category',
+  async ({ category, query = '', page = 1, limit = 8 }, thunkApi) => {
     try {
       const { data } = await axios.get(
-        `/notices/${categoryName}?page=${page}&limit=${limit}&query=${query}`
+        `/notices/${category}?page=${page}&limit=${limit}&query=${query}`
       );
       return data;
     } catch (error) {
