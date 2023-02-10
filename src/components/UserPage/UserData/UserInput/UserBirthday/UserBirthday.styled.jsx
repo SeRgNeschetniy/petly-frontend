@@ -16,10 +16,6 @@ export const TextField = styled.span`
     font-weight: 500;
     font-size: 18px;
     line-height: 25px;
-    margin-right: 0;
-  }
-  @media screen and (min-width: 1280px) {
-    margin-right: 0;
   }
 `;
 export const InputForm = styled.input`
@@ -65,9 +61,8 @@ export const ButtonEdit = styled.button`
   background: #fdf7f2;
   backdrop-filter: blur(2px);
   transition: background 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  :hover{
+  :hover {
     background: ${theme.colors.brightAccent};
-    
   }
   @media screen and (min-width: 768px) {
     width: 32px;
